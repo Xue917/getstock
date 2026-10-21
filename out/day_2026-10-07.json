@@ -5870,7 +5870,7 @@
     "code": "6449",
     "name": "鈺邦",
     "market": "上市",
-    "sector": "其他",
+    "sector": "電子零組件",
     "close": 261.5,
     "chgPct": 9.87,
     "surge": 2.46,
@@ -5912,7 +5912,7 @@
     "code": "1455",
     "name": "集盛",
     "market": "上市",
-    "sector": "其他",
+    "sector": "紡織纖維",
     "close": 10.8,
     "chgPct": 8.87,
     "surge": 27.12,
@@ -5933,7 +5933,7 @@
     "code": "2472",
     "name": "立隆電",
     "market": "上市",
-    "sector": "其他",
+    "sector": "電子零組件",
     "close": 243.5,
     "chgPct": 6.8,
     "surge": 2.56,
@@ -5959,6 +5959,12 @@
     "diff": 2
    },
    {
+    "sector": "塑膠",
+    "today": 3,
+    "prev": 1,
+    "diff": 2
+   },
+   {
     "sector": "電子通路",
     "today": 2,
     "prev": 0,
@@ -5971,7 +5977,7 @@
     "diff": 1
    },
    {
-    "sector": "塑膠",
+    "sector": "生技醫療",
     "today": 2,
     "prev": 1,
     "diff": 1
@@ -5983,16 +5989,10 @@
     "diff": 1
    },
    {
-    "sector": "生技醫療",
-    "today": 2,
-    "prev": 1,
-    "diff": 1
-   },
-   {
     "sector": "其他",
-    "today": 4,
+    "today": 3,
     "prev": 4,
-    "diff": 0
+    "diff": -1
    },
    {
     "sector": "通信網路",

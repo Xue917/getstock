@@ -5879,7 +5879,7 @@
     "code": "6716",
     "name": "應廣",
     "market": "上櫃",
-    "sector": "其他",
+    "sector": "半導體",
     "close": 146.0,
     "chgPct": 9.77,
     "surge": 6.68,
@@ -5900,7 +5900,7 @@
     "code": "1785",
     "name": "光洋科",
     "market": "上櫃",
-    "sector": "其他",
+    "sector": "其他電子",
     "close": 110.5,
     "chgPct": 7.8,
     "surge": 6.17,
@@ -5942,7 +5942,7 @@
     "code": "5452",
     "name": "佶優",
     "market": "上櫃",
-    "sector": "其他",
+    "sector": "其他電子",
     "close": 32.0,
     "chgPct": 6.67,
     "surge": 6.26,
@@ -5963,7 +5963,7 @@
     "code": "6449",
     "name": "鈺邦",
     "market": "上市",
-    "sector": "其他",
+    "sector": "電子零組件",
     "close": 238.0,
     "chgPct": 4.85,
     "surge": 2.76,
@@ -5995,7 +5995,7 @@
     "diff": 5
    },
    {
-    "sector": "其他電子",
+    "sector": "其他",
     "today": 4,
     "prev": 0,
     "diff": 4
@@ -6007,7 +6007,7 @@
     "diff": 4
    },
    {
-    "sector": "其他",
+    "sector": "其他電子",
     "today": 4,
     "prev": 0,
     "diff": 4
@@ -6019,13 +6019,13 @@
     "diff": 3
    },
    {
-    "sector": "化學",
+    "sector": "電腦週邊",
     "today": 2,
     "prev": 0,
     "diff": 2
    },
    {
-    "sector": "電腦週邊",
+    "sector": "化學",
     "today": 2,
     "prev": 0,
     "diff": 2

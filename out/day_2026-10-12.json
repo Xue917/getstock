@@ -5615,7 +5615,7 @@
     "code": "8996",
     "name": "高力",
     "market": "上市",
-    "sector": "其他",
+    "sector": "電機機械",
     "rank": 2,
     "score": 87.2,
     "close": 1720.0,
@@ -5631,7 +5631,7 @@
     "code": "2617",
     "name": "台航",
     "market": "上市",
-    "sector": "其他",
+    "sector": "航運",
     "rank": 4,
     "score": 85.8,
     "close": 32.5,
@@ -5679,7 +5679,7 @@
     "code": "5443",
     "name": "均豪",
     "market": "上櫃",
-    "sector": "其他",
+    "sector": "半導體",
     "rank": 1,
     "score": 95.2,
     "close": 115.5,
@@ -5759,7 +5759,7 @@
     "code": "5443",
     "name": "均豪",
     "market": "上櫃",
-    "sector": "其他",
+    "sector": "半導體",
     "rank": 1,
     "close": 115.5,
     "chg": 4.52,
@@ -6063,7 +6063,7 @@
     "code": "4973",
     "name": "廣穎",
     "market": "上櫃",
-    "sector": "其他",
+    "sector": "半導體",
     "close": 158.0,
     "chgPct": 6.04,
     "surge": 11.04,
@@ -6105,7 +6105,7 @@
     "code": "3008",
     "name": "大立光",
     "market": "上市",
-    "sector": "其他",
+    "sector": "光電",
     "close": 7325.0,
     "chgPct": 9.98,
     "surge": 2.66,
@@ -6126,7 +6126,7 @@
     "code": "6282",
     "name": "康舒",
     "market": "上市",
-    "sector": "其他",
+    "sector": "電子零組件",
     "close": 45.7,
     "chgPct": 5.79,
     "surge": 4.59,
@@ -6147,7 +6147,7 @@
     "code": "6261",
     "name": "久元",
     "market": "上櫃",
-    "sector": "其他",
+    "sector": "半導體",
     "close": 84.0,
     "chgPct": 9.95,
     "surge": 7.77,
@@ -6189,15 +6189,21 @@
   "sectorShift": [
    {
     "sector": "半導體",
-    "today": 6,
+    "today": 7,
     "prev": 4,
-    "diff": 2
+    "diff": 3
    },
    {
     "sector": "電腦週邊",
     "today": 3,
     "prev": 1,
     "diff": 2
+   },
+   {
+    "sector": "金融保險",
+    "today": 3,
+    "prev": 2,
+    "diff": 1
    },
    {
     "sector": "電子通路",
@@ -6212,27 +6218,21 @@
     "diff": 1
    },
    {
-    "sector": "金融保險",
+    "sector": "航運",
     "today": 2,
     "prev": 1,
     "diff": 1
    },
    {
-    "sector": "其他",
-    "today": 8,
-    "prev": 8,
-    "diff": 0
+    "sector": "建材營造",
+    "today": 2,
+    "prev": 1,
+    "diff": 1
    },
    {
     "sector": "電子零組件",
-    "today": 4,
-    "prev": 4,
-    "diff": 0
-   },
-   {
-    "sector": "光電",
-    "today": 3,
-    "prev": 3,
+    "today": 5,
+    "prev": 5,
     "diff": 0
    }
   ]

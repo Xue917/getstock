@@ -6088,7 +6088,7 @@
     "code": "5443",
     "name": "均豪",
     "market": "上櫃",
-    "sector": "其他",
+    "sector": "半導體",
     "prevRank": 1,
     "prevScore": 95.2,
     "prevClose": 115.5,
@@ -6098,7 +6098,7 @@
     "code": "8996",
     "name": "高力",
     "market": "上市",
-    "sector": "其他",
+    "sector": "電機機械",
     "prevRank": 2,
     "prevScore": 87.2,
     "prevClose": 1720.0,
@@ -6108,7 +6108,7 @@
     "code": "2617",
     "name": "台航",
     "market": "上市",
-    "sector": "其他",
+    "sector": "航運",
     "prevRank": 4,
     "prevScore": 85.8,
     "prevClose": 32.5,
@@ -6212,7 +6212,7 @@
     "code": "6191",
     "name": "精成科",
     "market": "上市",
-    "sector": "其他",
+    "sector": "電子零組件",
     "close": 96.4,
     "chgPct": 3.1,
     "surge": 5.63,
@@ -6233,7 +6233,7 @@
     "code": "1615",
     "name": "大山",
     "market": "上市",
-    "sector": "其他",
+    "sector": "電器電纜",
     "close": 54.8,
     "chgPct": 8.3,
     "surge": 13.6,
@@ -6254,15 +6254,15 @@
   "sectorShift": [
    {
     "sector": "電腦週邊",
-    "today": 6,
+    "today": 7,
     "prev": 3,
-    "diff": 3
+    "diff": 4
    },
    {
     "sector": "航運",
     "today": 4,
-    "prev": 1,
-    "diff": 3
+    "prev": 2,
+    "diff": 2
    },
    {
     "sector": "生技醫療",
@@ -6273,11 +6273,17 @@
    {
     "sector": "半導體",
     "today": 7,
-    "prev": 6,
-    "diff": 1
+    "prev": 7,
+    "diff": 0
    },
    {
     "sector": "光電",
+    "today": 3,
+    "prev": 3,
+    "diff": 0
+   },
+   {
+    "sector": "金融保險",
     "today": 3,
     "prev": 3,
     "diff": 0
@@ -6290,12 +6296,6 @@
    },
    {
     "sector": "塑膠",
-    "today": 2,
-    "prev": 2,
-    "diff": 0
-   },
-   {
-    "sector": "金融保險",
     "today": 2,
     "prev": 2,
     "diff": 0
