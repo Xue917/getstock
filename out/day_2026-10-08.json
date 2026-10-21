@@ -5861,7 +5861,7 @@
     "code": "3533",
     "name": "嘉澤",
     "market": "上市",
-    "sector": "電子零組件",
+    "sector": "其他",
     "rank": 10,
     "close": 1915.0,
     "chg": 4.93,
@@ -5891,7 +5891,7 @@
     "code": "6015",
     "name": "宏遠證",
     "market": "上櫃",
-    "sector": "金融保險",
+    "sector": "其他",
     "rank": 17,
     "close": 18.15,
     "chg": 1.97,
@@ -5972,7 +5972,7 @@
     "code": "1560",
     "name": "中砂",
     "market": "上市",
-    "sector": "電機機械",
+    "sector": "其他",
     "rank": 11,
     "close": 1010.0,
     "chg": -0.98,
@@ -6183,7 +6183,7 @@
     "code": "3048",
     "name": "益登",
     "market": "上市",
-    "sector": "電子通路",
+    "sector": "其他",
     "close": 57.0,
     "chgPct": 6.74,
     "surge": 4.9,
@@ -6204,7 +6204,7 @@
     "code": "1732",
     "name": "毛寶",
     "market": "上市",
-    "sector": "化學",
+    "sector": "其他",
     "close": 28.0,
     "chgPct": 4.67,
     "surge": 12.7,
@@ -6224,19 +6224,19 @@
   ],
   "sectorShift": [
    {
+    "sector": "其他",
+    "today": 8,
+    "prev": 4,
+    "diff": 4
+   },
+   {
     "sector": "塑膠",
     "today": 5,
-    "prev": 3,
-    "diff": 2
+    "prev": 2,
+    "diff": 3
    },
    {
     "sector": "生技醫療",
-    "today": 4,
-    "prev": 2,
-    "diff": 2
-   },
-   {
-    "sector": "電機機械",
     "today": 4,
     "prev": 2,
     "diff": 2
@@ -6254,21 +6254,21 @@
     "diff": 1
    },
    {
-    "sector": "金融保險",
+    "sector": "電機機械",
     "today": 2,
-    "prev": 1,
-    "diff": 1
+    "prev": 2,
+    "diff": 0
    },
    {
-    "sector": "其他",
-    "today": 2,
-    "prev": 3,
-    "diff": -1
+    "sector": "通信網路",
+    "today": 0,
+    "prev": 2,
+    "diff": -2
    },
    {
-    "sector": "電子零組件",
-    "today": 5,
-    "prev": 7,
+    "sector": "其他電子",
+    "today": 0,
+    "prev": 2,
     "diff": -2
    }
   ]

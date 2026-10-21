@@ -275,11 +275,11 @@ def run_pipeline(date_arg=None, rebuild_only=False, force_fetch=False, do_verify
 
 
 def daemon_loop():
-    """常駐背景排程模式：每個交易日 16:35(初版)、22:05(融資定稿)、08:15(隔日當沖定稿)自動執行。"""
-    schedules = [("16:35", False), ("22:05", False), ("08:15", True)]
+    """常駐背景排程模式：每個交易日 16:35(初版)、22:00(融資定稿)、08:15(隔日當沖定稿)自動執行。"""
+    schedules = [("16:35", False), ("22:00", False), ("08:15", True)]
     triggered = set()
     print("=== GETSTOCK 全自動 AI 選股常駐排程已啟動 ===")
-    print("排程時間點：每日 16:35 (法人初版)、22:05 (融資+大戶定稿)、08:15 (隔日當沖定稿與官方核對)")
+    print("排程時間點：每日 16:35 (法人初版)、22:00 (融資+大戶定稿)、08:15 (隔日當沖定稿與官方核對)")
     while True:
         now = dt.datetime.now()
         hm = now.strftime("%H:%M")

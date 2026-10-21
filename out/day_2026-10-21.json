@@ -5753,7 +5753,7 @@
     "code": "8422",
     "name": "可寧衛*",
     "market": "上市",
-    "sector": "綠能環保",
+    "sector": "其他",
     "rank": 18,
     "close": 26.1,
     "chg": 1.36,
@@ -5983,7 +5983,7 @@
     "code": "6443",
     "name": "元晶",
     "market": "上市",
-    "sector": "光電",
+    "sector": "其他",
     "close": 26.75,
     "chgPct": 7.86,
     "surge": 4.15,
@@ -6046,7 +6046,7 @@
     "code": "2406",
     "name": "國碩",
     "market": "上市",
-    "sector": "光電",
+    "sector": "其他",
     "close": 29.9,
     "chgPct": 6.03,
     "surge": 3.15,
@@ -6066,28 +6066,22 @@
   ],
   "sectorShift": [
    {
+    "sector": "其他",
+    "today": 8,
+    "prev": 1,
+    "diff": 7
+   },
+   {
     "sector": "金融保險",
     "today": 3,
     "prev": 0,
     "diff": 3
    },
    {
-    "sector": "其他",
-    "today": 3,
-    "prev": 1,
-    "diff": 2
-   },
-   {
     "sector": "電子通路",
     "today": 2,
     "prev": 0,
     "diff": 2
-   },
-   {
-    "sector": "通信網路",
-    "today": 5,
-    "prev": 4,
-    "diff": 1
    },
    {
     "sector": "半導體",
@@ -6102,16 +6096,22 @@
     "diff": 1
    },
    {
-    "sector": "光電",
-    "today": 3,
+    "sector": "通信網路",
+    "today": 4,
     "prev": 4,
-    "diff": -1
+    "diff": 0
    },
    {
     "sector": "鋼鐵",
     "today": 2,
     "prev": 3,
     "diff": -1
+   },
+   {
+    "sector": "光電",
+    "today": 2,
+    "prev": 4,
+    "diff": -2
    }
   ]
  }

@@ -6017,14 +6017,14 @@
    {
     "sector": "金融保險",
     "today": 2,
-    "prev": 3,
-    "diff": -1
+    "prev": 2,
+    "diff": 0
    },
    {
     "sector": "電腦週邊",
     "today": 5,
-    "prev": 7,
-    "diff": -2
+    "prev": 6,
+    "diff": -1
    }
   ]
  }

@@ -2,9 +2,9 @@ name: GETSTOCK Daily AI Stock Picker
 
 on:
   schedule:
-    # 台灣時間 (UTC+8) 週一至週五 16:40 (三大法人初版) 與 22:10 (融資融券與大戶定稿)
+    # 台灣時間 (UTC+8) 週一至週五 16:40 (三大法人初版) 與 22:00 (融資融券與大戶定稿)
     - cron: '40 8 * * 1-5'
-    - cron: '10 14 * * 1-5'
+    - cron: '0 14 * * 1-5'
   workflow_dispatch:
     inputs:
       date:
