@@ -32,7 +32,17 @@
   --font-num: "Roboto Mono", monospace;
   --s1: #3b82f6; --s2: #f97316; --s3: #10b981; --s4: #eab308; --s5: #ec4899;
 }
-html { background: var(--bg); scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+  scroll-padding-top: 135px;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (max-width: 1024px) {
+  html {
+    scroll-padding-top: 110px;
+  }
+}
 body {
   background: var(--bg); color: #f1f5f9;
   font-family: 'Inter', 'Noto Sans TC', system-ui, sans-serif;
@@ -104,13 +114,13 @@ body {
       </a>
 
       <!-- 桌面端分頁選單 (無過度 Icon) -->
-      <div class="hidden lg:flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-white/10 text-xs font-medium">
-        <a href="#picks" class="px-3.5 py-1.5 rounded-lg text-white bg-white/10 transition-colors">今日精選</a>
-        <a href="#anomalies" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">籌碼異動</a>
-        <a href="#daytrade" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">當沖標的</a>
-        <a href="#doctor" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">個股診斷</a>
-        <a href="#screener" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">條件篩選</a>
-        <a href="#backtest" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">歷史回測</a>
+      <div id="desktopNavTabs" class="hidden lg:flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-white/10 text-xs font-medium">
+        <a href="#picks" class="nav-tab px-3.5 py-1.5 rounded-lg text-white bg-white/10 font-bold transition-colors">今日精選</a>
+        <a href="#anomalies" class="nav-tab px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">籌碼異動</a>
+        <a href="#daytrade" class="nav-tab px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">當沖標的</a>
+        <a href="#doctor" class="nav-tab px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">個股診斷</a>
+        <a href="#screener" class="nav-tab px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">條件篩選</a>
+        <a href="#backtest" class="nav-tab px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">歷史回測</a>
       </div>
 
       <!-- 股票搜尋框 -->
@@ -149,7 +159,7 @@ body {
 </section>
 
 <!-- 自選股區塊 (預設收合) -->
-<section id="watchSection" class="max-w-7xl mx-auto px-4 sm:px-6 py-2 hidden">
+<section id="watchSection" class="max-w-7xl mx-auto px-4 sm:px-6 py-2 hidden scroll-mt-32">
   <div class="rounded-xl border border-white/15 bg-slate-900/80 p-4">
     <div class="flex items-center justify-between gap-2 mb-3">
       <div class="flex items-center gap-2">
@@ -174,7 +184,7 @@ body {
 </section>
 
 <!-- ===== 模組 1: 今日精選 40 檔 (Picks) ===== -->
-<main id="picks" class="max-w-7xl mx-auto px-4 sm:px-6 py-3">
+<main id="picks" class="max-w-7xl mx-auto px-4 sm:px-6 py-3 scroll-mt-32">
   <!-- 控制與篩選列 -->
   <div class="flex flex-col gap-2.5 mb-3">
     <div class="flex flex-wrap items-center justify-between gap-2.5">
@@ -260,7 +270,7 @@ body {
 </main>
 
 <!-- ===== 模組 2: 籌碼異動追蹤 (Anomalies) ===== -->
-<section id="anomalies" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10">
+<section id="anomalies" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10 scroll-mt-32">
   <div class="flex flex-col md:flex-row md:items-end justify-between gap-2.5 mb-3">
     <div>
       <div class="text-xs text-slate-400" id="anomCompareDate">跨日籌碼軌跡追蹤</div>
@@ -285,7 +295,7 @@ body {
 </section>
 
 <!-- ===== 模組 3: 當沖標的 (Day Trade) ===== -->
-<section id="daytrade" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10">
+<section id="daytrade" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10 scroll-mt-32">
   <div class="flex flex-col md:flex-row md:items-end justify-between gap-2.5 mb-3">
     <div>
       <div class="text-xs text-slate-400" id="dtAsof">隔日當沖參考名單</div>
@@ -322,7 +332,7 @@ body {
 </section>
 
 <!-- ===== 模組 4: 個股診斷與部位試算 (Doctor) ===== -->
-<section id="doctor" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10">
+<section id="doctor" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10 scroll-mt-32">
   <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-3.5">
     <div>
       <div class="text-xs text-slate-400" id="docPoolCount">全市場 550+ 檔即時數據</div>
@@ -385,7 +395,7 @@ body {
 </section>
 
 <!-- ===== 模組 5: 多因子條件選股 (Screener) ===== -->
-<section id="screener" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10">
+<section id="screener" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10 scroll-mt-32">
   <div class="flex flex-col md:flex-row md:items-end justify-between gap-2.5 mb-3">
     <div>
       <div class="text-xs text-slate-400" id="scrCountInfo">全市場多因子條件篩選</div>
@@ -479,7 +489,7 @@ body {
 </section>
 
 <!-- ===== 模組 6: 歷史回測與成交排行 (Backtest) ===== -->
-<section id="backtest" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10">
+<section id="backtest" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10 scroll-mt-32">
   <div class="rounded-xl border border-white/10 bg-slate-900/60 p-4 sm:p-5 mb-6">
     <div class="mb-3">
       <div class="text-xs text-slate-400">歷史推薦追蹤驗證</div>
@@ -1050,7 +1060,7 @@ body {
 
     updatePositionCalculator();
     if (scrollIntoView) {
-      $("doctor").scrollIntoView({ behavior: "smooth", block: "start" });
+      scrollToSection("doctor");
     }
   }
 
@@ -1773,6 +1783,70 @@ body {
     a.click();
     URL.revokeObjectURL(url);
   });
+
+  // 精準平滑滾動至目標章節 (動態扣除 Sticky 頂部欄高度 + 16px 留白，完整呈現章節與標題)
+  function scrollToSection(targetId) {
+    const el = document.getElementById(targetId) || document.querySelector(targetId);
+    if (!el) return;
+    const headerEl = document.querySelector("header");
+    const navEl = document.querySelector("nav");
+    const headerH = headerEl ? headerEl.offsetHeight : 0;
+    const navH = navEl ? navEl.offsetHeight : 0;
+    const offset = headerH + navH + 16;
+    const elementPosition = el.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - offset;
+    window.scrollTo({
+      top: Math.max(0, offsetPosition),
+      behavior: "smooth"
+    });
+  }
+
+  // 頂部導航選單與站內錨點點擊平滑滾動 (包含手機底部 Dock)
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const hash = link.getAttribute("href");
+      if (!hash || hash === "#") return;
+      const targetId = hash.replace(/^#/, "");
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        scrollToSection(targetId);
+        try { history.pushState(null, "", hash); } catch (_) {}
+
+        // 更新頂部選單 active 狀態
+        document.querySelectorAll(".nav-tab").forEach((t) => {
+          const isCurrent = t.getAttribute("href") === hash;
+          t.className = `nav-tab px-3.5 py-1.5 rounded-lg transition-colors ${
+            isCurrent ? "text-white bg-white/10 font-bold" : "text-slate-400 hover:text-white"
+          }`;
+        });
+      }
+    });
+  });
+
+  // 滾動頁面時自動高亮當前瀏覽中的章節按鈕
+  if ("IntersectionObserver" in window) {
+    const secObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          document.querySelectorAll(".nav-tab").forEach((t) => {
+            const isCurrent = t.getAttribute("href") === `#${id}`;
+            t.className = `nav-tab px-3.5 py-1.5 rounded-lg transition-colors ${
+              isCurrent ? "text-white bg-white/10 font-bold" : "text-slate-400 hover:text-white"
+            }`;
+          });
+        }
+      });
+    }, {
+      rootMargin: "-25% 0px -65% 0px"
+    });
+
+    ["picks", "anomalies", "daytrade", "doctor", "screener", "backtest"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) secObserver.observe(el);
+    });
+  }
 
   initScreenerSectors();
   renderWatchlist();
