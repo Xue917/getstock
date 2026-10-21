@@ -713,28 +713,23 @@ def compute_ai_insight(p, prev_rank=None, streak_days=1, mkt_chg_pct=0.0):
 
     if score >= 85 and resonance >= 3:
         grade = "S+"
-        signal = "AI 強勢共識・主力鎖碼"
+        signal = "多因子共振・主力鎖碼"
     elif score >= 80 or (score >= 76 and resonance >= 3):
         grade = "A+"
-        signal = "AI 籌碼集中・波段偏多"
+        signal = "籌碼集中・波段偏多"
     elif score >= 72:
         grade = "A"
-        signal = "AI 法人進駐・穩健偏多"
+        signal = "法人進駐・穩健偏多"
     else:
         grade = "B+"
-        signal = "AI 籌碼轉強・追蹤觀察"
+        signal = "籌碼轉強・追蹤觀察"
 
     trade_plan = compute_trade_plan(p, grade)
     anomalies = detect_stock_anomalies(p, prev_rank=prev_rank, streak_days=streak_days, mkt_chg_pct=mkt_chg_pct)
 
     prefix = "、".join(highlights[:3]) if highlights else "三大法人買超佔均量比高"
-    anom_txt = f"｜異常亮點：{anomalies[0]['text']}" if anomalies else ""
-    summary = (
-        f"【{signal}｜{trade_plan['strategy']}】{prefix}{anom_txt}。"
-        f"建議買點：{trade_plan['buyZone']}（突破買點 {trade_plan['breakoutBuy']}）；"
-        f"停利目標：{trade_plan['sellTarget1']} / {trade_plan['sellTarget2']}；"
-        f"防守停損：{trade_plan['stopLoss']}。"
-    )
+    anom_txt = f"；{anomalies[0]['text']}" if anomalies else ""
+    summary = f"{prefix}{anom_txt}。"
     return {
         "aiGrade": grade,
         "aiSignal": signal,

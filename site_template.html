@@ -79,7 +79,7 @@ body {
 <header class="border-b border-white/10 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-between gap-3 text-xs">
     <div class="flex items-center gap-2 overflow-hidden">
-      <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-medium text-[11px] border border-emerald-500/20 whitespace-nowrap">
+      <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-medium text-xs border border-emerald-500/20 whitespace-nowrap">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>每日 22:00 定稿更新
       </span>
       <span class="text-slate-400 truncate hidden md:inline">三大法人・融資融券・千張大戶・當沖做多做空</span>
@@ -99,7 +99,7 @@ body {
       <a href="#picks" class="flex items-center gap-2 flex-none">
         <div class="font-bold text-base sm:text-lg leading-tight tracking-tight text-white flex items-center gap-1.5">
           <span>GETSTOCK</span>
-          <span class="text-[11px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-normal">台股量化</span>
+          <span class="text-xs px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-normal">台股量化</span>
         </div>
       </a>
 
@@ -143,7 +143,7 @@ body {
     <button type="button" id="btnToggleWatch" class="flex-none flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-white/10 text-xs text-slate-300 font-medium transition-colors">
       <span class="star-btn text-amber-400 leading-none">★</span>
       <span>自選追蹤</span>
-      <span id="watchCountBadge" class="px-1.5 py-0.2 rounded-full bg-slate-800 text-slate-300 text-[10px] font-bold">0</span>
+      <span id="watchCountBadge" class="px-1.5 py-0.2 rounded-full bg-slate-800 text-slate-300 text-xs font-bold">0</span>
     </button>
   </div>
 </section>
@@ -154,7 +154,7 @@ body {
     <div class="flex items-center justify-between gap-2 mb-3">
       <div class="flex items-center gap-2">
         <h3 class="font-bold text-xs text-white">自選追蹤清單</h3>
-        <span class="text-[11px] text-slate-400">點擊卡片右上角星號可加入或移除</span>
+        <span class="text-xs text-slate-400">點擊卡片右上角星號可加入或移除</span>
       </div>
       <button type="button" id="btnClearWatch" class="text-xs text-slate-400 hover:text-rose-400 transition-colors">清空</button>
     </div>
@@ -166,7 +166,7 @@ body {
 <section class="max-w-7xl mx-auto px-4 sm:px-6 py-2">
   <div class="rounded-xl border border-white/10 bg-slate-900/50 p-3 sm:p-4 flex flex-col md:flex-row md:items-center justify-between gap-2 text-xs">
     <div>
-      <div class="text-[11px] text-slate-400" id="asof">盤後量化多因子共振統計</div>
+      <div class="text-xs text-slate-400" id="asof">盤後量化多因子共振統計</div>
       <div id="aiHeadline" class="font-semibold text-white mt-0.5">加載數據中...</div>
     </div>
     <div class="flex flex-wrap items-center gap-1.5" id="aiBadges"></div>
@@ -229,7 +229,7 @@ body {
       <span>共 <b id="sCount" class="text-white num">20</b> 檔</span>
       <span class="hidden sm:inline">平均籌碼分: <b id="sAvg" class="text-amber-400 num">82.5</b></span>
     </div>
-    <div class="text-[11px] text-slate-500" id="genAt">資料定稿時間</div>
+    <div class="text-xs text-slate-500" id="genAt">資料定稿時間</div>
   </div>
 
   <!-- 1. 卡片檢視模式 (行動端預設，乾淨清晰) -->
@@ -263,7 +263,7 @@ body {
 <section id="anomalies" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10">
   <div class="flex flex-col md:flex-row md:items-end justify-between gap-2.5 mb-3">
     <div>
-      <div class="text-[11px] text-slate-400" id="anomCompareDate">跨日籌碼軌跡追蹤</div>
+      <div class="text-xs text-slate-400" id="anomCompareDate">跨日籌碼軌跡追蹤</div>
       <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight">籌碼異動追蹤</h2>
     </div>
     <!-- 異動分類按鈕 -->
@@ -288,7 +288,7 @@ body {
 <section id="daytrade" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10">
   <div class="flex flex-col md:flex-row md:items-end justify-between gap-2.5 mb-3">
     <div>
-      <div class="text-[11px] text-slate-400" id="dtAsof">隔日當沖參考名單</div>
+      <div class="text-xs text-slate-400" id="dtAsof">隔日當沖參考名單</div>
       <h2 id="dtTitle" class="text-lg sm:text-xl font-bold text-white tracking-tight">當沖標的（含進場/停利/停損試算）</h2>
       <p id="dtDesc" class="text-xs text-slate-400 mt-0.5 max-w-2xl leading-relaxed"></p>
     </div>
@@ -323,50 +323,62 @@ body {
 
 <!-- ===== 模組 4: 個股診斷與部位試算 (Doctor) ===== -->
 <section id="doctor" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10">
-  <div class="flex flex-col md:flex-row md:items-end justify-between gap-2.5 mb-3">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-3.5">
     <div>
-      <div class="text-[11px] text-slate-400" id="docPoolCount">全市場 550+ 檔即時數據</div>
-      <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight">個股診斷與部位試算</h2>
-      <p class="text-xs text-slate-400 mt-0.5">輸入任意股票代號，查看五維度籌碼雷達、波段操作點位與部位風險試算。</p>
+      <div class="text-xs text-slate-400" id="docPoolCount">全市場 550+ 檔即時數據</div>
+      <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">個股診斷與部位試算</h2>
+      <p class="text-xs sm:text-sm text-slate-400 mt-0.5">輸入任意股票代號或名稱，即時查詢法人持股動向、籌碼雷達與操作點位。</p>
+    </div>
+
+    <!-- 診斷專用搜尋欄 (直接在此搜尋) -->
+    <div class="relative w-full md:w-80 flex-none">
+      <div class="relative flex items-center">
+        <svg class="w-4 h-4 text-slate-400 absolute left-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input type="text" id="docSectionSearch" placeholder="搜尋個股代號 / 名稱 (如 2330 台積電)..."
+          class="w-full bg-slate-950 border border-white/20 focus:border-sky-400 focus:ring-1 focus:ring-sky-400 rounded-xl pl-9 pr-8 py-2 text-sm text-white placeholder-slate-500 outline-none transition-all shadow-inner">
+        <button type="button" id="btnClearDocSection" class="hidden absolute right-2.5 text-slate-400 hover:text-white text-xs px-1 py-0.5">✕</button>
+      </div>
+      <!-- 下拉建議清單 -->
+      <div id="docSectionSuggest" class="hidden absolute left-0 right-0 top-full mt-1.5 bg-slate-900 border border-white/20 rounded-xl shadow-2xl overflow-hidden z-50 max-h-80 overflow-y-auto divide-y divide-white/10 text-sm"></div>
     </div>
   </div>
 
   <!-- 快速標的快選 -->
-  <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 text-xs mb-3" id="docQuickPills"></div>
+  <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 text-xs mb-3.5" id="docQuickPills"></div>
 
   <!-- 診斷主面板 -->
-  <div id="docPanel" class="grid grid-cols-1 lg:grid-cols-2 gap-3.5"></div>
+  <div id="docPanel" class="grid grid-cols-1 lg:grid-cols-2 gap-4"></div>
 
   <!-- 部位風險試算工具 -->
-  <div class="mt-3.5 rounded-xl border border-white/10 bg-slate-900/60 p-4">
-    <div class="flex items-center justify-between gap-2 mb-2.5">
-      <h4 class="text-xs font-bold text-white">個人部位與風險試算</h4>
-      <span class="text-[11px] text-slate-400">依當前選定股票之買點與停損價試算</span>
+  <div class="mt-4 rounded-xl border border-white/10 bg-slate-900/60 p-4 sm:p-5">
+    <div class="flex items-center justify-between gap-2 mb-3">
+      <h4 class="text-sm sm:text-base font-bold text-white">個人部位與風險試算</h4>
+      <span class="text-xs text-slate-400">依當前選定股票之進場點與停損價試算</span>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm">
       <div>
-        <label class="text-slate-400 block mb-1">投入本金 (元):</label>
+        <label class="text-slate-400 block mb-1 text-xs">投入本金 (元):</label>
         <input type="number" id="calcCapital" value="300000" step="10000"
-          class="w-full bg-slate-950 border border-white/15 focus:border-sky-400 rounded-lg px-3 py-1.5 text-white outline-none num font-medium">
+          class="w-full bg-slate-950 border border-white/15 focus:border-sky-400 rounded-lg px-3 py-2 text-white outline-none num font-medium text-sm">
       </div>
       <div>
-        <label class="text-slate-400 block mb-1">最大承受風險比率:</label>
-        <select id="calcRiskPct" class="w-full bg-slate-950 border border-white/15 focus:border-sky-400 rounded-lg px-3 py-1.5 text-white outline-none cursor-pointer">
+        <label class="text-slate-400 block mb-1 text-xs">最大承受風險比率:</label>
+        <select id="calcRiskPct" class="w-full bg-slate-950 border border-white/15 focus:border-sky-400 rounded-lg px-3 py-2 text-white outline-none cursor-pointer text-sm">
           <option value="1">1% (極保守)</option>
           <option value="2" selected>2% (標準紀律)</option>
           <option value="3">3% (波段操作)</option>
           <option value="5">5% (積極)</option>
         </select>
       </div>
-      <div class="rounded-lg bg-slate-950 p-2.5 flex flex-col justify-center">
-        <span class="text-slate-400 text-[11px]">建議買進股數</span>
-        <b id="calcShares" class="text-sm text-emerald-400 num font-bold mt-0.5">—</b>
-        <span id="calcCost" class="text-[10px] text-slate-500 truncate mt-0.5">—</span>
+      <div class="rounded-lg bg-slate-950 p-3 flex flex-col justify-center">
+        <span class="text-slate-400 text-xs">建議買進股數</span>
+        <b id="calcShares" class="text-lg text-emerald-400 num font-bold mt-0.5">—</b>
+        <span id="calcCost" class="text-xs text-slate-500 truncate mt-0.5">—</span>
       </div>
-      <div class="rounded-lg bg-slate-950 p-2.5 flex flex-col justify-center">
-        <span class="text-slate-400 text-[11px]">觸發停損最大虧損</span>
-        <b id="calcMaxLoss" class="text-sm text-rose-400 num font-bold mt-0.5">—</b>
-        <span id="calcStopPrice" class="text-[10px] text-slate-500 truncate mt-0.5">—</span>
+      <div class="rounded-lg bg-slate-950 p-3 flex flex-col justify-center">
+        <span class="text-slate-400 text-xs">觸發停損最大虧損</span>
+        <b id="calcMaxLoss" class="text-lg text-rose-400 num font-bold mt-0.5">—</b>
+        <span id="calcStopPrice" class="text-xs text-slate-500 truncate mt-0.5">—</span>
       </div>
     </div>
   </div>
@@ -376,7 +388,7 @@ body {
 <section id="screener" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10">
   <div class="flex flex-col md:flex-row md:items-end justify-between gap-2.5 mb-3">
     <div>
-      <div class="text-[11px] text-slate-400" id="scrCountInfo">全市場多因子條件篩選</div>
+      <div class="text-xs text-slate-400" id="scrCountInfo">全市場多因子條件篩選</div>
       <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight">多因子條件選股</h2>
     </div>
     <button type="button" id="btnExportScreenerCsv" class="px-3 py-1.5 rounded-lg bg-slate-950 hover:bg-slate-800 border border-white/10 text-xs text-slate-300 hover:text-white transition-colors">
@@ -470,7 +482,7 @@ body {
 <section id="backtest" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10">
   <div class="rounded-xl border border-white/10 bg-slate-900/60 p-4 sm:p-5 mb-6">
     <div class="mb-3">
-      <div class="text-[11px] text-slate-400">歷史推薦追蹤驗證</div>
+      <div class="text-xs text-slate-400">歷史推薦追蹤驗證</div>
       <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight">歷史推薦勝率回測</h2>
       <p class="text-xs text-slate-400 mt-0.5">追蹤過去推薦上榜後之後續實際最高漲幅與正報酬率。</p>
     </div>
@@ -478,19 +490,19 @@ body {
     <!-- 四大指標卡 -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 mb-3.5 text-xs">
       <div class="rounded-lg border border-white/10 bg-slate-950 p-3">
-        <span class="text-slate-400 block mb-0.5 text-[11px]">歷史追蹤樣本</span>
+        <span class="text-slate-400 block mb-0.5 text-xs">歷史追蹤樣本</span>
         <b id="btTotal" class="text-xl font-bold num text-white">—</b>
       </div>
       <div class="rounded-lg border border-emerald-500/20 bg-slate-950 p-3">
-        <span class="text-emerald-400 block mb-0.5 text-[11px]">正報酬勝率</span>
+        <span class="text-emerald-400 block mb-0.5 text-xs">正報酬勝率</span>
         <b id="btWinRate" class="text-xl font-bold num text-emerald-400">—</b>
       </div>
       <div class="rounded-lg border border-amber-500/20 bg-slate-950 p-3">
-        <span class="text-amber-400 block mb-0.5 text-[11px]">S+ 評級勝率</span>
+        <span class="text-amber-400 block mb-0.5 text-xs">S+ 評級勝率</span>
         <b id="btSPlusWin" class="text-xl font-bold num text-amber-400">—</b>
       </div>
       <div class="rounded-lg border border-purple-500/20 bg-slate-950 p-3">
-        <span class="text-purple-400 block mb-0.5 text-[11px]">平均最高波段漲幅</span>
+        <span class="text-purple-400 block mb-0.5 text-xs">平均最高波段漲幅</span>
         <b id="btAvgMax" class="text-xl font-bold num text-purple-300">—</b>
       </div>
     </div>
@@ -520,7 +532,7 @@ body {
     <div>
       <div class="mb-2">
         <h3 id="voTitle" class="text-sm font-bold text-white">上市成交量前 20 名</h3>
-        <span class="text-[11px] text-slate-400">市場資金最集中的標的（張數）</span>
+        <span class="text-xs text-slate-400">市場資金最集中的標的（張數）</span>
       </div>
       <div class="overflow-x-auto rounded-xl border border-white/10 bg-slate-900/60">
         <table class="w-full text-xs min-w-[460px]">
@@ -543,7 +555,7 @@ body {
     <div>
       <div class="mb-2">
         <h3 id="toTitle" class="text-sm font-bold text-white">上市週轉率前 20 名</h3>
-        <span class="text-[11px] text-slate-400">換手最熱絡的個股（成交股數 ÷ 發行股數）</span>
+        <span class="text-xs text-slate-400">換手最熱絡的個股（成交股數 ÷ 發行股數）</span>
       </div>
       <div class="overflow-x-auto rounded-xl border border-white/10 bg-slate-900/60">
         <table class="w-full text-xs min-w-[460px]">
@@ -575,7 +587,7 @@ body {
         <a href="chips_radar.html" class="hover:text-white transition-colors">籌碼雷達</a>
       </div>
     </div>
-    <div class="space-y-1.5 leading-relaxed text-[11px]">
+    <div class="space-y-1.5 leading-relaxed text-xs">
       <p class="font-semibold text-slate-400">【免責聲明】</p>
       <p>1. 本系統所有內容均為公開資料之整理與量化多因子規則試算，本站非證券投資顧問事業，不提供任何投資諮詢或買賣推薦。</p>
       <p>2. 內容中所計算之「買進區間」、「目標價」、「防守停損價」與「當沖指引」皆為基於量價演算法之純數學試算，非獲利保證，亦不構成買賣決策依據。</p>
@@ -586,7 +598,7 @@ body {
 </footer>
 
 <!-- 行動端底部導航列 (極簡線條圖標，無浮誇色彩) -->
-<div class="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur-xl border-t border-white/10 px-3 py-1.5 flex items-center justify-around text-[10px]">
+<div class="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur-xl border-t border-white/10 px-3 py-1.5 flex items-center justify-around text-xs">
   <a href="#picks" class="flex flex-col items-center gap-0.5 text-sky-400 font-medium">
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
     <span>精選</span>
@@ -729,29 +741,29 @@ body {
       { label: "大戶增持", val: (p.big || 0) / 25 },
       { label: "融資退場", val: (p.margin || 0) / 15 },
     ];
-    const cx = 110, cy = 95, R = 60;
+    const cx = 115, cy = 100, R = 60;
     const pt = (i, ratio) => {
       const ang = -Math.PI / 2 + (i * 2 * Math.PI) / 5;
       return [cx + R * ratio * Math.cos(ang), cy + R * ratio * Math.sin(ang)];
     };
     const grids = [0.25, 0.5, 0.75, 1].map((r) => {
       const poly = axes.map((_, i) => pt(i, r).map((v) => v.toFixed(1)).join(",")).join(" ");
-      return `<polygon points="${poly}" fill="none" stroke="rgba(255,255,255,${r === 1 ? 0.2 : 0.06})" stroke-width="1"/>`;
+      return `<polygon points="${poly}" fill="none" stroke="rgba(255,255,255,${r === 1 ? 0.22 : 0.08})" stroke-width="1"/>`;
     }).join("");
     const spokes = axes.map((a, i) => {
       const [x, y] = pt(i, 1);
-      const [lx, ly] = pt(i, 1.25);
-      return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,0.1)"/>
-        <text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" fill="#94a3b8" font-size="9" text-anchor="middle" dominant-baseline="middle">${a.label}</text>`;
+      const [lx, ly] = pt(i, 1.30);
+      return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,0.12)"/>
+        <text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" fill="#e2e8f0" font-size="11" font-weight="600" text-anchor="middle" dominant-baseline="middle">${a.label}</text>`;
     }).join("");
     const dataPoly = axes.map((a, i) => pt(i, Math.max(0.08, Math.min(1, a.val))).map((v) => v.toFixed(1)).join(",")).join(" ");
     const dots = axes.map((a, i) => {
       const [x, y] = pt(i, Math.max(0.08, Math.min(1, a.val)));
-      return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.5" fill="#38bdf8"/>`;
+      return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="#38bdf8"/>`;
     }).join("");
-    return `<svg viewBox="0 0 220 190" class="w-full max-w-[190px] mx-auto block" role="img">
+    return `<svg viewBox="0 0 230 200" class="w-full max-w-[210px] mx-auto block" role="img">
       ${grids}${spokes}
-      <polygon points="${dataPoly}" fill="rgba(56,189,248,0.22)" stroke="#38bdf8" stroke-width="1.8"/>
+      <polygon points="${dataPoly}" fill="rgba(56,189,248,0.25)" stroke="#38bdf8" stroke-width="2"/>
       ${dots}
     </svg>`;
   }
@@ -760,20 +772,20 @@ body {
     const arr = (instHist || []).slice().reverse();
     if (!arr.length) return "";
     const maxAbs = Math.max(...arr.map((v) => Math.abs(v)), 1);
-    const W = 190, Hh = 56, midY = 28;
-    const bw = 20, gap = 14, startX = 12;
+    const W = 200, Hh = 60, midY = 30;
+    const bw = 22, gap = 14, startX = 14;
     const bars = arr.map((v, i) => {
-      const h = Math.max(2, (Math.abs(v) / maxAbs) * 20);
+      const h = Math.max(2, (Math.abs(v) / maxAbs) * 22);
       const x = startX + i * (bw + gap);
       const y = v >= 0 ? midY - h : midY;
       const color = v >= 0 ? "var(--up)" : "var(--down)";
       const lbl = (dates && dates[i]) || `D${i + 1}`;
-      return `<rect x="${x}" y="${y.toFixed(1)}" width="${bw}" height="${h.toFixed(1)}" rx="1.5" fill="${color}">
+      return `<rect x="${x}" y="${y.toFixed(1)}" width="${bw}" height="${h.toFixed(1)}" rx="2" fill="${color}">
         <title>${lbl}: ${signed(v)} 張</title></rect>
-        <text x="${x + bw / 2}" y="${Hh - 3}" fill="#64748b" font-size="8" text-anchor="middle">${lbl}</text>`;
+        <text x="${x + bw / 2}" y="${Hh - 3}" fill="#94a3b8" font-size="9.5" font-weight="500" text-anchor="middle">${lbl}</text>`;
     }).join("");
     return `<svg viewBox="0 0 ${W} ${Hh}" class="w-full h-auto block" role="img">
-      <line x1="4" x2="${W - 4}" y1="${midY}" y2="${midY}" stroke="rgba(255,255,255,0.12)"/>
+      <line x1="4" x2="${W - 4}" y1="${midY}" y2="${midY}" stroke="rgba(255,255,255,0.15)"/>
       ${bars}
     </svg>`;
   }
@@ -781,10 +793,10 @@ body {
   function gradeBadge(grade) {
     if (!grade) return "";
     const g = String(grade).replace(/^AI\s*/, "");
-    if (g === "S+") return `<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-400 text-slate-950 num">S+</span>`;
-    if (g === "A+") return `<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 num">A+</span>`;
-    if (g.startsWith("D")) return `<span class="text-[10px] font-medium px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30 num">${g}</span>`;
-    return `<span class="text-[10px] font-medium px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-white/10 num">${g}</span>`;
+    if (g === "S+") return `<span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-400 text-slate-950 num">S+ 頂級</span>`;
+    if (g === "A+") return `<span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 num">A+ 優選</span>`;
+    if (g.startsWith("D")) return `<span class="text-xs font-medium px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30 num">${g} 警戒</span>`;
+    return `<span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-white/10 num">${g}</span>`;
   }
 
   // 自選股
@@ -798,24 +810,24 @@ body {
     $("watchGrid").innerHTML = items.map((p) => {
       const tp = p.tradePlan || {};
       const isDanger = (p.inst || 0) < 0 && (p.inst5d || 0) < 0;
-      return `<div class="rounded-lg border ${isDanger ? "border-rose-500/40 bg-rose-500/[0.04]" : "border-white/10 bg-slate-950"} p-2.5 grid gap-1.5">
+      return `<div class="rounded-lg border ${isDanger ? "border-rose-500/40 bg-rose-500/[0.04]" : "border-white/10 bg-slate-950"} p-3 grid gap-2">
         <div class="flex items-center justify-between gap-1">
-          <button type="button" data-diagnose="${p.code}" class="text-left font-bold text-white hover:text-sky-300 transition-colors text-xs">
-            ${p.name} <span class="text-slate-400 num font-normal">${p.code}</span>
+          <button type="button" data-diagnose="${p.code}" class="text-left font-bold text-white hover:text-sky-300 transition-colors text-sm">
+            ${p.name} <span class="text-slate-400 num font-normal text-xs">${p.code}</span>
           </button>
           <div class="flex items-center gap-1">
             ${gradeBadge(p.aiGrade)}
             ${starBtn(p.code)}
           </div>
         </div>
-        <div class="flex items-baseline justify-between text-xs">
-          <span class="text-sm font-bold num">${fmt(p.close)} <small class="${cls(p.chg)} font-semibold">${p.chg > 0 ? "+" : ""}${(p.chg || 0).toFixed(2)}%</small></span>
-          <span class="num text-slate-400 text-[11px]">法人 <b class="${cls(p.inst)}">${signed(p.inst || 0)}</b></span>
+        <div class="flex items-baseline justify-between text-sm">
+          <span class="text-base font-bold num text-white">${fmt(p.close)} <small class="${cls(p.chg)} font-bold text-xs">${p.chg > 0 ? "+" : ""}${(p.chg || 0).toFixed(2)}%</small></span>
+          <span class="num text-slate-400 text-xs">法人 <b class="${cls(p.inst)}">${signed(p.inst || 0)}</b></span>
         </div>
-        <div class="text-[10px] num flex items-center justify-between pt-1 border-t border-white/5 text-slate-400">
+        <div class="text-xs num flex items-center justify-between pt-1.5 border-t border-white/5 text-slate-400">
           <span>買:${tp.buyLow || "—"}</span>
           <span>利:${tp.sellTarget1 || "—"}</span>
-          <span class="text-rose-400">損:${tp.stopLoss || "—"}</span>
+          <span class="text-rose-400 font-semibold">損:${tp.stopLoss || "—"}</span>
         </div>
       </div>`;
     }).join("");
@@ -854,15 +866,19 @@ body {
     const p = findStock(code);
     if (!p) return;
     state.docCode = p.code;
-    $("docPoolCount").textContent = `資料庫共 ${fmt(universeDB.length || (day && day.universe) || 551)} 檔高流動性個股`;
+    $("docPoolCount").textContent = `母體資料庫共 ${fmt(universeDB.length || (day && day.universe) || 551)} 檔高流動性個股`;
+
+    // 關閉搜尋建議選單
+    if ($("docSuggest")) $("docSuggest").classList.add("hidden");
+    if ($("docSectionSuggest")) $("docSectionSuggest").classList.add("hidden");
 
     const quickList = (day ? day.picks.slice(0, 6) : []).concat(
       universeDB.filter((x) => x.instNet < -2500).slice(0, 2)
     );
-    $("docQuickPills").innerHTML = `<span class="text-slate-400 whitespace-nowrap text-xs">快選:</span>` + quickList.map((x) => {
+    $("docQuickPills").innerHTML = `<span class="text-slate-400 whitespace-nowrap text-xs font-medium">常用快選:</span>` + quickList.map((x) => {
       const isBad = (x.inst || x.instNet || 0) < 0;
       const active = x.code === p.code;
-      return `<button type="button" data-diagnose="${x.code}" class="px-2.5 py-1 rounded-md border transition-colors whitespace-nowrap text-xs ${active ? "bg-white text-black font-semibold border-white" : isBad ? "border-rose-500/30 text-rose-300 hover:bg-rose-500/10" : "border-white/10 text-slate-300 hover:text-white hover:bg-white/5"}">
+      return `<button type="button" data-diagnose="${x.code}" class="px-3 py-1 rounded-lg border transition-colors whitespace-nowrap text-xs ${active ? "bg-white text-black font-bold border-white" : isBad ? "border-rose-500/30 text-rose-300 hover:bg-rose-500/10" : "border-white/10 text-slate-300 hover:text-white hover:bg-white/5"}">
         ${x.name}(${x.code})
       </button>`;
     }).join("");
@@ -881,104 +897,151 @@ body {
       else if (dtS) dtInfo = { side: "做空隔日沖賣壓", ...dtS.dtPlan };
     }
 
-    // 移除 AI 浮誇開頭
-    const cleanSummary = (p.aiSummary || p.reason || "")
-      .replace(/【AI\s*[^】]+】/g, "")
-      .replace(/AI\s*/g, "");
+    // 提煉專業籌碼動向亮點 (不再堆砌 AI 評估語與重覆價格)
+    const factorBadges = [];
+    const fNet = p.foreign ?? p.foreignNet ?? 0;
+    const tNet = p.trust ?? p.trustNet ?? 0;
+    const fStreak = p.foreignStreak ?? 0;
+    const tStreak = p.trustStreak ?? 0;
+    const bigChg = p.bigChg;
+    const marginChg = p.marginChg ?? 0;
+
+    if (fNet > 0 && tNet > 0) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-amber-400/15 border border-amber-400/30 text-amber-300 text-xs font-semibold">土洋合買</span>`);
+    if (fStreak >= 2) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-sky-500/15 border border-sky-500/30 text-sky-300 text-xs font-semibold">外資連買 ${fStreak} 日</span>`);
+    else if (fNet > 0) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-white/10 text-xs">外資買超</span>`);
+    else if (fNet < 0) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs">外資賣超</span>`);
+
+    if (tStreak >= 2) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">投信連買 ${tStreak} 日</span>`);
+    else if (tNet > 0) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-white/10 text-xs">投信買超</span>`);
+    else if (tNet < 0) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs">投信賣超</span>`);
+
+    if (bigChg != null && bigChg >= 0.3) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-semibold">千張大戶週增 +${bigChg.toFixed(2)}%</span>`);
+    if (marginChg < -50) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">融資減 ${Math.abs(marginChg)} 張</span>`);
+    else if (marginChg > 100) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs">融資增 ${marginChg} 張</span>`);
+
+    (p.anomalies || []).forEach(a => {
+      factorBadges.push(`<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-200 border border-white/10 text-xs">${a.type}</span>`);
+    });
+
+    // 提煉專業分析敘述 (徹底刪除重覆的 買點/停利/停損 重複文字)
+    let cleanNarrative = (p.reason || p.aiSummary || "")
+      .replace(/【[^】]+】/g, "")
+      .replace(/AI\s*/g, "")
+      .replace(/建議買點：.*$/g, "")
+      .replace(/停利目標：.*$/g, "")
+      .replace(/防守停損：.*$/g, "")
+      .replace(/[；;]\s*$/g, "")
+      .trim();
+
+    if (!cleanNarrative) {
+      cleanNarrative = `${p.market}・${p.sector || "主力追蹤股"}，近 5 日法人累計買賣超 ${signed(p.inst5d || 0)} 張，大戶籌碼結構${bigChg != null && bigChg > 0 ? "持續偏多集中" : "持平觀望"}。`;
+    }
 
     $("docPanel").innerHTML = `
-      <div class="rounded-xl border ${isDanger ? "border-rose-500/40 bg-rose-500/[0.04]" : "border-white/10 bg-slate-900/60"} p-4 grid gap-3.5 content-start">
+      <div class="rounded-xl border ${isDanger ? "border-rose-500/40 bg-rose-500/[0.04]" : "border-white/10 bg-slate-900/60"} p-4 sm:p-5 grid gap-4 content-start">
+        <!-- 標題列與即時報價 -->
         <div class="flex items-start justify-between gap-3">
           <div>
-            <div class="flex flex-wrap items-center gap-1.5">
+            <div class="flex flex-wrap items-center gap-2">
               ${starBtn(p.code)}
-              <h3 class="text-xl font-bold text-white tracking-tight">${p.name}</h3>
-              <span class="text-sm text-slate-400 num">${p.code}</span>
+              <h3 class="text-2xl font-bold text-white tracking-tight">${p.name}</h3>
+              <span class="text-base text-slate-400 num font-medium">${p.code}</span>
               <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300">${p.market}・${p.sector || "其他"}</span>
               ${gradeBadge(p.aiGrade)}
-              ${p.rank ? `<span class="text-xs px-2 py-0.5 rounded bg-amber-400/20 text-amber-300 num font-medium">${p.market} #${p.rank}</span>` : ""}
+              ${p.rank ? `<span class="text-xs px-2 py-0.5 rounded bg-amber-400/20 text-amber-300 num font-bold">${p.market} #${p.rank}</span>` : ""}
             </div>
-            <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">${cleanSummary}</p>
+            <!-- 籌碼關鍵特徵 Tags -->
+            <div class="flex flex-wrap items-center gap-1.5 mt-2.5">
+              ${factorBadges.join("")}
+            </div>
+            <p class="text-sm text-slate-300 mt-2 leading-relaxed">${cleanNarrative}</p>
           </div>
-          <div class="flex items-center gap-2.5 flex-none">
+          <div class="flex items-center gap-3 flex-none">
             <div class="text-right">
-              <div class="text-xl font-bold num">${fmt(p.close)}</div>
-              <div class="text-xs font-semibold num ${cls(p.chg)}">${p.chg > 0 ? "+" : ""}${Math.abs(p.chg || 0).toFixed(2)}%</div>
+              <div class="text-2xl sm:text-3xl font-extrabold num text-white">${fmt(p.close)}</div>
+              <div class="text-sm font-bold num ${cls(p.chg)}">${p.chg > 0 ? "+" : ""}${Math.abs(p.chg || 0).toFixed(2)}%</div>
             </div>
-            <div class="ring ${p.aiGrade === "S+" ? "s-plus" : isDanger ? "danger" : ""}" style="--p:${p.score || 50}" title="總分 ${p.rawScore || p.score}">
-              <span class="num font-bold">${p.score || "—"}</span>
+            <div class="ring ${p.aiGrade === "S+" ? "s-plus" : isDanger ? "danger" : ""}" style="--p:${p.score || 50}" title="多因子總分 ${p.rawScore || p.score}">
+              <span class="num font-black text-sm">${p.score || "—"}</span>
             </div>
           </div>
         </div>
 
-        <!-- 操作點位盒 -->
-        <div class="rounded-lg border ${isDanger ? "border-rose-500/30 bg-rose-500/[0.04]" : "border-emerald-500/30 bg-emerald-500/[0.04]"} p-3 grid gap-2">
-          <div class="flex items-center justify-between text-xs">
-            <span class="font-bold ${isDanger ? "text-rose-300" : "text-emerald-400"}">操作計畫（型態: ${tp.strategy || "籌碼跟隨"}）</span>
-            <span class="text-slate-400 num text-[11px]">5MA: ${tp.ma5 || "—"}</span>
+        <!-- 操作點位區間 (清晰大字數值，無重複贅字) -->
+        <div class="rounded-xl border ${isDanger ? "border-rose-500/30 bg-rose-500/[0.04]" : "border-emerald-500/30 bg-emerald-500/[0.04]"} p-3.5 grid gap-2.5">
+          <div class="flex items-center justify-between text-xs sm:text-sm">
+            <span class="font-bold ${isDanger ? "text-rose-300" : "text-emerald-400"}">操作規劃（${tp.strategy || "量價波段"}）</span>
+            <span class="text-slate-400 num text-xs">5 日均線 MA5: <b class="text-white">${tp.ma5 || "—"}</b></span>
           </div>
-          <div class="grid grid-cols-3 gap-2 text-xs">
-            <div class="rounded bg-slate-950 p-2 grid gap-0.5">
-              <span class="text-slate-400 text-[11px]">買進區間</span>
-              <b class="text-sm text-white num font-bold">${tp.buyZone || "—"}</b>
-              <span class="text-[10px] text-slate-500 num">突破: ${tp.breakoutBuy || "—"}</span>
+          <div class="grid grid-cols-3 gap-2.5">
+            <div class="rounded-lg bg-slate-950 p-2.5 grid gap-0.5 border border-white/5">
+              <span class="text-slate-400 text-xs">建議買進區間</span>
+              <b class="text-base sm:text-lg text-emerald-400 num font-bold">${tp.buyZone || "—"}</b>
+              <span class="text-xs text-slate-500 num">突破買點: ${tp.breakoutBuy || "—"}</span>
             </div>
-            <div class="rounded bg-slate-950 p-2 grid gap-0.5">
-              <span class="text-slate-400 text-[11px]">目標價 1/2</span>
-              <b class="text-sm text-amber-300 num font-bold">${tp.sellTarget1 || "—"} / ${tp.sellTarget2 || "—"}</b>
-              <span class="text-[10px] text-slate-500 num">+${tp.target1Pct || 5}% / +${tp.target2Pct || 9}%</span>
+            <div class="rounded-lg bg-slate-950 p-2.5 grid gap-0.5 border border-white/5">
+              <span class="text-slate-400 text-xs">目標價 1 / 2</span>
+              <b class="text-base sm:text-lg text-amber-300 num font-bold">${tp.sellTarget1 || "—"} / ${tp.sellTarget2 || "—"}</b>
+              <span class="text-xs text-slate-500 num">+${tp.target1Pct || 5}% / +${tp.target2Pct || 9}%</span>
             </div>
-            <div class="rounded bg-slate-950 p-2 grid gap-0.5">
-              <span class="text-slate-400 text-[11px]">停損價</span>
-              <b class="text-sm text-rose-400 num font-bold">${tp.stopLoss || "—"}</b>
-              <span class="text-[10px] text-slate-500 num">${tp.stopPct || -4}%</span>
+            <div class="rounded-lg bg-slate-950 p-2.5 grid gap-0.5 border border-white/5">
+              <span class="text-slate-400 text-xs">防守停損價</span>
+              <b class="text-base sm:text-lg text-rose-400 num font-bold">${tp.stopLoss || "—"}</b>
+              <span class="text-xs text-slate-500 num">${tp.stopPct || -4}%</span>
             </div>
           </div>
-          <p class="text-[11px] text-slate-300 leading-relaxed">${tp.buyDesc || ""}；${tp.sellDesc || ""}</p>
+          <div class="text-xs text-slate-300 leading-relaxed pt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span>• <b>進場紀律</b>：靠近 5MA 分批布局，突破關鍵價確認轉強。</span>
+            <span>• <b>出場紀律</b>：達目標一分批落袋，跌破停損點嚴格出場。</span>
+          </div>
         </div>
 
-        ${dtInfo ? `<div class="rounded-lg border border-sky-400/25 bg-slate-950 p-2.5 text-xs grid gap-1">
-          <div class="font-bold text-sky-300">入選明日當沖名單 (${dtInfo.side})：</div>
-          <div class="text-slate-300 num text-[11px]">進場: <b class="text-white">${dtInfo.entryZone}</b>｜停利: <b class="text-amber-300">${dtInfo.target1} / ${dtInfo.target2}</b>｜停損: <b class="text-rose-400">${dtInfo.stopLoss}</b></div>
+        ${dtInfo ? `<div class="rounded-xl border border-sky-400/25 bg-slate-950 p-3 text-xs sm:text-sm grid gap-1">
+          <div class="font-bold text-sky-300 flex items-center gap-1.5">
+            <span>明日當沖監控 (${dtInfo.side})</span>
+          </div>
+          <div class="text-slate-300 num text-xs">
+            進場: <b class="text-white text-sm">${dtInfo.entryZone}</b>｜停利: <b class="text-amber-300 text-sm">${dtInfo.target1} / ${dtInfo.target2}</b>｜停損: <b class="text-rose-400 text-sm">${dtInfo.stopLoss}</b>
+          </div>
         </div>` : ""}
 
-        <!-- 三大法人明細 -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-          <div class="rounded-lg border border-white/5 bg-slate-950 p-2"><span class="text-slate-400 text-[11px] block">外資 (連買)</span><b class="num ${cls(p.foreign)} font-bold">${signed(p.foreign || 0)} (${p.foreignStreak || 0}日)</b></div>
-          <div class="rounded-lg border border-white/5 bg-slate-950 p-2"><span class="text-slate-400 text-[11px] block">投信 (連買)</span><b class="num ${cls(p.trust)} font-bold">${signed(p.trust || 0)} (${p.trustStreak || 0}日)</b></div>
-          <div class="rounded-lg border border-white/5 bg-slate-950 p-2"><span class="text-slate-400 text-[11px] block">大戶持股 (週增)</span><b class="num ${cls(p.bigChg || 0)} font-bold">${p.bigPct != null ? p.bigPct.toFixed(2) + "%" : "—"} (${p.bigChg != null ? (p.bigChg > 0 ? "+" : "") + p.bigChg.toFixed(2) + "%" : "—"})</b></div>
-          <div class="rounded-lg border border-white/5 bg-slate-950 p-2"><span class="text-slate-400 text-[11px] block">融資增減</span><b class="num ${cls(-(p.marginChg || 0))} font-bold">${signed(p.marginChg || 0)} 張</b></div>
+        <!-- 三大法人與大戶明細卡 (大字數值) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+          <div class="rounded-lg border border-white/5 bg-slate-950 p-2.5"><span class="text-slate-400 text-xs block mb-0.5">外資 (連買)</span><b class="num text-sm sm:text-base ${cls(p.foreign)} font-bold">${signed(p.foreign || 0)} (${p.foreignStreak || 0}日)</b></div>
+          <div class="rounded-lg border border-white/5 bg-slate-950 p-2.5"><span class="text-slate-400 text-xs block mb-0.5">投信 (連買)</span><b class="num text-sm sm:text-base ${cls(p.trust)} font-bold">${signed(p.trust || 0)} (${p.trustStreak || 0}日)</b></div>
+          <div class="rounded-lg border border-white/5 bg-slate-950 p-2.5"><span class="text-slate-400 text-xs block mb-0.5">大戶持股 (週增)</span><b class="num text-sm sm:text-base ${cls(p.bigChg || 0)} font-bold">${p.bigPct != null ? p.bigPct.toFixed(2) + "%" : "—"} (${p.bigChg != null ? (p.bigChg > 0 ? "+" : "") + p.bigChg.toFixed(2) + "%" : "—"})</b></div>
+          <div class="rounded-lg border border-white/5 bg-slate-950 p-2.5"><span class="text-slate-400 text-xs block mb-0.5">融資增減</span><b class="num text-sm sm:text-base ${cls(-(p.marginChg || 0))} font-bold">${signed(p.marginChg || 0)} 張</b></div>
         </div>
 
         <!-- 外部看盤連結 -->
         <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-white/10 text-xs text-slate-400">
-          <span>看盤連結:</span>
-          <a href="https://tw.tradingview.com/chart/?symbol=${tvSymbol}" target="_blank" rel="noopener" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-white transition-colors">TradingView</a>
-          <a href="https://tw.stock.yahoo.com/quote/${p.code}.${p.market === "上櫃" ? "TWO" : "TW"}/technical-analysis" target="_blank" rel="noopener" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-white transition-colors">Yahoo 股市</a>
-          <a href="https://goodinfo.tw/tw/StockDetail.asp?STOCK_ID=${p.code}" target="_blank" rel="noopener" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-white transition-colors">Goodinfo</a>
-          <a href="${link.url}" target="_blank" rel="noopener" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-white transition-colors">${link.text}</a>
+          <span class="font-medium">看盤連結:</span>
+          <a href="https://tw.tradingview.com/chart/?symbol=${tvSymbol}" target="_blank" rel="noopener" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-white transition-colors">TradingView</a>
+          <a href="https://tw.stock.yahoo.com/quote/${p.code}.${p.market === "上櫃" ? "TWO" : "TW"}/technical-analysis" target="_blank" rel="noopener" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-white transition-colors">Yahoo 股市</a>
+          <a href="https://goodinfo.tw/tw/StockDetail.asp?STOCK_ID=${p.code}" target="_blank" rel="noopener" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-white transition-colors">Goodinfo</a>
+          <a href="${link.url}" target="_blank" rel="noopener" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-white transition-colors">${link.text}</a>
         </div>
       </div>
 
       <!-- 右側: 雷達與走勢圖 -->
-      <div class="rounded-xl border border-white/10 bg-slate-900/60 p-4 grid gap-3 content-between">
+      <div class="rounded-xl border border-white/10 bg-slate-900/60 p-4 sm:p-5 grid gap-3.5 content-between">
         <div>
-          <div class="flex items-center justify-between text-xs text-slate-300 mb-1">
-            <span class="font-bold">籌碼五維度分析</span>
-            <span class="num text-sky-400 font-bold">評分 ${p.rawScore || p.score || 0} / 100</span>
+          <div class="flex items-center justify-between text-xs sm:text-sm text-slate-300 mb-1.5">
+            <span class="font-bold">籌碼五維度量化分析</span>
+            <span class="num text-sky-400 font-bold text-sm">評分 ${p.rawScore || p.score || 0} / 100</span>
           </div>
           ${radarSvg(parts)}
-          <div class="grid grid-cols-5 gap-1 text-[10px] text-center pt-2">
-            ${PART_DEFS.map(([k, lbl, c, maxV]) => `<div class="rounded bg-slate-950 p-1"><div class="text-slate-400 truncate">${lbl}</div><b class="num text-white">${(parts[k] || 0).toFixed(1)}</b><span class="text-slate-500 num">/${maxV}</span></div>`).join("")}
+          <div class="grid grid-cols-5 gap-1.5 text-xs text-center pt-2.5">
+            ${PART_DEFS.map(([k, lbl, c, maxV]) => `<div class="rounded-lg bg-slate-950 p-1.5 border border-white/5"><div class="text-slate-400 text-xs truncate">${lbl}</div><b class="num text-white text-sm font-bold">${(parts[k] || 0).toFixed(1)}</b><span class="text-slate-500 num text-xs">/${maxV}</span></div>`).join("")}
           </div>
         </div>
-        <div class="grid sm:grid-cols-2 gap-2.5 pt-2 border-t border-white/10">
-          <div class="grid gap-0.5">
-            <span class="text-xs text-slate-400">近 5 日收盤走勢</span>
+        <div class="grid sm:grid-cols-2 gap-3 pt-3 border-t border-white/10">
+          <div class="grid gap-1">
+            <span class="text-xs sm:text-sm text-slate-400 font-medium">近 5 日收盤走勢</span>
             ${spark(p.series, day ? day.seriesDates : [])}
           </div>
-          <div class="grid gap-0.5">
-            <span class="text-xs text-slate-400">近 5 日法人買賣超 (累計 <b class="num ${cls(p.inst5d)}">${signed(p.inst5d || 0)}</b>)</span>
+          <div class="grid gap-1">
+            <span class="text-xs sm:text-sm text-slate-400 font-medium">近 5 日法人買賣超 (累計 <b class="num ${cls(p.inst5d)}">${signed(p.inst5d || 0)}</b>)</span>
             ${instBarSvg(p.instHist, day ? day.seriesDates : [])}
           </div>
         </div>
@@ -1060,23 +1123,23 @@ body {
     $("scrRows").innerHTML = shown.map((x) => {
       const tp = x.tradePlan || {};
       const isBad = state.scrPreset === "blacklist" || String(x.aiGrade || "").startsWith("D");
-      return `<tr class="hover:bg-white/[0.03] transition-colors">
+      return `<tr class="hover:bg-white/[0.03] transition-colors text-sm">
         <td class="py-2.5 pl-4 pr-1">${starBtn(x.code)}</td>
         <td class="py-2.5 px-2 whitespace-nowrap">
           <button type="button" data-diagnose="${x.code}" class="text-left group">
-            <span class="font-bold text-white group-hover:text-emerald-300">${x.name}</span>
+            <span class="font-bold text-white group-hover:text-emerald-300 text-sm">${x.name}</span>
             <span class="ml-1 text-xs text-slate-400 num">${x.code}</span>
             <span class="ml-1">${gradeBadge(x.aiGrade)}</span>
-            <div class="text-[10px] text-slate-400">${x.market}・${x.sector}・<span class="${isBad ? "text-rose-300" : "text-slate-300"}">${tp.strategy || ""}</span></div>
+            <div class="text-xs text-slate-400 mt-0.5">${x.market}・${x.sector}・<span class="${isBad ? "text-rose-300" : "text-slate-300"}">${tp.strategy || ""}</span></div>
           </button>
         </td>
-        <td class="py-2.5 px-2 text-right num font-semibold">${fmt(x.close)}</td>
-        <td class="py-2.5 px-2 text-right num ${cls(x.chg)} font-semibold">${x.chg > 0 ? "+" : ""}${(x.chg || 0).toFixed(2)}%</td>
-        <td class="py-2.5 px-2 text-right num ${cls(x.inst)}">${signed(x.inst || 0)}</td>
+        <td class="py-2.5 px-2 text-right num font-bold">${fmt(x.close)}</td>
+        <td class="py-2.5 px-2 text-right num ${cls(x.chg)} font-bold">${x.chg > 0 ? "+" : ""}${(x.chg || 0).toFixed(2)}%</td>
+        <td class="py-2.5 px-2 text-right num ${cls(x.inst)} font-semibold">${signed(x.inst || 0)}</td>
         <td class="py-2.5 px-2 text-right num ${cls(x.inst5d)}">${signed(x.inst5d || 0)}</td>
         <td class="py-2.5 px-2 text-right num ${cls(x.bigChg || 0)}">${x.bigChg != null ? (x.bigChg > 0 ? "+" : "") + x.bigChg.toFixed(2) + "%" : "—"}</td>
         <td class="py-2.5 px-2 text-right num ${cls(-(x.marginChg || 0))}">${signed(x.marginChg || 0)}</td>
-        <td class="py-2.5 px-2 text-right num whitespace-nowrap text-emerald-400 font-medium">${isBad ? "<span class='text-rose-300'>反彈減碼</span>" : (tp.buyZone || "—")}</td>
+        <td class="py-2.5 px-2 text-right num whitespace-nowrap text-emerald-400 font-semibold">${isBad ? "<span class='text-rose-300'>反彈減碼</span>" : (tp.buyZone || "—")}</td>
         <td class="py-2.5 px-2 text-right num whitespace-nowrap"><span class="text-amber-300">${tp.sellTarget1 || "—"}</span> / <span class="text-rose-300">${tp.stopLoss || "—"}</span></td>
         <td class="py-2.5 pl-2 pr-4 text-right num font-bold ${isBad ? "text-rose-400" : "text-white"}">${(x.rawScore || x.score || 0).toFixed(1)}</td>
       </tr>`;
@@ -1093,20 +1156,20 @@ body {
 
     const winners = backtest.topWinners || [];
     $("btRows").innerHTML = winners.map((r, i) => `
-      <tr class="hover:bg-white/[0.03] transition-colors">
+      <tr class="hover:bg-white/[0.03] transition-colors text-sm">
         <td class="py-2.5 pl-4 pr-1 num text-amber-400 font-bold">#${i + 1}</td>
         <td class="py-2.5 px-2 num text-slate-400">${r.recDate}</td>
         <td class="py-2.5 px-2 whitespace-nowrap">
           <button type="button" data-diagnose="${r.code}" class="text-left hover:text-emerald-300">
-            <span class="font-semibold text-white">${r.name}</span>
+            <span class="font-bold text-white text-sm">${r.name}</span>
             <span class="ml-1 text-xs text-slate-400 num">${r.code}</span>
             <span class="ml-1 text-xs text-slate-500">(${r.market}・${r.sector})</span>
           </button>
         </td>
         <td class="py-2.5 px-2 text-right num">${r.market} #${r.rank} (${r.score}分)</td>
-        <td class="py-2.5 px-2 text-right num">${fmt(r.entryClose)}</td>
-        <td class="py-2.5 px-2 text-right num text-white font-semibold">${fmt(r.maxClose)} <span class="text-xs text-slate-500">(${r.maxDate.slice(5)})</span></td>
-        <td class="py-2.5 px-2 text-right num ${cls(r.latestReturnPct)}">${r.latestReturnPct > 0 ? "+" : ""}${r.latestReturnPct.toFixed(2)}%</td>
+        <td class="py-2.5 px-2 text-right num font-semibold">${fmt(r.entryClose)}</td>
+        <td class="py-2.5 px-2 text-right num text-white font-bold">${fmt(r.maxClose)} <span class="text-xs text-slate-400 font-normal">(${r.maxDate.slice(5)})</span></td>
+        <td class="py-2.5 px-2 text-right num font-semibold ${cls(r.latestReturnPct)}">${r.latestReturnPct > 0 ? "+" : ""}${r.latestReturnPct.toFixed(2)}%</td>
         <td class="py-2.5 pl-2 pr-4 text-right num font-bold up">+${r.maxReturnPct.toFixed(2)}%</td>
       </tr>
     `).join("");
@@ -1123,24 +1186,24 @@ body {
       return v > 0 ? `<i style="width:${v}%;background:var(${c})" title="${label}: ${v.toFixed(1)}分"></i>` : "";
     }).join("");
     const bigTxt = p.bigPct == null ? "—" : `${p.bigPct.toFixed(2)}%` + (p.bigChg != null ? ` (${p.bigChg > 0 ? "+" : ""}${p.bigChg.toFixed(2)}%)` : "");
-    const anomBadges = anoms.map((a) => `<span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-white/10" title="${a.text}">${a.type}</span>`).join("");
+    const anomBadges = anoms.map((a) => `<span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-white/10" title="${a.text}">${a.type}</span>`).join("");
 
     return `
-    <article class="stock-card rounded-xl border ${top ? "border-amber-400/30 bg-slate-900" : "border-white/10 bg-slate-900/70"} p-4 grid gap-2.5">
+    <article class="stock-card rounded-xl border ${top ? "border-amber-400/30 bg-slate-900" : "border-white/10 bg-slate-900/70"} p-4 grid gap-3">
       <!-- 標題、代號、評級與星星 -->
       <div class="flex items-center justify-between gap-2">
         <div class="flex items-center gap-2 min-w-0">
-          <span class="w-5 h-5 rounded grid place-items-center text-xs num font-bold flex-none ${top ? "bg-amber-400 text-slate-950" : "bg-slate-800 text-slate-400"}">${p.rank}</span>
+          <span class="w-6 h-6 rounded grid place-items-center text-xs num font-bold flex-none ${top ? "bg-amber-400 text-slate-950" : "bg-slate-800 text-slate-400"}">${p.rank}</span>
           <div class="flex items-center gap-1.5 flex-wrap min-w-0">
             ${starBtn(p.code)}
-            <button type="button" data-diagnose="${p.code}" class="text-base font-bold text-white hover:text-sky-300 transition-colors text-left truncate">${p.name}</button>
-            <span class="text-xs text-slate-400 num">${p.code}</span>
+            <button type="button" data-diagnose="${p.code}" class="text-lg font-bold text-white hover:text-sky-300 transition-colors text-left truncate">${p.name}</button>
+            <span class="text-sm text-slate-400 num font-medium">${p.code}</span>
             ${gradeBadge(p.aiGrade)}
-            <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">${p.market}・${p.sector}</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300">${p.market}・${p.sector}</span>
           </div>
         </div>
         <div class="ring ${p.aiGrade === "S+" ? "s-plus" : ""}" style="--p:${p.score}" title="籌碼總分 ${p.rawScore || p.score}">
-          <span class="num font-bold">${p.score}</span>
+          <span class="num font-black text-sm">${p.score}</span>
         </div>
       </div>
 
@@ -1148,67 +1211,67 @@ body {
       <div class="flex items-center justify-between gap-3 pt-1 border-t border-white/5">
         <div>
           <div class="flex items-baseline gap-2">
-            <span class="text-2xl font-bold num text-white">${fmt(p.close)}</span>
-            <span class="text-xs font-bold num ${cls(p.chg)} px-2 py-0.5 rounded ${p.chg > 0 ? "up-badge" : p.chg < 0 ? "down-badge" : "bg-white/5"}">
+            <span class="text-2xl sm:text-3xl font-extrabold num text-white">${fmt(p.close)}</span>
+            <span class="text-xs sm:text-sm font-bold num ${cls(p.chg)} px-2 py-0.5 rounded ${p.chg > 0 ? "up-badge" : p.chg < 0 ? "down-badge" : "bg-white/5"}">
               ${p.chg > 0 ? "+" : ""}${Math.abs(p.chg).toFixed(2)}%
             </span>
           </div>
-          <div class="text-[10px] text-slate-400 num mt-0.5">成交 ${fmt(p.vol)} 張 ｜ 5MA: ${tp.ma5 || "—"}</div>
+          <div class="text-xs text-slate-400 num mt-1">成交 ${fmt(p.vol)} 張 ｜ 5MA: <b class="text-slate-300">${tp.ma5 || "—"}</b></div>
         </div>
         <div class="w-32 flex-none">
           ${spark(p.series, day.seriesDates)}
         </div>
       </div>
 
-      <!-- 操作點位三格 -->
+      <!-- 操作點位三格 (大字數值) -->
       <div class="rounded-lg border border-white/10 bg-slate-950 p-2.5 grid grid-cols-3 gap-2 text-xs">
         <div class="grid gap-0.5">
-          <span class="text-slate-400 text-[10px]">買進區間</span>
-          <b class="num text-sm text-emerald-400 font-bold">${tp.buyZone || "—"}</b>
-          <span class="text-[10px] text-slate-500 num">突破: ${tp.breakoutBuy || "—"}</span>
+          <span class="text-slate-400 text-xs">建議買進區間</span>
+          <b class="num text-sm sm:text-base text-emerald-400 font-bold">${tp.buyZone || "—"}</b>
+          <span class="text-xs text-slate-500 num">突破: ${tp.breakoutBuy || "—"}</span>
         </div>
         <div class="grid gap-0.5 border-l border-white/10 pl-2">
-          <span class="text-slate-400 text-[10px]">目標價 1/2</span>
-          <b class="num text-sm text-amber-300 font-bold">${tp.sellTarget1 || "—"} / ${tp.sellTarget2 || "—"}</b>
-          <span class="text-[10px] text-slate-500 num">+${tp.target1Pct || 5}% / +${tp.target2Pct || 9}%</span>
+          <span class="text-slate-400 text-xs">目標價 1 / 2</span>
+          <b class="num text-sm sm:text-base text-amber-300 font-bold">${tp.sellTarget1 || "—"} / ${tp.sellTarget2 || "—"}</b>
+          <span class="text-xs text-slate-500 num">+${tp.target1Pct || 5}% / +${tp.target2Pct || 9}%</span>
         </div>
         <div class="grid gap-0.5 border-l border-white/10 pl-2">
-          <span class="text-slate-400 text-[10px]">停損價</span>
-          <b class="num text-sm text-rose-400 font-bold">${tp.stopLoss || "—"}</b>
-          <span class="text-[10px] text-slate-500 num">${tp.stopPct || -4}%</span>
+          <span class="text-slate-400 text-xs">防守停損價</span>
+          <b class="num text-sm sm:text-base text-rose-400 font-bold">${tp.stopLoss || "—"}</b>
+          <span class="text-xs text-slate-500 num">${tp.stopPct || -4}%</span>
         </div>
       </div>
 
       <!-- 三大法人 -->
-      <div class="grid grid-cols-4 rounded-lg border border-white/10 divide-x divide-white/10 bg-slate-950 text-xs py-1.5" aria-label="三大法人">
-        <div class="px-2 text-center"><span class="text-slate-400 text-[10px] block">外資</span><b class="num text-xs ${cls(p.foreign)} font-semibold">${signed(p.foreign || 0)}</b></div>
-        <div class="px-2 text-center"><span class="text-slate-400 text-[10px] block">投信</span><b class="num text-xs ${cls(p.trust)} font-semibold">${signed(p.trust || 0)}</b></div>
-        <div class="px-2 text-center"><span class="text-slate-400 text-[10px] block">自營</span><b class="num text-xs ${cls(p.dealer)} font-semibold">${signed(p.dealer || 0)}</b></div>
-        <div class="px-2 text-center"><span class="text-slate-400 text-[10px] block">合計(張)</span><b class="num text-xs ${cls(p.inst)} font-bold">${signed(p.inst || 0)}</b></div>
+      <div class="grid grid-cols-4 rounded-lg border border-white/10 divide-x divide-white/10 bg-slate-950 py-2" aria-label="三大法人">
+        <div class="px-2 text-center"><span class="text-slate-400 text-xs block mb-0.5">外資</span><b class="num text-xs sm:text-sm ${cls(p.foreign)} font-bold">${signed(p.foreign || 0)}</b></div>
+        <div class="px-2 text-center"><span class="text-slate-400 text-xs block mb-0.5">投信</span><b class="num text-xs sm:text-sm ${cls(p.trust)} font-bold">${signed(p.trust || 0)}</b></div>
+        <div class="px-2 text-center"><span class="text-slate-400 text-xs block mb-0.5">自營</span><b class="num text-xs sm:text-sm ${cls(p.dealer)} font-bold">${signed(p.dealer || 0)}</b></div>
+        <div class="px-2 text-center"><span class="text-slate-400 text-xs block mb-0.5">法人合計</span><b class="num text-xs sm:text-sm ${cls(p.inst)} font-bold">${signed(p.inst || 0)}</b></div>
       </div>
 
       <!-- 五維度細條與大戶/融資 -->
       <div class="grid gap-1">
         <div class="score-bar">${scoreBar}</div>
-        <div class="flex items-center justify-between text-[11px] text-slate-400 num">
-          <span>5日累計: <b class="${cls(p.inst5d)} font-semibold">${signed(p.inst5d || 0)}</b></span>
-          <span>大戶: <b class="${cls(p.bigChg || 0)} font-semibold">${bigTxt}</b></span>
-          <span>融資: <b class="${cls(-(p.marginChg || 0))} font-semibold">${signed(p.marginChg || 0)}</b></span>
+        <div class="flex items-center justify-between text-xs text-slate-400 num">
+          <span>5日累計: <b class="${cls(p.inst5d)} font-bold">${signed(p.inst5d || 0)}</b></span>
+          <span>大戶: <b class="${cls(p.bigChg || 0)} font-bold">${bigTxt}</b></span>
+          <span>融資: <b class="${cls(-(p.marginChg || 0))} font-bold">${signed(p.marginChg || 0)}</b></span>
         </div>
       </div>
 
       <!-- 標籤與異常 -->
       <div class="flex flex-wrap items-center gap-1.5">
         ${anomBadges}
-        ${p.tags.map((t) => `<span class="text-[10px] px-2 py-0.5 rounded border border-white/10 ${t === "土洋合買" || t === "大戶增持" ? "text-amber-300 bg-amber-500/10" : "text-slate-300 bg-slate-800"}">${t}</span>`).join("")}
+        ${p.tags.map((t) => `<span class="text-xs px-2 py-0.5 rounded border border-white/10 ${t === "土洋合買" || t === "大戶增持" ? "text-amber-300 bg-amber-500/10" : "text-slate-300 bg-slate-800"}">${t}</span>`).join("")}
       </div>
 
       <!-- 底部展開診斷 -->
-      <div class="flex items-center justify-between text-xs pt-1.5 border-t border-white/5">
-        <button type="button" data-diagnose="${p.code}" class="text-sky-400 hover:text-sky-300 font-medium">
-          查看詳細診斷 →
+      <div class="flex items-center justify-between text-xs sm:text-sm pt-2 border-t border-white/5">
+        <button type="button" data-diagnose="${p.code}" class="text-sky-400 hover:text-sky-300 font-semibold">
+          查看完整籌碼診斷 →
         </button>
-        <span class="text-[11px] text-slate-500">${p.streakDays >= 2 ? `連榜 ${p.streakDays} 日` : "今日新進"}</span>
+        <span class="text-xs text-slate-500">${p.streakDays >= 2 ? `連榜 ${p.streakDays} 日` : "今日新進"}</span>
       </div>
     </article>
     `;
@@ -1221,87 +1284,87 @@ body {
 
     document.querySelectorAll(".atab").forEach((b) => {
       const on = b.dataset.atab === state.anomTab;
-      b.className = `atab px-3 py-1 rounded-md text-xs transition-colors whitespace-nowrap ${on ? "bg-white text-black font-semibold" : "text-slate-400 hover:text-white"}`;
+      b.className = `atab px-3 py-1.5 rounded-lg text-xs sm:text-sm transition-colors whitespace-nowrap ${on ? "bg-white text-black font-semibold" : "text-slate-400 hover:text-white"}`;
     });
 
     const shifts = ca.sectorShift || [];
-    $("sectorShiftBar").innerHTML = `<span class="font-bold text-slate-300">產業資金輪動:</span>` +
+    $("sectorShiftBar").innerHTML = `<span class="font-bold text-slate-300 text-xs sm:text-sm">產業資金輪動:</span>` +
       (shifts.length ? shifts.map((s) => {
         const dTxt = s.diff > 0 ? `<b class="up font-bold">+${s.diff}</b>` : s.diff < 0 ? `<b class="down font-bold">${s.diff}</b>` : `<span class="text-slate-500">持平</span>`;
-        return `<span class="px-2 py-0.5 rounded bg-slate-950 border border-white/10">${s.sector} <span class="num">${s.today}檔</span> (${dTxt})</span>`;
-      }).join("") : `<span class="text-slate-500">持平</span>`);
+        return `<span class="px-2.5 py-1 rounded bg-slate-950 border border-white/10 text-xs sm:text-sm">${s.sector} <span class="num">${s.today}檔</span> (${dTxt})</span>`;
+      }).join("") : `<span class="text-slate-500 text-xs">持平</span>`);
 
     const blocks = [];
     const show = (k) => state.anomTab === "all" || state.anomTab === k;
 
     if (show("reversal") && (ca.instReversalPicks || []).length) {
-      blocks.push(`<div class="rounded-xl border border-white/10 bg-slate-900/60 p-3.5 grid gap-2 content-start">
-        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-amber-300">法人由賣轉買反轉</h4><span class="text-[10px] text-slate-400">前日賣超 → 今日買進</span></div>
-        <div class="divide-y divide-white/5 text-xs grid">${ca.instReversalPicks.map((x) => `
-          <div class="py-1.5 grid gap-0.5">
-            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
-              <span class="num font-semibold ${cls(x.chg)}">${x.close} (${x.chg > 0 ? "+" : ""}${x.chg.toFixed(2)}%)</span></div>
-            <div class="text-slate-400 text-[11px]">${x.note}</div>
-            <div class="text-emerald-400 num text-[11px]">買點 ${x.buyZone}｜目標 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
+      blocks.push(`<div class="rounded-xl border border-white/10 bg-slate-900/60 p-4 grid gap-2.5 content-start">
+        <div class="flex items-center justify-between"><h4 class="text-sm font-bold text-amber-300">法人由賣轉買反轉</h4><span class="text-xs text-slate-400">前日賣超 → 今日買進</span></div>
+        <div class="divide-y divide-white/5 text-sm grid">${ca.instReversalPicks.map((x) => `
+          <div class="py-2 grid gap-1">
+            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left text-sm">${x.name} <span class="text-slate-400 num font-normal text-xs">${x.code}</span></button>
+              <span class="num font-bold text-sm ${cls(x.chg)}">${x.close} (${x.chg > 0 ? "+" : ""}${x.chg.toFixed(2)}%)</span></div>
+            <div class="text-slate-400 text-xs">${x.note}</div>
+            <div class="text-emerald-400 num text-xs">買點 ${x.buyZone}｜目標 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
           </div>`).join("")}</div>
       </div>`);
     }
 
     if (show("divergence") && (ca.divergenceBuyPicks || []).length) {
-      blocks.push(`<div class="rounded-xl border border-white/10 bg-slate-900/60 p-3.5 grid gap-2 content-start">
-        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-emerald-400">價跌法人狂買 (壓低吃貨)</h4><span class="text-[10px] text-slate-400">背離吸籌</span></div>
-        <div class="divide-y divide-white/5 text-xs grid">${ca.divergenceBuyPicks.map((x) => `
-          <div class="py-1.5 grid gap-0.5">
-            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
-              <span class="num font-semibold ${cls(x.chg)}">${x.close} (${x.chg.toFixed(2)}%)</span></div>
-            <div class="text-slate-400 text-[11px]">${x.note}</div>
-            <div class="text-emerald-400 num text-[11px]">低接買點 ${x.buyZone}｜目標 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
+      blocks.push(`<div class="rounded-xl border border-white/10 bg-slate-900/60 p-4 grid gap-2.5 content-start">
+        <div class="flex items-center justify-between"><h4 class="text-sm font-bold text-emerald-400">價跌法人狂買 (壓低吃貨)</h4><span class="text-xs text-slate-400">背離吸籌</span></div>
+        <div class="divide-y divide-white/5 text-sm grid">${ca.divergenceBuyPicks.map((x) => `
+          <div class="py-2 grid gap-1">
+            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left text-sm">${x.name} <span class="text-slate-400 num font-normal text-xs">${x.code}</span></button>
+              <span class="num font-bold text-sm ${cls(x.chg)}">${x.close} (${x.chg.toFixed(2)}%)</span></div>
+            <div class="text-slate-400 text-xs">${x.note}</div>
+            <div class="text-emerald-400 num text-xs">低接買點 ${x.buyZone}｜目標 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
           </div>`).join("")}</div>
       </div>`);
     }
 
     if (show("consecutive") && (ca.consecutivePicks || []).length) {
-      blocks.push(`<div class="rounded-xl border border-white/10 bg-slate-900/60 p-3.5 grid gap-2 content-start">
-        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-sky-400">連續上榜主力鎖碼</h4><span class="text-[10px] text-slate-400">連續 ≥3 日穩居榜內</span></div>
-        <div class="divide-y divide-white/5 text-xs grid">${ca.consecutivePicks.map((x) => `
-          <div class="py-1.5 grid gap-0.5">
-            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
-              <span class="num font-semibold ${cls(x.chg)}">${x.close} (${x.chg > 0 ? "+" : ""}${x.chg.toFixed(2)}%)</span></div>
-            <div class="text-slate-400 num text-[11px]">${x.rankHistory}｜5日法人 ${signed(x.inst5d)} 張</div>
-            <div class="text-emerald-400 num text-[11px]">買點 ${x.buyZone}｜目標 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
+      blocks.push(`<div class="rounded-xl border border-white/10 bg-slate-900/60 p-4 grid gap-2.5 content-start">
+        <div class="flex items-center justify-between"><h4 class="text-sm font-bold text-sky-400">連續上榜主力鎖碼</h4><span class="text-xs text-slate-400">連續 ≥3 日穩居榜內</span></div>
+        <div class="divide-y divide-white/5 text-sm grid">${ca.consecutivePicks.map((x) => `
+          <div class="py-2 grid gap-1">
+            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left text-sm">${x.name} <span class="text-slate-400 num font-normal text-xs">${x.code}</span></button>
+              <span class="num font-bold text-sm ${cls(x.chg)}">${x.close} (${x.chg > 0 ? "+" : ""}${x.chg.toFixed(2)}%)</span></div>
+            <div class="text-slate-400 num text-xs">${x.rankHistory}｜5日法人 ${signed(x.inst5d)} 張</div>
+            <div class="text-emerald-400 num text-xs">買點 ${x.buyZone}｜目標 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
           </div>`).join("")}</div>
       </div>`);
     }
 
     if (show("newsurge") && (ca.newSurgePicks || []).length) {
       blocks.push(`<div class="rounded-xl border border-white/10 bg-slate-900/60 p-3.5 grid gap-2 content-start">
-        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-purple-400">新進前六強 & 突襲黑馬</h4><span class="text-[10px] text-slate-400">資金快速湧入</span></div>
+        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-purple-400">新進前六強 & 突襲黑馬</h4><span class="text-xs text-slate-400">資金快速湧入</span></div>
         <div class="divide-y divide-white/5 text-xs grid">${ca.newSurgePicks.map((x) => `
           <div class="py-1.5 grid gap-0.5">
             <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
               <span class="num font-semibold ${cls(x.chg)}">${x.close} (${x.chg > 0 ? "+" : ""}${x.chg.toFixed(2)}%)</span></div>
-            <div class="text-slate-300 text-[11px]">${x.tag}｜法人 +${fmt(x.inst)} 張</div>
-            <div class="text-emerald-400 num text-[11px]">買點 ${x.buyZone}｜目標 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
+            <div class="text-slate-300 text-xs">${x.tag}｜法人 +${fmt(x.inst)} 張</div>
+            <div class="text-emerald-400 num text-xs">買點 ${x.buyZone}｜目標 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
           </div>`).join("")}</div>
       </div>`);
     }
 
     if (show("alerts") && ((ca.droppedAlerts || []).length || (ca.shortTrapAlerts || []).length)) {
       blocks.push(`<div class="rounded-xl border border-rose-500/30 bg-rose-500/[0.03] p-3.5 grid gap-2 content-start">
-        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-rose-300">籌碼鬆動與隔日沖警戒</h4><span class="text-[10px] text-slate-400">注意短線回吐</span></div>
+        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-rose-300">籌碼鬆動與隔日沖警戒</h4><span class="text-xs text-slate-400">注意短線回吐</span></div>
         <div class="divide-y divide-white/5 text-xs grid">
           ${(ca.droppedAlerts || []).map((x) => `
             <div class="py-1.5 grid gap-0.5">
               <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
-                <span class="text-rose-400 num text-[11px]">前日 #${x.prevRank}</span></div>
-              <div class="text-slate-400 text-[11px]">${x.note}</div>
+                <span class="text-rose-400 num text-xs">前日 #${x.prevRank}</span></div>
+              <div class="text-slate-400 text-xs">${x.note}</div>
             </div>`).join("")}
           ${(ca.shortTrapAlerts || []).map((x) => `
             <div class="py-1.5 grid gap-0.5">
               <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
-                <span class="num up font-semibold text-[11px]">+${x.chgPct.toFixed(2)}% (爆量)</span></div>
-              <div class="text-slate-400 text-[11px]">${x.note}</div>
-              <div class="text-rose-300 num text-[11px]">先賣點 ${x.dtPlan.entryZone}｜回補 ${x.dtPlan.target1}</div>
+                <span class="num up font-semibold text-xs">+${x.chgPct.toFixed(2)}% (爆量)</span></div>
+              <div class="text-slate-400 text-xs">${x.note}</div>
+              <div class="text-rose-300 num text-xs">先賣點 ${x.dtPlan.entryZone}｜回補 ${x.dtPlan.target1}</div>
             </div>`).join("")}
         </div>
       </div>`);
@@ -1363,26 +1426,28 @@ body {
 
     $("dtRows").innerHTML = rows.map((x) => {
       const dp = x.dtPlan || {};
-      const cleanGuide = (dp.aiGuide || "").replace(/【[^】]+】/g, "");
-      return `<tr class="align-top hover:bg-white/[0.03] transition-colors">
-        <td class="py-2.5 pl-4 pr-1 num text-slate-400 font-bold">${x.rank}</td>
+      const cleanGuide = (dp.aiGuide || "")
+        .replace(/【[^】]+】/g, "")
+        .replace(/AI\s*/g, "");
+      return `<tr class="align-top hover:bg-white/[0.03] transition-colors text-sm">
+        <td class="py-2.5 pl-4 pr-1 num text-slate-400 font-bold">#${x.rank}</td>
         <td class="py-2.5 px-2 min-w-[260px]">
           <div class="whitespace-nowrap flex items-center gap-1.5">
             ${starBtn(x.code)}
-            <button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name}</button>
+            <button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left text-sm">${x.name}</button>
             <span class="text-xs text-slate-400 num">${x.code}</span>
-            <span class="text-[10px] text-slate-500">${x.market}・${x.sector}</span>
+            <span class="text-xs text-slate-500">(${x.market}・${x.sector})</span>
           </div>
-          <div class="flex flex-wrap gap-1 mt-1">${x.tags.map((t) => `<span class="text-[10px] px-1.5 py-0.5 rounded ${t.includes("賣壓") || t.includes("弱勢") ? "bg-white text-black font-semibold" : "border border-white/10 text-slate-300"}">${t}</span>`).join("")}</div>
-          ${cleanGuide ? `<div class="text-[11px] text-slate-300 mt-1 leading-relaxed bg-slate-950 p-2 rounded border border-white/5">${cleanGuide}</div>` : ""}
+          <div class="flex flex-wrap gap-1 mt-1">${x.tags.map((t) => `<span class="text-xs px-2 py-0.5 rounded ${t.includes("賣壓") || t.includes("弱勢") ? "bg-white text-black font-semibold" : "border border-white/10 text-slate-300"}">${t}</span>`).join("")}</div>
+          ${cleanGuide ? `<div class="text-xs text-slate-300 mt-1 leading-relaxed bg-slate-950 p-2 rounded border border-white/5">${cleanGuide}</div>` : ""}
         </td>
         <td class="py-2.5 px-2 text-right num font-bold">${fmt(x.close)}</td>
         <td class="py-2.5 px-2 text-right num ${cls(x.chgPct)} font-bold">${x.chgPct > 0 ? "+" : ""}${x.chgPct.toFixed(2)}%</td>
-        <td class="py-2.5 px-2 text-right num whitespace-nowrap"><div class="text-emerald-400 font-bold">${dp.entryZone || "—"}</div><div class="text-[10px] text-slate-500">${isLong ? "突破" : "轉弱"} ${dp.breakoutEntry || "—"}</div></td>
-        <td class="py-2.5 px-2 text-right num whitespace-nowrap"><div class="text-amber-300 font-bold">${dp.target1 || "—"} / ${dp.target2 || "—"}</div><div class="text-[10px] text-slate-500">${isLong ? "+2.5% / +4.5%" : "-2.0% / -4.0%"}</div></td>
+        <td class="py-2.5 px-2 text-right num whitespace-nowrap"><div class="text-emerald-400 font-bold">${dp.entryZone || "—"}</div><div class="text-xs text-slate-500">${isLong ? "突破" : "轉弱"} ${dp.breakoutEntry || "—"}</div></td>
+        <td class="py-2.5 px-2 text-right num whitespace-nowrap"><div class="text-amber-300 font-bold">${dp.target1 || "—"} / ${dp.target2 || "—"}</div><div class="text-xs text-slate-500">${isLong ? "+2.5% / +4.5%" : "-2.0% / -4.0%"}</div></td>
         <td class="py-2.5 px-2 text-right num whitespace-nowrap"><div class="text-rose-400 font-bold">${dp.stopLoss || "—"}</div></td>
-        <td class="py-2.5 px-2 text-right num whitespace-nowrap"><div>${x.turnover.toFixed(2)}%</div><div class="text-[10px] text-slate-400">當沖 ${x.dtRatio.toFixed(1)}%</div></td>
-        <td class="py-2.5 px-2 text-right num whitespace-nowrap"><div>${x.surge.toFixed(1)}x</div><div class="text-[10px] ${cls(x.instNet)} font-semibold">${signed(x.instNet)}</div></td>
+        <td class="py-2.5 px-2 text-right num whitespace-nowrap"><div>${x.turnover.toFixed(2)}%</div><div class="text-xs text-slate-400">當沖 ${x.dtRatio.toFixed(1)}%</div></td>
+        <td class="py-2.5 px-2 text-right num whitespace-nowrap"><div>${x.surge.toFixed(1)}x</div><div class="text-xs ${cls(x.instNet)} font-semibold">${signed(x.instNet)}</div></td>
         <td class="py-2.5 pl-2 pr-4 text-right num font-bold text-white">${x.score.toFixed(1)}</td>
       </tr>`;
     }).join("");
@@ -1393,10 +1458,10 @@ body {
     const d = parseDay(day.date);
     const items = (day.indices || []).map((x) => {
       const c = cls(x.chg), arrow = x.chg > 0 ? "+" : "";
-      return `<div class="flex-none flex items-center gap-2 py-0.5 px-2.5 rounded bg-slate-950 border border-white/5" title="${x.name}">
+      return `<div class="flex-none flex items-center gap-2 py-1 px-3 rounded bg-slate-950 border border-white/10" title="${x.name}">
         <span class="text-slate-400 text-xs">${x.name}</span>
-        <span class="num text-xs font-bold text-white">${x.close.toLocaleString("zh-TW", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-        <span class="num text-xs ${c} font-semibold">${arrow}${x.chgPct.toFixed(2)}%</span>
+        <span class="num text-sm font-bold text-white">${x.close.toLocaleString("zh-TW", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+        <span class="num text-xs ${c} font-bold">${arrow}${x.chgPct.toFixed(2)}%</span>
       </div>`;
     }).join("");
     $("indices").innerHTML = `<span class="flex-none text-xs text-slate-400 whitespace-nowrap px-1">${d.getMonth() + 1}/${d.getDate()} 收盤</span>`
@@ -1424,14 +1489,14 @@ body {
   function renderTableRows(rows) {
     $("tableRows").innerHTML = rows.map((p) => {
       const tp = p.tradePlan || {};
-      return `<tr class="hover:bg-white/[0.03] transition-colors">
+      return `<tr class="hover:bg-white/[0.03] transition-colors text-sm">
         <td class="py-2.5 pl-4 pr-1">${starBtn(p.code)}</td>
         <td class="py-2.5 px-2 num font-bold text-slate-400">#${p.rank}</td>
         <td class="py-2.5 px-2 whitespace-nowrap">
-          <button type="button" data-diagnose="${p.code}" class="font-bold text-white hover:text-sky-300 text-left">
+          <button type="button" data-diagnose="${p.code}" class="font-bold text-white hover:text-sky-300 text-left text-sm">
             ${p.name} <span class="text-xs text-slate-400 num font-normal">${p.code}</span>
           </button>
-          <div class="text-[10px] text-slate-500">${p.market}・${p.sector}・${gradeBadge(p.aiGrade)}</div>
+          <div class="text-xs text-slate-400 mt-0.5">${p.market}・${p.sector}・${gradeBadge(p.aiGrade)}</div>
         </td>
         <td class="py-2.5 px-2 text-right num font-bold">${fmt(p.close)}</td>
         <td class="py-2.5 px-2 text-right num font-bold ${cls(p.chg)}">${p.chg > 0 ? "+" : ""}${p.chg.toFixed(2)}%</td>
@@ -1538,42 +1603,67 @@ body {
       return;
     }
     if (!e.target.closest("#docInput") && !e.target.closest("#docSuggest")) {
-      $("docSuggest").classList.add("hidden");
+      if ($("docSuggest")) $("docSuggest").classList.add("hidden");
+    }
+    if (!e.target.closest("#docSectionSearch") && !e.target.closest("#docSectionSuggest") && !e.target.closest("#btnClearDocSection")) {
+      if ($("docSectionSuggest")) $("docSectionSuggest").classList.add("hidden");
     }
   });
 
-  // 搜尋
-  $("docInput").addEventListener("input", (e) => {
-    const q = e.target.value.trim().toLowerCase();
-    const box = $("docSuggest");
-    if (!q) { box.classList.add("hidden"); return; }
-    const pool = universeDB.length ? universeDB : ((days[0] && days[0].picks) || []);
-    const matches = pool.filter((x) => `${x.code} ${x.name} ${x.sector}`.toLowerCase().includes(q)).slice(0, 8);
-    if (!matches.length) {
-      box.innerHTML = `<div class="px-3.5 py-2.5 text-slate-500 text-xs">找不到符合「${e.target.value}」的個股</div>`;
-    } else {
-      box.innerHTML = matches.map((x) => `
-        <button type="button" data-diagnose="${x.code}" class="w-full px-3.5 py-2 text-left hover:bg-white/10 flex items-center justify-between transition-colors">
-          <span><b class="text-white">${x.name}</b> <span class="text-slate-400 num">${x.code}</span> <span class="text-[10px] text-slate-500">(${x.market}・${x.sector})</span></span>
-          <span class="num text-xs ${cls(x.chg)} font-semibold">${x.close} (${x.chg > 0 ? "+" : ""}${x.chg.toFixed(2)}%)</span>
-        </button>
-      `).join("");
-    }
-    box.classList.remove("hidden");
-  });
-
-  $("docInput").addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      const q = e.target.value.trim().toLowerCase();
-      const pool = universeDB.length ? universeDB : ((days[0] && days[0].picks) || []);
-      const found = pool.find((x) => x.code === q || x.name.toLowerCase() === q) || pool.find((x) => `${x.code} ${x.name}`.toLowerCase().includes(q));
-      if (found) {
-        $("docSuggest").classList.add("hidden");
-        renderDoctor(found.code, true);
+  // 股票搜尋模組 (頂部導航與個股診斷區雙向支援)
+  function setupStockSearch(inputEl, suggestEl, clearBtn) {
+    if (!inputEl || !suggestEl) return;
+    function doSearch(val) {
+      const q = val.trim().toLowerCase();
+      if (!q) {
+        suggestEl.classList.add("hidden");
+        if (clearBtn) clearBtn.classList.add("hidden");
+        return;
       }
+      if (clearBtn) clearBtn.classList.remove("hidden");
+      const pool = universeDB.length ? universeDB : ((days[0] && days[0].picks) || []);
+      const matches = pool.filter((x) => `${x.code} ${x.name} ${x.sector}`.toLowerCase().includes(q)).slice(0, 10);
+      if (!matches.length) {
+        suggestEl.innerHTML = `<div class="px-4 py-3 text-slate-500 text-sm">找不到符合「${val}」的個股</div>`;
+      } else {
+        suggestEl.innerHTML = matches.map((x) => `
+          <button type="button" data-diagnose="${x.code}" class="w-full px-4 py-2.5 text-left hover:bg-white/10 flex items-center justify-between transition-colors">
+            <span class="text-sm"><b class="text-white">${x.name}</b> <span class="text-slate-400 num ml-1">${x.code}</span> <span class="text-xs text-slate-500 ml-1">(${x.market}・${x.sector})</span></span>
+            <span class="num text-sm ${cls(x.chg)} font-bold">${x.close} (${x.chg > 0 ? "+" : ""}${(x.chg || 0).toFixed(2)}%)</span>
+          </button>
+        `).join("");
+      }
+      suggestEl.classList.remove("hidden");
     }
-  });
+
+    inputEl.addEventListener("input", (e) => doSearch(e.target.value));
+    inputEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        const q = e.target.value.trim().toLowerCase();
+        const pool = universeDB.length ? universeDB : ((days[0] && days[0].picks) || []);
+        const found = pool.find((x) => x.code === q || x.name.toLowerCase() === q) || pool.find((x) => `${x.code} ${x.name}`.toLowerCase().includes(q));
+        if (found) {
+          suggestEl.classList.add("hidden");
+          renderDoctor(found.code, true);
+        }
+      } else if (e.key === "Escape") {
+        suggestEl.classList.add("hidden");
+      }
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener("click", () => {
+        inputEl.value = "";
+        clearBtn.classList.add("hidden");
+        suggestEl.classList.add("hidden");
+        inputEl.focus();
+      });
+    }
+  }
+
+  setupStockSearch($("docInput"), $("docSuggest"), null);
+  setupStockSearch($("docSectionSearch"), $("docSectionSuggest"), $("btnClearDocSection"));
 
   $("btnToggleWatch").addEventListener("click", () => {
     $("watchSection").classList.toggle("hidden");

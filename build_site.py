@@ -445,12 +445,12 @@ def build_ai_overview(doc, picks, cross_anom):
     div_count = len(cross_anom["divergenceBuyPicks"])
 
     headline = (
-        f"AI 盤後多因子模型從 {doc.get('universe', 0):,} 檔合格個股中篩選出上市 20 檔、上櫃 20 檔。"
-        f"{'；'.join(idx_txt)}。本日資金最集中族群為：{sec_str}。"
-        f"全場共 {len(s_plus)} 檔獲評 AI「S+ 強勢共識」、{len(dual_buy)} 檔「土洋合買」、"
-        f"{rev_count} 檔出現「法人由賣轉買大反轉」、{div_count} 檔呈現「價跌法人逆勢吃貨背離」。"
-        f"跨日連續霸榜鎖碼股：{consec_names or '無'}。"
-        f"上市首選：{twse_names}；上櫃首選：{otc_names}。"
+        f"盤後量化多因子模型由 {doc.get('universe', 0):,} 檔合格標的中篩選出上市 20 檔、上櫃 20 檔核心清單。"
+        f"{'；'.join(idx_txt)}。強勢族群聚焦：{sec_str}。"
+        f"共 {len(s_plus)} 檔達「S+ 頂級首選」、{len(dual_buy)} 檔「土洋合買」、"
+        f"{rev_count} 檔「法人由賣轉買反轉」、{div_count} 檔「價跌逆勢吃貨背離」。"
+        f"連續霸榜主力鎖碼：{consec_names or '無'}。"
+        f"上市精選：{twse_names}；上櫃精選：{otc_names}。"
     )
     return {
         "headline": headline,
