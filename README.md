@@ -8,7 +8,7 @@
 |---|---|
 | `auto_pick.py` | **全自動 AI 選股中控台**：一鍵串聯資料抓取、CSV 匯出、AI 投研報告產生、網頁建置、官方核對與 24h 常駐排程 |
 | `run_auto.bat` | Windows 一鍵執行批次檔（雙擊自動更新並開啟 `index.html`） |
-| `setup_schedule.bat` | Windows 工作排程器一鍵設定檔（註冊每日 22:05 盤後融資定稿自動執行） |
+| `setup_schedule.bat` | Windows 工作排程器一鍵設定檔（註冊每日 22:00 盤後融資定稿自動執行） |
 | `fetch_chips.py` | 抓取三大法人、收盤行情、融資融券、集保大戶資料並計算籌碼分數與 AI 多因子診斷，輸出 `out/day_YYYY-MM-DD.json` |
 | `build_site.py` | 把 `out/` 的推薦結果與 AI 決策總覽嵌入 `site_template.html` 與 `chips_radar.html`，產生 `index.html` |
 | `export_twse_day.py` | 把證交所某一天的盤後資料存成 CSV，並印出大盤與法人摘要 |
@@ -28,7 +28,7 @@
 # 1. 全自動一鍵執行（智慧判斷最新交易日定稿狀態、產出 AI 報告與互動網頁）
 python auto_pick.py --open       # 執行並自動打開 index.html
 python auto_pick.py --force      # 強制連線證交所/櫃買中心/集保重抓最新交易日
-python auto_pick.py --daemon     # 啟動 24 小時背景常駐排程（每日 16:35、22:05、隔日 08:15 自動執行）
+python auto_pick.py --daemon     # 啟動 24 小時背景常駐排程（每日 16:35、22:00、隔日 08:15 自動執行）
 
 # 2. 單獨執行各模組（與 stock_chips 完全相容）
 python fetch_chips.py            # 最近一個交易日
