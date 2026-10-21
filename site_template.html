@@ -115,6 +115,7 @@ body {
 
       <!-- 桌面端分頁選單 (無過度 Icon) -->
       <div id="desktopNavTabs" class="hidden lg:flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-white/10 text-xs font-medium">
+        <a href="#academy" class="nav-tab px-3.5 py-1.5 rounded-lg text-amber-300 hover:text-white transition-colors">實戰教學</a>
         <a href="#picks" class="nav-tab px-3.5 py-1.5 rounded-lg text-white bg-white/10 font-bold transition-colors">今日精選</a>
         <a href="#anomalies" class="nav-tab px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">籌碼異動</a>
         <a href="#daytrade" class="nav-tab px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">當沖標的</a>
@@ -142,6 +143,311 @@ body {
     </div>
   </div>
 </nav>
+
+<!-- ===== 實戰教學專區 (Academy: 怎麼買、怎麼看盤、K線與波動實戰) ===== -->
+<section id="academy" class="max-w-7xl mx-auto px-4 sm:px-6 pt-3 pb-1 scroll-mt-32">
+  <div class="rounded-2xl border border-amber-500/30 bg-slate-900/90 backdrop-blur-md overflow-hidden shadow-2xl">
+    <!-- 教學頂部列 -->
+    <div class="px-4 sm:px-5 py-3 bg-gradient-to-r from-amber-500/15 via-slate-900 to-sky-500/10 border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5">
+        <span class="px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-xs font-black tracking-wider uppercase">實戰教學</span>
+        <div>
+          <h2 class="text-sm sm:text-base font-bold text-white tracking-tight flex items-center gap-2">
+            <span>台股投資新手到老手看盤指南</span>
+            <span class="text-xs text-slate-400 font-normal hidden md:inline">下單開戶・五檔內外盤・日 K 線型態・波段選股法</span>
+          </h2>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <!-- 分頁 Tab -->
+        <div class="bg-slate-950 p-1 rounded-xl border border-white/10 inline-flex text-xs font-medium" id="academyTabs">
+          <button type="button" data-acadtab="buy" class="acad-tab px-3 py-1.5 rounded-lg bg-white text-black font-bold transition-all shadow-sm">1. 怎麼買股票？</button>
+          <button type="button" data-acadtab="tape" class="acad-tab px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all">2. 怎麼看盤？</button>
+          <button type="button" data-acadtab="kline" class="acad-tab px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all">3. K線與波動實戰</button>
+        </div>
+        <!-- 展開 / 收合 -->
+        <button type="button" id="btnToggleAcademy" class="px-3 py-1.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-white/10 text-xs text-slate-300 hover:text-white transition-all flex items-center gap-1.5 font-medium" title="展開或收合股票教學區塊">
+          <span id="acadToggleIcon" class="text-xs">▲</span>
+          <span id="acadToggleText">收合教學</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 教學內容主體 -->
+    <div id="academyBody" class="p-4 sm:p-5 text-xs sm:text-sm transition-all duration-300">
+      <!-- 單元 1: 怎麼購買股票？ -->
+      <div id="acadTabBuy" class="acad-content grid grid-cols-1 md:grid-cols-3 gap-3.5">
+        <div class="rounded-xl border border-white/10 bg-slate-950/80 p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 font-bold">流程步驟</span>
+              <span class="text-slate-500 text-xs font-mono">STEP 01~04</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-2">開戶與下單 4 大步驟</h3>
+            <ul class="space-y-2 text-slate-300 text-xs sm:text-sm leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="w-5 h-5 rounded-full bg-slate-800 text-sky-400 flex items-center justify-center font-bold text-xs flex-none mt-0.5">1</span>
+                <div><b>開立證券與交割戶</b>：攜帶雙證件與印章至合格券商（或使用券商 App 線上 10 分鐘開戶）。</div>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-5 h-5 rounded-full bg-slate-800 text-sky-400 flex items-center justify-center font-bold text-xs flex-none mt-0.5">2</span>
+                <div><b>下載看盤 App 安裝憑證</b>：登入券商 App，申請並下載電子下單憑證以確保交易安全。</div>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-5 h-5 rounded-full bg-slate-800 text-sky-400 flex items-center justify-center font-bold text-xs flex-none mt-0.5">3</span>
+                <div><b>搜尋個股並輸入委託</b>：輸入 4 碼代號（如 2330），選擇買進、輸入價格與張數/股數。</div>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-5 h-5 rounded-full bg-slate-800 text-sky-400 flex items-center justify-center font-bold text-xs flex-none mt-0.5">4</span>
+                <div><b>確認委託與成交回報</b>：送出後至「委託回報」確認委託成功，並在「成交回報」確認成交價格。</div>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-white/5 text-xs text-sky-400">
+            新手建議：先用小額零股熟悉每一步下單回報流程。
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-white/10 bg-slate-950/80 p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">下單型態</span>
+              <span class="text-slate-500 text-xs font-mono">ORDER TYPES</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-2">限價單 vs 市價單 & 盤中零股</h3>
+            <div class="space-y-2.5 text-slate-300 text-xs sm:text-sm leading-relaxed">
+              <div class="rounded-lg bg-slate-900/90 p-2.5 border border-white/5">
+                <div class="font-bold text-white text-xs flex items-center justify-between">
+                  <span>限價單 (ROD，當日有效) — 強烈推薦</span>
+                  <span class="text-emerald-400">最安全</span>
+                </div>
+                <p class="text-slate-400 text-xs mt-1">限定「最高只能買在此價格」（如限價 65 元買進，只會成交在 ≤65 元），杜絕滑價追高。</p>
+              </div>
+              <div class="rounded-lg bg-slate-900/90 p-2.5 border border-white/5">
+                <div class="font-bold text-white text-xs flex items-center justify-between">
+                  <span>市價單 — 新手慎用</span>
+                  <span class="text-rose-400">有滑價風險</span>
+                </div>
+                <p class="text-slate-400 text-xs mt-1">不論價格搶撮合。注意：09:00~09:10 開盤切勿急按市價單，容易成交在極端高點！</p>
+              </div>
+              <div class="rounded-lg bg-slate-900/90 p-2.5 border border-white/5">
+                <div class="font-bold text-white text-xs flex items-center justify-between">
+                  <span>盤中零股 (1~999 股)</span>
+                  <span class="text-sky-300">小資友善</span>
+                </div>
+                <p class="text-slate-400 text-xs mt-1">台股一張=1,000股。09:10~13:30 零股撮合，1股也能買高價好股，幾千元輕鬆起步。</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-white/5 text-xs text-amber-300">
+            下單守則：非極端急迫行情，一律掛「限價單」嚴守紀律！
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-rose-500/30 bg-slate-950/80 p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-bold">風控防違約</span>
+              <span class="text-slate-500 text-xs font-mono">T+2 & RISK</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-2">T+2 交割制度與 2% 資金防線</h3>
+            <div class="space-y-2 text-slate-300 text-xs sm:text-sm leading-relaxed">
+              <div class="rounded-lg bg-rose-500/10 border border-rose-500/20 p-2.5">
+                <div class="font-bold text-rose-300 text-xs flex items-center gap-1.5">
+                  <span class="text-rose-400 font-bold">⚠️ 違約交割禁忌</span>
+                </div>
+                <p class="text-slate-300 text-xs mt-1">台股採 <b>T+2 交割</b>：週一買進（T日），最晚須於週三（T+2日）<b>上午 10:00 前</b>存入足額款項。扣款失敗即構成違約交割，除面臨刑責外，全台銀行帳戶凍結並留下永久信用黑名單！</p>
+              </div>
+              <div class="rounded-lg bg-slate-900/90 border border-white/5 p-2.5">
+                <div class="font-bold text-white text-xs">單筆交易 2% 停損鐵律</div>
+                <p class="text-slate-400 text-xs mt-1">任何一筆買進，若跌破停損價，總虧損不得超過總資金的 2%。本系統在「個股診斷」的部位試算中已自動幫你精算最適張數！</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-white/5 text-xs text-rose-400">
+            絕對鐵律：未準備好交割款前絕不下單，杜絕違約交割。
+          </div>
+        </div>
+      </div>
+
+      <!-- 單元 2: 怎麼看盤？ -->
+      <div id="acadTabTape" class="acad-content hidden grid grid-cols-1 md:grid-cols-3 gap-3.5">
+        <div class="rounded-xl border border-white/10 bg-slate-950/80 p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">盤面掛單</span>
+              <span class="text-slate-500 text-xs font-mono">ORDER BOOK</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-2">最佳五檔委買委賣實戰解析</h3>
+            <ul class="space-y-2 text-slate-300 text-xs sm:text-sm leading-relaxed">
+              <li>
+                <div class="font-bold text-white text-xs">五檔結構解密</div>
+                <div class="text-slate-400 text-xs mt-0.5">顯示市場目前最高的 5 個委託買價與最低的 5 個委託賣價。</div>
+              </li>
+              <li>
+                <div class="font-bold text-amber-300 text-xs">買盤掛大單不一定是漲！</div>
+                <div class="text-slate-400 text-xs mt-0.5">主力常在委買五檔掛幾千張假單營造支撐假象，吸引散戶追價後瞬間抽單反手倒貨。</div>
+              </li>
+              <li>
+                <div class="font-bold text-emerald-400 text-xs">賣盤大單被一口氣吃穿是大行情！</div>
+                <div class="text-slate-400 text-xs mt-0.5">若委賣五檔壓著數百張大單，盤中突然爆出連續大外盤單一口氣連續吃光，代表主力大戶強烈掃貨，極易噴出長紅！</div>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-white/5 text-xs text-emerald-400">
+            看盤關鍵：觀察大單是主動吃貨還是虛假掛單。
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-white/10 bg-slate-950/80 p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-bold">主動攻防</span>
+              <span class="text-slate-500 text-xs font-mono">INTERNAL / EXTERNAL</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-2">內盤 vs 外盤氣勢判讀</h3>
+            <div class="space-y-2.5 text-slate-300 text-xs sm:text-sm leading-relaxed">
+              <div class="rounded-lg bg-rose-500/10 border border-rose-500/20 p-2.5">
+                <div class="font-bold text-rose-300 text-xs flex items-center justify-between">
+                  <span>外盤成交（紅字，主動買進）</span>
+                  <span class="font-mono">買方急迫追價</span>
+                </div>
+                <p class="text-slate-300 text-xs mt-1">買方主動以「委賣價」成交。若一檔股票成交量放大且<b>外盤佔比 > 55%~60%</b>，代表多方主力積極攻堅，勝率最高。</p>
+              </div>
+              <div class="rounded-lg bg-emerald-500/10 border border-emerald-500/20 p-2.5">
+                <div class="font-bold text-emerald-300 text-xs flex items-center justify-between">
+                  <span>內盤成交（綠字，主動賣出）</span>
+                  <span class="font-mono">賣方急迫倒貨</span>
+                </div>
+                <p class="text-slate-300 text-xs mt-1">賣方主動以「委買價」下殺成交。若內盤佔比 > 55%，代表大單正在逢高出貨拋售，即刻提高警覺。</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-white/5 text-xs text-slate-400">
+            外盤強勢且突破進場點者，為盤中做多首選！
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-white/10 bg-slate-950/80 p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 font-bold">籌碼指標</span>
+              <span class="text-slate-500 text-xs font-mono">VOLUME & CHIPS</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-2">開盤預估量比與籌碼共振</h3>
+            <ul class="space-y-2 text-slate-300 text-xs sm:text-sm leading-relaxed">
+              <li>
+                <div class="font-bold text-white text-xs">開盤黃金 15 分鐘（09:00~09:15）</div>
+                <div class="text-slate-400 text-xs mt-0.5">以開盤量推估全天成交量。若預估量達 <b>5日均量 2 倍以上</b> 且開高走高，必是主力出量攻擊日！</div>
+              </li>
+              <li>
+                <div class="font-bold text-amber-300 text-xs">外資 + 投信土洋合買</div>
+                <div class="text-slate-400 text-xs mt-0.5">外資重權值、投信重中小型波段，兩者同日或連續合買，籌碼穩定度全市場最高。</div>
+              </li>
+              <li>
+                <div class="font-bold text-sky-300 text-xs">千張大戶週增 & 融資大減</div>
+                <div class="text-slate-400 text-xs mt-0.5">千張大戶持股週增 ≥0.4% 代表籌碼集中，散戶融資大減代表浮額清洗完畢，拉升阻力最小！</div>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-white/5 text-xs text-sky-400">
+            三籌碼共振（土洋買、大戶增、融資減）是主升段黃金訊號。
+          </div>
+        </div>
+      </div>
+
+      <!-- 單元 3: K線與波動實戰 -->
+      <div id="acadTabKline" class="acad-content hidden grid grid-cols-1 md:grid-cols-3 gap-3.5">
+        <div class="rounded-xl border border-white/10 bg-slate-950/80 p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-bold">K線基礎</span>
+              <span class="text-slate-500 text-xs font-mono">OHLC ELEMENTS</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-2">K 線的四要素與實戰型態</h3>
+            <div class="space-y-2 text-slate-300 text-xs sm:text-sm leading-relaxed">
+              <div class="rounded-lg bg-slate-900/90 p-2.5 border border-white/5 flex items-center justify-between text-xs">
+                <div>
+                  <b class="text-white">開盤(O)、最高(H)、最低(L)、收盤(C)</b>
+                  <p class="text-slate-400 mt-0.5">台股慣例：<b>紅 K 收高為漲，綠 K 收低為跌</b>。</p>
+                </div>
+                <div class="flex items-center gap-1.5 flex-none font-mono font-bold">
+                  <span class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-400">紅 K 漲</span>
+                  <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400">綠 K 跌</span>
+                </div>
+              </div>
+              <div class="rounded-lg bg-slate-900/90 p-2.5 border border-white/5">
+                <div class="font-bold text-rose-400 text-xs">【帶量長紅突破棒】— 波段第一買點</div>
+                <p class="text-slate-400 text-xs mt-0.5">實體飽滿、成交量較昨日放大 1.5 倍以上，強勢突破平台，主力發動起漲！</p>
+              </div>
+              <div class="rounded-lg bg-slate-900/90 p-2.5 border border-white/5">
+                <div class="font-bold text-emerald-400 text-xs">【長下影線（錘子線）】— 低檔有撐</div>
+                <p class="text-slate-400 text-xs mt-0.5">早盤下殺但尾盤被大買單強行撈起，下影線長於實體 2 倍，洗盤結束止跌點。</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-white/5 text-xs text-rose-400">
+            高檔長上影線（避雷針）為倒貨警訊，須嚴防拉回。
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-white/10 bg-slate-950/80 p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">均線生命線</span>
+              <span class="text-slate-500 text-xs font-mono">5MA STRATEGY</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-2">5MA 短線均線操盤心法</h3>
+            <ul class="space-y-2 text-slate-300 text-xs sm:text-sm leading-relaxed">
+              <li>
+                <div class="font-bold text-white text-xs">5MA 是什麼？</div>
+                <div class="text-slate-400 text-xs mt-0.5">過去 5 個交易日收盤價平均成本（系統 K 線圖以<b>黃色平滑曲線</b>繪出）。</div>
+              </li>
+              <li>
+                <div class="font-bold text-amber-300 text-xs">站穩 5MA：回測不破是最佳切入點</div>
+                <div class="text-slate-400 text-xs mt-0.5">強勢股沿 5MA 走高，回測 5MA 靠近主力買進區間是低風險進場點。</div>
+              </li>
+              <li>
+                <div class="font-bold text-rose-400 text-xs">實體長黑跌破 5MA：短線減碼防守</div>
+                <div class="text-slate-400 text-xs mt-0.5">跌破 5MA 說明短線多頭力道轉弱，嚴格將停損點設在建議停損價或長紅低點。</div>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-white/5 text-xs text-amber-300">
+            「均線定多空，點位定買賣」— 杜絕盲目追高。
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-white/10 bg-slate-950/80 p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 font-bold">波動實戰</span>
+              <span class="text-slate-500 text-xs font-mono">VOLATILITY CYCLE</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-2">如何判斷波動？看盤選股重點</h3>
+            <div class="space-y-2.5 text-slate-300 text-xs sm:text-sm leading-relaxed">
+              <div class="rounded-lg bg-slate-900/90 p-2.5 border border-white/5">
+                <div class="font-bold text-sky-300 text-xs">1. 量縮窄幅整理（波動率收斂）</div>
+                <p class="text-slate-400 text-xs mt-0.5">振幅縮小、成交量急縮至 5MA 量的一半以下，主力悄悄吸籌，即將變盤發動。</p>
+              </div>
+              <div class="rounded-lg bg-slate-900/90 p-2.5 border border-white/5">
+                <div class="font-bold text-emerald-400 text-xs">2. 出量長紅突破（波動率放大）</div>
+                <p class="text-slate-400 text-xs mt-0.5">首根長紅帶量突破整理平台，為進場勝率最高的「主升發動點」！</p>
+              </div>
+              <div class="rounded-lg bg-slate-900/90 p-2.5 border border-white/5">
+                <div class="font-bold text-white text-xs">3. 系統即時 K 線輔助驗證</div>
+                <p class="text-slate-400 text-xs mt-0.5">點擊任意股票的「診斷/K線」，直接查看日 K 線、5MA 與自動計算的目標價與停損線！</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-white/5 text-xs text-sky-400">
+            實戰口訣：買在波動收斂末端，賣在爆量高檔放量時！
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- 交易日切換與自選股開關 -->
 <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-3 pb-1">
@@ -274,18 +580,42 @@ body {
   <div class="flex flex-col md:flex-row md:items-end justify-between gap-2.5 mb-3">
     <div>
       <div class="text-xs text-slate-400" id="anomCompareDate">跨日籌碼軌跡追蹤</div>
-      <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight">籌碼異動追蹤</h2>
+      <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight flex items-center gap-2">
+        <span>籌碼異動追蹤</span>
+        <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-normal">多因子跨日大數據異常偵測</span>
+      </h2>
     </div>
-    <!-- 異動分類按鈕 -->
-    <div class="flex items-center gap-1 overflow-x-auto no-scrollbar bg-slate-950 p-1 rounded-lg border border-white/10 text-xs" id="anomTabs">
-      <button type="button" data-atab="all" class="atab px-3 py-1 rounded-md bg-white text-black font-semibold transition-colors">全部異動</button>
-      <button type="button" data-atab="reversal" class="atab px-3 py-1 rounded-md text-slate-400 hover:text-white transition-colors">由賣轉買</button>
-      <button type="button" data-atab="divergence" class="atab px-3 py-1 rounded-md text-slate-400 hover:text-white transition-colors">價跌吃貨</button>
-      <button type="button" data-atab="consecutive" class="atab px-3 py-1 rounded-md text-slate-400 hover:text-white transition-colors">連續上榜</button>
-      <button type="button" data-atab="newsurge" class="atab px-3 py-1 rounded-md text-slate-400 hover:text-white transition-colors">突襲新進</button>
-      <button type="button" data-atab="alerts" class="atab px-3 py-1 rounded-md text-rose-300 hover:text-rose-200 transition-colors">籌碼警戒</button>
+    <!-- 異動分類按鈕 (帶即時件數 Badge) -->
+    <div class="flex items-center gap-1 overflow-x-auto no-scrollbar bg-slate-950 p-1 rounded-xl border border-white/10 text-xs" id="anomTabs">
+      <button type="button" data-atab="all" class="atab px-3 py-1.5 rounded-lg bg-white text-black font-semibold transition-colors whitespace-nowrap flex items-center gap-1.5">
+        <span>全部異動</span>
+        <span id="anomCntAll" class="px-1.5 py-0.2 rounded-full bg-slate-800 text-slate-300 num text-xs">0</span>
+      </button>
+      <button type="button" data-atab="reversal" class="atab px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors whitespace-nowrap flex items-center gap-1.5">
+        <span>由賣轉買</span>
+        <span id="anomCntRev" class="px-1.5 py-0.2 rounded-full bg-slate-800 text-amber-300 num text-xs">0</span>
+      </button>
+      <button type="button" data-atab="divergence" class="atab px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors whitespace-nowrap flex items-center gap-1.5">
+        <span>價跌吃貨</span>
+        <span id="anomCntDiv" class="px-1.5 py-0.2 rounded-full bg-slate-800 text-emerald-300 num text-xs">0</span>
+      </button>
+      <button type="button" data-atab="consecutive" class="atab px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors whitespace-nowrap flex items-center gap-1.5">
+        <span>連續上榜</span>
+        <span id="anomCntConsec" class="px-1.5 py-0.2 rounded-full bg-slate-800 text-sky-300 num text-xs">0</span>
+      </button>
+      <button type="button" data-atab="newsurge" class="atab px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors whitespace-nowrap flex items-center gap-1.5">
+        <span>突襲新進</span>
+        <span id="anomCntSurge" class="px-1.5 py-0.2 rounded-full bg-slate-800 text-purple-300 num text-xs">0</span>
+      </button>
+      <button type="button" data-atab="alerts" class="atab px-3 py-1.5 rounded-lg text-rose-300 hover:text-rose-200 transition-colors whitespace-nowrap flex items-center gap-1.5">
+        <span>籌碼警戒</span>
+        <span id="anomCntAlerts" class="px-1.5 py-0.2 rounded-full bg-slate-800 text-rose-300 num text-xs">0</span>
+      </button>
     </div>
   </div>
+
+  <!-- 異動統計概覽 KPI 列 -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 mb-3" id="anomKpiBar"></div>
 
   <!-- 產業資金輪動列 -->
   <div class="rounded-xl border border-white/10 bg-slate-900/60 p-2.5 mb-3 text-xs flex flex-wrap items-center gap-2" id="sectorShiftBar"></div>
@@ -665,6 +995,9 @@ body {
     anomTab: "all",
     query: "",
     docCode: null,
+    docRightTab: store.get("docRightTab") || "kline",
+    academyOpen: store.get("academyOpen") !== "false",
+    academyTab: store.get("academyTab") || "buy",
     viewMode: "cards",
     scrPreset: "top",
     scrMarket: "全部",
@@ -798,6 +1131,207 @@ body {
       <line x1="4" x2="${W - 4}" y1="${midY}" y2="${midY}" stroke="rgba(255,255,255,0.15)"/>
       ${bars}
     </svg>`;
+  }
+
+  function klineSvg(ohlc, tp) {
+    if (!ohlc || ohlc.length < 2) {
+      return `<div class="rounded-lg bg-slate-950 p-6 text-center text-slate-400 text-xs">暫無完整 K 線數據，請參考外部看盤連結。</div>`;
+    }
+    const n = ohlc.length;
+    const W = 460, H = 250;
+    const padLeft = 44, padRight = 54, padTop = 18, padBottom = 22;
+    const chartW = W - padLeft - padRight;
+    const priceH = 145;
+    const volTop = 175, volH = 48;
+
+    let minP = Math.min(...ohlc.map((d) => d[3]));
+    let maxP = Math.max(...ohlc.map((d) => d[2]));
+    if (tp && tp.stopLoss) minP = Math.min(minP, tp.stopLoss * 0.99);
+    if (tp && tp.sellTarget1) maxP = Math.max(maxP, tp.sellTarget1 * 1.01);
+    const pDiff = maxP - minP || 1;
+    minP -= pDiff * 0.04;
+    maxP += pDiff * 0.04;
+    const pSpan = maxP - minP || 1;
+
+    const py = (p) => padTop + priceH - ((p - minP) / pSpan) * priceH;
+
+    const maxV = Math.max(...ohlc.map((d) => d[5]), 1);
+    const vy = (v) => volTop + volH - (v / maxV) * volH;
+
+    // 計算 5MA 平滑移動平均
+    const closes = ohlc.map((d) => d[4]);
+    const ma5Pts = [];
+    for (let i = 0; i < n; i++) {
+      const sub = closes.slice(Math.max(0, i - 4), i + 1);
+      const ma = sub.reduce((a, b) => a + b, 0) / sub.length;
+      ohlc[i].ma5 = ma;
+    }
+
+    const barW = Math.max(14, Math.min(30, Math.floor((chartW / n) * 0.62)));
+    const gap = (chartW - n * barW) / (n - 1 || 1);
+
+    let candleElements = "";
+    let volElements = "";
+    let dateElements = "";
+
+    ohlc.forEach((d, i) => {
+      const [dtStr, o, h, l, c, v] = d;
+      const cx = padLeft + i * (barW + gap) + barW / 2;
+      const x = cx - barW / 2;
+      const isUp = c >= o;
+      const colorHex = isUp ? "#ef4444" : "#10b981";
+
+      ma5Pts.push(`${cx.toFixed(1)},${py(d.ma5).toFixed(1)}`);
+
+      // 上下影線
+      const yHigh = py(h);
+      const yLow = py(l);
+      candleElements += `<line x1="${cx.toFixed(1)}" y1="${yHigh.toFixed(1)}" x2="${cx.toFixed(1)}" y2="${yLow.toFixed(1)}" stroke="${colorHex}" stroke-width="1.6" />`;
+
+      // K 棒實體
+      const yOpen = py(o);
+      const yClose = py(c);
+      const topY = Math.min(yOpen, yClose);
+      const bodyH = Math.max(2.5, Math.abs(yClose - yOpen));
+      candleElements += `<rect x="${x.toFixed(1)}" y="${topY.toFixed(1)}" width="${barW}" height="${bodyH.toFixed(1)}" rx="1.5" fill="${colorHex}">
+        <title>${dtStr} 開:${o} 高:${h} 低:${l} 收:${c} (${isUp ? "+" : ""}${((c - o) / o * 100).toFixed(2)}%) 量:${fmt(v)}張</title>
+      </rect>`;
+
+      // 下方成交量柱狀圖
+      const vY = vy(v);
+      const vHeight = Math.max(2, volTop + volH - vY);
+      volElements += `<rect x="${x.toFixed(1)}" y="${vY.toFixed(1)}" width="${barW}" height="${vHeight.toFixed(1)}" rx="1" fill="${colorHex}" fill-opacity="0.75">
+        <title>${dtStr} 成交量: ${fmt(v)} 張</title>
+      </rect>`;
+
+      // 日期刻度
+      dateElements += `<text x="${cx.toFixed(1)}" y="${H - 5}" fill="#94a3b8" font-size="10" font-family="Roboto Mono, monospace" text-anchor="middle">${dtStr}</text>`;
+    });
+
+    const ma5Path = `<polyline points="${ma5Pts.join(" ")}" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />`;
+
+    // 價格網格線與左側刻度
+    const gridSteps = 3;
+    let gridElements = "";
+    for (let s = 0; s <= gridSteps; s++) {
+      const val = minP + (pSpan * s) / gridSteps;
+      const y = py(val);
+      gridElements += `<line x1="${padLeft}" y1="${y.toFixed(1)}" x2="${W - padRight}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,0.08)" stroke-dasharray="2,2"/>
+        <text x="${padLeft - 5}" y="${(y + 3).toFixed(1)}" fill="#64748b" font-size="9.5" font-family="Roboto Mono, monospace" text-anchor="end">${val.toFixed(val >= 100 ? 1 : 2)}</text>`;
+    }
+
+    // 右側關鍵操作點位虛線 (目標價/買點/停損)
+    let targetLines = "";
+    if (tp) {
+      if (tp.sellTarget1 && tp.sellTarget1 <= maxP && tp.sellTarget1 >= minP) {
+        const yT = py(tp.sellTarget1);
+        targetLines += `<line x1="${padLeft}" y1="${yT.toFixed(1)}" x2="${W - padRight}" y2="${yT.toFixed(1)}" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="3,3" />
+          <text x="${W - padRight + 5}" y="${(yT + 3).toFixed(1)}" fill="#f59e0b" font-size="9" font-weight="700" font-family="Roboto Mono, monospace">目標 ${tp.sellTarget1}</text>`;
+      }
+      if (tp.buyHigh && tp.buyHigh <= maxP && tp.buyHigh >= minP) {
+        const yB = py(tp.buyHigh);
+        targetLines += `<line x1="${padLeft}" y1="${yB.toFixed(1)}" x2="${W - padRight}" y2="${yB.toFixed(1)}" stroke="#10b981" stroke-width="1.2" stroke-dasharray="3,3" />
+          <text x="${W - padRight + 5}" y="${(yB + 3).toFixed(1)}" fill="#10b981" font-size="9" font-weight="700" font-family="Roboto Mono, monospace">買點 ${tp.buyHigh}</text>`;
+      }
+      if (tp.stopLoss && tp.stopLoss <= maxP && tp.stopLoss >= minP) {
+        const yS = py(tp.stopLoss);
+        targetLines += `<line x1="${padLeft}" y1="${yS.toFixed(1)}" x2="${W - padRight}" y2="${yS.toFixed(1)}" stroke="#f43f5e" stroke-width="1.2" stroke-dasharray="3,3" />
+          <text x="${W - padRight + 5}" y="${(yS + 3).toFixed(1)}" fill="#f43f5e" font-size="9" font-weight="700" font-family="Roboto Mono, monospace">停損 ${tp.stopLoss}</text>`;
+      }
+    }
+
+    const volLabel = `<text x="${padLeft - 5}" y="${volTop + 10}" fill="#64748b" font-size="9" text-anchor="end">量(張)</text>
+      <text x="${padLeft - 5}" y="${volTop + volH}" fill="#64748b" font-size="9" font-family="Roboto Mono, monospace" text-anchor="end">${fmt(maxV)}</text>`;
+
+    return `<svg viewBox="0 0 ${W} ${H}" class="w-full h-auto block select-none" role="img">
+      ${gridElements}
+      ${targetLines}
+      ${candleElements}
+      ${ma5Path}
+      ${volElements}
+      ${volLabel}
+      ${dateElements}
+    </svg>`;
+  }
+
+  function klineAnalysis(ohlc, tp) {
+    if (!ohlc || !ohlc.length) {
+      return `<div class="text-slate-400">暫無完整 K 線數據。建議參考上方操作區間與 5MA 停損紀律。</div>`;
+    }
+    const last = ohlc[ohlc.length - 1];
+    const prev = ohlc.length >= 2 ? ohlc[ohlc.length - 2] : null;
+    const [dt, o, h, l, c, v] = last;
+    const isUp = c >= o;
+    const bodyPct = Math.abs(c - o) / o * 100;
+    const upperWick = (h - Math.max(o, c)) / o * 100;
+    const lowerWick = (Math.min(o, c) - l) / o * 100;
+    const ma5 = last.ma5 || c;
+
+    let patternTxt = "";
+    if (isUp && bodyPct >= 2.0 && v > (prev ? prev[5] * 1.3 : 0)) {
+      patternTxt = "帶量長紅突破：買方主力全天控盤推進，出量突破短線整理平台，多方氣勢強勁。";
+    } else if (lowerWick >= 1.2 && lowerWick > bodyPct * 1.3) {
+      patternTxt = "長下影線（定海神針）：盤中逢賣壓急跌，但低檔有主力大單強勢承接撈回，逢低支撐強烈。";
+    } else if (upperWick >= 1.5 && upperWick > bodyPct * 1.3) {
+      patternTxt = "高檔長上影線：衝高創波段高後遭遇解套或獲利了結賣壓，短線留意回檔整理。";
+    } else if (bodyPct < 0.6 && upperWick < 0.6 && lowerWick < 0.6) {
+      patternTxt = "窄幅整理十字星：多空力量暫時達到膠著平衡，待主力表態出量突破。";
+    } else if (isUp) {
+      patternTxt = "溫和收紅：多方維持推進格局，配合均線支撐順勢操作。";
+    } else {
+      patternTxt = "拉回整理：空方短線調節，重點觀察是否守穩 5MA 或買進區間下緣。";
+    }
+
+    const maTxt = c >= ma5
+      ? `股價目前穩居 5MA 生命線（${ma5.toFixed(1)} 元）之上，短線維持偏多續攻態勢。`
+      : `股價目前暫時落於 5MA（${ma5.toFixed(1)} 元）之下，回測防守停損價 ${tp ? tp.stopLoss : '—'} 元是否守穩。`;
+
+    return `
+      <div class="flex items-start gap-1.5 font-bold text-white text-xs">
+        <span class="text-amber-300 font-bold flex-none">K線型態：</span>
+        <span>${patternTxt}</span>
+      </div>
+      <div class="text-slate-300 text-xs flex flex-wrap items-center gap-x-3 gap-y-1 pt-1 border-t border-white/5">
+        <span>• <b>均線定位</b>：${maTxt}</span>
+        <span>• <b>波段目標</b>：建議買點 <b>${tp ? tp.buyZone : '—'}</b>，停利目標一 <b>${tp ? tp.sellTarget1 : '—'}</b>，停損防守 <b>${tp ? tp.stopLoss : '—'}</b>。</span>
+      </div>
+    `;
+  }
+
+  function renderAcademy() {
+    const body = $("academyBody");
+    const icon = $("acadToggleIcon");
+    const txt = $("acadToggleText");
+    if (!body) return;
+
+    if (state.academyOpen) {
+      body.classList.remove("hidden");
+      if (icon) icon.textContent = "▲";
+      if (txt) txt.textContent = "收合教學";
+    } else {
+      body.classList.add("hidden");
+      if (icon) icon.textContent = "▼";
+      if (txt) txt.textContent = "展開教學";
+    }
+
+    const tabs = ["buy", "tape", "kline"];
+    tabs.forEach((t) => {
+      const el = $("acadTab" + t.charAt(0).toUpperCase() + t.slice(1));
+      if (el) {
+        if (state.academyTab === t) {
+          el.classList.remove("hidden");
+        } else {
+          el.classList.add("hidden");
+        }
+      }
+    });
+
+    document.querySelectorAll(".acad-tab").forEach((b) => {
+      const on = b.dataset.acadtab === state.academyTab;
+      b.className = `acad-tab px-3 py-1.5 rounded-lg text-xs font-bold transition-all shadow-sm ${
+        on ? "bg-white text-black" : "text-slate-400 hover:text-white"
+      }`;
+    });
   }
 
   function gradeBadge(grade) {
@@ -1033,18 +1567,60 @@ body {
         </div>
       </div>
 
-      <!-- 右側: 雷達與走勢圖 -->
-      <div class="rounded-xl border border-white/10 bg-slate-900/60 p-4 sm:p-5 grid gap-3.5 content-between">
-        <div>
-          <div class="flex items-center justify-between text-xs sm:text-sm text-slate-300 mb-1.5">
-            <span class="font-bold">籌碼五維度量化分析</span>
-            <span class="num text-sky-400 font-bold text-sm">評分 ${p.rawScore || p.score || 0} / 100</span>
+      <!-- 右側: 日 K 線量價圖與籌碼雷達切換 -->
+      <div class="rounded-xl border border-white/10 bg-slate-900/60 p-4 sm:p-5 grid gap-3.5 content-start">
+        <div class="flex items-center justify-between gap-2 border-b border-white/10 pb-3">
+          <div class="bg-slate-950 p-1 rounded-xl border border-white/10 inline-flex text-xs" role="group">
+            <button type="button" id="btnDocTabKline" class="doc-rtab px-3 py-1.5 rounded-lg ${state.docRightTab === 'kline' ? 'bg-white text-black font-bold shadow-sm' : 'text-slate-400 hover:text-white'} transition-all">
+              日 K 線與量價圖
+            </button>
+            <button type="button" id="btnDocTabRadar" class="doc-rtab px-3 py-1.5 rounded-lg ${state.docRightTab === 'radar' ? 'bg-white text-black font-bold shadow-sm' : 'text-slate-400 hover:text-white'} transition-all">
+              籌碼五維雷達
+            </button>
           </div>
-          ${radarSvg(parts)}
-          <div class="grid grid-cols-5 gap-1.5 text-xs text-center pt-2.5">
-            ${PART_DEFS.map(([k, lbl, c, maxV]) => `<div class="rounded-lg bg-slate-950 p-1.5 border border-white/5"><div class="text-slate-400 text-xs truncate">${lbl}</div><b class="num text-white text-sm font-bold">${(parts[k] || 0).toFixed(1)}</b><span class="text-slate-500 num text-xs">/${maxV}</span></div>`).join("")}
+          <div class="text-right">
+            <span class="text-xs text-slate-400 block">${state.docRightTab === 'kline' ? '5MA 生命線 + 關鍵位' : '量化多因子評分'}</span>
+            <span class="num text-sky-400 font-bold text-sm">${state.docRightTab === 'kline' ? `最新收盤 ${fmt(p.close)}` : `評分 ${p.rawScore || p.score || 0} / 100`}</span>
           </div>
         </div>
+
+        ${state.docRightTab === 'kline' ? `
+          <!-- 日 K 線與量價圖模組 -->
+          <div class="grid gap-2.5">
+            <div class="flex items-center justify-between text-xs">
+              <div class="flex items-center gap-3">
+                <span class="inline-flex items-center gap-1.5 font-bold text-white text-xs sm:text-sm">
+                  <span>近 6 日 K 線</span>
+                  <span class="w-2 h-2 rounded-full bg-rose-500"></span><span class="text-slate-300">紅漲</span>
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span><span class="text-slate-300">綠跌</span>
+                </span>
+                <span class="px-2 py-0.5 rounded bg-amber-400/15 border border-amber-400/30 text-amber-300 font-mono text-xs font-semibold">
+                  5MA: ${tp.ma5 || '—'}
+                </span>
+              </div>
+              <span class="text-xs text-slate-400 hidden sm:inline">懸停或點選 K 棒檢視開高低收</span>
+            </div>
+
+            <!-- Candlestick SVG -->
+            <div class="rounded-xl bg-slate-950 p-2.5 border border-white/5 shadow-inner">
+              ${klineSvg(p.ohlc || ((universeDB.find(u => u.code === p.code) || {}).ohlc) || [], p.tradePlan)}
+            </div>
+
+            <!-- K 線型態與波動分析卡 -->
+            <div class="rounded-lg bg-slate-950/80 border border-white/5 p-3 text-xs sm:text-sm grid gap-1.5 leading-relaxed">
+              ${klineAnalysis(p.ohlc || ((universeDB.find(u => u.code === p.code) || {}).ohlc) || [], p.tradePlan)}
+            </div>
+          </div>
+        ` : `
+          <!-- 籌碼五維雷達模組 -->
+          <div>
+            ${radarSvg(parts)}
+            <div class="grid grid-cols-5 gap-1.5 text-xs text-center pt-2.5">
+              ${PART_DEFS.map(([k, lbl, c, maxV]) => `<div class="rounded-lg bg-slate-950 p-1.5 border border-white/5"><div class="text-slate-400 text-xs truncate">${lbl}</div><b class="num text-white text-sm font-bold">${(parts[k] || 0).toFixed(1)}</b><span class="text-slate-500 num text-xs">/${maxV}</span></div>`).join("")}
+            </div>
+          </div>
+        `}
+
         <div class="grid sm:grid-cols-2 gap-3 pt-3 border-t border-white/10">
           <div class="grid gap-1">
             <span class="text-xs sm:text-sm text-slate-400 font-medium">近 5 日收盤走勢</span>
@@ -1057,6 +1633,11 @@ body {
         </div>
       </div>
     `;
+
+    const bK = $("btnDocTabKline");
+    const bR = $("btnDocTabRadar");
+    if (bK) bK.onclick = () => { state.docRightTab = "kline"; store.set("docRightTab", "kline"); renderDoctor(p.code); };
+    if (bR) bR.onclick = () => { state.docRightTab = "radar"; store.set("docRightTab", "radar"); renderDoctor(p.code); };
 
     updatePositionCalculator();
     if (scrollIntoView) {
@@ -1292,11 +1873,98 @@ body {
     const ca = day.crossDayAnomalies || {};
     $("anomCompareDate").textContent = ca.prevDate ? `${day.date} 對比前交易日 ${ca.prevDate}` : `${day.date} 籌碼追蹤`;
 
+    const revList = ca.instReversalPicks || [];
+    const divList = ca.divergenceBuyPicks || [];
+    const conList = ca.consecutivePicks || [];
+    const surgList = ca.newSurgePicks || [];
+    const dropList = ca.droppedAlerts || [];
+    const trapList = ca.shortTrapAlerts || [];
+    const alertList = [...dropList, ...trapList];
+
+    const allCount = revList.length + divList.length + conList.length + surgList.length + alertList.length;
+
+    // 更新各 Tab 數量 Badge
+    if ($("anomCntAll")) $("anomCntAll").textContent = allCount;
+    if ($("anomCntRev")) $("anomCntRev").textContent = revList.length;
+    if ($("anomCntDiv")) $("anomCntDiv").textContent = divList.length;
+    if ($("anomCntConsec")) $("anomCntConsec").textContent = conList.length;
+    if ($("anomCntSurge")) $("anomCntSurge").textContent = surgList.length;
+    if ($("anomCntAlerts")) $("anomCntAlerts").textContent = alertList.length;
+
     document.querySelectorAll(".atab").forEach((b) => {
       const on = b.dataset.atab === state.anomTab;
-      b.className = `atab px-3 py-1.5 rounded-lg text-xs sm:text-sm transition-colors whitespace-nowrap ${on ? "bg-white text-black font-semibold" : "text-slate-400 hover:text-white"}`;
+      b.className = `atab px-3 py-1.5 rounded-lg text-xs transition-colors whitespace-nowrap flex items-center gap-1.5 ${
+        on ? "bg-white text-black font-bold shadow-sm" : "text-slate-400 hover:text-white"
+      }`;
     });
 
+    // 1. KPI 總覽卡片列
+    const topRev = revList[0];
+    const topDiv = divList[0];
+    const topCon = conList[0];
+    const topSurg = surgList[0];
+    const topAlert = alertList[0];
+
+    if ($("anomKpiBar")) {
+      $("anomKpiBar").innerHTML = `
+        <div class="rounded-xl border border-amber-400/20 bg-slate-900/80 p-3 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-amber-300 font-bold">由賣轉買反轉</span>
+            <span class="num text-amber-300 font-bold text-sm">${revList.length} 檔</span>
+          </div>
+          <div class="mt-2 text-xs">
+            ${topRev ? `<button type="button" data-diagnose="${topRev.code}" class="text-white hover:text-sky-300 font-bold text-left truncate block">${topRev.name} (${topRev.code})</button>
+            <div class="text-slate-400 num mt-0.5">買超 +${fmt(topRev.todayInst)} 張</div>` : `<span class="text-slate-500">今日無標的</span>`}
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-emerald-400/20 bg-slate-900/80 p-3 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-emerald-400 font-bold">價跌逆勢吃貨</span>
+            <span class="num text-emerald-400 font-bold text-sm">${divList.length} 檔</span>
+          </div>
+          <div class="mt-2 text-xs">
+            ${topDiv ? `<button type="button" data-diagnose="${topDiv.code}" class="text-white hover:text-sky-300 font-bold text-left truncate block">${topDiv.name} (${topDiv.code})</button>
+            <div class="text-slate-400 num mt-0.5">跌 ${topDiv.chg}% 法人買 +${fmt(topDiv.inst)}張</div>` : `<span class="text-slate-500">今日無標的</span>`}
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-sky-400/20 bg-slate-900/80 p-3 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-sky-300 font-bold">連續上榜主力鎖碼</span>
+            <span class="num text-sky-300 font-bold text-sm">${conList.length} 檔</span>
+          </div>
+          <div class="mt-2 text-xs">
+            ${topCon ? `<button type="button" data-diagnose="${topCon.code}" class="text-white hover:text-sky-300 font-bold text-left truncate block">${topCon.name} (${topCon.code})</button>
+            <div class="text-slate-400 num mt-0.5">連霸 ${topCon.streakDays} 日｜5日累買 +${fmt(topCon.inst5d)}張</div>` : `<span class="text-slate-500">今日無標的</span>`}
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-purple-400/20 bg-slate-900/80 p-3 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-purple-300 font-bold">突襲急竄黑馬</span>
+            <span class="num text-purple-300 font-bold text-sm">${surgList.length} 檔</span>
+          </div>
+          <div class="mt-2 text-xs">
+            ${topSurg ? `<button type="button" data-diagnose="${topSurg.code}" class="text-white hover:text-sky-300 font-bold text-left truncate block">${topSurg.name} (${topSurg.code})</button>
+            <div class="text-slate-400 num mt-0.5">${topSurg.tag || '空降精選前列'}</div>` : `<span class="text-slate-500">今日無標的</span>`}
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-rose-500/20 bg-slate-900/80 p-3 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-rose-400 font-bold">籌碼警戒避雷</span>
+            <span class="num text-rose-400 font-bold text-sm">${alertList.length} 檔</span>
+          </div>
+          <div class="mt-2 text-xs">
+            ${topAlert ? `<button type="button" data-diagnose="${topAlert.code}" class="text-white hover:text-rose-300 font-bold text-left truncate block">${topAlert.name} (${topAlert.code})</button>
+            <div class="text-rose-300 text-xs mt-0.5 truncate">${topAlert.prevRank ? `跌出推薦榜 (#${topAlert.prevRank})` : `隔日沖爆量賣壓`}</div>` : `<span class="text-slate-500">今日無異常</span>`}
+          </div>
+        </div>
+      `;
+    }
+
+    // 2. 產業資金輪動列
     const shifts = ca.sectorShift || [];
     $("sectorShiftBar").innerHTML = `<span class="font-bold text-slate-300 text-xs sm:text-sm">產業資金輪動:</span>` +
       (shifts.length ? shifts.map((s) => {
@@ -1304,83 +1972,101 @@ body {
         return `<span class="px-2.5 py-1 rounded bg-slate-950 border border-white/10 text-xs sm:text-sm">${s.sector} <span class="num">${s.today}檔</span> (${dTxt})</span>`;
       }).join("") : `<span class="text-slate-500 text-xs">持平</span>`);
 
-    const blocks = [];
-    const show = (k) => state.anomTab === "all" || state.anomTab === k;
+    // 3. 異動個股卡片生成函數
+    function renderAnomalyCard(item, catKey, catName, catBadgeCls) {
+      const chgVal = item.chg ?? item.chgPct ?? 0;
+      return `
+        <article class="stock-card rounded-xl border border-white/10 bg-slate-900/70 hover:border-white/20 p-4 flex flex-col justify-between gap-3 shadow-sm transition-all">
+          <div>
+            <!-- 標題與分類 -->
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="text-xs px-2 py-0.5 rounded ${catBadgeCls} font-bold">${catName}</span>
+                <span class="text-xs text-slate-400">${item.market || '台股'}・${item.sector || '其他'}</span>
+                ${item.rank ? `<span class="text-xs px-1.5 py-0.2 rounded bg-amber-400/15 text-amber-300 num font-bold">#${item.rank}</span>` : ''}
+              </div>
+              <div class="flex items-center gap-1.5">
+                ${starBtn(item.code)}
+                <button type="button" data-diagnose="${item.code}" class="text-xs px-2.5 py-1 rounded-lg bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/30 text-sky-300 font-semibold transition-colors">
+                  診斷 / K線 →
+                </button>
+              </div>
+            </div>
 
-    if (show("reversal") && (ca.instReversalPicks || []).length) {
-      blocks.push(`<div class="rounded-xl border border-white/10 bg-slate-900/60 p-4 grid gap-2.5 content-start">
-        <div class="flex items-center justify-between"><h4 class="text-sm font-bold text-amber-300">法人由賣轉買反轉</h4><span class="text-xs text-slate-400">前日賣超 → 今日買進</span></div>
-        <div class="divide-y divide-white/5 text-sm grid">${ca.instReversalPicks.map((x) => `
-          <div class="py-2 grid gap-1">
-            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left text-sm">${x.name} <span class="text-slate-400 num font-normal text-xs">${x.code}</span></button>
-              <span class="num font-bold text-sm ${cls(x.chg)}">${x.close} (${x.chg > 0 ? "+" : ""}${x.chg.toFixed(2)}%)</span></div>
-            <div class="text-slate-400 text-xs">${x.note}</div>
-            <div class="text-emerald-400 num text-xs">買點 ${x.buyZone}｜目標 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
-          </div>`).join("")}</div>
-      </div>`);
+            <!-- 名稱與報價 -->
+            <div class="flex items-baseline justify-between gap-2 mt-1">
+              <div>
+                <button type="button" data-diagnose="${item.code}" class="text-lg sm:text-xl font-bold text-white hover:text-sky-300 text-left transition-colors">
+                  ${item.name}
+                </button>
+                <span class="text-xs sm:text-sm text-slate-400 num ml-1 font-mono">${item.code}</span>
+              </div>
+              <div class="text-right">
+                <span class="text-lg sm:text-xl font-black text-white num">${fmt(item.close)}</span>
+                <span class="text-xs sm:text-sm font-bold num ml-1.5 ${cls(chgVal)}">${chgVal > 0 ? '+' : ''}${chgVal.toFixed(2)}%</span>
+              </div>
+            </div>
+
+            <!-- 籌碼核心數據網格 (4格) -->
+            <div class="grid grid-cols-2 gap-2 mt-3 pt-2.5 border-t border-white/5 text-xs">
+              <div class="rounded-lg bg-slate-950 p-2 border border-white/5">
+                <span class="text-slate-400 block text-xs">法人買賣動向</span>
+                <b class="num font-bold text-xs sm:text-sm ${cls(item.todayInst ?? item.inst ?? 0)}">
+                  ${item.prevInst != null ? `昨日 ${signed(item.prevInst)} → 今日 ${signed(item.todayInst)}` : signed(item.inst ?? item.instNet ?? 0) + ' 張'}
+                </b>
+              </div>
+              <div class="rounded-lg bg-slate-950 p-2 border border-white/5">
+                <span class="text-slate-400 block text-xs">5日累計 / 大戶</span>
+                <b class="num font-bold text-xs sm:text-sm text-white">
+                  ${item.inst5d != null ? `5日 ${signed(item.inst5d)} 張` : item.bigChg != null ? `大戶 ${signed(item.bigChg)}%` : '主力追蹤中'}
+                </b>
+              </div>
+            </div>
+
+            <!-- 描述說明 -->
+            <p class="text-xs sm:text-sm text-slate-300 mt-2.5 leading-relaxed bg-slate-950/40 rounded-lg p-2 border border-white/5">
+              ${item.note || item.tag || '跨日量化多因子異常偵測標的'}
+            </p>
+          </div>
+
+          <!-- 操作建議點位 -->
+          ${item.buyZone ? `
+            <div class="pt-2 border-t border-white/5 flex items-center justify-between text-xs num">
+              <span class="text-emerald-400 font-medium">買點: <b class="font-bold">${item.buyZone}</b></span>
+              <span class="text-amber-300 font-medium">目標: <b class="font-bold">${item.sellTarget1}</b></span>
+              <span class="text-rose-400 font-medium">停損: <b class="font-bold">${item.stopLoss}</b></span>
+            </div>
+          ` : item.dtPlan ? `
+            <div class="pt-2 border-t border-white/5 flex items-center justify-between text-xs num">
+              <span class="text-rose-300 font-medium">先賣: <b class="font-bold">${item.dtPlan.entryZone}</b></span>
+              <span class="text-amber-300 font-medium">回補: <b class="font-bold">${item.dtPlan.target1}</b></span>
+              <span class="text-rose-400 font-medium">停損: <b class="font-bold">${item.dtPlan.stopLoss}</b></span>
+            </div>
+          ` : ''}
+        </article>
+      `;
     }
 
-    if (show("divergence") && (ca.divergenceBuyPicks || []).length) {
-      blocks.push(`<div class="rounded-xl border border-white/10 bg-slate-900/60 p-4 grid gap-2.5 content-start">
-        <div class="flex items-center justify-between"><h4 class="text-sm font-bold text-emerald-400">價跌法人狂買 (壓低吃貨)</h4><span class="text-xs text-slate-400">背離吸籌</span></div>
-        <div class="divide-y divide-white/5 text-sm grid">${ca.divergenceBuyPicks.map((x) => `
-          <div class="py-2 grid gap-1">
-            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left text-sm">${x.name} <span class="text-slate-400 num font-normal text-xs">${x.code}</span></button>
-              <span class="num font-bold text-sm ${cls(x.chg)}">${x.close} (${x.chg.toFixed(2)}%)</span></div>
-            <div class="text-slate-400 text-xs">${x.note}</div>
-            <div class="text-emerald-400 num text-xs">低接買點 ${x.buyZone}｜目標 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
-          </div>`).join("")}</div>
-      </div>`);
+    // 收集符合當前 Tab 的卡片
+    const cards = [];
+    if (state.anomTab === "all" || state.anomTab === "reversal") {
+      revList.forEach(x => cards.push(renderAnomalyCard(x, "reversal", "由賣轉買反轉", "bg-amber-400/20 text-amber-300 border border-amber-400/30")));
+    }
+    if (state.anomTab === "all" || state.anomTab === "divergence") {
+      divList.forEach(x => cards.push(renderAnomalyCard(x, "divergence", "價跌逆勢吃貨", "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30")));
+    }
+    if (state.anomTab === "all" || state.anomTab === "consecutive") {
+      conList.forEach(x => cards.push(renderAnomalyCard(x, "consecutive", `連霸 ${x.streakDays} 日鎖碼`, "bg-sky-500/20 text-sky-300 border border-sky-500/30")));
+    }
+    if (state.anomTab === "all" || state.anomTab === "newsurge") {
+      surgList.forEach(x => cards.push(renderAnomalyCard(x, "newsurge", "突襲急竄黑馬", "bg-purple-500/20 text-purple-300 border border-purple-500/30")));
+    }
+    if (state.anomTab === "all" || state.anomTab === "alerts") {
+      dropList.forEach(x => cards.push(renderAnomalyCard(x, "alerts", "跌出推薦榜", "bg-rose-500/20 text-rose-300 border border-rose-500/30")));
+      trapList.forEach(x => cards.push(renderAnomalyCard(x, "alerts", "隔日沖倒貨警戒", "bg-rose-500/20 text-rose-300 border border-rose-500/30")));
     }
 
-    if (show("consecutive") && (ca.consecutivePicks || []).length) {
-      blocks.push(`<div class="rounded-xl border border-white/10 bg-slate-900/60 p-4 grid gap-2.5 content-start">
-        <div class="flex items-center justify-between"><h4 class="text-sm font-bold text-sky-400">連續上榜主力鎖碼</h4><span class="text-xs text-slate-400">連續 ≥3 日穩居榜內</span></div>
-        <div class="divide-y divide-white/5 text-sm grid">${ca.consecutivePicks.map((x) => `
-          <div class="py-2 grid gap-1">
-            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left text-sm">${x.name} <span class="text-slate-400 num font-normal text-xs">${x.code}</span></button>
-              <span class="num font-bold text-sm ${cls(x.chg)}">${x.close} (${x.chg > 0 ? "+" : ""}${x.chg.toFixed(2)}%)</span></div>
-            <div class="text-slate-400 num text-xs">${x.rankHistory}｜5日法人 ${signed(x.inst5d)} 張</div>
-            <div class="text-emerald-400 num text-xs">買點 ${x.buyZone}｜目標 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
-          </div>`).join("")}</div>
-      </div>`);
-    }
-
-    if (show("newsurge") && (ca.newSurgePicks || []).length) {
-      blocks.push(`<div class="rounded-xl border border-white/10 bg-slate-900/60 p-3.5 grid gap-2 content-start">
-        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-purple-400">新進前六強 & 突襲黑馬</h4><span class="text-xs text-slate-400">資金快速湧入</span></div>
-        <div class="divide-y divide-white/5 text-xs grid">${ca.newSurgePicks.map((x) => `
-          <div class="py-1.5 grid gap-0.5">
-            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
-              <span class="num font-semibold ${cls(x.chg)}">${x.close} (${x.chg > 0 ? "+" : ""}${x.chg.toFixed(2)}%)</span></div>
-            <div class="text-slate-300 text-xs">${x.tag}｜法人 +${fmt(x.inst)} 張</div>
-            <div class="text-emerald-400 num text-xs">買點 ${x.buyZone}｜目標 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
-          </div>`).join("")}</div>
-      </div>`);
-    }
-
-    if (show("alerts") && ((ca.droppedAlerts || []).length || (ca.shortTrapAlerts || []).length)) {
-      blocks.push(`<div class="rounded-xl border border-rose-500/30 bg-rose-500/[0.03] p-3.5 grid gap-2 content-start">
-        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-rose-300">籌碼鬆動與隔日沖警戒</h4><span class="text-xs text-slate-400">注意短線回吐</span></div>
-        <div class="divide-y divide-white/5 text-xs grid">
-          ${(ca.droppedAlerts || []).map((x) => `
-            <div class="py-1.5 grid gap-0.5">
-              <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
-                <span class="text-rose-400 num text-xs">前日 #${x.prevRank}</span></div>
-              <div class="text-slate-400 text-xs">${x.note}</div>
-            </div>`).join("")}
-          ${(ca.shortTrapAlerts || []).map((x) => `
-            <div class="py-1.5 grid gap-0.5">
-              <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
-                <span class="num up font-semibold text-xs">+${x.chgPct.toFixed(2)}% (爆量)</span></div>
-              <div class="text-slate-400 text-xs">${x.note}</div>
-              <div class="text-rose-300 num text-xs">先賣點 ${x.dtPlan.entryZone}｜回補 ${x.dtPlan.target1}</div>
-            </div>`).join("")}
-        </div>
-      </div>`);
-    }
-
-    $("anomGrid").innerHTML = blocks.join("") || `<div class="col-span-full py-6 text-center text-slate-500 text-xs">此分類無異動項目。</div>`;
+    $("anomGrid").innerHTML = cards.join("") || `<div class="col-span-full py-8 text-center text-slate-500 text-xs">此分類今日無異動項目。</div>`;
   }
 
   // 排行
@@ -1522,6 +2208,7 @@ body {
   }
 
   function render() {
+    renderAcademy();
     if (!days.length) {
       $("list").innerHTML = `<div class="col-span-full rounded-xl border border-dashed border-white/20 p-8 text-center text-slate-500">無資料。</div>`;
       return;
@@ -1754,6 +2441,29 @@ body {
     const b = e.target.closest("button[data-atab]");
     if (b) { state.anomTab = b.dataset.atab; render(); }
   });
+
+  const btnToggleAcad = $("btnToggleAcademy");
+  if (btnToggleAcad) {
+    btnToggleAcad.addEventListener("click", () => {
+      state.academyOpen = !state.academyOpen;
+      store.set("academyOpen", state.academyOpen);
+      renderAcademy();
+    });
+  }
+  const acadTabs = $("academyTabs");
+  if (acadTabs) {
+    acadTabs.addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-acadtab]");
+      if (b) {
+        state.academyTab = b.dataset.acadtab;
+        store.set("academyTab", state.academyTab);
+        state.academyOpen = true;
+        store.set("academyOpen", true);
+        renderAcademy();
+      }
+    });
+  }
+
   document.querySelectorAll(".dts").forEach((b) => b.addEventListener("click", () => {
     state.dtSide = b.dataset.side; store.set("dtSide", state.dtSide); render();
   }));
@@ -1842,7 +2552,7 @@ body {
       rootMargin: "-25% 0px -65% 0px"
     });
 
-    ["picks", "anomalies", "daytrade", "doctor", "screener", "backtest"].forEach((id) => {
+    ["academy", "picks", "anomalies", "daytrade", "doctor", "screener", "backtest"].forEach((id) => {
       const el = document.getElementById(id);
       if (el) secObserver.observe(el);
     });

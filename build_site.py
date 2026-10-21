@@ -84,9 +84,33 @@ def reason(p):
     return ";".join(s) + "。"
 
 
-def build_full_universe_db(latest_doc, ind):
+def build_ohlc_map():
+    """從歷史行情快取中提取近數個交易日完整 OHLCV (開高低收量) 日 K 線數據。"""
+    ohlc = {}
+    dates = sorted(set(re.findall(r'price_(\d{8})\.json', ' '.join(glob.glob(os.path.join(CACHE, '*price*.json'))))))
+    for ymd in dates:
+        d_obj = dt.date(int(ymd[:4]), int(ymd[4:6]), int(ymd[6:]))
+        dt_str = f"{ymd[4:6]}/{ymd[6:]}"
+        w = twse_price(d_obj) or {}
+        t = tpex_price(d_obj) or {}
+        w.update(t)
+        for code, px in w.items():
+            if not is_common_stock(code) or not px.get("close"):
+                continue
+            c = round(px["close"], 2)
+            o = round(px.get("open") or c, 2)
+            h = round(px.get("high") or max(o, c), 2)
+            l = round(px.get("low") or min(o, c), 2)
+            v = round(px.get("vol", 0) / 1000)
+            ohlc.setdefault(code, []).append([dt_str, o, h, l, c, v])
+    return ohlc
+
+
+def build_full_universe_db(latest_doc, ind, ohlc_map=None):
     """從快取建立最新交易日全市場 550+ 檔高流動性個股資料庫(供全市場選股機器、個股 AI 健檢與避雷針使用)。"""
     try:
+        if ohlc_map is None:
+            ohlc_map = {}
         tdays = [dt.date.fromisoformat(x) for x in latest_doc["tradingDays"]]  # 新 → 舊
         d0 = tdays[0]
         inst, price = [], []
@@ -152,6 +176,7 @@ def build_full_universe_db(latest_doc, ind):
                 "shortChg": round(m.get("shortChg", 0)),
                 "bigPct": b_pct, "bigChg": b_chg,
                 "series": series_closes,
+                "ohlc": ohlc_map.get(code, []),
             })
 
         # 計算全市場 551 檔的籌碼百分位分數與買賣點
@@ -289,8 +314,10 @@ def build_historical_backtest(docs, ind):
     }
 
 
-def build_cross_day_anomalies(doc_idx, docs, picks, day_trade, ind):
+def build_cross_day_anomalies(doc_idx, docs, picks, day_trade, ind, ohlc_map=None):
     """與前幾個交易日對比，產生跨日大數據異常偵測報告。"""
+    if ohlc_map is None:
+        ohlc_map = {}
     doc = docs[doc_idx]
     prev_doc = docs[doc_idx + 1] if doc_idx + 1 < len(docs) else None
     prev_date = prev_doc["date"] if prev_doc else None
@@ -311,10 +338,12 @@ def build_cross_day_anomalies(doc_idx, docs, picks, day_trade, ind):
         if s_days >= 3:
             consecutive.append({
                 "code": c, "name": p["name"], "market": p["market"], "sector": p["sector"],
-                "rank": p["rank"], "score": p["rawScore"], "close": p["close"], "chg": p["chg"],
+                "rank": p["rank"], "score": p["score"], "close": p["close"], "chg": p["chg"],
                 "streakDays": s_days, "rankHistory": " ← ".join(rank_hist[:5]),
-                "inst5d": p["inst5d"], "bigChg": p["bigChg"],
+                "inst": p["inst"], "inst5d": p["inst5d"], "bigChg": p.get("bigChg"), "marginChg": p.get("marginChg", 0),
+                "vol": p.get("vol", 0),
                 "buyZone": p["tradePlan"]["buyZone"], "sellTarget1": p["tradePlan"]["sellTarget1"], "stopLoss": p["tradePlan"]["stopLoss"],
+                "ohlc": ohlc_map.get(c, []),
             })
     consecutive.sort(key=lambda x: (-x["streakDays"], -x["score"]))
 
@@ -324,19 +353,23 @@ def build_cross_day_anomalies(doc_idx, docs, picks, day_trade, ind):
         if prev_p is None and p["rank"] <= 6:
             new_surge.append({
                 "code": p["code"], "name": p["name"], "market": p["market"], "sector": p["sector"],
-                "rank": p["rank"], "score": p["rawScore"], "close": p["close"], "chg": p["chg"],
-                "inst": p["inst"], "bigChg": p["bigChg"],
+                "rank": p["rank"], "score": p["score"], "close": p["close"], "chg": p["chg"],
+                "inst": p["inst"], "inst5d": p["inst5d"], "bigChg": p.get("bigChg"), "marginChg": p.get("marginChg", 0),
+                "vol": p.get("vol", 0),
                 "tag": f"昨日未上榜 → 今日空降 {p['market']} #{p['rank']}",
                 "buyZone": p["tradePlan"]["buyZone"], "sellTarget1": p["tradePlan"]["sellTarget1"], "stopLoss": p["tradePlan"]["stopLoss"],
+                "ohlc": ohlc_map.get(p["code"], []),
             })
         elif prev_p is not None and prev_p["rank"] - p["rank"] >= 5:
             jump = prev_p["rank"] - p["rank"]
             new_surge.append({
                 "code": p["code"], "name": p["name"], "market": p["market"], "sector": p["sector"],
-                "rank": p["rank"], "score": p["rawScore"], "close": p["close"], "chg": p["chg"],
-                "inst": p["inst"], "bigChg": p["bigChg"],
+                "rank": p["rank"], "score": p["score"], "close": p["close"], "chg": p["chg"],
+                "inst": p["inst"], "inst5d": p["inst5d"], "bigChg": p.get("bigChg"), "marginChg": p.get("marginChg", 0),
+                "vol": p.get("vol", 0),
                 "tag": f"排名急竄 ↑{jump} 名 (#{prev_p['rank']} → #{p['rank']})",
                 "buyZone": p["tradePlan"]["buyZone"], "sellTarget1": p["tradePlan"]["sellTarget1"], "stopLoss": p["tradePlan"]["stopLoss"],
+                "ohlc": ohlc_map.get(p["code"], []),
             })
 
     inst_reversal = []
@@ -345,10 +378,12 @@ def build_cross_day_anomalies(doc_idx, docs, picks, day_trade, ind):
         if len(hist) >= 2 and hist[1] < 0 and p["inst"] >= max(200, p["avgVol"] * 0.15):
             inst_reversal.append({
                 "code": p["code"], "name": p["name"], "market": p["market"], "sector": p["sector"],
-                "rank": p["rank"], "close": p["close"], "chg": p["chg"],
-                "prevInst": hist[1], "todayInst": p["inst"],
+                "rank": p["rank"], "score": p["score"], "close": p["close"], "chg": p["chg"],
+                "prevInst": hist[1], "todayInst": p["inst"], "inst5d": p["inst5d"],
+                "bigChg": p.get("bigChg"), "marginChg": p.get("marginChg", 0), "vol": p.get("vol", 0),
                 "note": f"前日法人賣超 {hist[1]:+,} 張 → 今日突然反手狂買 {p['inst']:+,} 張",
                 "buyZone": p["tradePlan"]["buyZone"], "sellTarget1": p["tradePlan"]["sellTarget1"], "stopLoss": p["tradePlan"]["stopLoss"],
+                "ohlc": ohlc_map.get(p["code"], []),
             })
 
     divergence_buy = []
@@ -356,10 +391,11 @@ def build_cross_day_anomalies(doc_idx, docs, picks, day_trade, ind):
         if p["chg"] < 0 and p["inst"] > 0 and (p.get("marginChg", 0) < 0 or (p.get("bigChg") or 0) > 0):
             divergence_buy.append({
                 "code": p["code"], "name": p["name"], "market": p["market"], "sector": p["sector"],
-                "rank": p["rank"], "close": p["close"], "chg": p["chg"],
-                "inst": p["inst"], "bigChg": p["bigChg"], "marginChg": p["marginChg"],
+                "rank": p["rank"], "score": p["score"], "close": p["close"], "chg": p["chg"],
+                "inst": p["inst"], "inst5d": p["inst5d"], "bigChg": p.get("bigChg"), "marginChg": p.get("marginChg", 0), "vol": p.get("vol", 0),
                 "note": f"股價逆勢跌 {p['chg']:+.2f}%，但法人買超 +{p['inst']:,} 張、融資 {p['marginChg']:+,} 張（壓低洗盤吃貨）",
                 "buyZone": p["tradePlan"]["buyZone"], "sellTarget1": p["tradePlan"]["sellTarget1"], "stopLoss": p["tradePlan"]["stopLoss"],
+                "ohlc": ohlc_map.get(p["code"], []),
             })
 
     dropped_alerts = []
@@ -372,6 +408,7 @@ def build_cross_day_anomalies(doc_idx, docs, picks, day_trade, ind):
                     "sector": ind.get(old_p["code"], "其他"),
                     "prevRank": old_p["rank"], "prevScore": old_p["score"], "prevClose": old_p["close"],
                     "note": f"前日({prev_date[5:]})位居 {old_p['market']} #{old_p['rank']}({old_p['score']}分)，今日跌出推薦榜（法人買盤降溫或轉賣，宜留意 5MA 停利防守）",
+                    "ohlc": ohlc_map.get(old_p["code"], []),
                 })
 
     short_traps = []
@@ -383,6 +420,7 @@ def build_cross_day_anomalies(doc_idx, docs, picks, day_trade, ind):
                 "dtRatio": x["dtRatio"], "instNet": x["instNet"],
                 "dtPlan": x["dtPlan"],
                 "note": f"急漲 {x['chgPct']:+.2f}% 且爆量 {x['surge']:.1f} 倍(當沖比 {x['dtRatio']:.1f}%)，但三大法人賣超 {abs(x['instNet']):,} 張（短線隔日沖主力拉高，明早易有獲利倒貨賣壓）",
+                "ohlc": ohlc_map.get(x["code"], []),
             })
 
     sec_now, sec_prev = {}, {}
@@ -467,6 +505,7 @@ def build_ai_overview(doc, picks, cross_anom):
 
 def main():
     ind = industries()
+    ohlc_map = build_ohlc_map()
     docs = []
     paths = sorted(glob.glob(os.path.join(BASE, "out", "day_*.json")), reverse=True)[:SHOW_DAYS]
     for path in paths:
@@ -545,6 +584,7 @@ def main():
                 "aiResonance": ai_info["aiResonance"],
                 "tradePlan": ai_info["tradePlan"],
                 "anomalies": ai_info["anomalies"],
+                "ohlc": ohlc_map.get(c, []),
             })
 
         dt_out = {}
@@ -555,7 +595,7 @@ def main():
                 x["dtPlan"] = dt_plan
                 dt_out[side].append(dict(x, sector=ind.get(x["code"], "其他"), dtPlan=dt_plan))
 
-        cross_anom = build_cross_day_anomalies(doc_idx, docs, picks, dt_out, ind)
+        cross_anom = build_cross_day_anomalies(doc_idx, docs, picks, dt_out, ind, ohlc_map=ohlc_map)
         ai_overview = build_ai_overview(doc, picks, cross_anom)
 
         doc["crossDayAnomalies"] = cross_anom
@@ -585,7 +625,7 @@ def main():
             }
         })
 
-    universe_db = build_full_universe_db(docs[0], ind) if docs else []
+    universe_db = build_full_universe_db(docs[0], ind, ohlc_map=ohlc_map) if docs else []
     backtest_stats = build_historical_backtest(docs, ind) if len(docs) > 1 else {}
 
     data = {
