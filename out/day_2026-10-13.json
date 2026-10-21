@@ -6283,6 +6283,12 @@
     "diff": 0
    },
    {
+    "sector": "電子通路",
+    "today": 2,
+    "prev": 2,
+    "diff": 0
+   },
+   {
     "sector": "塑膠",
     "today": 2,
     "prev": 2,
@@ -6290,12 +6296,6 @@
    },
    {
     "sector": "金融保險",
-    "today": 2,
-    "prev": 2,
-    "diff": 0
-   },
-   {
-    "sector": "電子通路",
     "today": 2,
     "prev": 2,
     "diff": 0
