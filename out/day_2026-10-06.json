@@ -5995,13 +5995,13 @@
     "diff": 5
    },
    {
-    "sector": "其他",
+    "sector": "光電",
     "today": 4,
     "prev": 0,
     "diff": 4
    },
    {
-    "sector": "光電",
+    "sector": "其他",
     "today": 4,
     "prev": 0,
     "diff": 4
@@ -6019,13 +6019,13 @@
     "diff": 3
    },
    {
-    "sector": "化學",
+    "sector": "電腦週邊",
     "today": 2,
     "prev": 0,
     "diff": 2
    },
    {
-    "sector": "電腦週邊",
+    "sector": "化學",
     "today": 2,
     "prev": 0,
     "diff": 2

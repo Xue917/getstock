@@ -1,9 +1,9 @@
-<!-- GETSTOCK 全方位 AI 選股機器・行動端與桌面端現代化介面 -->
-<title>GETSTOCK AI 智慧大戶籌碼選股系統</title>
+<!-- GETSTOCK 台股大戶籌碼與量化決策系統 -->
+<title>GETSTOCK 大戶籌碼與量化選股決策系統</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700;900&family=Roboto+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&family=Roboto+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
 <script>
   tailwind.config = {
@@ -13,15 +13,6 @@
         fontFamily: {
           sans: ["Inter", "Noto Sans TC", "system-ui", "-apple-system", "sans-serif"],
           mono: ["Roboto Mono", "ui-monospace", "monospace"]
-        },
-        colors: {
-          brand: {
-            bg: "#080c14",
-            card: "#0f172a",
-            elevated: "#162036",
-            border: "rgba(255, 255, 255, 0.08)",
-            borderHover: "rgba(255, 255, 255, 0.2)"
-          }
         }
       }
     }
@@ -30,11 +21,11 @@
 <style>
 :root {
   color-scheme: dark;
-  --bg: #080c14;
-  --card: #0f172a;
-  --elevated: #162036;
+  --bg: #090d16;
+  --card: #111827;
+  --card-sub: #172033;
   --border: rgba(255, 255, 255, 0.08);
-  --up: #ef4444;      /* 台股習慣: 紅漲 / 買超 */
+  --up: #ef4444;      /* 台股慣例: 紅漲 / 買超 */
   --up-bg: rgba(239, 68, 68, 0.12);
   --down: #10b981;    /* 綠跌 / 賣超 */
   --down-bg: rgba(16, 185, 129, 0.12);
@@ -43,9 +34,9 @@
 }
 html { background: var(--bg); scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
 body {
-  background: var(--bg); color: #f8fafc;
+  background: var(--bg); color: #f1f5f9;
   font-family: 'Inter', 'Noto Sans TC', system-ui, sans-serif;
-  padding-bottom: env(safe-area-inset-bottom, 20px);
+  padding-bottom: env(safe-area-inset-bottom, 24px);
 }
 .num { font-family: var(--font-num); font-variant-numeric: tabular-nums; }
 .up { color: var(--up); }
@@ -54,238 +45,213 @@ body {
 .up-badge { color: var(--up); background: var(--up-bg); }
 .down-badge { color: var(--down); background: var(--down-bg); }
 
-/* 隱藏原生滾動條但保持滾動 */
+/* 隱藏原生滾動條 */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* 籌碼五維條 */
-.score-bar { display: flex; height: 6px; border-radius: 999px; background: rgba(255,255,255,0.08); overflow: hidden; gap: 1px; }
-.score-bar i { display: block; height: 100%; transition: opacity 0.2s; }
+.score-bar { display: flex; height: 5px; border-radius: 999px; background: rgba(255,255,255,0.08); overflow: hidden; gap: 1px; }
+.score-bar i { display: block; height: 100%; transition: opacity 0.15s; }
 .score-bar i:hover { opacity: 0.85; }
 
 /* 圓環進度圈 */
-.ring { --p: 80; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; flex: none;
+.ring { --p: 80; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: none;
   background: conic-gradient(#38bdf8 calc(var(--p) * 1%), rgba(255,255,255,0.1) 0); }
-.ring.s-plus { background: conic-gradient(#fbbf24 calc(var(--p) * 1%), rgba(255,255,255,0.1) 0); }
-.ring.danger { background: conic-gradient(#f43f5e calc(var(--p) * 1%), rgba(255,255,255,0.1) 0); }
-.ring span { width: 36px; height: 36px; border-radius: 50%; background: #0b111e; display: grid; place-items: center; font-weight: 700; font-size: 13px; }
+.ring.s-plus { background: conic-gradient(#f59e0b calc(var(--p) * 1%), rgba(255,255,255,0.1) 0); }
+.ring.danger { background: conic-gradient(#ef4444 calc(var(--p) * 1%), rgba(255,255,255,0.1) 0); }
+.ring span { width: 32px; height: 32px; border-radius: 50%; background: #0e1524; display: grid; place-items: center; font-weight: 700; font-size: 12px; }
 
 /* 自選星號按鈕 */
 .star-btn { transition: transform 0.15s ease, color 0.15s ease; cursor: pointer; user-select: none; }
 .star-btn:hover { transform: scale(1.15); }
-.star-btn.active { color: #facc15; }
+.star-btn.active { color: #f59e0b; }
 
-/* 視窗與標籤切換 */
-.view-tab { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
-.view-tab.active { background: #ffffff; color: #000000; font-weight: 600; box-shadow: 0 2px 8px rgba(255,255,255,0.2); }
-
-/* 行動端底部導航列 */
-.bottom-nav-item.active { color: #38bdf8; }
-.bottom-nav-item.active svg { transform: translateY(-2px); }
-
-/* 卡片點擊回饋 */
-.interactive-card {
-  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+/* 卡片互動回饋 */
+.stock-card {
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
-.interactive-card:hover {
-  border-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-}
-.interactive-card:active {
-  transform: scale(0.99);
+.stock-card:hover {
+  border-color: rgba(255, 255, 255, 0.22);
 }
 </style>
 
-<!-- 頂部即時公告與免責提醒 -->
+<!-- 頂部狀態列 -->
 <header class="border-b border-white/10 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between gap-3 text-xs">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-between gap-3 text-xs">
     <div class="flex items-center gap-2 overflow-hidden">
-      <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-semibold text-[11px] border border-emerald-500/20 whitespace-nowrap">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>22:00 自動定稿更新
+      <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-medium text-[11px] border border-emerald-500/20 whitespace-nowrap">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>每日 22:00 定稿更新
       </span>
-      <span class="text-slate-400 truncate hidden md:inline">本站為開源量化多因子籌碼與 AI 買賣點決策系統，無廣告、免登入。</span>
+      <span class="text-slate-400 truncate hidden md:inline">三大法人・融資融券・千張大戶・當沖做多做空</span>
     </div>
     <div class="flex items-center gap-3 flex-none text-slate-400">
+      <a href="chips_radar.html" class="hover:text-slate-200 transition-colors">籌碼雷達</a>
       <a href="#disclaimer" class="hover:text-slate-200 transition-colors">免責聲明</a>
-      <a href="chips_radar.html" class="hidden sm:inline-block hover:text-slate-200 transition-colors">籌碼雷達</a>
-      <a href="https://github.com/Xue917/getstock" target="_blank" rel="noopener" class="hover:text-white transition-colors" title="GitHub 倉庫">
-        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-      </a>
     </div>
   </div>
 </header>
 
-<!-- 主導航與大盤指數列 -->
-<nav class="bg-slate-900/90 border-b border-white/10 sticky top-[37px] z-30 backdrop-blur-md">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3">
-    <div class="flex items-center justify-between gap-4">
-      <!-- Logo 與主標 -->
-      <a href="#picks" class="flex items-center gap-2.5 flex-none group">
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-500 to-emerald-400 grid place-items-center text-slate-950 font-black text-base shadow-lg shadow-sky-500/20 group-hover:scale-105 transition-transform">
-          G
-        </div>
-        <div>
-          <div class="font-bold text-base sm:text-lg leading-tight tracking-tight text-white flex items-center gap-1.5">
-            GETSTOCK <span class="text-xs px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-400 font-medium">AI 2.0</span>
-          </div>
-          <div class="text-[10px] text-slate-400 leading-none hidden sm:block">大戶籌碼・波段買賣點・全自動決策</div>
+<!-- 主導航欄 -->
+<nav class="bg-slate-900/90 border-b border-white/10 sticky top-[33px] z-30 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5">
+    <div class="flex items-center justify-between gap-3">
+      <!-- 品牌標題 -->
+      <a href="#picks" class="flex items-center gap-2 flex-none">
+        <div class="font-bold text-base sm:text-lg leading-tight tracking-tight text-white flex items-center gap-1.5">
+          <span>GETSTOCK</span>
+          <span class="text-[11px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-normal">台股量化</span>
         </div>
       </a>
 
-      <!-- 桌面端分頁選單 -->
-      <div class="hidden lg:flex items-center gap-1.5 bg-slate-950/60 p-1 rounded-xl border border-white/10 text-xs">
-        <a href="#picks" class="px-3.5 py-1.5 rounded-lg text-white font-medium hover:bg-white/10 transition-colors">🏆 今日推薦</a>
-        <a href="#anomalies" class="px-3.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors">⚡ 跨日異常</a>
-        <a href="#daytrade" class="px-3.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors">🎯 當沖做多/做空</a>
-        <a href="#doctor" class="px-3.5 py-1.5 rounded-lg text-emerald-300 hover:bg-emerald-500/20 transition-colors">🩺 個股 AI 健檢</a>
-        <a href="#screener" class="px-3.5 py-1.5 rounded-lg text-sky-300 hover:bg-sky-500/20 transition-colors">🎛️ 全市場選股</a>
-        <a href="#backtest" class="px-3.5 py-1.5 rounded-lg text-purple-300 hover:bg-purple-500/20 transition-colors">📈 歷史勝率</a>
+      <!-- 桌面端分頁選單 (無過度 Icon) -->
+      <div class="hidden lg:flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-white/10 text-xs font-medium">
+        <a href="#picks" class="px-3.5 py-1.5 rounded-lg text-white bg-white/10 transition-colors">今日精選</a>
+        <a href="#anomalies" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">籌碼異動</a>
+        <a href="#daytrade" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">當沖標的</a>
+        <a href="#doctor" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">個股診斷</a>
+        <a href="#screener" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">條件篩選</a>
+        <a href="#backtest" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">歷史回測</a>
       </div>
 
-      <!-- 快速搜尋搜尋欄 (連動個股健檢) -->
+      <!-- 股票搜尋框 -->
       <div class="relative flex-1 max-w-xs">
         <div class="relative">
-          <input type="text" id="docInput" placeholder="快速搜尋代號/名稱 (如 2330)..."
-            class="w-full bg-slate-950/80 border border-white/15 focus:border-sky-400 focus:ring-1 focus:ring-sky-400 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 outline-none transition-all">
+          <input type="text" id="docInput" placeholder="輸入代號或名稱 (如 2330)..."
+            class="w-full bg-slate-950 border border-white/15 focus:border-sky-400 focus:ring-1 focus:ring-sky-400 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 outline-none transition-all">
           <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
         </div>
-        <!-- 搜尋自動完成清單 -->
+        <!-- 搜尋建議彈窗 -->
         <div id="docSuggest" class="hidden absolute left-0 right-0 top-full mt-1.5 bg-slate-900 border border-white/20 rounded-xl shadow-2xl overflow-hidden z-50 max-h-72 overflow-y-auto divide-y divide-white/10 text-xs"></div>
         <button id="btnDocSearch" class="hidden"></button>
       </div>
     </div>
 
-    <!-- 每日收盤即時指數水平跑馬條 -->
-    <div class="mt-2.5 pt-2 border-t border-white/5 flex items-center gap-x-6 overflow-x-auto no-scrollbar text-xs" id="indices">
+    <!-- 即時收盤大盤指數跑馬列 -->
+    <div class="mt-2 pt-2 border-t border-white/5 flex items-center gap-x-6 overflow-x-auto no-scrollbar text-xs" id="indices">
       <span class="text-slate-400 whitespace-nowrap" id="idxDate">收盤行情</span>
     </div>
   </div>
 </nav>
 
-<!-- 歷史交易日切換列 -->
-<section class="max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-2">
-  <div class="flex items-center justify-between gap-3">
-    <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1" id="history">
+<!-- 交易日切換與自選股開關 -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 pt-3 pb-1">
+  <div class="flex items-center justify-between gap-2">
+    <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1" id="history">
       <!-- 由 JS 自動填入日期 pills -->
     </div>
-    <!-- 我的自選股開關按鈕 -->
-    <button type="button" id="btnToggleWatch" class="flex-none flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-medium transition-colors">
-      <span>⭐ 自選股</span>
-      <span id="watchCountBadge" class="px-1.5 py-0.2 rounded-full bg-amber-400 text-black text-[10px] font-bold">0</span>
+    <!-- 自選股按鈕 -->
+    <button type="button" id="btnToggleWatch" class="flex-none flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-white/10 text-xs text-slate-300 font-medium transition-colors">
+      <span class="star-btn text-amber-400 leading-none">★</span>
+      <span>自選追蹤</span>
+      <span id="watchCountBadge" class="px-1.5 py-0.2 rounded-full bg-slate-800 text-slate-300 text-[10px] font-bold">0</span>
     </button>
   </div>
 </section>
 
-<!-- 我的自選股區塊 (可收合/展開) -->
+<!-- 自選股區塊 (預設收合) -->
 <section id="watchSection" class="max-w-7xl mx-auto px-4 sm:px-6 py-2 hidden">
-  <div class="rounded-2xl border border-amber-400/30 bg-amber-500/[0.03] p-4">
+  <div class="rounded-xl border border-white/15 bg-slate-900/80 p-4">
     <div class="flex items-center justify-between gap-2 mb-3">
       <div class="flex items-center gap-2">
-        <h3 class="font-semibold text-sm text-amber-300">⭐ 我的自選追蹤清單</h3>
-        <span class="text-xs text-slate-400">點擊任意卡片右上角「☆」即可加入或移除</span>
+        <h3 class="font-bold text-xs text-white">自選追蹤清單</h3>
+        <span class="text-[11px] text-slate-400">點擊卡片右上角星號可加入或移除</span>
       </div>
-      <button type="button" id="btnClearWatch" class="text-xs text-slate-400 hover:text-rose-300 transition-colors">清空自選</button>
+      <button type="button" id="btnClearWatch" class="text-xs text-slate-400 hover:text-rose-400 transition-colors">清空</button>
     </div>
-    <div id="watchGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"></div>
+    <div id="watchGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5"></div>
   </div>
 </section>
 
-<!-- AI 盤後宏觀總覽卡 -->
-<section class="max-w-7xl mx-auto px-4 sm:px-6 py-3">
-  <div class="rounded-2xl border border-white/10 bg-slate-900/60 p-4 sm:p-5 relative overflow-hidden">
-    <div class="absolute -right-8 -bottom-8 w-40 h-40 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
-      <div>
-        <div class="flex items-center gap-2 mb-1">
-          <span class="text-[10px] px-2 py-0.5 rounded bg-sky-400 text-black font-bold uppercase tracking-wider">AI Insight</span>
-          <span class="text-xs text-slate-400" id="asof">今日盤後多因子共識報告</span>
-        </div>
-        <h1 id="aiHeadline" class="text-base sm:text-lg font-semibold text-white tracking-tight">加載 AI 盤後總覽中...</h1>
-      </div>
-      <div class="flex flex-wrap items-center gap-2 text-xs" id="aiBadges"></div>
+<!-- 盤後多因子統計摘要列 -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 py-2">
+  <div class="rounded-xl border border-white/10 bg-slate-900/50 p-3 sm:p-4 flex flex-col md:flex-row md:items-center justify-between gap-2 text-xs">
+    <div>
+      <div class="text-[11px] text-slate-400" id="asof">盤後量化多因子共振統計</div>
+      <div id="aiHeadline" class="font-semibold text-white mt-0.5">加載數據中...</div>
     </div>
+    <div class="flex flex-wrap items-center gap-1.5" id="aiBadges"></div>
   </div>
 </section>
 
-<!-- ===== 模組 1: 今日核心推薦 40 檔 (Picks) ===== -->
-<main id="picks" class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
-  <!-- 篩選器與市場切換列 -->
-  <div class="flex flex-col gap-3 mb-4">
-    <div class="flex flex-wrap items-center justify-between gap-3">
+<!-- ===== 模組 1: 今日精選 40 檔 (Picks) ===== -->
+<main id="picks" class="max-w-7xl mx-auto px-4 sm:px-6 py-3">
+  <!-- 控制與篩選列 -->
+  <div class="flex flex-col gap-2.5 mb-3">
+    <div class="flex flex-wrap items-center justify-between gap-2.5">
       <!-- 上市/上櫃/全部切換 -->
-      <div class="bg-slate-950 p-1 rounded-xl border border-white/10 flex items-center gap-1 text-xs" role="group">
-        <button type="button" data-market="上市" class="mk px-3.5 py-1.5 rounded-lg text-white font-medium transition-colors">上市 20 檔</button>
-        <button type="button" data-market="上櫃" class="mk px-3.5 py-1.5 rounded-lg text-slate-400 font-medium transition-colors">上櫃 20 檔</button>
-        <button type="button" data-market="全部" class="mk px-3.5 py-1.5 rounded-lg text-slate-400 font-medium transition-colors">全部 40 檔</button>
+      <div class="bg-slate-950 p-0.5 rounded-lg border border-white/10 flex items-center text-xs" role="group">
+        <button type="button" data-market="上市" class="mk px-3 py-1.5 rounded-md text-white font-medium transition-colors">上市 20 檔</button>
+        <button type="button" data-market="上櫃" class="mk px-3 py-1.5 rounded-md text-slate-400 font-medium transition-colors">上櫃 20 檔</button>
+        <button type="button" data-market="全部" class="mk px-3 py-1.5 rounded-md text-slate-400 font-medium transition-colors">全部 40 檔</button>
       </div>
 
       <!-- 排序與檢視切換 -->
       <div class="flex items-center gap-2 text-xs">
-        <div class="flex items-center gap-1.5 bg-slate-950 px-2.5 py-1.5 rounded-xl border border-white/10">
+        <div class="flex items-center gap-1.5 bg-slate-950 px-2.5 py-1.5 rounded-lg border border-white/10">
           <span class="text-slate-400">排序:</span>
           <select id="sortBy" class="bg-transparent text-white outline-none cursor-pointer">
-            <option value="score">籌碼總分最高</option>
-            <option value="inst">三大法人買超最多</option>
-            <option value="big">千張大戶增持最多</option>
-            <option value="chg">今日漲幅最高</option>
-            <option value="vol">今日成交量最大</option>
+            <option value="score">籌碼總分</option>
+            <option value="inst">法人買超</option>
+            <option value="big">大戶增持</option>
+            <option value="chg">今日漲幅</option>
+            <option value="vol">今日成交量</option>
           </select>
         </div>
-        <!-- 視圖切換 (卡片 / 列表) -->
-        <div class="bg-slate-950 p-1 rounded-xl border border-white/10 flex items-center text-xs">
-          <button type="button" id="btnViewCards" class="px-2.5 py-1 rounded-lg bg-white text-black font-semibold transition-all">📱 卡片</button>
-          <button type="button" id="btnViewTable" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition-all">💻 表格</button>
+        <!-- 視圖切換 (卡片 / 表格) -->
+        <div class="bg-slate-950 p-0.5 rounded-lg border border-white/10 flex items-center text-xs">
+          <button type="button" id="btnViewCards" class="px-2.5 py-1 rounded-md bg-white text-black font-semibold transition-all">卡片</button>
+          <button type="button" id="btnViewTable" class="px-2.5 py-1 rounded-md text-slate-400 hover:text-white transition-all">表格</button>
         </div>
         <!-- 匯出 CSV -->
-        <button type="button" id="btnExportCsv" class="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-slate-950 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-colors" title="匯出當前推薦清單 CSV">
-          <span>匯出 CSV</span>
+        <button type="button" id="btnExportCsv" class="hidden sm:inline-flex items-center px-3 py-1.5 rounded-lg bg-slate-950 hover:bg-slate-800 border border-white/10 text-slate-300 hover:text-white transition-colors" title="匯出推薦清單 CSV">
+          匯出 CSV
         </button>
       </div>
     </div>
 
-    <!-- 策略快速快篩 Tag (可水平滑動) -->
-    <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 text-xs">
-      <button type="button" data-filter="all" class="af flex-none px-3 py-1 rounded-full border border-white/20 bg-white text-black font-semibold">全部推薦</button>
-      <button type="button" data-filter="splus" class="af flex-none px-3 py-1 rounded-full border border-white/10 text-slate-300 hover:text-white">🌟 AI S+ 強勢共識</button>
-      <button type="button" data-filter="dual" class="af flex-none px-3 py-1 rounded-full border border-white/10 text-slate-300 hover:text-white">🤝 土洋合買</button>
-      <button type="button" data-filter="reversal" class="af flex-none px-3 py-1 rounded-full border border-white/10 text-slate-300 hover:text-white">🔄 法人賣轉買反轉</button>
-      <button type="button" data-filter="divergence" class="af flex-none px-3 py-1 rounded-full border border-white/10 text-slate-300 hover:text-white">🧲 價跌逆勢吃貨</button>
-      <button type="button" data-filter="big" class="af flex-none px-3 py-1 rounded-full border border-white/10 text-slate-300 hover:text-white">🐋 千張大戶週增≥0.4%</button>
-      <button type="button" data-filter="margin" class="af flex-none px-3 py-1 rounded-full border border-white/10 text-slate-300 hover:text-white">📉 散戶融資退場</button>
-      <button type="button" data-filter="streak" class="af flex-none px-3 py-1 rounded-full border border-white/10 text-slate-300 hover:text-white">👑 連續霸榜 ≥3 日</button>
+    <!-- 條件快篩 Tag -->
+    <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 text-xs">
+      <button type="button" data-filter="all" class="af flex-none px-3 py-1 rounded-lg border border-white/20 bg-white text-black font-semibold">全部</button>
+      <button type="button" data-filter="splus" class="af flex-none px-3 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white">評級 S+</button>
+      <button type="button" data-filter="dual" class="af flex-none px-3 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white">土洋合買</button>
+      <button type="button" data-filter="reversal" class="af flex-none px-3 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white">由賣轉買</button>
+      <button type="button" data-filter="divergence" class="af flex-none px-3 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white">價跌吃貨</button>
+      <button type="button" data-filter="big" class="af flex-none px-3 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white">大戶增持 (≥0.4%)</button>
+      <button type="button" data-filter="margin" class="af flex-none px-3 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white">融資減少</button>
+      <button type="button" data-filter="streak" class="af flex-none px-3 py-1 rounded-lg border border-white/10 text-slate-300 hover:text-white">連續上榜 (≥3日)</button>
     </div>
   </div>
 
-  <!-- 推薦清單標題與摘要統計 -->
-  <div class="flex items-center justify-between text-xs text-slate-400 mb-3 px-1">
-    <div class="flex items-center gap-3">
-      <h2 id="listTitle" class="font-semibold text-white text-sm">上市推薦名單</h2>
-      <span class="hidden sm:inline">符合條件：<b id="sCount" class="text-white num">20</b> 檔</span>
-      <span class="hidden md:inline">平均籌碼分：<b id="sAvg" class="text-amber-300 num">82.5</b></span>
+  <!-- 標題與件數 -->
+  <div class="flex items-center justify-between text-xs text-slate-400 mb-2.5 px-1">
+    <div class="flex items-center gap-2">
+      <h2 id="listTitle" class="font-bold text-white text-sm">上市精選名單</h2>
+      <span>共 <b id="sCount" class="text-white num">20</b> 檔</span>
+      <span class="hidden sm:inline">平均籌碼分: <b id="sAvg" class="text-amber-400 num">82.5</b></span>
     </div>
     <div class="text-[11px] text-slate-500" id="genAt">資料定稿時間</div>
   </div>
 
-  <!-- 1. 卡片檢視模式 (手機與大螢幕預設友善) -->
-  <div id="list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4"></div>
+  <!-- 1. 卡片檢視模式 (行動端預設，乾淨清晰) -->
+  <div id="list" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
 
-  <!-- 2. 表格檢視模式 (桌面端精簡明細) -->
-  <div id="tableViewWrap" class="hidden overflow-x-auto rounded-2xl border border-white/10 bg-slate-900/60">
-    <table class="w-full text-xs min-w-[980px]">
-      <thead class="text-slate-400 bg-slate-950/80 border-b border-white/10 text-left whitespace-nowrap">
+  <!-- 2. 表格檢視模式 (大螢幕清單) -->
+  <div id="tableViewWrap" class="hidden overflow-x-auto rounded-xl border border-white/10 bg-slate-900/60">
+    <table class="w-full text-xs min-w-[920px]">
+      <thead class="text-slate-400 bg-slate-950 border-b border-white/10 text-left whitespace-nowrap">
         <tr>
-          <th class="py-3 pl-4 pr-1 font-medium w-10">自選</th>
-          <th class="py-3 px-2 font-medium w-12">排名</th>
-          <th class="py-3 px-2 font-medium">股票 / 產業</th>
-          <th class="py-3 px-2 font-medium text-right">收盤</th>
-          <th class="py-3 px-2 font-medium text-right">漲跌幅</th>
-          <th class="py-3 px-2 font-medium text-right text-emerald-300">🎯 AI 買點區間</th>
-          <th class="py-3 px-2 font-medium text-right text-amber-300">💰 停利 1 / 2</th>
-          <th class="py-3 px-2 font-medium text-right text-rose-300">🛡️ 停損價</th>
-          <th class="py-3 px-2 font-medium text-right">法人合計</th>
-          <th class="py-3 px-2 font-medium text-right">大戶週增</th>
-          <th class="py-3 px-2 font-medium text-right">融資增減</th>
-          <th class="py-3 pl-2 pr-4 font-medium text-right">總分</th>
+          <th class="py-2.5 pl-4 pr-1 font-medium w-8">追蹤</th>
+          <th class="py-2.5 px-2 font-medium w-10">名次</th>
+          <th class="py-2.5 px-2 font-medium">代號 / 股票</th>
+          <th class="py-2.5 px-2 font-medium text-right">收盤</th>
+          <th class="py-2.5 px-2 font-medium text-right">漲跌幅</th>
+          <th class="py-2.5 px-2 font-medium text-right text-emerald-400">買進區間</th>
+          <th class="py-2.5 px-2 font-medium text-right text-amber-400">目標價 1/2</th>
+          <th class="py-2.5 px-2 font-medium text-right text-rose-400">停損價</th>
+          <th class="py-2.5 px-2 font-medium text-right">法人合計</th>
+          <th class="py-2.5 px-2 font-medium text-right">大戶週增</th>
+          <th class="py-2.5 px-2 font-medium text-right">融資增減</th>
+          <th class="py-2.5 pl-2 pr-4 font-medium text-right">總分</th>
         </tr>
       </thead>
       <tbody id="tableRows" class="divide-y divide-white/5"></tbody>
@@ -293,67 +259,61 @@ body {
   </div>
 </main>
 
-<!-- ===== 模組 2: ⚡ 跨日大數據異常偵測雷達 (Anomalies) ===== -->
-<section id="anomalies" class="max-w-7xl mx-auto px-4 sm:px-6 py-8 border-t border-white/10">
-  <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4">
+<!-- ===== 模組 2: 籌碼異動追蹤 (Anomalies) ===== -->
+<section id="anomalies" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-2.5 mb-3">
     <div>
-      <div class="flex items-center gap-2 mb-1">
-        <span class="text-[10px] px-2 py-0.5 rounded bg-amber-400 text-black font-bold uppercase tracking-wider">Smart Radar</span>
-        <span class="text-xs text-slate-400" id="anomCompareDate">跨日籌碼軌跡異常分析</span>
-      </div>
-      <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">⚡ 跨日大數據異常偵測雷達</h2>
+      <div class="text-[11px] text-slate-400" id="anomCompareDate">跨日籌碼軌跡追蹤</div>
+      <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight">籌碼異動追蹤</h2>
     </div>
-    <!-- 異常分類 Tab -->
-    <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar bg-slate-950 p-1 rounded-xl border border-white/10 text-xs" id="anomTabs">
-      <button type="button" data-atab="all" class="atab px-3 py-1.5 rounded-lg bg-white text-black font-medium transition-colors">全部異常</button>
-      <button type="button" data-atab="reversal" class="atab px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">🔄 賣轉買反轉</button>
-      <button type="button" data-atab="divergence" class="atab px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">🧲 價跌吃貨背離</button>
-      <button type="button" data-atab="consecutive" class="atab px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">👑 連霸鎖碼王</button>
-      <button type="button" data-atab="newsurge" class="atab px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors">🚀 突襲空降黑馬</button>
-      <button type="button" data-atab="alerts" class="atab px-3 py-1.5 rounded-lg text-rose-300 hover:bg-rose-500/10 transition-colors">⚠️ 警報標的</button>
+    <!-- 異動分類按鈕 -->
+    <div class="flex items-center gap-1 overflow-x-auto no-scrollbar bg-slate-950 p-1 rounded-lg border border-white/10 text-xs" id="anomTabs">
+      <button type="button" data-atab="all" class="atab px-3 py-1 rounded-md bg-white text-black font-semibold transition-colors">全部異動</button>
+      <button type="button" data-atab="reversal" class="atab px-3 py-1 rounded-md text-slate-400 hover:text-white transition-colors">由賣轉買</button>
+      <button type="button" data-atab="divergence" class="atab px-3 py-1 rounded-md text-slate-400 hover:text-white transition-colors">價跌吃貨</button>
+      <button type="button" data-atab="consecutive" class="atab px-3 py-1 rounded-md text-slate-400 hover:text-white transition-colors">連續上榜</button>
+      <button type="button" data-atab="newsurge" class="atab px-3 py-1 rounded-md text-slate-400 hover:text-white transition-colors">突襲新進</button>
+      <button type="button" data-atab="alerts" class="atab px-3 py-1 rounded-md text-rose-300 hover:text-rose-200 transition-colors">籌碼警戒</button>
     </div>
   </div>
 
   <!-- 產業資金輪動列 -->
-  <div class="rounded-xl border border-white/10 bg-slate-900/60 p-3 mb-4 text-xs flex flex-wrap items-center gap-2" id="sectorShiftBar"></div>
+  <div class="rounded-xl border border-white/10 bg-slate-900/60 p-2.5 mb-3 text-xs flex flex-wrap items-center gap-2" id="sectorShiftBar"></div>
 
-  <!-- 異常卡片網格 -->
-  <div id="anomGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  <!-- 異動卡片列表 -->
+  <div id="anomGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"></div>
 </section>
 
-<!-- ===== 模組 3: 🎯 隔日當沖熱門標的 (Day Trade) ===== -->
-<section id="daytrade" class="max-w-7xl mx-auto px-4 sm:px-6 py-8 border-t border-white/10">
-  <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4">
+<!-- ===== 模組 3: 當沖標的 (Day Trade) ===== -->
+<section id="daytrade" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-2.5 mb-3">
     <div>
-      <div class="flex items-center gap-2 mb-1">
-        <span class="text-[10px] px-2 py-0.5 rounded bg-sky-400 text-black font-bold uppercase tracking-wider">Intraday Plan</span>
-        <span class="text-xs text-slate-400" id="dtAsof">隔日當沖參考名單</span>
-      </div>
-      <h2 id="dtTitle" class="text-xl sm:text-2xl font-bold text-white tracking-tight">🎯 隔日當沖熱門標的（含進場/停利/停損價）</h2>
-      <p id="dtDesc" class="text-xs text-slate-400 mt-1 max-w-2xl leading-relaxed"></p>
+      <div class="text-[11px] text-slate-400" id="dtAsof">隔日當沖參考名單</div>
+      <h2 id="dtTitle" class="text-lg sm:text-xl font-bold text-white tracking-tight">當沖標的（含進場/停利/停損試算）</h2>
+      <p id="dtDesc" class="text-xs text-slate-400 mt-0.5 max-w-2xl leading-relaxed"></p>
     </div>
     <!-- 做多/做空切換按鈕 -->
-    <div class="bg-slate-950 p-1 rounded-xl border border-white/10 inline-flex gap-1 text-xs flex-none" role="group">
-      <button type="button" id="dt-long" data-side="long" class="dts px-4 py-2 rounded-lg bg-white text-black font-semibold transition-colors">做多 20 檔 (先買後賣)</button>
-      <button type="button" id="dt-short" data-side="short" class="dts px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-colors">做空 20 檔 (先賣後買)</button>
+    <div class="bg-slate-950 p-1 rounded-lg border border-white/10 inline-flex gap-1 text-xs flex-none" role="group">
+      <button type="button" id="dt-long" data-side="long" class="dts px-3.5 py-1.5 rounded-md bg-white text-black font-semibold transition-colors">做多 20 檔 (先買後賣)</button>
+      <button type="button" id="dt-short" data-side="short" class="dts px-3.5 py-1.5 rounded-md text-slate-400 hover:text-white transition-colors">做空 20 檔 (先賣後買)</button>
     </div>
   </div>
 
-  <!-- 當沖表格 -->
-  <div class="overflow-x-auto rounded-2xl border border-white/10 bg-slate-900/60">
-    <table class="w-full text-xs min-w-[920px]">
-      <thead class="text-slate-400 bg-slate-950/80 border-b border-white/10 text-left whitespace-nowrap">
+  <!-- 當沖清單表格 -->
+  <div class="overflow-x-auto rounded-xl border border-white/10 bg-slate-900/60">
+    <table class="w-full text-xs min-w-[880px]">
+      <thead class="text-slate-400 bg-slate-950 border-b border-white/10 text-left whitespace-nowrap">
         <tr>
-          <th class="py-3 pl-4 pr-1 font-medium w-10">名次</th>
-          <th class="py-3 px-2 font-medium">股票、當沖理由與 AI 實戰指引</th>
-          <th class="py-3 px-2 font-medium text-right">收盤</th>
-          <th class="py-3 px-2 font-medium text-right">漲跌幅</th>
-          <th class="py-3 px-2 font-medium text-right text-emerald-300" id="dtColEntry">🎯 當沖進場點</th>
-          <th class="py-3 px-2 font-medium text-right text-amber-300" id="dtColTarget">💰 停利賣點 1 / 2</th>
-          <th class="py-3 px-2 font-medium text-right text-rose-300" id="dtColStop">🛡️ 停損點</th>
-          <th class="py-3 px-2 font-medium text-right">週轉/當沖比</th>
-          <th class="py-3 px-2 font-medium text-right">量增/法人</th>
-          <th class="py-3 pl-2 pr-4 font-medium text-right">分數</th>
+          <th class="py-2.5 pl-4 pr-1 font-medium w-8">名次</th>
+          <th class="py-2.5 px-2 font-medium">代號 / 股票 / 當沖理由</th>
+          <th class="py-2.5 px-2 font-medium text-right">收盤</th>
+          <th class="py-2.5 px-2 font-medium text-right">漲跌幅</th>
+          <th class="py-2.5 px-2 font-medium text-right text-emerald-400" id="dtColEntry">當沖進場點</th>
+          <th class="py-2.5 px-2 font-medium text-right text-amber-400" id="dtColTarget">停利目標 1/2</th>
+          <th class="py-2.5 px-2 font-medium text-right text-rose-400" id="dtColStop">停損點</th>
+          <th class="py-2.5 px-2 font-medium text-right">週轉/當沖比</th>
+          <th class="py-2.5 px-2 font-medium text-right">量增/法人</th>
+          <th class="py-2.5 pl-2 pr-4 font-medium text-right">分數</th>
         </tr>
       </thead>
       <tbody id="dtRows" class="divide-y divide-white/5"></tbody>
@@ -361,91 +321,83 @@ body {
   </div>
 </section>
 
-<!-- ===== 模組 4: 🩺 個股 AI 深度健檢與部位計算機 (Doctor) ===== -->
-<section id="doctor" class="max-w-7xl mx-auto px-4 sm:px-6 py-8 border-t border-white/10">
-  <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4">
+<!-- ===== 模組 4: 個股診斷與部位試算 (Doctor) ===== -->
+<section id="doctor" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-2.5 mb-3">
     <div>
-      <div class="flex items-center gap-2 mb-1">
-        <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-400 text-black font-bold uppercase tracking-wider">AI Doctor</span>
-        <span class="text-xs text-slate-400" id="docPoolCount">全市場 550+ 檔即時深度診斷</span>
-      </div>
-      <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">🩺 個股 AI 健檢與部位風險計算機</h2>
-      <p class="text-xs text-slate-400 mt-1">輸入任意上市櫃股票代號，立即獲得五維度籌碼雷達、波段買賣點試算與建議持有部位。</p>
+      <div class="text-[11px] text-slate-400" id="docPoolCount">全市場 550+ 檔即時數據</div>
+      <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight">個股診斷與部位試算</h2>
+      <p class="text-xs text-slate-400 mt-0.5">輸入任意股票代號，查看五維度籌碼雷達、波段操作點位與部位風險試算。</p>
     </div>
   </div>
 
-  <!-- 快速熱門快選按鈕 -->
-  <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 text-xs mb-4" id="docQuickPills"></div>
+  <!-- 快速標的快選 -->
+  <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 text-xs mb-3" id="docQuickPills"></div>
 
-  <!-- 診斷主面板 (左側: 買賣點與部位計算, 右側: 雷達與走勢圖) -->
-  <div id="docPanel" class="grid grid-cols-1 lg:grid-cols-2 gap-4"></div>
+  <!-- 診斷主面板 -->
+  <div id="docPanel" class="grid grid-cols-1 lg:grid-cols-2 gap-3.5"></div>
 
-  <!-- 附屬部位風險試算工具 -->
-  <div class="mt-4 rounded-2xl border border-white/10 bg-slate-900/60 p-4 sm:p-5">
-    <div class="flex items-center justify-between gap-2 mb-3">
-      <h4 class="text-sm font-semibold text-white flex items-center gap-2">
-        <span>🧮 個人部位與風險停損試算機</span>
-        <span class="text-xs font-normal text-slate-400">（依選定股票之 AI 買點與停損價動態試算）</span>
-      </h4>
+  <!-- 部位風險試算工具 -->
+  <div class="mt-3.5 rounded-xl border border-white/10 bg-slate-900/60 p-4">
+    <div class="flex items-center justify-between gap-2 mb-2.5">
+      <h4 class="text-xs font-bold text-white">個人部位與風險試算</h4>
+      <span class="text-[11px] text-slate-400">依當前選定股票之買點與停損價試算</span>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
       <div>
-        <label class="text-slate-400 block mb-1">預計投入本金 (元):</label>
+        <label class="text-slate-400 block mb-1">投入本金 (元):</label>
         <input type="number" id="calcCapital" value="300000" step="10000"
-          class="w-full bg-slate-950 border border-white/15 focus:border-emerald-400 rounded-lg px-3 py-2 text-white outline-none num font-medium">
+          class="w-full bg-slate-950 border border-white/15 focus:border-sky-400 rounded-lg px-3 py-1.5 text-white outline-none num font-medium">
       </div>
       <div>
-        <label class="text-slate-400 block mb-1">單筆最大承受虧損比率 (%):</label>
-        <select id="calcRiskPct" class="w-full bg-slate-950 border border-white/15 focus:border-emerald-400 rounded-lg px-3 py-2 text-white outline-none cursor-pointer">
+        <label class="text-slate-400 block mb-1">最大承受風險比率:</label>
+        <select id="calcRiskPct" class="w-full bg-slate-950 border border-white/15 focus:border-sky-400 rounded-lg px-3 py-1.5 text-white outline-none cursor-pointer">
           <option value="1">1% (極保守)</option>
           <option value="2" selected>2% (標準紀律)</option>
           <option value="3">3% (波段操作)</option>
-          <option value="5">5% (積極進攻)</option>
+          <option value="5">5% (積極)</option>
         </select>
       </div>
-      <div class="rounded-xl bg-slate-950/70 border border-white/5 p-3 flex flex-col justify-center">
-        <span class="text-slate-400">建議最大買進股數</span>
-        <b id="calcShares" class="text-base text-emerald-400 num font-bold mt-0.5">—</b>
-        <span id="calcCost" class="text-[11px] text-slate-500 truncate mt-0.5">—</span>
+      <div class="rounded-lg bg-slate-950 p-2.5 flex flex-col justify-center">
+        <span class="text-slate-400 text-[11px]">建議買進股數</span>
+        <b id="calcShares" class="text-sm text-emerald-400 num font-bold mt-0.5">—</b>
+        <span id="calcCost" class="text-[10px] text-slate-500 truncate mt-0.5">—</span>
       </div>
-      <div class="rounded-xl bg-slate-950/70 border border-white/5 p-3 flex flex-col justify-center">
-        <span class="text-slate-400">觸發停損最大虧損額</span>
-        <b id="calcMaxLoss" class="text-base text-rose-400 num font-bold mt-0.5">—</b>
-        <span id="calcStopPrice" class="text-[11px] text-slate-500 truncate mt-0.5">—</span>
+      <div class="rounded-lg bg-slate-950 p-2.5 flex flex-col justify-center">
+        <span class="text-slate-400 text-[11px]">觸發停損最大虧損</span>
+        <b id="calcMaxLoss" class="text-sm text-rose-400 num font-bold mt-0.5">—</b>
+        <span id="calcStopPrice" class="text-[10px] text-slate-500 truncate mt-0.5">—</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== 模組 5: 🎛️ 全市場 550+ 檔 AI 複合選股器 (Screener) ===== -->
-<section id="screener" class="max-w-7xl mx-auto px-4 sm:px-6 py-8 border-t border-white/10">
-  <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4">
+<!-- ===== 模組 5: 多因子條件選股 (Screener) ===== -->
+<section id="screener" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-2.5 mb-3">
     <div>
-      <div class="flex items-center gap-2 mb-1">
-        <span class="text-[10px] px-2 py-0.5 rounded bg-purple-400 text-black font-bold uppercase tracking-wider">Multi-Factor Engine</span>
-        <span class="text-xs text-slate-400" id="scrCountInfo">全市場多因子自訂篩選器</span>
-      </div>
-      <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">🎛️ 全市場 550+ 檔高流動性選股器</h2>
+      <div class="text-[11px] text-slate-400" id="scrCountInfo">全市場多因子條件篩選</div>
+      <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight">多因子條件選股</h2>
     </div>
-    <button type="button" id="btnExportScreenerCsv" class="px-3 py-1.5 rounded-xl bg-slate-950 hover:bg-white/10 border border-white/10 text-xs text-slate-300 hover:text-white transition-colors">
+    <button type="button" id="btnExportScreenerCsv" class="px-3 py-1.5 rounded-lg bg-slate-950 hover:bg-slate-800 border border-white/10 text-xs text-slate-300 hover:text-white transition-colors">
       匯出篩選結果 CSV
     </button>
   </div>
 
-  <!-- 8 大預設策略快選 Tag -->
-  <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 text-xs mb-4" id="scrPresets">
-    <button type="button" data-preset="top" class="spreset px-3 py-1.5 rounded-xl bg-white text-black font-semibold">🏆 綜合高分首選</button>
-    <button type="button" data-preset="dual" class="spreset px-3 py-1.5 rounded-xl border border-white/15 text-slate-300 hover:text-white">🤝 土洋合買主力股</button>
-    <button type="button" data-preset="trust" class="spreset px-3 py-1.5 rounded-xl border border-white/15 text-slate-300 hover:text-white">💼 投信連續認養</button>
-    <button type="button" data-preset="whale" class="spreset px-3 py-1.5 rounded-xl border border-white/15 text-slate-300 hover:text-white">🐋 千張大戶瘋狂增持</button>
-    <button type="button" data-preset="squeeze" class="spreset px-3 py-1.5 rounded-xl border border-white/15 text-slate-300 hover:text-white">🪤 融券增加・散戶軋空</button>
-    <button type="button" data-preset="dipbuy" class="spreset px-3 py-1.5 rounded-xl border border-white/15 text-slate-300 hover:text-white">🧲 股價拉回・法人低接</button>
-    <button type="button" data-preset="turnaround" class="spreset px-3 py-1.5 rounded-xl border border-white/15 text-slate-300 hover:text-white">🔄 賣超翻正・認錯回補</button>
-    <button type="button" data-preset="blacklist" class="spreset px-3 py-1.5 rounded-xl border border-rose-500/40 text-rose-300 hover:bg-rose-500/10">💣 避雷針 (法人大提款)</button>
+  <!-- 策略快選 Tag -->
+  <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 text-xs mb-3" id="scrPresets">
+    <button type="button" data-preset="top" class="spreset px-3 py-1.5 rounded-lg bg-white text-black font-semibold">綜合首選</button>
+    <button type="button" data-preset="dual" class="spreset px-3 py-1.5 rounded-lg border border-white/10 text-slate-300 hover:text-white">土洋合買</button>
+    <button type="button" data-preset="trust" class="spreset px-3 py-1.5 rounded-lg border border-white/10 text-slate-300 hover:text-white">投信連續買超</button>
+    <button type="button" data-preset="whale" class="spreset px-3 py-1.5 rounded-lg border border-white/10 text-slate-300 hover:text-white">大戶持續增持</button>
+    <button type="button" data-preset="squeeze" class="spreset px-3 py-1.5 rounded-lg border border-white/10 text-slate-300 hover:text-white">券增資減</button>
+    <button type="button" data-preset="dipbuy" class="spreset px-3 py-1.5 rounded-lg border border-white/10 text-slate-300 hover:text-white">拉回低接</button>
+    <button type="button" data-preset="turnaround" class="spreset px-3 py-1.5 rounded-lg border border-white/10 text-slate-300 hover:text-white">由賣轉買</button>
+    <button type="button" data-preset="blacklist" class="spreset px-3 py-1.5 rounded-lg border border-rose-500/30 text-rose-300 hover:bg-rose-500/10">法人連續賣超</button>
   </div>
 
-  <!-- 進階自訂篩選過濾器 -->
-  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 text-xs mb-4">
+  <!-- 自訂條件過濾 -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-xs mb-3">
     <div>
       <select id="scrMarket" class="w-full bg-slate-950 border border-white/15 rounded-lg px-2.5 py-1.5 text-slate-200 outline-none">
         <option value="全部">全部市場</option>
@@ -476,7 +428,7 @@ body {
       </select>
     </div>
     <div class="flex items-center gap-1.5 bg-slate-950 border border-white/15 rounded-lg px-2.5 py-1.5">
-      <span class="text-slate-400 whitespace-nowrap">分≥</span>
+      <span class="text-slate-400 whitespace-nowrap">分數≥</span>
       <input type="range" id="scrMinScore" min="0" max="90" step="5" value="0" class="w-full accent-sky-400">
       <span id="scrMinScoreVal" class="num text-sky-400 w-8 text-right font-medium">0分</span>
     </div>
@@ -486,83 +438,76 @@ body {
     </div>
   </div>
 
-  <!-- 選股器資料表 -->
-  <div class="overflow-x-auto rounded-2xl border border-white/10 bg-slate-900/60">
-    <table class="w-full text-xs min-w-[980px]">
-      <thead class="text-slate-400 bg-slate-950/80 border-b border-white/10 text-left whitespace-nowrap">
+  <!-- 選股器清單 -->
+  <div class="overflow-x-auto rounded-xl border border-white/10 bg-slate-900/60">
+    <table class="w-full text-xs min-w-[920px]">
+      <thead class="text-slate-400 bg-slate-950 border-b border-white/10 text-left whitespace-nowrap">
         <tr>
-          <th class="py-3 pl-4 pr-1 font-medium w-10">追蹤</th>
-          <th class="py-3 px-2 font-medium">代號 / 股票 / 產業</th>
-          <th class="py-3 px-2 font-medium text-right">收盤</th>
-          <th class="py-3 px-2 font-medium text-right">漲跌幅</th>
-          <th class="py-3 px-2 font-medium text-right">今日法人</th>
-          <th class="py-3 px-2 font-medium text-right">5日法人</th>
-          <th class="py-3 px-2 font-medium text-right">大戶週增</th>
-          <th class="py-3 px-2 font-medium text-right">融資增減</th>
-          <th class="py-3 px-2 font-medium text-right text-emerald-300">建議買點</th>
-          <th class="py-3 px-2 font-medium text-right text-amber-300">停利 / 停損</th>
-          <th class="py-3 pl-2 pr-4 font-medium text-right">籌碼分</th>
+          <th class="py-2.5 pl-4 pr-1 font-medium w-8">追蹤</th>
+          <th class="py-2.5 px-2 font-medium">代號 / 股票 / 產業</th>
+          <th class="py-2.5 px-2 font-medium text-right">收盤</th>
+          <th class="py-2.5 px-2 font-medium text-right">漲跌幅</th>
+          <th class="py-2.5 px-2 font-medium text-right">今日法人</th>
+          <th class="py-2.5 px-2 font-medium text-right">5日法人</th>
+          <th class="py-2.5 px-2 font-medium text-right">大戶週增</th>
+          <th class="py-2.5 px-2 font-medium text-right">融資增減</th>
+          <th class="py-2.5 px-2 font-medium text-right text-emerald-400">買進區間</th>
+          <th class="py-2.5 px-2 font-medium text-right text-amber-400">目標 / 停損</th>
+          <th class="py-2.5 pl-2 pr-4 font-medium text-right">分數</th>
         </tr>
       </thead>
       <tbody id="scrRows" class="divide-y divide-white/5"></tbody>
     </table>
   </div>
-  <div class="text-center mt-3">
-    <button type="button" id="btnScrMore" class="px-5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-white/10 text-xs text-slate-300 font-medium transition-colors">
-      載入更多股票 ↓
+  <div class="text-center mt-2.5">
+    <button type="button" id="btnScrMore" class="px-4 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-white/10 text-xs text-slate-300 font-medium transition-colors">
+      載入更多 ↓
     </button>
   </div>
 </section>
 
-<!-- ===== 模組 6: 📈 歷史推薦勝率回測與成交排行 (Backtest) ===== -->
-<section id="backtest" class="max-w-7xl mx-auto px-4 sm:px-6 py-8 border-t border-white/10">
-  <div class="rounded-2xl border border-purple-500/20 bg-purple-500/[0.02] p-5 mb-8">
-    <div class="mb-4">
-      <div class="flex items-center gap-2 mb-1">
-        <span class="text-[10px] px-2 py-0.5 rounded bg-purple-400 text-black font-bold uppercase tracking-wider">Track Record</span>
-        <span class="text-xs text-slate-400">真實歷史推薦追蹤驗證</span>
-      </div>
-      <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">📈 AI 歷史推薦勝率與波段代表作</h2>
-      <p class="text-xs text-slate-400 mt-1">追蹤歷史推薦個股上榜後的實際最高波段漲幅與累積勝率，真金不怕火煉。</p>
+<!-- ===== 模組 6: 歷史回測與成交排行 (Backtest) ===== -->
+<section id="backtest" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 border-t border-white/10">
+  <div class="rounded-xl border border-white/10 bg-slate-900/60 p-4 sm:p-5 mb-6">
+    <div class="mb-3">
+      <div class="text-[11px] text-slate-400">歷史推薦追蹤驗證</div>
+      <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight">歷史推薦勝率回測</h2>
+      <p class="text-xs text-slate-400 mt-0.5">追蹤過去推薦上榜後之後續實際最高漲幅與正報酬率。</p>
     </div>
 
     <!-- 四大指標卡 -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4 text-xs">
-      <div class="rounded-xl border border-white/10 bg-slate-950 p-4">
-        <span class="text-slate-400 block mb-1">歷史追蹤總樣本</span>
-        <b id="btTotal" class="text-2xl font-bold num text-white">—</b>
-        <span class="text-[11px] text-slate-500 block mt-1">各交易日上榜個股</span>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 mb-3.5 text-xs">
+      <div class="rounded-lg border border-white/10 bg-slate-950 p-3">
+        <span class="text-slate-400 block mb-0.5 text-[11px]">歷史追蹤樣本</span>
+        <b id="btTotal" class="text-xl font-bold num text-white">—</b>
       </div>
-      <div class="rounded-xl border border-emerald-500/20 bg-slate-950 p-4">
-        <span class="text-emerald-400 block mb-1">波段正報酬勝率</span>
-        <b id="btWinRate" class="text-2xl font-bold num text-emerald-400">—</b>
-        <span class="text-[11px] text-slate-500 block mt-1">後續最高價 > 推薦日</span>
+      <div class="rounded-lg border border-emerald-500/20 bg-slate-950 p-3">
+        <span class="text-emerald-400 block mb-0.5 text-[11px]">正報酬勝率</span>
+        <b id="btWinRate" class="text-xl font-bold num text-emerald-400">—</b>
       </div>
-      <div class="rounded-xl border border-amber-500/20 bg-slate-950 p-4">
-        <span class="text-amber-400 block mb-1">AI S+ 強勢股勝率</span>
-        <b id="btSPlusWin" class="text-2xl font-bold num text-amber-400">—</b>
-        <span class="text-[11px] text-slate-500 block mt-1">多因子共振標的</span>
+      <div class="rounded-lg border border-amber-500/20 bg-slate-950 p-3">
+        <span class="text-amber-400 block mb-0.5 text-[11px]">S+ 評級勝率</span>
+        <b id="btSPlusWin" class="text-xl font-bold num text-amber-400">—</b>
       </div>
-      <div class="rounded-xl border border-purple-500/20 bg-slate-950 p-4">
-        <span class="text-purple-400 block mb-1">平均最高波段報酬</span>
-        <b id="btAvgMax" class="text-2xl font-bold num text-purple-300">—</b>
-        <span class="text-[11px] text-slate-500 block mt-1">全體樣本平均最高漲幅</span>
+      <div class="rounded-lg border border-purple-500/20 bg-slate-950 p-3">
+        <span class="text-purple-400 block mb-0.5 text-[11px]">平均最高波段漲幅</span>
+        <b id="btAvgMax" class="text-xl font-bold num text-purple-300">—</b>
       </div>
     </div>
 
-    <!-- 代表作表格 -->
-    <div class="overflow-x-auto rounded-xl border border-white/10 bg-slate-950/60">
-      <table class="w-full text-xs min-w-[780px]">
+    <!-- 代表作名單 -->
+    <div class="overflow-x-auto rounded-lg border border-white/10 bg-slate-950">
+      <table class="w-full text-xs min-w-[720px]">
         <thead class="text-slate-400 border-b border-white/10 text-left whitespace-nowrap">
           <tr>
             <th class="py-2.5 pl-4 pr-1 font-medium">排行</th>
             <th class="py-2.5 px-2 font-medium">推薦日期</th>
             <th class="py-2.5 px-2 font-medium">股票 / 產業</th>
-            <th class="py-2.5 px-2 font-medium text-right">當時排名/分數</th>
+            <th class="py-2.5 px-2 font-medium text-right">當時名次/分數</th>
             <th class="py-2.5 px-2 font-medium text-right">推薦日收盤</th>
             <th class="py-2.5 px-2 font-medium text-right">波段最高價</th>
             <th class="py-2.5 px-2 font-medium text-right">最新報酬</th>
-            <th class="py-2.5 pl-2 pr-4 font-medium text-right text-amber-300">波段最高漲幅</th>
+            <th class="py-2.5 pl-2 pr-4 font-medium text-right text-amber-400">最高漲幅</th>
           </tr>
         </thead>
         <tbody id="btRows" class="divide-y divide-white/5"></tbody>
@@ -570,25 +515,24 @@ body {
     </div>
   </div>
 
-  <!-- 成交量與週轉率前 20 名 -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-    <!-- 成交量排行 -->
+  <!-- 成交量與週轉率排行 -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
     <div>
-      <div class="mb-3">
-        <h3 id="voTitle" class="text-base font-semibold text-white">上市成交量前 20 名</h3>
-        <span class="text-xs text-slate-400">市場資金最集中的標的（張數）</span>
+      <div class="mb-2">
+        <h3 id="voTitle" class="text-sm font-bold text-white">上市成交量前 20 名</h3>
+        <span class="text-[11px] text-slate-400">市場資金最集中的標的（張數）</span>
       </div>
-      <div class="overflow-x-auto rounded-2xl border border-white/10 bg-slate-900/60">
-        <table class="w-full text-xs min-w-[480px]">
-          <thead class="text-slate-400 bg-slate-950/80 border-b border-white/10 text-left whitespace-nowrap">
+      <div class="overflow-x-auto rounded-xl border border-white/10 bg-slate-900/60">
+        <table class="w-full text-xs min-w-[460px]">
+          <thead class="text-slate-400 bg-slate-950 border-b border-white/10 text-left whitespace-nowrap">
             <tr>
-              <th class="py-2.5 pl-4 pr-1 font-medium w-8">名次</th>
-              <th class="py-2.5 px-2 font-medium">股票</th>
-              <th class="py-2.5 px-2 font-medium text-right">收盤</th>
-              <th class="py-2.5 px-2 font-medium text-right">漲跌幅</th>
-              <th class="py-2.5 px-2 font-medium text-right">成交金額(億)</th>
-              <th class="py-2.5 px-2 font-medium text-right">週轉率</th>
-              <th class="py-2.5 pl-2 pr-4 font-medium text-right">成交量(張)</th>
+              <th class="py-2 pl-3 pr-1 font-medium w-8">名次</th>
+              <th class="py-2 px-2 font-medium">股票</th>
+              <th class="py-2 px-2 font-medium text-right">收盤</th>
+              <th class="py-2 px-2 font-medium text-right">漲跌幅</th>
+              <th class="py-2 px-2 font-medium text-right">金額(億)</th>
+              <th class="py-2 px-2 font-medium text-right">週轉率</th>
+              <th class="py-2 pl-2 pr-3 font-medium text-right">成交量(張)</th>
             </tr>
           </thead>
           <tbody id="voRows" class="divide-y divide-white/5"></tbody>
@@ -596,23 +540,22 @@ body {
       </div>
     </div>
 
-    <!-- 週轉率排行 -->
     <div>
-      <div class="mb-3">
-        <h3 id="toTitle" class="text-base font-semibold text-white">上市週轉率前 20 名</h3>
-        <span class="text-xs text-slate-400">換手最熱絡的個股（成交股數 ÷ 發行股數）</span>
+      <div class="mb-2">
+        <h3 id="toTitle" class="text-sm font-bold text-white">上市週轉率前 20 名</h3>
+        <span class="text-[11px] text-slate-400">換手最熱絡的個股（成交股數 ÷ 發行股數）</span>
       </div>
-      <div class="overflow-x-auto rounded-2xl border border-white/10 bg-slate-900/60">
-        <table class="w-full text-xs min-w-[480px]">
-          <thead class="text-slate-400 bg-slate-950/80 border-b border-white/10 text-left whitespace-nowrap">
+      <div class="overflow-x-auto rounded-xl border border-white/10 bg-slate-900/60">
+        <table class="w-full text-xs min-w-[460px]">
+          <thead class="text-slate-400 bg-slate-950 border-b border-white/10 text-left whitespace-nowrap">
             <tr>
-              <th class="py-2.5 pl-4 pr-1 font-medium w-8">名次</th>
-              <th class="py-2.5 px-2 font-medium">股票</th>
-              <th class="py-2.5 px-2 font-medium text-right">收盤</th>
-              <th class="py-2.5 px-2 font-medium text-right">漲跌幅</th>
-              <th class="py-2.5 px-2 font-medium text-right">成交量(張)</th>
-              <th class="py-2.5 px-2 font-medium text-right">成交金額(億)</th>
-              <th class="py-2.5 pl-2 pr-4 font-medium text-right">週轉率</th>
+              <th class="py-2 pl-3 pr-1 font-medium w-8">名次</th>
+              <th class="py-2 px-2 font-medium">股票</th>
+              <th class="py-2 px-2 font-medium text-right">收盤</th>
+              <th class="py-2 px-2 font-medium text-right">漲跌幅</th>
+              <th class="py-2 px-2 font-medium text-right">成交量(張)</th>
+              <th class="py-2 px-2 font-medium text-right">金額(億)</th>
+              <th class="py-2 pl-2 pr-3 font-medium text-right">週轉率</th>
             </tr>
           </thead>
           <tbody id="toRows" class="divide-y divide-white/5"></tbody>
@@ -622,68 +565,61 @@ body {
   </div>
 </section>
 
-<!-- ===== 免責聲明與頁尾 ===== -->
-<footer id="disclaimer" class="border-t border-white/10 bg-slate-950 mt-12 py-10 text-xs text-slate-500">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 grid gap-4">
-    <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
-      <div class="flex items-center gap-2">
-        <div class="w-6 h-6 rounded bg-gradient-to-tr from-sky-500 to-emerald-400 grid place-items-center text-slate-950 font-black text-xs">G</div>
-        <span class="font-bold text-white">GETSTOCK 全自動 AI 選股系統</span>
-      </div>
-      <div class="flex items-center gap-4 text-slate-400">
+<!-- 免責聲明頁尾 -->
+<footer id="disclaimer" class="border-t border-white/10 bg-slate-950 mt-10 py-8 text-xs text-slate-500">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 grid gap-3">
+    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
+      <span class="font-bold text-slate-300">GETSTOCK 台股量化決策系統</span>
+      <div class="flex items-center gap-3 text-slate-400">
         <a href="#picks" class="hover:text-white transition-colors">回頂部 ↑</a>
         <a href="chips_radar.html" class="hover:text-white transition-colors">籌碼雷達</a>
       </div>
     </div>
-    <div class="space-y-2 leading-relaxed">
+    <div class="space-y-1.5 leading-relaxed text-[11px]">
       <p class="font-semibold text-slate-400">【免責聲明】</p>
-      <p>1. 本網站及所有相關自動化程式僅為公開資料之整理與量化多因子規則試算，本站非證券投資顧問事業，不提供任何有價證券之投資諮詢、委任操作或買賣推薦。</p>
-      <p>2. 內容中所計算之「建議買點」、「停利賣點」、「防守停損價」與「當沖操作指引」均為基於過去量價與技術數學公式之純演算法自動試算，絕非保證獲利之承諾，亦不應作為買賣之唯一依據。</p>
-      <p>3. 投資股票具有本金虧損風險，當沖、融資等槓桿交易風險極高。投資人於進行任何交易決策前，應審慎評估自身財務能力與風險承受度，盈虧請完全自負。</p>
-      <p>4. 盤後資料來源為臺灣證券交易所、證券櫃檯買賣中心及臺灣集中保管結算所，資料以各官方機構正式公告為準。</p>
-    </div>
-    <div class="text-[11px] text-slate-600 pt-2">
-      GETSTOCK AI Pipeline © 2026. Fully Automated Quantitative Stock Screener.
+      <p>1. 本系統所有內容均為公開資料之整理與量化多因子規則試算，本站非證券投資顧問事業，不提供任何投資諮詢或買賣推薦。</p>
+      <p>2. 內容中所計算之「買進區間」、「目標價」、「防守停損價」與「當沖指引」皆為基於量價演算法之純數學試算，非獲利保證，亦不構成買賣決策依據。</p>
+      <p>3. 股票投資具風險，槓桿與當沖交易風險極高，投資人應自行審慎評估，盈虧自負。</p>
+      <p>4. 資料來源為臺灣證券交易所、證券櫃檯買賣中心及臺灣集中保管結算所，資料以官方正式公告為準。</p>
     </div>
   </div>
 </footer>
 
-<!-- ===== 行動端底部 App 導航列 (Mobile Bottom Dock) ===== -->
-<div class="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-slate-950/90 backdrop-blur-xl border-t border-white/10 px-2 py-2 flex items-center justify-around text-[10px]">
-  <a href="#picks" class="bottom-nav-item flex flex-col items-center gap-0.5 text-slate-400 active text-sky-400">
-    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
-    <span>推薦</span>
+<!-- 行動端底部導航列 (極簡線條圖標，無浮誇色彩) -->
+<div class="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur-xl border-t border-white/10 px-3 py-1.5 flex items-center justify-around text-[10px]">
+  <a href="#picks" class="flex flex-col items-center gap-0.5 text-sky-400 font-medium">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+    <span>精選</span>
   </a>
-  <a href="#anomalies" class="bottom-nav-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-white">
-    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-    <span>異常</span>
+  <a href="#anomalies" class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-white">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+    <span>異動</span>
   </a>
-  <a href="#daytrade" class="bottom-nav-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-white">
-    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+  <a href="#daytrade" class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-white">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
     <span>當沖</span>
   </a>
-  <a href="#doctor" class="bottom-nav-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-emerald-400">
-    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-    <span>健檢</span>
+  <a href="#doctor" class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-white">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+    <span>診斷</span>
   </a>
-  <a href="#screener" class="bottom-nav-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-sky-400">
-    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
-    <span>選股</span>
+  <a href="#screener" class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-white">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+    <span>篩選</span>
   </a>
 </div>
 
 <!-- ==================== 前端核心 JAVASCRIPT ==================== -->
 <script>
 (function () {
-  // 資料由 build_site.py 替換 /*DATA*/null 注入
   const DATA = /*DATA*/null;
   const WEEK = "日一二三四五六";
   const PART_DEFS = [
     ["inst1", "法人當日", "--s1", 25],
     ["inst5", "法人5日", "--s2", 25],
-    ["streak", "外資投信連買", "--s3", 10],
-    ["big", "大戶週增", "--s4", 25],
-    ["margin", "融資減少", "--s5", 15],
+    ["streak", "連買力道", "--s3", 10],
+    ["big", "大戶增持", "--s4", 25],
+    ["margin", "融資退場", "--s5", 15],
   ];
   const days = (DATA && DATA.days) || [];
   const universeDB = (DATA && DATA.universeDB) || [];
@@ -707,8 +643,7 @@ body {
     anomTab: "all",
     query: "",
     docCode: null,
-    viewMode: "cards", // "cards" or "table"
-    // 全市場選股器
+    viewMode: "cards",
     scrPreset: "top",
     scrMarket: "全部",
     scrPrice: "all",
@@ -740,7 +675,7 @@ body {
 
   function starBtn(code) {
     const on = isWatched(code);
-    return `<button type="button" data-watch="${code}" class="star-btn text-base leading-none ${on ? "active text-amber-400" : "text-slate-500 hover:text-slate-300"}" title="${on ? "從自選股移除" : "加入自選股追蹤"}">${on ? "★" : "☆"}</button>`;
+    return `<button type="button" data-watch="${code}" class="star-btn text-sm leading-none ${on ? "active text-amber-400" : "text-slate-600 hover:text-slate-400"}" title="${on ? "移除自選" : "加入自選"}">${on ? "★" : "☆"}</button>`;
   }
 
   function findStock(code) {
@@ -763,7 +698,7 @@ body {
   function officialLink(p) {
     return p.market === "上櫃"
       ? { url: `https://www.tpex.org.tw/zh-tw/mainboard/trading/info/stock-pricing.html?code=${p.code}`, text: "櫃買日成交" }
-      : { url: "https://www.twse.com.tw/zh/trading/historical/stock-day.html", text: `證交所行情(${p.code})` };
+      : { url: "https://www.twse.com.tw/zh/trading/historical/stock-day.html", text: `證交所日成交(${p.code})` };
   }
 
   function spark(raw, labels) {
@@ -771,17 +706,17 @@ body {
     const s = idx.map((i) => raw[i]);
     labels = idx.map((i) => (labels && labels[i]) || "");
     if (s.length < 2) return "";
-    const W = 160, Hh = 44, P = 4;
+    const W = 150, Hh = 38, P = 3;
     const min = Math.min(...s), max = Math.max(...s), span = max - min || 1;
     const x = (i) => P + (i * (W - P * 2)) / (s.length - 1);
     const y = (v) => Hh - P - ((v - min) / span) * (Hh - P * 2);
     const pts = s.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`);
     const color = s[s.length - 1] >= s[0] ? "var(--up)" : "var(--down)";
     const area = `M${pts[0]} L${pts.join(" L")} L${x(s.length - 1)},${Hh - P} L${x(0)},${Hh - P} Z`;
-    return `<svg class="w-full h-auto block max-w-[170px]" viewBox="0 0 ${W} ${Hh}" role="img" aria-label="走勢圖">
-      <path d="${area}" fill="${color}" fill-opacity="0.15"/>
-      <polyline points="${pts.join(" ")}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round"/>
-      <circle cx="${x(s.length - 1)}" cy="${y(s[s.length - 1])}" r="3" fill="${color}"/>
+    return `<svg class="w-full h-auto block max-w-[150px]" viewBox="0 0 ${W} ${Hh}" role="img">
+      <path d="${area}" fill="${color}" fill-opacity="0.12"/>
+      <polyline points="${pts.join(" ")}" fill="none" stroke="${color}" stroke-width="1.8" stroke-linejoin="round"/>
+      <circle cx="${x(s.length - 1)}" cy="${y(s[s.length - 1])}" r="2.5" fill="${color}"/>
     </svg>`;
   }
 
@@ -794,29 +729,29 @@ body {
       { label: "大戶增持", val: (p.big || 0) / 25 },
       { label: "融資退場", val: (p.margin || 0) / 15 },
     ];
-    const cx = 110, cy = 100, R = 64;
+    const cx = 110, cy = 95, R = 60;
     const pt = (i, ratio) => {
       const ang = -Math.PI / 2 + (i * 2 * Math.PI) / 5;
       return [cx + R * ratio * Math.cos(ang), cy + R * ratio * Math.sin(ang)];
     };
     const grids = [0.25, 0.5, 0.75, 1].map((r) => {
       const poly = axes.map((_, i) => pt(i, r).map((v) => v.toFixed(1)).join(",")).join(" ");
-      return `<polygon points="${poly}" fill="none" stroke="rgba(255,255,255,${r === 1 ? 0.25 : 0.08})" stroke-width="1"/>`;
+      return `<polygon points="${poly}" fill="none" stroke="rgba(255,255,255,${r === 1 ? 0.2 : 0.06})" stroke-width="1"/>`;
     }).join("");
     const spokes = axes.map((a, i) => {
       const [x, y] = pt(i, 1);
       const [lx, ly] = pt(i, 1.25);
-      return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,0.12)"/>
+      return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,0.1)"/>
         <text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" fill="#94a3b8" font-size="9" text-anchor="middle" dominant-baseline="middle">${a.label}</text>`;
     }).join("");
     const dataPoly = axes.map((a, i) => pt(i, Math.max(0.08, Math.min(1, a.val))).map((v) => v.toFixed(1)).join(",")).join(" ");
     const dots = axes.map((a, i) => {
       const [x, y] = pt(i, Math.max(0.08, Math.min(1, a.val)));
-      return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="#38bdf8"/>`;
+      return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.5" fill="#38bdf8"/>`;
     }).join("");
-    return `<svg viewBox="0 0 220 200" class="w-full max-w-[210px] mx-auto block" role="img">
+    return `<svg viewBox="0 0 220 190" class="w-full max-w-[190px] mx-auto block" role="img">
       ${grids}${spokes}
-      <polygon points="${dataPoly}" fill="rgba(56,189,248,0.25)" stroke="#38bdf8" stroke-width="2"/>
+      <polygon points="${dataPoly}" fill="rgba(56,189,248,0.22)" stroke="#38bdf8" stroke-width="1.8"/>
       ${dots}
     </svg>`;
   }
@@ -825,47 +760,48 @@ body {
     const arr = (instHist || []).slice().reverse();
     if (!arr.length) return "";
     const maxAbs = Math.max(...arr.map((v) => Math.abs(v)), 1);
-    const W = 200, Hh = 60, midY = 30;
-    const bw = 22, gap = 14, startX = 14;
+    const W = 190, Hh = 56, midY = 28;
+    const bw = 20, gap = 14, startX = 12;
     const bars = arr.map((v, i) => {
-      const h = Math.max(2, (Math.abs(v) / maxAbs) * 22);
+      const h = Math.max(2, (Math.abs(v) / maxAbs) * 20);
       const x = startX + i * (bw + gap);
       const y = v >= 0 ? midY - h : midY;
       const color = v >= 0 ? "var(--up)" : "var(--down)";
       const lbl = (dates && dates[i]) || `D${i + 1}`;
-      return `<rect x="${x}" y="${y.toFixed(1)}" width="${bw}" height="${h.toFixed(1)}" rx="2" fill="${color}">
+      return `<rect x="${x}" y="${y.toFixed(1)}" width="${bw}" height="${h.toFixed(1)}" rx="1.5" fill="${color}">
         <title>${lbl}: ${signed(v)} 張</title></rect>
         <text x="${x + bw / 2}" y="${Hh - 3}" fill="#64748b" font-size="8" text-anchor="middle">${lbl}</text>`;
     }).join("");
     return `<svg viewBox="0 0 ${W} ${Hh}" class="w-full h-auto block" role="img">
-      <line x1="6" x2="${W - 6}" y1="${midY}" y2="${midY}" stroke="rgba(255,255,255,0.15)"/>
+      <line x1="4" x2="${W - 4}" y1="${midY}" y2="${midY}" stroke="rgba(255,255,255,0.12)"/>
       ${bars}
     </svg>`;
   }
 
   function gradeBadge(grade) {
     if (!grade) return "";
-    if (grade === "S+") return `<span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-amber-400 text-slate-950 shadow-sm shadow-amber-400/20 num">AI S+</span>`;
-    if (grade === "A+") return `<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 num">AI A+</span>`;
-    if (String(grade).startsWith("D")) return `<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-rose-500/25 text-rose-300 border border-rose-500/40 num">${grade}</span>`;
-    return `<span class="text-[10px] font-medium px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-white/10 num">AI ${grade}</span>`;
+    const g = String(grade).replace(/^AI\s*/, "");
+    if (g === "S+") return `<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-400 text-slate-950 num">S+</span>`;
+    if (g === "A+") return `<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 num">A+</span>`;
+    if (g.startsWith("D")) return `<span class="text-[10px] font-medium px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30 num">${g}</span>`;
+    return `<span class="text-[10px] font-medium px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-white/10 num">${g}</span>`;
   }
 
-  // 模組 0: 自選股
+  // 自選股
   function renderWatchlist() {
     $("watchCountBadge").textContent = watchlist.length;
     if (!watchlist.length) {
-      $("watchGrid").innerHTML = `<div class="col-span-full text-xs text-slate-400 py-2">尚未加入自選股。點擊卡片右上角「☆」可加入即時追蹤！</div>`;
+      $("watchGrid").innerHTML = `<div class="col-span-full text-xs text-slate-400 py-2">尚未加入自選股。點擊卡片星號「☆」可加入即時追蹤。</div>`;
       return;
     }
     const items = watchlist.map((c) => findStock(c)).filter(Boolean);
     $("watchGrid").innerHTML = items.map((p) => {
       const tp = p.tradePlan || {};
       const isDanger = (p.inst || 0) < 0 && (p.inst5d || 0) < 0;
-      return `<div class="rounded-xl border ${isDanger ? "border-rose-500/40 bg-rose-500/[0.05]" : "border-white/10 bg-slate-950/70"} p-3 grid gap-1.5 interactive-card">
+      return `<div class="rounded-lg border ${isDanger ? "border-rose-500/40 bg-rose-500/[0.04]" : "border-white/10 bg-slate-950"} p-2.5 grid gap-1.5">
         <div class="flex items-center justify-between gap-1">
-          <button type="button" data-diagnose="${p.code}" class="text-left font-semibold text-white hover:text-sky-300 transition-colors">
-            ${p.name} <span class="text-xs text-slate-400 num font-normal">${p.code}</span>
+          <button type="button" data-diagnose="${p.code}" class="text-left font-bold text-white hover:text-sky-300 transition-colors text-xs">
+            ${p.name} <span class="text-slate-400 num font-normal">${p.code}</span>
           </button>
           <div class="flex items-center gap-1">
             ${gradeBadge(p.aiGrade)}
@@ -873,19 +809,19 @@ body {
           </div>
         </div>
         <div class="flex items-baseline justify-between text-xs">
-          <span class="text-base font-bold num">${fmt(p.close)} <small class="${cls(p.chg)} font-semibold">${p.chg > 0 ? "+" : ""}${(p.chg || 0).toFixed(2)}%</small></span>
-          <span class="num text-slate-400">法人 <b class="${cls(p.inst)}">${signed(p.inst || 0)}</b></span>
+          <span class="text-sm font-bold num">${fmt(p.close)} <small class="${cls(p.chg)} font-semibold">${p.chg > 0 ? "+" : ""}${(p.chg || 0).toFixed(2)}%</small></span>
+          <span class="num text-slate-400 text-[11px]">法人 <b class="${cls(p.inst)}">${signed(p.inst || 0)}</b></span>
         </div>
-        <div class="text-[10px] num flex items-center justify-between pt-1 border-t border-white/5">
-          <span class="text-emerald-300">買:${tp.buyLow || "—"}</span>
-          <span class="text-amber-300">利:${tp.sellTarget1 || "—"}</span>
-          <span class="text-rose-300">損:${tp.stopLoss || "—"}</span>
+        <div class="text-[10px] num flex items-center justify-between pt-1 border-t border-white/5 text-slate-400">
+          <span>買:${tp.buyLow || "—"}</span>
+          <span>利:${tp.sellTarget1 || "—"}</span>
+          <span class="text-rose-400">損:${tp.stopLoss || "—"}</span>
         </div>
       </div>`;
     }).join("");
   }
 
-  // 模組 1: 個股 AI 健檢
+  // 個股診斷與部位計算機
   function updatePositionCalculator() {
     const p = findStock(state.docCode);
     if (!p || !p.tradePlan) return;
@@ -905,7 +841,7 @@ body {
     const estLoss = Math.round(recShares * Math.max(0, entry - stop));
 
     $("calcShares").textContent = `${fmt(recShares)} 股 (${lots} 張)`;
-    $("calcCost").textContent = `以買點 ${entry} 計，約需本金 ${fmt(totalCost)} 元`;
+    $("calcCost").textContent = `買點 ${entry} 計，約需本金 ${fmt(totalCost)} 元`;
     $("calcMaxLoss").textContent = `-${fmt(estLoss)} 元`;
     $("calcStopPrice").textContent = `停損價 ${stop} 元 (風險佔比 ${(estLoss / capital * 100).toFixed(1)}%)`;
   }
@@ -918,16 +854,16 @@ body {
     const p = findStock(code);
     if (!p) return;
     state.docCode = p.code;
-    $("docPoolCount").textContent = `全市場資料庫共 ${fmt(universeDB.length || (day && day.universe) || 551)} 檔高流動性個股`;
+    $("docPoolCount").textContent = `資料庫共 ${fmt(universeDB.length || (day && day.universe) || 551)} 檔高流動性個股`;
 
     const quickList = (day ? day.picks.slice(0, 6) : []).concat(
       universeDB.filter((x) => x.instNet < -2500).slice(0, 2)
     );
-    $("docQuickPills").innerHTML = `<span class="text-slate-400 whitespace-nowrap">熱門快選:</span>` + quickList.map((x) => {
+    $("docQuickPills").innerHTML = `<span class="text-slate-400 whitespace-nowrap text-xs">快選:</span>` + quickList.map((x) => {
       const isBad = (x.inst || x.instNet || 0) < 0;
       const active = x.code === p.code;
-      return `<button type="button" data-diagnose="${x.code}" class="px-2.5 py-1 rounded-full border transition-colors whitespace-nowrap text-xs ${active ? "bg-emerald-400 text-slate-950 border-emerald-400 font-bold" : isBad ? "border-rose-500/30 text-rose-300 hover:bg-rose-500/10" : "border-white/10 text-slate-300 hover:text-white hover:bg-white/5"}">
-        ${isBad ? "💣 " : ""}${x.name}(${x.code})
+      return `<button type="button" data-diagnose="${x.code}" class="px-2.5 py-1 rounded-md border transition-colors whitespace-nowrap text-xs ${active ? "bg-white text-black font-semibold border-white" : isBad ? "border-rose-500/30 text-rose-300 hover:bg-rose-500/10" : "border-white/10 text-slate-300 hover:text-white hover:bg-white/5"}">
+        ${x.name}(${x.code})
       </button>`;
     }).join("");
 
@@ -945,96 +881,103 @@ body {
       else if (dtS) dtInfo = { side: "做空隔日沖賣壓", ...dtS.dtPlan };
     }
 
+    // 移除 AI 浮誇開頭
+    const cleanSummary = (p.aiSummary || p.reason || "")
+      .replace(/【AI\s*[^】]+】/g, "")
+      .replace(/AI\s*/g, "");
+
     $("docPanel").innerHTML = `
-      <div class="rounded-2xl border ${isDanger ? "border-rose-500/40 bg-rose-500/[0.04]" : "border-white/10 bg-slate-900/60"} p-5 grid gap-4 content-start">
+      <div class="rounded-xl border ${isDanger ? "border-rose-500/40 bg-rose-500/[0.04]" : "border-white/10 bg-slate-900/60"} p-4 grid gap-3.5 content-start">
         <div class="flex items-start justify-between gap-3">
           <div>
-            <div class="flex flex-wrap items-center gap-2">
+            <div class="flex flex-wrap items-center gap-1.5">
               ${starBtn(p.code)}
-              <h3 class="text-2xl font-bold text-white tracking-tight">${p.name}</h3>
-              <span class="text-base text-slate-400 num">${p.code}</span>
-              <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-slate-300">${p.market}・${p.sector || "其他"}</span>
+              <h3 class="text-xl font-bold text-white tracking-tight">${p.name}</h3>
+              <span class="text-sm text-slate-400 num">${p.code}</span>
+              <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300">${p.market}・${p.sector || "其他"}</span>
               ${gradeBadge(p.aiGrade)}
-              ${p.rank ? `<span class="text-xs px-2 py-0.5 rounded bg-amber-400/20 text-amber-300 num font-semibold">${p.market} #${p.rank}</span>` : ""}
+              ${p.rank ? `<span class="text-xs px-2 py-0.5 rounded bg-amber-400/20 text-amber-300 num font-medium">${p.market} #${p.rank}</span>` : ""}
             </div>
-            <p class="text-xs text-slate-300 mt-2 leading-relaxed">${p.aiSummary || p.reason || ""}</p>
+            <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">${cleanSummary}</p>
           </div>
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2.5 flex-none">
             <div class="text-right">
-              <div class="text-2xl font-bold num">${fmt(p.close)}</div>
-              <div class="text-xs font-semibold num ${cls(p.chg)}">${p.chg > 0 ? "▲ +" : p.chg < 0 ? "▼ " : ""}${Math.abs(p.chg || 0).toFixed(2)}%</div>
+              <div class="text-xl font-bold num">${fmt(p.close)}</div>
+              <div class="text-xs font-semibold num ${cls(p.chg)}">${p.chg > 0 ? "+" : ""}${Math.abs(p.chg || 0).toFixed(2)}%</div>
             </div>
-            <div class="ring ${p.aiGrade === "S+" ? "s-plus" : isDanger ? "danger" : ""}" style="--p:${p.score || 50}" title="總分 ${p.rawScore || p.score}"><span class="num">${p.score || "—"}</span></div>
+            <div class="ring ${p.aiGrade === "S+" ? "s-plus" : isDanger ? "danger" : ""}" style="--p:${p.score || 50}" title="總分 ${p.rawScore || p.score}">
+              <span class="num font-bold">${p.score || "—"}</span>
+            </div>
           </div>
         </div>
 
-        <!-- 波段買賣點盒 -->
-        <div class="rounded-xl border ${isDanger ? "border-rose-500/30 bg-rose-500/[0.05]" : "border-emerald-500/30 bg-emerald-500/[0.04]"} p-3.5 grid gap-2.5">
+        <!-- 操作點位盒 -->
+        <div class="rounded-lg border ${isDanger ? "border-rose-500/30 bg-rose-500/[0.04]" : "border-emerald-500/30 bg-emerald-500/[0.04]"} p-3 grid gap-2">
           <div class="flex items-center justify-between text-xs">
-            <span class="font-bold ${isDanger ? "text-rose-300" : "text-emerald-300"}">🎯 AI 波段決策計畫（${tp.strategy || p.aiSignal || "籌碼鎖定"}）</span>
-            <span class="text-slate-400 num">5MA: ${tp.ma5 || "—"}</span>
+            <span class="font-bold ${isDanger ? "text-rose-300" : "text-emerald-400"}">操作計畫（型態: ${tp.strategy || "籌碼跟隨"}）</span>
+            <span class="text-slate-400 num text-[11px]">5MA: ${tp.ma5 || "—"}</span>
           </div>
           <div class="grid grid-cols-3 gap-2 text-xs">
-            <div class="rounded-lg bg-slate-950 p-2.5 grid gap-0.5">
-              <span class="text-emerald-300 font-medium">建議買點</span>
-              <b class="text-sm sm:text-base text-white num font-bold">${tp.buyZone || "—"}</b>
-              <span class="text-[10px] text-slate-400 num">突破: ${tp.breakoutBuy || "—"}</span>
+            <div class="rounded bg-slate-950 p-2 grid gap-0.5">
+              <span class="text-slate-400 text-[11px]">買進區間</span>
+              <b class="text-sm text-white num font-bold">${tp.buyZone || "—"}</b>
+              <span class="text-[10px] text-slate-500 num">突破: ${tp.breakoutBuy || "—"}</span>
             </div>
-            <div class="rounded-lg bg-slate-950 p-2.5 grid gap-0.5">
-              <span class="text-amber-300 font-medium">停利賣點 1/2</span>
-              <b class="text-sm sm:text-base text-amber-200 num font-bold">${tp.sellTarget1 || "—"} / ${tp.sellTarget2 || "—"}</b>
-              <span class="text-[10px] text-slate-400 num">+${tp.target1Pct || 5}% / +${tp.target2Pct || 9}%</span>
+            <div class="rounded bg-slate-950 p-2 grid gap-0.5">
+              <span class="text-slate-400 text-[11px]">目標價 1/2</span>
+              <b class="text-sm text-amber-300 num font-bold">${tp.sellTarget1 || "—"} / ${tp.sellTarget2 || "—"}</b>
+              <span class="text-[10px] text-slate-500 num">+${tp.target1Pct || 5}% / +${tp.target2Pct || 9}%</span>
             </div>
-            <div class="rounded-lg bg-slate-950 p-2.5 grid gap-0.5">
-              <span class="text-rose-300 font-medium">防守停損</span>
-              <b class="text-sm sm:text-base text-rose-300 num font-bold">${tp.stopLoss || "—"}</b>
-              <span class="text-[10px] text-slate-400 num">${tp.stopPct || -4}%</span>
+            <div class="rounded bg-slate-950 p-2 grid gap-0.5">
+              <span class="text-slate-400 text-[11px]">停損價</span>
+              <b class="text-sm text-rose-400 num font-bold">${tp.stopLoss || "—"}</b>
+              <span class="text-[10px] text-slate-500 num">${tp.stopPct || -4}%</span>
             </div>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed">${tp.buyDesc || ""}；${tp.sellDesc || ""}</p>
+          <p class="text-[11px] text-slate-300 leading-relaxed">${tp.buyDesc || ""}；${tp.sellDesc || ""}</p>
         </div>
 
-        ${dtInfo ? `<div class="rounded-xl border border-sky-400/30 bg-sky-500/[0.05] p-3 text-xs grid gap-1">
-          <div class="font-bold text-sky-300">⚡ 明日當沖熱門 (${dtInfo.side})：</div>
-          <div class="text-slate-200 num">進場: <b class="text-emerald-300">${dtInfo.entryZone}</b>｜停利: <b class="text-amber-300">${dtInfo.target1} / ${dtInfo.target2}</b>｜停損: <b class="text-rose-300">${dtInfo.stopLoss}</b></div>
+        ${dtInfo ? `<div class="rounded-lg border border-sky-400/25 bg-slate-950 p-2.5 text-xs grid gap-1">
+          <div class="font-bold text-sky-300">入選明日當沖名單 (${dtInfo.side})：</div>
+          <div class="text-slate-300 num text-[11px]">進場: <b class="text-white">${dtInfo.entryZone}</b>｜停利: <b class="text-amber-300">${dtInfo.target1} / ${dtInfo.target2}</b>｜停損: <b class="text-rose-400">${dtInfo.stopLoss}</b></div>
         </div>` : ""}
 
         <!-- 三大法人明細 -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-          <div class="rounded-lg border border-white/5 bg-slate-950 p-2.5"><span class="text-slate-400 block">外資 (連買)</span><b class="num ${cls(p.foreign)} font-bold">${signed(p.foreign || 0)} (${p.foreignStreak || 0}日)</b></div>
-          <div class="rounded-lg border border-white/5 bg-slate-950 p-2.5"><span class="text-slate-400 block">投信 (連買)</span><b class="num ${cls(p.trust)} font-bold">${signed(p.trust || 0)} (${p.trustStreak || 0}日)</b></div>
-          <div class="rounded-lg border border-white/5 bg-slate-950 p-2.5"><span class="text-slate-400 block">大戶持股 (週增)</span><b class="num ${cls(p.bigChg || 0)} font-bold">${p.bigPct != null ? p.bigPct.toFixed(2) + "%" : "—"} (${p.bigChg != null ? (p.bigChg > 0 ? "+" : "") + p.bigChg.toFixed(2) + "%" : "—"})</b></div>
-          <div class="rounded-lg border border-white/5 bg-slate-950 p-2.5"><span class="text-slate-400 block">融資增減</span><b class="num ${cls(-(p.marginChg || 0))} font-bold">${signed(p.marginChg || 0)} 張</b></div>
+          <div class="rounded-lg border border-white/5 bg-slate-950 p-2"><span class="text-slate-400 text-[11px] block">外資 (連買)</span><b class="num ${cls(p.foreign)} font-bold">${signed(p.foreign || 0)} (${p.foreignStreak || 0}日)</b></div>
+          <div class="rounded-lg border border-white/5 bg-slate-950 p-2"><span class="text-slate-400 text-[11px] block">投信 (連買)</span><b class="num ${cls(p.trust)} font-bold">${signed(p.trust || 0)} (${p.trustStreak || 0}日)</b></div>
+          <div class="rounded-lg border border-white/5 bg-slate-950 p-2"><span class="text-slate-400 text-[11px] block">大戶持股 (週增)</span><b class="num ${cls(p.bigChg || 0)} font-bold">${p.bigPct != null ? p.bigPct.toFixed(2) + "%" : "—"} (${p.bigChg != null ? (p.bigChg > 0 ? "+" : "") + p.bigChg.toFixed(2) + "%" : "—"})</b></div>
+          <div class="rounded-lg border border-white/5 bg-slate-950 p-2"><span class="text-slate-400 text-[11px] block">融資增減</span><b class="num ${cls(-(p.marginChg || 0))} font-bold">${signed(p.marginChg || 0)} 張</b></div>
         </div>
 
-        <!-- 外部技術線圖捷徑 -->
+        <!-- 外部看盤連結 -->
         <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-white/10 text-xs text-slate-400">
-          <span>看盤捷徑：</span>
-          <a href="https://tw.tradingview.com/chart/?symbol=${tvSymbol}" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white transition-colors">📈 TradingView K線</a>
-          <a href="https://tw.stock.yahoo.com/quote/${p.code}.${p.market === "上櫃" ? "TWO" : "TW"}/technical-analysis" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white transition-colors">Yahoo 股市</a>
-          <a href="https://goodinfo.tw/tw/StockDetail.asp?STOCK_ID=${p.code}" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white transition-colors">Goodinfo! 籌碼</a>
-          <a href="${link.url}" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white transition-colors">${link.text} ↗</a>
+          <span>看盤連結:</span>
+          <a href="https://tw.tradingview.com/chart/?symbol=${tvSymbol}" target="_blank" rel="noopener" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-white transition-colors">TradingView</a>
+          <a href="https://tw.stock.yahoo.com/quote/${p.code}.${p.market === "上櫃" ? "TWO" : "TW"}/technical-analysis" target="_blank" rel="noopener" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-white transition-colors">Yahoo 股市</a>
+          <a href="https://goodinfo.tw/tw/StockDetail.asp?STOCK_ID=${p.code}" target="_blank" rel="noopener" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-white transition-colors">Goodinfo</a>
+          <a href="${link.url}" target="_blank" rel="noopener" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-white transition-colors">${link.text}</a>
         </div>
       </div>
 
       <!-- 右側: 雷達與走勢圖 -->
-      <div class="rounded-2xl border border-white/10 bg-slate-900/60 p-5 grid gap-4 content-between">
+      <div class="rounded-xl border border-white/10 bg-slate-900/60 p-4 grid gap-3 content-between">
         <div>
           <div class="flex items-center justify-between text-xs text-slate-300 mb-1">
-            <span class="font-bold">五維度籌碼健康度雷達</span>
-            <span class="num text-sky-400 font-bold">總分 ${p.rawScore || p.score || 0} / 100</span>
+            <span class="font-bold">籌碼五維度分析</span>
+            <span class="num text-sky-400 font-bold">評分 ${p.rawScore || p.score || 0} / 100</span>
           </div>
           ${radarSvg(parts)}
           <div class="grid grid-cols-5 gap-1 text-[10px] text-center pt-2">
             ${PART_DEFS.map(([k, lbl, c, maxV]) => `<div class="rounded bg-slate-950 p-1"><div class="text-slate-400 truncate">${lbl}</div><b class="num text-white">${(parts[k] || 0).toFixed(1)}</b><span class="text-slate-500 num">/${maxV}</span></div>`).join("")}
           </div>
         </div>
-        <div class="grid sm:grid-cols-2 gap-3 pt-3 border-t border-white/10">
-          <div class="grid gap-1">
-            <span class="text-xs text-slate-400">近 5 日收盤走勢 (5MA: ${tp.ma5 || "—"})</span>
+        <div class="grid sm:grid-cols-2 gap-2.5 pt-2 border-t border-white/10">
+          <div class="grid gap-0.5">
+            <span class="text-xs text-slate-400">近 5 日收盤走勢</span>
             ${spark(p.series, day ? day.seriesDates : [])}
           </div>
-          <div class="grid gap-1">
+          <div class="grid gap-0.5">
             <span class="text-xs text-slate-400">近 5 日法人買賣超 (累計 <b class="num ${cls(p.inst5d)}">${signed(p.inst5d || 0)}</b>)</span>
             ${instBarSvg(p.instHist, day ? day.seriesDates : [])}
           </div>
@@ -1048,7 +991,7 @@ body {
     }
   }
 
-  // 模組 2: 全市場選股器
+  // 條件選股器
   let currentScreenerRows = [];
   function initScreenerSectors() {
     const secs = Array.from(new Set(universeDB.map((x) => x.sector || "其他"))).sort();
@@ -1061,7 +1004,7 @@ body {
     document.querySelectorAll(".spreset").forEach((b) => {
       const on = b.dataset.preset === state.scrPreset;
       const isBlack = b.dataset.preset === "blacklist";
-      b.className = `spreset px-3 py-1.5 rounded-xl text-xs transition-colors whitespace-nowrap ${
+      b.className = `spreset px-3 py-1.5 rounded-lg text-xs transition-colors whitespace-nowrap ${
         on
           ? isBlack ? "bg-rose-500 text-white font-bold" : "bg-white text-black font-bold"
           : isBlack ? "border border-rose-500/30 text-rose-300 hover:bg-rose-500/10" : "border border-white/10 text-slate-300 hover:text-white"
@@ -1106,11 +1049,11 @@ body {
     currentScreenerRows = rows;
     const shown = rows.slice(0, state.scrLimit);
 
-    $("scrCountInfo").textContent = `從全市場 ${fmt(pool.length)} 檔中篩出 ${fmt(rows.length)} 檔符合條件（顯示 ${shown.length} 檔）`;
+    $("scrCountInfo").textContent = `全市場 ${fmt(pool.length)} 檔中篩出 ${fmt(rows.length)} 檔符合條件（顯示 ${shown.length} 檔）`;
     $("btnScrMore").style.display = rows.length > state.scrLimit ? "inline-block" : "none";
 
     if (!shown.length) {
-      $("scrRows").innerHTML = `<tr><td colspan="11" class="py-8 text-center text-slate-500">無符合條件個股，請放寬條件。</td></tr>`;
+      $("scrRows").innerHTML = `<tr><td colspan="11" class="py-6 text-center text-slate-500">無符合條件個股。</td></tr>`;
       return;
     }
 
@@ -1124,7 +1067,7 @@ body {
             <span class="font-bold text-white group-hover:text-emerald-300">${x.name}</span>
             <span class="ml-1 text-xs text-slate-400 num">${x.code}</span>
             <span class="ml-1">${gradeBadge(x.aiGrade)}</span>
-            <div class="text-[10px] text-slate-400">${x.market}・${x.sector}・<span class="${isBad ? "text-rose-300" : "text-sky-300"}">${x.aiSignal || tp.strategy || ""}</span></div>
+            <div class="text-[10px] text-slate-400">${x.market}・${x.sector}・<span class="${isBad ? "text-rose-300" : "text-slate-300"}">${tp.strategy || ""}</span></div>
           </button>
         </td>
         <td class="py-2.5 px-2 text-right num font-semibold">${fmt(x.close)}</td>
@@ -1133,14 +1076,14 @@ body {
         <td class="py-2.5 px-2 text-right num ${cls(x.inst5d)}">${signed(x.inst5d || 0)}</td>
         <td class="py-2.5 px-2 text-right num ${cls(x.bigChg || 0)}">${x.bigChg != null ? (x.bigChg > 0 ? "+" : "") + x.bigChg.toFixed(2) + "%" : "—"}</td>
         <td class="py-2.5 px-2 text-right num ${cls(-(x.marginChg || 0))}">${signed(x.marginChg || 0)}</td>
-        <td class="py-2.5 px-2 text-right num whitespace-nowrap text-emerald-300 font-medium">${isBad ? "<span class='text-rose-300'>反彈減碼</span>" : (tp.buyZone || "—")}</td>
+        <td class="py-2.5 px-2 text-right num whitespace-nowrap text-emerald-400 font-medium">${isBad ? "<span class='text-rose-300'>反彈減碼</span>" : (tp.buyZone || "—")}</td>
         <td class="py-2.5 px-2 text-right num whitespace-nowrap"><span class="text-amber-300">${tp.sellTarget1 || "—"}</span> / <span class="text-rose-300">${tp.stopLoss || "—"}</span></td>
         <td class="py-2.5 pl-2 pr-4 text-right num font-bold ${isBad ? "text-rose-400" : "text-white"}">${(x.rawScore || x.score || 0).toFixed(1)}</td>
       </tr>`;
     }).join("");
   }
 
-  // 模組 3: 歷史回測驗證
+  // 歷史回測
   function renderBacktest() {
     if (!backtest || !backtest.totalTracked) return;
     $("btTotal").textContent = `${fmt(backtest.totalTracked)} 檔次`;
@@ -1157,7 +1100,7 @@ body {
           <button type="button" data-diagnose="${r.code}" class="text-left hover:text-emerald-300">
             <span class="font-semibold text-white">${r.name}</span>
             <span class="ml-1 text-xs text-slate-400 num">${r.code}</span>
-            <span class="ml-1 text-xs text-slate-400">(${r.market}・${r.sector})</span>
+            <span class="ml-1 text-xs text-slate-500">(${r.market}・${r.sector})</span>
           </button>
         </td>
         <td class="py-2.5 px-2 text-right num">${r.market} #${r.rank} (${r.score}分)</td>
@@ -1169,7 +1112,7 @@ body {
     `).join("");
   }
 
-  // 核心股票卡片產生 (Mobile-First Card)
+  // 簡約直觀的股票卡片 (Clean Card View)
   function card(p, day) {
     const top = p.rank <= 3;
     const parts = p.parts || {};
@@ -1180,201 +1123,194 @@ body {
       return v > 0 ? `<i style="width:${v}%;background:var(${c})" title="${label}: ${v.toFixed(1)}分"></i>` : "";
     }).join("");
     const bigTxt = p.bigPct == null ? "—" : `${p.bigPct.toFixed(2)}%` + (p.bigChg != null ? ` (${p.bigChg > 0 ? "+" : ""}${p.bigChg.toFixed(2)}%)` : "");
-    const anomBadges = anoms.map((a) => `<span class="text-[10px] px-2 py-0.5 rounded bg-amber-400/10 text-amber-200 border border-amber-400/20" title="${a.text}">⚡ ${a.type}</span>`).join("");
+    const anomBadges = anoms.map((a) => `<span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-white/10" title="${a.text}">${a.type}</span>`).join("");
 
     return `
-    <article class="rounded-2xl border ${top ? "border-amber-400/40 bg-gradient-to-b from-slate-900 to-slate-950" : "border-white/10 bg-slate-900/60"} p-4 sm:p-5 grid gap-3 interactive-card relative">
-      <!-- 頂部標題、代號、評級與星星 -->
+    <article class="stock-card rounded-xl border ${top ? "border-amber-400/30 bg-slate-900" : "border-white/10 bg-slate-900/70"} p-4 grid gap-2.5">
+      <!-- 標題、代號、評級與星星 -->
       <div class="flex items-center justify-between gap-2">
-        <div class="flex items-center gap-2.5 min-w-0">
-          <span class="w-6 h-6 rounded-md grid place-items-center text-xs num font-bold flex-none ${top ? "bg-amber-400 text-slate-950" : "bg-slate-800 text-slate-300"}">${p.rank}</span>
-          <div class="min-w-0">
-            <div class="flex items-center gap-1.5 flex-wrap">
-              ${starBtn(p.code)}
-              <button type="button" data-diagnose="${p.code}" class="text-base sm:text-lg font-bold text-white hover:text-sky-300 transition-colors text-left truncate">${p.name}</button>
-              <span class="text-xs text-slate-400 num">${p.code}</span>
-              ${gradeBadge(p.aiGrade)}
-              <span class="text-[10px] px-1.5 py-0.5 rounded bg-white/5 text-slate-300">${p.market}・${p.sector}</span>
-            </div>
+        <div class="flex items-center gap-2 min-w-0">
+          <span class="w-5 h-5 rounded grid place-items-center text-xs num font-bold flex-none ${top ? "bg-amber-400 text-slate-950" : "bg-slate-800 text-slate-400"}">${p.rank}</span>
+          <div class="flex items-center gap-1.5 flex-wrap min-w-0">
+            ${starBtn(p.code)}
+            <button type="button" data-diagnose="${p.code}" class="text-base font-bold text-white hover:text-sky-300 transition-colors text-left truncate">${p.name}</button>
+            <span class="text-xs text-slate-400 num">${p.code}</span>
+            ${gradeBadge(p.aiGrade)}
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">${p.market}・${p.sector}</span>
           </div>
         </div>
-        <div class="ring ${p.aiGrade === "S+" ? "s-plus" : ""}" style="--p:${p.score}" title="總分 ${p.rawScore || p.score}">
+        <div class="ring ${p.aiGrade === "S+" ? "s-plus" : ""}" style="--p:${p.score}" title="籌碼總分 ${p.rawScore || p.score}">
           <span class="num font-bold">${p.score}</span>
         </div>
       </div>
 
-      <!-- 報價與近5日走勢圖 -->
-      <div class="grid grid-cols-[1fr_auto] gap-3 items-center pt-1 border-t border-white/5">
+      <!-- 報價與走勢 -->
+      <div class="flex items-center justify-between gap-3 pt-1 border-t border-white/5">
         <div>
           <div class="flex items-baseline gap-2">
-            <span class="text-2xl sm:text-3xl font-extrabold num text-white tracking-tight">${fmt(p.close)}</span>
-            <span class="text-sm font-bold num ${cls(p.chg)} px-2 py-0.5 rounded ${p.chg > 0 ? "up-badge" : p.chg < 0 ? "down-badge" : "bg-white/5"}">
-              ${p.chg > 0 ? "▲ +" : p.chg < 0 ? "▼ " : ""}${Math.abs(p.chg).toFixed(2)}%
+            <span class="text-2xl font-bold num text-white">${fmt(p.close)}</span>
+            <span class="text-xs font-bold num ${cls(p.chg)} px-2 py-0.5 rounded ${p.chg > 0 ? "up-badge" : p.chg < 0 ? "down-badge" : "bg-white/5"}">
+              ${p.chg > 0 ? "+" : ""}${Math.abs(p.chg).toFixed(2)}%
             </span>
           </div>
-          <div class="text-[11px] text-slate-400 num mt-1">成交 ${fmt(p.vol)} 張 ｜ 5MA: ${tp.ma5 || "—"}</div>
+          <div class="text-[10px] text-slate-400 num mt-0.5">成交 ${fmt(p.vol)} 張 ｜ 5MA: ${tp.ma5 || "—"}</div>
         </div>
-        <div class="w-32 sm:w-36 flex-none">
+        <div class="w-32 flex-none">
           ${spark(p.series, day.seriesDates)}
         </div>
       </div>
 
-      <!-- 核心 AI 建議買點 / 停利賣點 / 停損點三格盒子 -->
-      <div class="rounded-xl border border-emerald-500/25 bg-emerald-500/[0.03] p-3 grid gap-2">
-        <div class="grid grid-cols-3 gap-2 text-xs">
-          <div class="grid gap-0.5">
-            <span class="text-emerald-400 font-semibold text-[11px]">🎯 建議買點</span>
-            <b class="num text-sm text-white font-bold">${tp.buyZone || "—"}</b>
-            <span class="text-[10px] text-slate-400 num">突破: ${tp.breakoutBuy || "—"}</span>
-          </div>
-          <div class="grid gap-0.5 border-l border-white/10 pl-2">
-            <span class="text-amber-400 font-semibold text-[11px]">💰 停利 1 / 2</span>
-            <b class="num text-sm text-amber-200 font-bold">${tp.sellTarget1 || "—"} / ${tp.sellTarget2 || "—"}</b>
-            <span class="text-[10px] text-slate-400 num">+${tp.target1Pct || 5}% / +${tp.target2Pct || 9}%</span>
-          </div>
-          <div class="grid gap-0.5 border-l border-white/10 pl-2">
-            <span class="text-rose-400 font-semibold text-[11px]">🛡️ 防守停損</span>
-            <b class="num text-sm text-rose-300 font-bold">${tp.stopLoss || "—"}</b>
-            <span class="text-[10px] text-slate-400 num">${tp.stopPct || -4}%</span>
-          </div>
+      <!-- 操作點位三格 -->
+      <div class="rounded-lg border border-white/10 bg-slate-950 p-2.5 grid grid-cols-3 gap-2 text-xs">
+        <div class="grid gap-0.5">
+          <span class="text-slate-400 text-[10px]">買進區間</span>
+          <b class="num text-sm text-emerald-400 font-bold">${tp.buyZone || "—"}</b>
+          <span class="text-[10px] text-slate-500 num">突破: ${tp.breakoutBuy || "—"}</span>
         </div>
-        <div class="text-[11px] text-slate-300 leading-relaxed border-t border-white/5 pt-1.5">
-          ${tp.buyDesc || ""}；${tp.sellDesc || ""}
+        <div class="grid gap-0.5 border-l border-white/10 pl-2">
+          <span class="text-slate-400 text-[10px]">目標價 1/2</span>
+          <b class="num text-sm text-amber-300 font-bold">${tp.sellTarget1 || "—"} / ${tp.sellTarget2 || "—"}</b>
+          <span class="text-[10px] text-slate-500 num">+${tp.target1Pct || 5}% / +${tp.target2Pct || 9}%</span>
+        </div>
+        <div class="grid gap-0.5 border-l border-white/10 pl-2">
+          <span class="text-slate-400 text-[10px]">停損價</span>
+          <b class="num text-sm text-rose-400 font-bold">${tp.stopLoss || "—"}</b>
+          <span class="text-[10px] text-slate-500 num">${tp.stopPct || -4}%</span>
         </div>
       </div>
 
-      <!-- 三大法人買賣超四格 -->
-      <div class="grid grid-cols-4 rounded-xl border border-white/10 divide-x divide-white/10 bg-slate-950/80 text-xs py-1.5" aria-label="三大法人">
-        <div class="px-2 text-center"><span class="text-slate-400 text-[10px] block">外資</span><b class="num text-xs ${cls(p.foreign)} font-bold">${signed(p.foreign || 0)}</b></div>
-        <div class="px-2 text-center"><span class="text-slate-400 text-[10px] block">投信</span><b class="num text-xs ${cls(p.trust)} font-bold">${signed(p.trust || 0)}</b></div>
-        <div class="px-2 text-center"><span class="text-slate-400 text-[10px] block">自營</span><b class="num text-xs ${cls(p.dealer)} font-bold">${signed(p.dealer || 0)}</b></div>
+      <!-- 三大法人 -->
+      <div class="grid grid-cols-4 rounded-lg border border-white/10 divide-x divide-white/10 bg-slate-950 text-xs py-1.5" aria-label="三大法人">
+        <div class="px-2 text-center"><span class="text-slate-400 text-[10px] block">外資</span><b class="num text-xs ${cls(p.foreign)} font-semibold">${signed(p.foreign || 0)}</b></div>
+        <div class="px-2 text-center"><span class="text-slate-400 text-[10px] block">投信</span><b class="num text-xs ${cls(p.trust)} font-semibold">${signed(p.trust || 0)}</b></div>
+        <div class="px-2 text-center"><span class="text-slate-400 text-[10px] block">自營</span><b class="num text-xs ${cls(p.dealer)} font-semibold">${signed(p.dealer || 0)}</b></div>
         <div class="px-2 text-center"><span class="text-slate-400 text-[10px] block">合計(張)</span><b class="num text-xs ${cls(p.inst)} font-bold">${signed(p.inst || 0)}</b></div>
       </div>
 
-      <!-- 五維度細條與關鍵指標 -->
+      <!-- 五維度細條與大戶/融資 -->
       <div class="grid gap-1">
         <div class="score-bar">${scoreBar}</div>
         <div class="flex items-center justify-between text-[11px] text-slate-400 num">
-          <span>5日法人: <b class="${cls(p.inst5d)} font-bold">${signed(p.inst5d || 0)}</b></span>
-          <span>大戶: <b class="${cls(p.bigChg || 0)} font-bold">${bigTxt}</b></span>
-          <span>融資: <b class="${cls(-(p.marginChg || 0))} font-bold">${signed(p.marginChg || 0)}</b></span>
+          <span>5日累計: <b class="${cls(p.inst5d)} font-semibold">${signed(p.inst5d || 0)}</b></span>
+          <span>大戶: <b class="${cls(p.bigChg || 0)} font-semibold">${bigTxt}</b></span>
+          <span>融資: <b class="${cls(-(p.marginChg || 0))} font-semibold">${signed(p.marginChg || 0)}</b></span>
         </div>
       </div>
 
-      <!-- 標籤與異常提示 -->
-      <div class="flex flex-wrap items-center gap-1.5 pt-1">
+      <!-- 標籤與異常 -->
+      <div class="flex flex-wrap items-center gap-1.5">
         ${anomBadges}
-        ${p.tags.map((t) => `<span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 ${t === "土洋合買" || t === "大戶增持" ? "text-amber-300 border-amber-400/20 bg-amber-400/5 font-semibold" : "text-slate-300 bg-white/5"}">${t}</span>`).join("")}
+        ${p.tags.map((t) => `<span class="text-[10px] px-2 py-0.5 rounded border border-white/10 ${t === "土洋合買" || t === "大戶增持" ? "text-amber-300 bg-amber-500/10" : "text-slate-300 bg-slate-800"}">${t}</span>`).join("")}
       </div>
 
-      <!-- 操作底部連結 -->
-      <div class="flex items-center justify-between text-xs pt-2 border-t border-white/5">
-        <button type="button" data-diagnose="${p.code}" class="text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1">
-          <span>🩺 查看深度雷達診斷 →</span>
+      <!-- 底部展開診斷 -->
+      <div class="flex items-center justify-between text-xs pt-1.5 border-t border-white/5">
+        <button type="button" data-diagnose="${p.code}" class="text-sky-400 hover:text-sky-300 font-medium">
+          查看詳細診斷 →
         </button>
-        <span class="text-[11px] text-slate-500">${p.streakDays >= 2 ? `連榜 ${p.streakDays} 日` : "今日新進榜"}</span>
+        <span class="text-[11px] text-slate-500">${p.streakDays >= 2 ? `連榜 ${p.streakDays} 日` : "今日新進"}</span>
       </div>
     </article>
     `;
   }
 
-  // 跨日異常面板
+  // 跨日異常
   function renderAnomalies(day) {
     const ca = day.crossDayAnomalies || {};
-    $("anomCompareDate").textContent = ca.prevDate ? `${day.date} 對比前交易日 ${ca.prevDate}` : `${day.date} 籌碼異動`;
+    $("anomCompareDate").textContent = ca.prevDate ? `${day.date} 對比前交易日 ${ca.prevDate}` : `${day.date} 籌碼追蹤`;
 
     document.querySelectorAll(".atab").forEach((b) => {
       const on = b.dataset.atab === state.anomTab;
-      b.className = `atab px-3 py-1.5 rounded-lg text-xs transition-colors whitespace-nowrap ${on ? "bg-white text-black font-semibold" : "border border-white/10 text-slate-400 hover:text-white"}`;
+      b.className = `atab px-3 py-1 rounded-md text-xs transition-colors whitespace-nowrap ${on ? "bg-white text-black font-semibold" : "text-slate-400 hover:text-white"}`;
     });
 
     const shifts = ca.sectorShift || [];
-    $("sectorShiftBar").innerHTML = `<span class="font-bold text-amber-300">📊 產業資金輪動：</span>` +
+    $("sectorShiftBar").innerHTML = `<span class="font-bold text-slate-300">產業資金輪動:</span>` +
       (shifts.length ? shifts.map((s) => {
         const dTxt = s.diff > 0 ? `<b class="up font-bold">+${s.diff}</b>` : s.diff < 0 ? `<b class="down font-bold">${s.diff}</b>` : `<span class="text-slate-500">持平</span>`;
-        return `<span class="px-2 py-0.5 rounded-lg bg-slate-950 border border-white/10">${s.sector} <span class="num">${s.today}檔</span> (${dTxt})</span>`;
-      }).join("") : `<span class="text-slate-500">無顯著位移</span>`);
+        return `<span class="px-2 py-0.5 rounded bg-slate-950 border border-white/10">${s.sector} <span class="num">${s.today}檔</span> (${dTxt})</span>`;
+      }).join("") : `<span class="text-slate-500">持平</span>`);
 
     const blocks = [];
     const show = (k) => state.anomTab === "all" || state.anomTab === k;
 
     if (show("reversal") && (ca.instReversalPicks || []).length) {
-      blocks.push(`<div class="rounded-2xl border border-white/10 bg-slate-900/60 p-4 grid gap-2.5 content-start">
-        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-amber-300 flex items-center gap-1.5"><span>🔄 法人賣轉買 V 型大反轉</span></h4><span class="text-[10px] text-slate-400">前日賣超 → 今日暴買</span></div>
+      blocks.push(`<div class="rounded-xl border border-white/10 bg-slate-900/60 p-3.5 grid gap-2 content-start">
+        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-amber-300">法人由賣轉買反轉</h4><span class="text-[10px] text-slate-400">前日賣超 → 今日買進</span></div>
         <div class="divide-y divide-white/5 text-xs grid">${ca.instReversalPicks.map((x) => `
-          <div class="py-2 grid gap-1">
-            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-emerald-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
+          <div class="py-1.5 grid gap-0.5">
+            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
               <span class="num font-semibold ${cls(x.chg)}">${x.close} (${x.chg > 0 ? "+" : ""}${x.chg.toFixed(2)}%)</span></div>
-            <div class="text-slate-300 text-[11px]">${x.note}</div>
-            <div class="text-emerald-400 num text-[11px]">買點 ${x.buyZone}｜停利 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
+            <div class="text-slate-400 text-[11px]">${x.note}</div>
+            <div class="text-emerald-400 num text-[11px]">買點 ${x.buyZone}｜目標 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
           </div>`).join("")}</div>
       </div>`);
     }
 
     if (show("divergence") && (ca.divergenceBuyPicks || []).length) {
-      blocks.push(`<div class="rounded-2xl border border-white/10 bg-slate-900/60 p-4 grid gap-2.5 content-start">
-        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-emerald-400 flex items-center gap-1.5"><span>🧲 價跌法人狂買 (壓低吃貨)</span></h4><span class="text-[10px] text-slate-400">背離吸籌</span></div>
+      blocks.push(`<div class="rounded-xl border border-white/10 bg-slate-900/60 p-3.5 grid gap-2 content-start">
+        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-emerald-400">價跌法人狂買 (壓低吃貨)</h4><span class="text-[10px] text-slate-400">背離吸籌</span></div>
         <div class="divide-y divide-white/5 text-xs grid">${ca.divergenceBuyPicks.map((x) => `
-          <div class="py-2 grid gap-1">
-            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-emerald-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
+          <div class="py-1.5 grid gap-0.5">
+            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
               <span class="num font-semibold ${cls(x.chg)}">${x.close} (${x.chg.toFixed(2)}%)</span></div>
-            <div class="text-slate-300 text-[11px]">${x.note}</div>
-            <div class="text-emerald-400 num text-[11px]">低接買點 ${x.buyZone}｜停利 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
+            <div class="text-slate-400 text-[11px]">${x.note}</div>
+            <div class="text-emerald-400 num text-[11px]">低接買點 ${x.buyZone}｜目標 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
           </div>`).join("")}</div>
       </div>`);
     }
 
     if (show("consecutive") && (ca.consecutivePicks || []).length) {
-      blocks.push(`<div class="rounded-2xl border border-white/10 bg-slate-900/60 p-4 grid gap-2.5 content-start">
-        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-sky-400 flex items-center gap-1.5"><span>👑 連續霸榜主力鎖碼王</span></h4><span class="text-[10px] text-slate-400">連續 ≥3 日穩居榜內</span></div>
+      blocks.push(`<div class="rounded-xl border border-white/10 bg-slate-900/60 p-3.5 grid gap-2 content-start">
+        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-sky-400">連續上榜主力鎖碼</h4><span class="text-[10px] text-slate-400">連續 ≥3 日穩居榜內</span></div>
         <div class="divide-y divide-white/5 text-xs grid">${ca.consecutivePicks.map((x) => `
-          <div class="py-2 grid gap-1">
-            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-emerald-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
+          <div class="py-1.5 grid gap-0.5">
+            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
               <span class="num font-semibold ${cls(x.chg)}">${x.close} (${x.chg > 0 ? "+" : ""}${x.chg.toFixed(2)}%)</span></div>
             <div class="text-slate-400 num text-[11px]">${x.rankHistory}｜5日法人 ${signed(x.inst5d)} 張</div>
-            <div class="text-emerald-400 num text-[11px]">買點 ${x.buyZone}｜停利 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
+            <div class="text-emerald-400 num text-[11px]">買點 ${x.buyZone}｜目標 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
           </div>`).join("")}</div>
       </div>`);
     }
 
     if (show("newsurge") && (ca.newSurgePicks || []).length) {
-      blocks.push(`<div class="rounded-2xl border border-white/10 bg-slate-900/60 p-4 grid gap-2.5 content-start">
-        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-purple-400 flex items-center gap-1.5"><span>🚀 空降前六強 & 突襲黑馬</span></h4><span class="text-[10px] text-slate-400">主力突襲點火</span></div>
+      blocks.push(`<div class="rounded-xl border border-white/10 bg-slate-900/60 p-3.5 grid gap-2 content-start">
+        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-purple-400">新進前六強 & 突襲黑馬</h4><span class="text-[10px] text-slate-400">資金快速湧入</span></div>
         <div class="divide-y divide-white/5 text-xs grid">${ca.newSurgePicks.map((x) => `
-          <div class="py-2 grid gap-1">
-            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-emerald-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
+          <div class="py-1.5 grid gap-0.5">
+            <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
               <span class="num font-semibold ${cls(x.chg)}">${x.close} (${x.chg > 0 ? "+" : ""}${x.chg.toFixed(2)}%)</span></div>
-            <div class="text-purple-200 text-[11px]">${x.tag}｜法人 +${fmt(x.inst)} 張</div>
-            <div class="text-emerald-400 num text-[11px]">買點 ${x.buyZone}｜停利 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
+            <div class="text-slate-300 text-[11px]">${x.tag}｜法人 +${fmt(x.inst)} 張</div>
+            <div class="text-emerald-400 num text-[11px]">買點 ${x.buyZone}｜目標 ${x.sellTarget1}｜停損 ${x.stopLoss}</div>
           </div>`).join("")}</div>
       </div>`);
     }
 
     if (show("alerts") && ((ca.droppedAlerts || []).length || (ca.shortTrapAlerts || []).length)) {
-      blocks.push(`<div class="rounded-2xl border border-rose-500/30 bg-rose-500/[0.03] p-4 grid gap-2.5 content-start">
-        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-rose-300 flex items-center gap-1.5"><span>⚠️ 警報標的 (跌出榜外/隔日沖)</span></h4><span class="text-[10px] text-slate-400">慎防獲利回吐</span></div>
+      blocks.push(`<div class="rounded-xl border border-rose-500/30 bg-rose-500/[0.03] p-3.5 grid gap-2 content-start">
+        <div class="flex items-center justify-between"><h4 class="text-xs font-bold text-rose-300">籌碼鬆動與隔日沖警戒</h4><span class="text-[10px] text-slate-400">注意短線回吐</span></div>
         <div class="divide-y divide-white/5 text-xs grid">
           ${(ca.droppedAlerts || []).map((x) => `
-            <div class="py-2 grid gap-1">
-              <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-emerald-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
+            <div class="py-1.5 grid gap-0.5">
+              <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
                 <span class="text-rose-400 num text-[11px]">前日 #${x.prevRank}</span></div>
-              <div class="text-slate-300 text-[11px]">${x.note}</div>
+              <div class="text-slate-400 text-[11px]">${x.note}</div>
             </div>`).join("")}
           ${(ca.shortTrapAlerts || []).map((x) => `
-            <div class="py-2 grid gap-1">
-              <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-emerald-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
+            <div class="py-1.5 grid gap-0.5">
+              <div class="flex justify-between items-center"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name} <span class="text-slate-400 num font-normal">${x.code}</span></button>
                 <span class="num up font-semibold text-[11px]">+${x.chgPct.toFixed(2)}% (爆量)</span></div>
-              <div class="text-slate-300 text-[11px]">${x.note}</div>
-              <div class="text-rose-300 num text-[11px]">當沖先賣點 ${x.dtPlan.entryZone}｜回補 ${x.dtPlan.target1}</div>
+              <div class="text-slate-400 text-[11px]">${x.note}</div>
+              <div class="text-rose-300 num text-[11px]">先賣點 ${x.dtPlan.entryZone}｜回補 ${x.dtPlan.target1}</div>
             </div>`).join("")}
         </div>
       </div>`);
     }
 
-    $("anomGrid").innerHTML = blocks.join("") || `<div class="col-span-full py-8 text-center text-slate-500 text-xs">此分類今日無顯著異常項目。</div>`;
+    $("anomGrid").innerHTML = blocks.join("") || `<div class="col-span-full py-6 text-center text-slate-500 text-xs">此分類無異動項目。</div>`;
   }
 
-  // 排行表
+  // 排行
   const pct = (v) => (v == null ? "—" : `${v.toFixed(2)}%`);
   const RANKS = [
     { data: "volumeRank", key: "volume", title: "voTitle", body: "voRows", name: "成交量", bar: (v) => fmt(v),
@@ -1388,78 +1324,79 @@ body {
     let rows = (day[cfg.data] || []).filter((x) => state.market === "全部" || x.market === state.market);
     rows = rows.slice().sort((a, b) => b[cfg.key] - a[cfg.key]).slice(0, 20);
     if (!rows.length) {
-      $(cfg.body).innerHTML = `<tr><td colspan="7" class="py-6 text-center text-slate-500">無資料。</td></tr>`;
+      $(cfg.body).innerHTML = `<tr><td colspan="7" class="py-4 text-center text-slate-500">無資料。</td></tr>`;
       return;
     }
     const max = rows[0][cfg.key];
     $(cfg.body).innerHTML = rows.map((x, i) => `<tr>
-      <td class="py-2.5 pl-4 pr-1 num text-slate-400">${i + 1}</td>
-      <td class="py-2.5 px-2 whitespace-nowrap"><button type="button" data-diagnose="${x.code}" class="font-semibold text-white hover:text-emerald-300 text-left">${x.name}</button><span class="ml-1 text-xs text-slate-400 num">${x.code}</span></td>
-      <td class="py-2.5 px-2 text-right num font-semibold">${fmt(x.close)}</td>
-      <td class="py-2.5 px-2 text-right num font-semibold ${cls(x.chgPct)}">${x.chgPct > 0 ? "+" : ""}${x.chgPct.toFixed(2)}%</td>
-      ${cfg.cols.map((f) => `<td class="py-2.5 px-2 text-right num">${f(x)}</td>`).join("")}
-      <td class="py-2.5 pl-2 pr-4 text-right num font-medium">${cfg.bar(x[cfg.key])}</td>
+      <td class="py-2 pl-3 pr-1 num text-slate-400">${i + 1}</td>
+      <td class="py-2 px-2 whitespace-nowrap"><button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name}</button><span class="ml-1 text-xs text-slate-400 num">${x.code}</span></td>
+      <td class="py-2 px-2 text-right num font-semibold">${fmt(x.close)}</td>
+      <td class="py-2 px-2 text-right num font-semibold ${cls(x.chgPct)}">${x.chgPct > 0 ? "+" : ""}${x.chgPct.toFixed(2)}%</td>
+      ${cfg.cols.map((f) => `<td class="py-2 px-2 text-right num">${f(x)}</td>`).join("")}
+      <td class="py-2 pl-2 pr-3 text-right num font-medium">${cfg.bar(x[cfg.key])}</td>
     </tr>`).join("");
   }
 
   // 當沖
   const DT_DESC = {
-    long: "做多「強勢續攻」：本日上漲、收高、三大法人買超且帶量之標的，AI 已預先試算隔日低接進場、停利與防守停損價。",
-    short: "做空「隔日沖賣壓 / 弱勢續跌」：本日大漲但三大法人未買或倒貨之標的，隔日早盤常有短線獲利了結賣壓，附先賣空點與回補買點。",
+    long: "做多「強勢續攻」：本日收高且法人買超帶量，已試算隔日低接進場、停利與防守停損價。",
+    short: "做空「隔日沖賣壓 / 弱勢續跌」：本日大漲但三大法人未買或倒貨，附早盤先賣空點與回補買點。",
   };
   function renderDayTrade(day) {
     const isLong = state.dtSide === "long";
     $("dtDesc").textContent = DT_DESC[state.dtSide];
-    $("dtColEntry").textContent = isLong ? "🎯 AI 當沖買點(低接/突破)" : "🎯 AI 先賣空點(拉高/轉弱)";
-    $("dtColTarget").textContent = isLong ? "💰 停利賣點 1 / 2" : "💰 停利回補買點 1 / 2";
-    $("dtColStop").textContent = isLong ? "🛡️ 停損賣點" : "🛡️ 停損回補點";
+    $("dtColEntry").textContent = isLong ? "當沖進場點" : "先賣空點";
+    $("dtColTarget").textContent = isLong ? "停利賣點 1/2" : "回補買點 1/2";
+    $("dtColStop").textContent = isLong ? "停損點" : "停損點";
 
     document.querySelectorAll(".dts").forEach((b) => {
       const on = b.dataset.side === state.dtSide;
-      b.className = `dts px-4 py-2 rounded-lg text-xs font-semibold transition-colors ${on ? "bg-white text-black" : "text-slate-400 hover:text-white"}`;
+      b.className = `dts px-3.5 py-1.5 rounded-md text-xs font-semibold transition-colors ${on ? "bg-white text-black" : "text-slate-400 hover:text-white"}`;
     });
 
     const rows = ((day.dayTrade || {})[state.dtSide]) || [];
     if (!rows.length) {
-      $("dtRows").innerHTML = `<tr><td colspan="10" class="py-8 text-center text-slate-500">無當沖標的資料。</td></tr>`;
+      $("dtRows").innerHTML = `<tr><td colspan="10" class="py-6 text-center text-slate-500">無當沖標的。</td></tr>`;
       return;
     }
 
     $("dtRows").innerHTML = rows.map((x) => {
       const dp = x.dtPlan || {};
+      const cleanGuide = (dp.aiGuide || "").replace(/【[^】]+】/g, "");
       return `<tr class="align-top hover:bg-white/[0.03] transition-colors">
-        <td class="py-3 pl-4 pr-1 num text-slate-400 font-bold">${x.rank}</td>
-        <td class="py-3 px-2 min-w-[280px]">
+        <td class="py-2.5 pl-4 pr-1 num text-slate-400 font-bold">${x.rank}</td>
+        <td class="py-2.5 px-2 min-w-[260px]">
           <div class="whitespace-nowrap flex items-center gap-1.5">
             ${starBtn(x.code)}
-            <button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-emerald-300 text-left">${x.name}</button>
+            <button type="button" data-diagnose="${x.code}" class="font-bold text-white hover:text-sky-300 text-left">${x.name}</button>
             <span class="text-xs text-slate-400 num">${x.code}</span>
-            <span class="text-[10px] text-slate-400">${x.market}・${x.sector}</span>
+            <span class="text-[10px] text-slate-500">${x.market}・${x.sector}</span>
           </div>
-          <div class="flex flex-wrap gap-1 mt-1">${x.tags.map((t) => `<span class="text-[10px] px-1.5 py-0.5 rounded-full ${t.includes("賣壓") || t.includes("弱勢") ? "bg-white text-black font-bold" : "border border-white/10 text-slate-300"}">${t}</span>`).join("")}</div>
-          ${dp.aiGuide ? `<div class="text-[11px] text-emerald-200/90 mt-1 leading-relaxed bg-slate-950 p-2 rounded-lg border border-white/5">${dp.aiGuide}</div>` : ""}
+          <div class="flex flex-wrap gap-1 mt-1">${x.tags.map((t) => `<span class="text-[10px] px-1.5 py-0.5 rounded ${t.includes("賣壓") || t.includes("弱勢") ? "bg-white text-black font-semibold" : "border border-white/10 text-slate-300"}">${t}</span>`).join("")}</div>
+          ${cleanGuide ? `<div class="text-[11px] text-slate-300 mt-1 leading-relaxed bg-slate-950 p-2 rounded border border-white/5">${cleanGuide}</div>` : ""}
         </td>
-        <td class="py-3 px-2 text-right num font-bold">${fmt(x.close)}</td>
-        <td class="py-3 px-2 text-right num ${cls(x.chgPct)} font-bold">${x.chgPct > 0 ? "+" : ""}${x.chgPct.toFixed(2)}%</td>
-        <td class="py-3 px-2 text-right num whitespace-nowrap"><div class="text-emerald-400 font-bold">${dp.entryZone || "—"}</div><div class="text-[10px] text-slate-400">${isLong ? "突破" : "轉弱"} ${dp.breakoutEntry || "—"}</div></td>
-        <td class="py-3 px-2 text-right num whitespace-nowrap"><div class="text-amber-300 font-bold">${dp.target1 || "—"} / ${dp.target2 || "—"}</div><div class="text-[10px] text-slate-400">${isLong ? "+2.5% / +4.5%" : "-2.0% / -4.0%"}</div></td>
-        <td class="py-3 px-2 text-right num whitespace-nowrap"><div class="text-rose-400 font-bold">${dp.stopLoss || "—"}</div><div class="text-[10px] text-slate-400">嚴守紀律</div></td>
-        <td class="py-3 px-2 text-right num whitespace-nowrap"><div>${x.turnover.toFixed(2)}%</div><div class="text-[10px] text-slate-400">當沖 ${x.dtRatio.toFixed(1)}%</div></td>
-        <td class="py-3 px-2 text-right num whitespace-nowrap"><div>${x.surge.toFixed(1)}x</div><div class="text-[10px] ${cls(x.instNet)} font-semibold">法人 ${signed(x.instNet)}</div></td>
-        <td class="py-3 pl-2 pr-4 text-right num font-bold text-white">${x.score.toFixed(1)}</td>
+        <td class="py-2.5 px-2 text-right num font-bold">${fmt(x.close)}</td>
+        <td class="py-2.5 px-2 text-right num ${cls(x.chgPct)} font-bold">${x.chgPct > 0 ? "+" : ""}${x.chgPct.toFixed(2)}%</td>
+        <td class="py-2.5 px-2 text-right num whitespace-nowrap"><div class="text-emerald-400 font-bold">${dp.entryZone || "—"}</div><div class="text-[10px] text-slate-500">${isLong ? "突破" : "轉弱"} ${dp.breakoutEntry || "—"}</div></td>
+        <td class="py-2.5 px-2 text-right num whitespace-nowrap"><div class="text-amber-300 font-bold">${dp.target1 || "—"} / ${dp.target2 || "—"}</div><div class="text-[10px] text-slate-500">${isLong ? "+2.5% / +4.5%" : "-2.0% / -4.0%"}</div></td>
+        <td class="py-2.5 px-2 text-right num whitespace-nowrap"><div class="text-rose-400 font-bold">${dp.stopLoss || "—"}</div></td>
+        <td class="py-2.5 px-2 text-right num whitespace-nowrap"><div>${x.turnover.toFixed(2)}%</div><div class="text-[10px] text-slate-400">當沖 ${x.dtRatio.toFixed(1)}%</div></td>
+        <td class="py-2.5 px-2 text-right num whitespace-nowrap"><div>${x.surge.toFixed(1)}x</div><div class="text-[10px] ${cls(x.instNet)} font-semibold">${signed(x.instNet)}</div></td>
+        <td class="py-2.5 pl-2 pr-4 text-right num font-bold text-white">${x.score.toFixed(1)}</td>
       </tr>`;
     }).join("");
   }
 
-  // 大盤指數列
+  // 大盤指數
   function renderIndices(day) {
     const d = parseDay(day.date);
     const items = (day.indices || []).map((x) => {
-      const c = cls(x.chg), arrow = x.chg > 0 ? "▲ +" : x.chg < 0 ? "▼ " : "";
-      return `<div class="flex-none grid leading-tight py-1 px-3 rounded-lg bg-slate-950/60 border border-white/5" title="${x.name}">
-        <span class="text-[10px] text-slate-400">${x.name}</span>
+      const c = cls(x.chg), arrow = x.chg > 0 ? "+" : "";
+      return `<div class="flex-none flex items-center gap-2 py-0.5 px-2.5 rounded bg-slate-950 border border-white/5" title="${x.name}">
+        <span class="text-slate-400 text-xs">${x.name}</span>
         <span class="num text-xs font-bold text-white">${x.close.toLocaleString("zh-TW", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-        <span class="num text-[11px] ${c} font-semibold">${arrow}${Math.abs(x.chg).toFixed(2)} (${x.chgPct > 0 ? "+" : ""}${x.chgPct.toFixed(2)}%)</span>
+        <span class="num text-xs ${c} font-semibold">${arrow}${x.chgPct.toFixed(2)}%</span>
       </div>`;
     }).join("");
     $("indices").innerHTML = `<span class="flex-none text-xs text-slate-400 whitespace-nowrap px-1">${d.getMonth() + 1}/${d.getDate()} 收盤</span>`
@@ -1491,16 +1428,16 @@ body {
         <td class="py-2.5 pl-4 pr-1">${starBtn(p.code)}</td>
         <td class="py-2.5 px-2 num font-bold text-slate-400">#${p.rank}</td>
         <td class="py-2.5 px-2 whitespace-nowrap">
-          <button type="button" data-diagnose="${p.code}" class="font-bold text-white hover:text-emerald-300 text-left">
+          <button type="button" data-diagnose="${p.code}" class="font-bold text-white hover:text-sky-300 text-left">
             ${p.name} <span class="text-xs text-slate-400 num font-normal">${p.code}</span>
           </button>
-          <div class="text-[10px] text-slate-400">${p.market}・${p.sector}・${gradeBadge(p.aiGrade)}</div>
+          <div class="text-[10px] text-slate-500">${p.market}・${p.sector}・${gradeBadge(p.aiGrade)}</div>
         </td>
         <td class="py-2.5 px-2 text-right num font-bold">${fmt(p.close)}</td>
         <td class="py-2.5 px-2 text-right num font-bold ${cls(p.chg)}">${p.chg > 0 ? "+" : ""}${p.chg.toFixed(2)}%</td>
         <td class="py-2.5 px-2 text-right num whitespace-nowrap text-emerald-400 font-semibold">${tp.buyZone || "—"}</td>
         <td class="py-2.5 px-2 text-right num whitespace-nowrap text-amber-300">${tp.sellTarget1 || "—"} / ${tp.sellTarget2 || "—"}</td>
-        <td class="py-2.5 px-2 text-right num whitespace-nowrap text-rose-300">${tp.stopLoss || "—"}</td>
+        <td class="py-2.5 px-2 text-right num whitespace-nowrap text-rose-400">${tp.stopLoss || "—"}</td>
         <td class="py-2.5 px-2 text-right num ${cls(p.inst)} font-semibold">${signed(p.inst || 0)}</td>
         <td class="py-2.5 px-2 text-right num ${cls(p.bigChg || 0)}">${p.bigChg != null ? (p.bigChg > 0 ? "+" : "") + p.bigChg.toFixed(2) + "%" : "—"}</td>
         <td class="py-2.5 px-2 text-right num ${cls(-(p.marginChg || 0))}">${signed(p.marginChg || 0)}</td>
@@ -1511,30 +1448,28 @@ body {
 
   function render() {
     if (!days.length) {
-      $("list").innerHTML = `<div class="col-span-full rounded-2xl border border-dashed border-white/20 p-12 text-center text-slate-400">請執行 build_site.py 匯入資料。</div>`;
+      $("list").innerHTML = `<div class="col-span-full rounded-xl border border-dashed border-white/20 p-8 text-center text-slate-500">無資料。</div>`;
       return;
     }
     const day = days.find((d) => d.date === state.day) || days[0];
 
-    // 日期切換按鈕
+    // 日期選單
     $("history").innerHTML = days.map((dd) => {
       const d = parseDay(dd.date), on = dd.date === day.date;
       return `<button type="button" data-day="${dd.date}"
-        class="flex-none px-3.5 py-1.5 rounded-xl text-xs transition-all ${on ? "bg-white text-slate-950 font-bold shadow-md shadow-white/10" : "bg-slate-950/80 hover:bg-slate-800 border border-white/10 text-slate-300"}">
+        class="flex-none px-3 py-1.5 rounded-lg text-xs transition-all ${on ? "bg-white text-slate-950 font-bold" : "bg-slate-950 hover:bg-slate-800 border border-white/10 text-slate-300"}">
         <span class="num">${d.getMonth() + 1}/${d.getDate()}</span> <span class="${on ? "text-slate-600 font-normal" : "text-slate-500"}">週${WEEK[d.getDay()]}</span>
       </button>`;
     }).join("");
 
-    // 市場切換樣式
     document.querySelectorAll(".mk").forEach((b) => {
       const on = b.dataset.market === state.market;
-      b.className = `mk px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors ${on ? "bg-white text-black" : "text-slate-400 hover:text-white"}`;
+      b.className = `mk px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${on ? "bg-white text-black" : "text-slate-400 hover:text-white"}`;
     });
 
-    // 快篩 Tag 樣式
     document.querySelectorAll(".af").forEach((b) => {
       const on = b.dataset.filter === state.filter;
-      b.className = `af flex-none px-3 py-1 rounded-full text-xs transition-colors whitespace-nowrap ${on ? "bg-white text-black font-semibold border-white" : "border border-white/10 text-slate-400 hover:text-white"}`;
+      b.className = `af flex-none px-3 py-1 rounded-lg text-xs transition-colors whitespace-nowrap ${on ? "bg-white text-black font-semibold border-white" : "border border-white/10 text-slate-400 hover:text-white"}`;
     });
 
     $("sortBy").value = state.sort;
@@ -1542,19 +1477,18 @@ body {
     const ub = day.universeByMarket || {};
     const pool = state.market === "全部" ? day.universe : (ub[state.market] ?? day.universe);
     const pending = (day.marginPending || []).filter((m) => state.market === "全部" || m === state.market);
-    $("asof").textContent = `${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()} 週${WEEK[d.getDay()]} 盤後・從 ${fmt(pool)} 檔${state.market === "全部" ? "上市櫃" : state.market}股挑選`
-      + (pending.length ? `・${pending.join("、")}融資尚未公布` : " (融資大戶已定稿)");
+    $("asof").textContent = `${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()} 週${WEEK[d.getDay()]} 盤後・合格母體 ${fmt(pool)} 檔${state.market === "全部" ? "上市櫃" : state.market}股`
+      + (pending.length ? `・${pending.join("、")}融資尚未公布` : " (融資定稿)");
 
-    // AI 總覽
     const ov = day.aiOverview || {};
-    $("aiHeadline").textContent = ov.headline || `${day.date} AI 盤後主力籌碼精選與操作方針`;
+    $("aiHeadline").textContent = ov.headline || `${day.date} 大戶籌碼與量化決策方針`;
     $("aiBadges").innerHTML = [
-      ["AI S+ 強勢", ov.sPlusCount ?? 0, "text-amber-400"],
+      ["評級 S+", ov.sPlusCount ?? 0, "text-amber-400"],
       ["土洋合買", ov.dualBuyCount ?? 0, "text-emerald-400"],
-      ["賣轉買大反轉", ov.reversalCount ?? 0, "text-purple-400"],
-      ["價跌吃貨背離", ov.divergenceCount ?? 0, "text-sky-400"],
-      ["連霸主力鎖碼", ov.consecutiveCount ?? 0, "text-pink-400"],
-    ].map(([k, v, c]) => `<span class="px-2.5 py-1 rounded-lg bg-slate-950 border border-white/10 font-medium">${k} <b class="num ${c} font-bold">${v}</b> 檔</span>`).join("");
+      ["由賣轉買", ov.reversalCount ?? 0, "text-purple-400"],
+      ["價跌吃貨", ov.divergenceCount ?? 0, "text-sky-400"],
+      ["連霸鎖碼", ov.consecutiveCount ?? 0, "text-pink-400"],
+    ].map(([k, v, c]) => `<span class="px-2 py-0.5 rounded bg-slate-950 border border-white/10 text-slate-300">${k} <b class="num ${c} font-bold">${v}</b> 檔</span>`).join("");
 
     renderAnomalies(day);
 
@@ -1586,7 +1520,7 @@ body {
       $("list").classList.remove("hidden");
       $("tableViewWrap").classList.add("hidden");
       $("list").innerHTML = rows.length ? rows.map((p) => card(p, day)).join("")
-        : `<div class="col-span-full rounded-2xl border border-dashed border-white/20 p-12 text-center text-slate-500">此篩選條件下無符合推薦股，請切換篩選標籤。</div>`;
+        : `<div class="col-span-full rounded-xl border border-dashed border-white/20 p-8 text-center text-slate-500">無符合推薦個股。</div>`;
     }
   }
 
@@ -1608,7 +1542,7 @@ body {
     }
   });
 
-  // 搜尋自動完成
+  // 搜尋
   $("docInput").addEventListener("input", (e) => {
     const q = e.target.value.trim().toLowerCase();
     const box = $("docSuggest");
@@ -1616,12 +1550,12 @@ body {
     const pool = universeDB.length ? universeDB : ((days[0] && days[0].picks) || []);
     const matches = pool.filter((x) => `${x.code} ${x.name} ${x.sector}`.toLowerCase().includes(q)).slice(0, 8);
     if (!matches.length) {
-      box.innerHTML = `<div class="px-4 py-3 text-slate-500 text-xs">找不到符合「${e.target.value}」的個股</div>`;
+      box.innerHTML = `<div class="px-3.5 py-2.5 text-slate-500 text-xs">找不到符合「${e.target.value}」的個股</div>`;
     } else {
       box.innerHTML = matches.map((x) => `
-        <button type="button" data-diagnose="${x.code}" class="w-full px-4 py-2.5 text-left hover:bg-white/10 flex items-center justify-between transition-colors">
+        <button type="button" data-diagnose="${x.code}" class="w-full px-3.5 py-2 text-left hover:bg-white/10 flex items-center justify-between transition-colors">
           <span><b class="text-white">${x.name}</b> <span class="text-slate-400 num">${x.code}</span> <span class="text-[10px] text-slate-500">(${x.market}・${x.sector})</span></span>
-          <span class="num text-xs ${cls(x.chg)} font-semibold">${x.close} (${x.chg > 0 ? "+" : ""}${x.chg.toFixed(2)}%)｜${x.score}分</span>
+          <span class="num text-xs ${cls(x.chg)} font-semibold">${x.close} (${x.chg > 0 ? "+" : ""}${x.chg.toFixed(2)}%)</span>
         </button>
       `).join("");
     }
@@ -1641,7 +1575,6 @@ body {
     }
   });
 
-  // 自選股區塊切換
   $("btnToggleWatch").addEventListener("click", () => {
     $("watchSection").classList.toggle("hidden");
   });
@@ -1652,25 +1585,22 @@ body {
     render();
   });
 
-  // 檢視模式切換 (卡片 / 表格)
   $("btnViewCards").addEventListener("click", () => {
     state.viewMode = "cards";
-    $("btnViewCards").className = "px-2.5 py-1 rounded-lg bg-white text-black font-semibold transition-all";
-    $("btnViewTable").className = "px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition-all";
+    $("btnViewCards").className = "px-2.5 py-1 rounded-md bg-white text-black font-semibold transition-all";
+    $("btnViewTable").className = "px-2.5 py-1 rounded-md text-slate-400 hover:text-white transition-all";
     render();
   });
   $("btnViewTable").addEventListener("click", () => {
     state.viewMode = "table";
-    $("btnViewTable").className = "px-2.5 py-1 rounded-lg bg-white text-black font-semibold transition-all";
-    $("btnViewCards").className = "px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition-all";
+    $("btnViewTable").className = "px-2.5 py-1 rounded-md bg-white text-black font-semibold transition-all";
+    $("btnViewCards").className = "px-2.5 py-1 rounded-md text-slate-400 hover:text-white transition-all";
     render();
   });
 
-  // 部位計算機
   $("calcCapital").addEventListener("input", updatePositionCalculator);
   $("calcRiskPct").addEventListener("change", updatePositionCalculator);
 
-  // 選股器事件
   $("scrPresets").addEventListener("click", (e) => {
     const b = e.target.closest("button[data-preset]");
     if (b) { state.scrPreset = b.dataset.preset; state.scrLimit = 30; renderScreener(); }
@@ -1688,10 +1618,9 @@ body {
   $("scrSort").addEventListener("change", (e) => { state.scrSort = e.target.value; renderScreener(); });
   $("btnScrMore").addEventListener("click", () => { state.scrLimit += 30; renderScreener(); });
 
-  // 匯出選股器 CSV
   $("btnExportScreenerCsv").addEventListener("click", () => {
     if (!currentScreenerRows.length) return;
-    const headers = ["市場","代號","名稱","產業","AI評級","AI訊號","籌碼總分","收盤價","漲跌幅(%)","今日法人(張)","5日法人(張)","千張大戶(%)","大戶週增減(%)","融資增減(張)","建議買點區間","突破買點","第一停利賣點","第二停利賣點","防守停損價"];
+    const headers = ["市場","代號","名稱","產業","評級","訊號","籌碼總分","收盤價","漲跌幅(%)","今日法人(張)","5日法人(張)","千張大戶(%)","大戶週增減(%)","融資增減(張)","買進區間","突破買點","第一目標價","第二目標價","停損價"];
     const lines = [headers.join(",")];
     for (const p of currentScreenerRows) {
       const tp = p.tradePlan || {};
@@ -1710,13 +1639,11 @@ body {
     URL.revokeObjectURL(url);
   });
 
-  // 歷史日期點擊
   $("history").addEventListener("click", (e) => {
     const b = e.target.closest("button[data-day]");
     if (b) { state.day = b.dataset.day; render(); renderDoctor(state.docCode); }
   });
 
-  // 市場與快篩 Tag
   document.querySelectorAll(".mk").forEach((b) => b.addEventListener("click", () => {
     state.market = b.dataset.market; store.set("market", state.market); render();
   }));
@@ -1732,10 +1659,9 @@ body {
   }));
   $("sortBy").addEventListener("change", (e) => { state.sort = e.target.value; store.set("sort", state.sort); render(); });
 
-  // 匯出推薦清單 CSV
   $("btnExportCsv").addEventListener("click", () => {
     if (!currentFilteredRows.length) return;
-    const headers = ["排名","市場","代號","名稱","產業","AI評級","籌碼分數","收盤價","漲跌幅(%)","5日均線","建議買點區間","突破買點","第一停利賣點","第二停利賣點","防守停損價","成交量(張)","外資(張)","投信(張)","自營商(張)","三大法人合計(張)","5日法人累計(張)","千張大戶(%)","大戶週增減(%)","融資增減(張)","跨日異常","標籤"];
+    const headers = ["排名","市場","代號","名稱","產業","評級","籌碼分數","收盤價","漲跌幅(%)","5日均線","買進區間","突破買點","第一目標價","第二目標價","停損價","成交量(張)","外資(張)","投信(張)","自營商(張)","三大法人合計(張)","5日法人累計(張)","千張大戶(%)","大戶週增減(%)","融資增減(張)","跨日異動","標籤"];
     const lines = [headers.join(",")];
     for (const p of currentFilteredRows) {
       const tp = p.tradePlan || {};
@@ -1753,12 +1679,11 @@ body {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `GETSTOCK_AI買賣點推薦_${state.day}_${state.market}.csv`;
+    a.download = `GETSTOCK_量化決策精選_${state.day}_${state.market}.csv`;
     a.click();
     URL.revokeObjectURL(url);
   });
 
-  // 初始化所有模組
   initScreenerSectors();
   renderWatchlist();
   renderScreener();

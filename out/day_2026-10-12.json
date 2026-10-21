@@ -6200,12 +6200,6 @@
     "diff": 2
    },
    {
-    "sector": "金融保險",
-    "today": 2,
-    "prev": 1,
-    "diff": 1
-   },
-   {
     "sector": "電子通路",
     "today": 2,
     "prev": 1,
@@ -6213,6 +6207,12 @@
    },
    {
     "sector": "鋼鐵",
+    "today": 2,
+    "prev": 1,
+    "diff": 1
+   },
+   {
+    "sector": "金融保險",
     "today": 2,
     "prev": 1,
     "diff": 1
