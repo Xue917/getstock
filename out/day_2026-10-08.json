@@ -7803,13 +7803,13 @@
     "diff": 2
    },
    {
-    "sector": "電機機械",
+    "sector": "生技醫療",
     "today": 4,
     "prev": 2,
     "diff": 2
    },
    {
-    "sector": "生技醫療",
+    "sector": "電機機械",
     "today": 4,
     "prev": 2,
     "diff": 2
@@ -7821,13 +7821,13 @@
     "diff": 2
    },
    {
-    "sector": "汽車",
+    "sector": "金融保險",
     "today": 2,
     "prev": 1,
     "diff": 1
    },
    {
-    "sector": "金融保險",
+    "sector": "汽車",
     "today": 2,
     "prev": 1,
     "diff": 1
