@@ -13,10 +13,11 @@
 | `build_site.py` | 把 `out/` 的推薦結果與 AI 決策總覽嵌入 `site_template.html` 與 `chips_radar.html`，產生 `index.html` |
 | `export_twse_day.py` | 把證交所某一天的盤後資料存成 CSV，並印出大盤與法人摘要 |
 | `verify_official.py` | 重新下載官方資料，核對 `out/` 的推薦股、成交量排行、指數與當沖名單是否一致 |
-| `index.html` | `build_site.py` 產生的全自動 AI 選股推薦網頁（GitHub Pages 首頁） |
-| `site_template.html` | 推薦網頁模板（整合 `daily-stock-site-main` 三大法人四格明細、官方個股連結與 `stock_chips-main` 指數、當沖、量能排行、AI 策略快篩） |
+| `index.html` | `build_site.py` 產生的全自動大戶籌碼與量化選股決策首頁（GitHub Pages 首頁） |
+| `site_template.html` | 推薦網頁模板（升級為 Start Bootstrap SB Admin 響應式儀表板架構，整合三大法人明細、官方個股連結、指數、當沖、量能排行、量化策略快篩與深淺主題切換） |
+| `css/`, `js/`, `assets/` | Start Bootstrap SB Admin 7.0.7 樣式庫、FontAwesome 6 與響應式導航核心腳本 |
 | `chips_radar.html` | 「籌碼雷達」五維度分數拆解網頁（已升級支援離線/靜態直接瀏覽全部歷史日期與市場切換） |
-| `out/` | 每日推薦結果 `day_YYYY-MM-DD.json` 與 AI 盤後投研報告 `ai_report_YYYY-MM-DD.md` |
+| `out/` | 每日推薦結果 `day_YYYY-MM-DD.json` 與盤後多因子量化投研報告 `ai_report_YYYY-MM-DD.md` |
 | `twse_YYYYMMDD/` | 證交所盤後資料 CSV，以及上市櫃成交量、週轉率前 20 名與當沖做多、做空 20 檔 |
 | `.github/workflows/daily_stock.yml` | GitHub Actions 雲端全自動每日盤後排程與自動部署腳本 |
 

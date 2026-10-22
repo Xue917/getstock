@@ -641,10 +641,17 @@ def main():
     with open(os.path.join(BASE, "site_publish.html"), "w", encoding="utf-8") as f:
         f.write(body)
     page = ('<!doctype html>\n<html lang="zh-Hant">\n<head>\n<meta charset="utf-8">\n'
-            '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+            '<meta http-equiv="X-UA-Compatible" content="IE=edge">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">\n'
+            '<title>GETSTOCK 大戶籌碼與量化選股決策系統 - SB Admin</title>\n'
             '<link rel="icon" href="images/logo.svg" type="image/svg+xml">\n'
+            '<link href="css/styles.css" rel="stylesheet">\n'
+            '<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>\n'
             "<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>\n"
-            f"</head>\n<body>\n{body}\n</body>\n</html>\n")
+            f"</head>\n<body class=\"sb-nav-fixed theme-dark\">\n{body}\n"
+            '<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>\n'
+            '<script src="js/scripts.js"></script>\n'
+            "</body>\n</html>\n")
 
     targets = [os.path.join(BASE, "index.html")]
     if os.path.isdir(os.path.dirname(SITE)):
