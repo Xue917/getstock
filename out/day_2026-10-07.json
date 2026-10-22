@@ -7570,7 +7570,13 @@
     "diff": 4
    },
    {
-    "sector": "電子通路",
+    "sector": "電機機械",
+    "today": 2,
+    "prev": 0,
+    "diff": 2
+   },
+   {
+    "sector": "塑膠",
     "today": 2,
     "prev": 0,
     "diff": 2
@@ -7582,19 +7588,13 @@
     "diff": 2
    },
    {
-    "sector": "電機機械",
+    "sector": "電子通路",
     "today": 2,
     "prev": 0,
     "diff": 2
    },
    {
     "sector": "通信網路",
-    "today": 2,
-    "prev": 0,
-    "diff": 2
-   },
-   {
-    "sector": "生技醫療",
     "today": 2,
     "prev": 0,
     "diff": 2

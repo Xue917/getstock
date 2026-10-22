@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-產生簡潔、純粹、黑白舒適不刺眼（Monochrome Dark）的專業級 site_template.html
-依使用者指示：
-1. 去 AI 化（全站使用標準量化籌碼金融用語）
-2. 全面移除 Icon（去裝飾化，無 FontAwesome，無刺眼圖標，純文字極簡排版）
-3. 投入本金預設為 0（部位計算機預設為 0 元，平穩相容 0 股）
-4. 顏色以黑白深灰（Monochrome）為主，消弭螢光藍/黃/綠/紫等刺眼色彩，保護眼睛舒適看盤
-5. 保留 8 大專業量化決策工具模組
+產生簡潔、護眼、黑白基調且側邊選單具備精緻彩色層次（Modern Financial Sidebar）的 site_template.html
+1. 解決「字都是白框根本看不到」問題：
+   - 徹底清除瀏覽器原生 buttonface 白色背景與邊框
+   - 為所有表格儲存格內的按鈕強制設置 background: transparent !important 與 border: 0 !important
+   - 將策略選股、異動分頁、當沖多空、市場切換等按鈕重構為原生 Bootstrap .btn-outline-secondary，告別白色死框
+2. 實現「旁邊選單可以有顏色變化」：
+   - 側欄三大分組（核心決策 CORE、盤面與異動 MARKET、分析工具 TOOLS）配置發光微光小圓點
+   - 8 大功能項目配置專屬彩色微光指示點（藍、金、青、紅、紫、橘、綠、靛）
+   - 各功能項目配置獨立彩色 Badge 標籤（如琥珀金 40檔、青藍 透視、玫瑰紅 多空40、翠綠 550+檔）
+   - 各功能在 Active 與 Hover 時具備專屬的平滑微光側邊框線與漸層底色
+3. 維持「去 AI 化」與「投入本金預設 0」
 """
 import os
 import re
@@ -37,10 +41,10 @@ clean_js = clean_js.replace("AI多因子", "多因子量化")
 clean_js = clean_js.replace("AI盤後", "盤後量化")
 clean_js = clean_js.replace("AI買賣點", "量價策略點位")
 
-# 自選星號鈕改為空字串，徹底清爽無 icon
+# 自選星號鈕改為空字串
 clean_js = re.sub(r'function starBtn\(code\)\s*\{.*?\n  \}', 'function starBtn(code) { return ""; }', clean_js, flags=re.S)
 
-# 替換 gradeBadge 為極簡黑白高對比量化標籤 (無任何 icon)
+# 替換 gradeBadge 為極簡黑白高對比標籤
 new_grade_badge = """
   function gradeBadge(grade) {
     if (!grade) return "";
@@ -62,7 +66,7 @@ new_grade_badge = """
 """
 clean_js = re.sub(r'function gradeBadge\(grade\)\s*\{.*?\n  \}', lambda m: new_grade_badge.strip(), clean_js, flags=re.S)
 
-# 替換 radarSvg 為極簡黑白灰階風格 (無刺眼霓虹青色，柔和易讀)
+# 替換 radarSvg 為極簡黑白灰階風格 (無刺眼霓虹青色)
 new_radar_svg = """
   function radarSvg(parts) {
     const p = parts || {};
@@ -140,12 +144,86 @@ new_calc = """
 """
 clean_js = re.sub(r'function updatePositionCalculator\(\)\s*\{.*?\n  \}', lambda m: new_calc.strip(), clean_js, flags=re.S)
 
-# 移除 renderAcademy, renderBacktest, renderWatchlist 函數定義，改為空實現
+# 解決「字都是白框根本看不到」：修復所有動態按鈕切換類別 (確保無白色原生按鈕底色)
+# 1. 策略選股機 presets
+clean_js = re.sub(
+    r'document\.querySelectorAll\("\.spreset"\)\.forEach\(\(b\) => \{[\s\S]*?\}\);',
+    lambda m: """document.querySelectorAll(".spreset").forEach((b) => {
+      const on = b.dataset.preset === state.scrPreset;
+      const isBlack = b.dataset.preset === "blacklist";
+      b.className = `spreset btn btn-sm py-1 px-3 rounded-pill text-xs whitespace-nowrap ${
+        on
+          ? isBlack ? "btn-danger fw-bold text-white" : "btn-light fw-bold text-dark"
+          : isBlack ? "btn-outline-danger" : "btn-outline-secondary text-light"
+      }`;
+    });""",
+    clean_js
+)
+
+# 2. 異動分類 tabs
+clean_js = re.sub(
+    r'document\.querySelectorAll\("\.atab"\)\.forEach\(\(b\) => \{[\s\S]*?\}\);',
+    lambda m: """document.querySelectorAll(".atab").forEach((b) => {
+      const on = b.dataset.atab === state.anomTab;
+      b.className = `atab btn btn-sm py-1 px-3 rounded-pill flex-none d-flex align-items-center gap-1.5 ${
+        on ? "btn-light fw-bold text-dark" : "btn-outline-secondary text-light"
+      }`;
+    });""",
+    clean_js
+)
+
+# 3. 當沖多空切換
+clean_js = re.sub(
+    r'document\.querySelectorAll\("\.dts"\)\.forEach\(\(b\) => \{[\s\S]*?\}\);',
+    lambda m: """document.querySelectorAll(".dts").forEach((b) => {
+      const on = b.dataset.side === state.dtSide;
+      b.className = `dts btn btn-sm px-3 py-1.5 text-xs font-semibold ${
+        on ? (b.dataset.side === "long" ? "btn-light fw-bold text-dark" : "btn-outline-danger active fw-bold text-white") : "btn-outline-secondary text-light"
+      }`;
+    });""",
+    clean_js
+)
+
+# 4. 上市/上櫃市場切換
+clean_js = re.sub(
+    r'document\.querySelectorAll\("\.mk"\)\.forEach\(\(b\) => \{[\s\S]*?\}\);',
+    lambda m: """document.querySelectorAll(".mk").forEach((b) => {
+      const on = b.dataset.market === state.market;
+      b.className = `mk btn btn-sm px-3 py-1 text-xs font-semibold ${
+        on ? "btn-light fw-bold text-dark" : "btn-outline-secondary text-light"
+      }`;
+    });""",
+    clean_js
+)
+
+# 5. 條件快篩 pills
+clean_js = re.sub(
+    r'document\.querySelectorAll\("\.af"\)\.forEach\(\(b\) => \{[\s\S]*?\}\);',
+    lambda m: """document.querySelectorAll(".af").forEach((b) => {
+      const on = b.dataset.filter === state.filter;
+      b.className = `af btn btn-sm flex-none px-2.5 py-0.5 rounded-pill text-xs whitespace-nowrap ${
+        on ? "btn-light fw-bold text-dark" : "btn-outline-secondary text-light"
+      }`;
+    });""",
+    clean_js
+)
+
+# 6. 表格內股票代號與名稱按鈕：確保其具有透明背景與無邊框類別
+clean_js = clean_js.replace(
+    '<button type="button" data-diagnose="${x.code}" class="text-left group">',
+    '<button type="button" data-diagnose="${x.code}" class="text-left group bg-transparent border-0 p-0 shadow-none text-decoration-none d-block">'
+)
+clean_js = clean_js.replace(
+    '<button type="button" data-diagnose="${p.code}" class="font-bold text-white hover:text-slate-200 text-left text-sm">',
+    '<button type="button" data-diagnose="${p.code}" class="font-bold text-white hover:text-slate-200 text-left text-sm bg-transparent border-0 p-0 shadow-none text-decoration-none d-block">'
+)
+
+# 移除 renderAcademy, renderBacktest, renderWatchlist 函數定義
 clean_js = re.sub(r'function renderAcademy\(\)\s*\{.*?\n  \}', 'function renderAcademy() {}', clean_js, flags=re.S)
 clean_js = re.sub(r'function renderBacktest\(\)\s*\{.*?\n  \}', 'function renderBacktest() {}', clean_js, flags=re.S)
 clean_js = re.sub(r'function renderWatchlist\(\)\s*\{.*?\n  \}', 'function renderWatchlist() {}', clean_js, flags=re.S)
 
-# 徹底移除已不存在的自選股監聽器（避免 null.addEventListener 阻斷執行）
+# 徹底移除已不存在的自選股監聽器
 clean_js = re.sub(
     r'\$\("btnToggleWatch"\)\.addEventListener[\s\S]*?\$\("btnClearWatch"\)\.addEventListener[\s\S]*?\}\);\s*',
     '',
@@ -177,7 +255,7 @@ clean_js = re.sub(
     clean_js
 )
 
-# 移除 card(p, day) 與 docPanel 中的高彩度刺眼螢光色，替換為黑白灰階舒適色彩
+# 柔和灰階文字替換
 clean_js = clean_js.replace('border-amber-400/30', 'border-white/15')
 clean_js = clean_js.replace('bg-amber-400 text-slate-950', 'bg-slate-200 text-slate-950')
 clean_js = clean_js.replace('text-emerald-400', 'text-slate-100')
@@ -188,15 +266,13 @@ clean_js = clean_js.replace('text-amber-300 bg-amber-500/10', 'text-slate-200 bg
 clean_js = clean_js.replace('border-emerald-500/30 bg-emerald-500/[0.04]', 'border-white/10 bg-slate-900/60')
 clean_js = clean_js.replace('border-sky-400/25', 'border-white/10')
 clean_js = clean_js.replace('text-sky-300', 'text-slate-200')
-
-# 替換 aiBadges 中的彩虹色標籤為純淨黑白文字
 clean_js = clean_js.replace('"text-amber-400"', '"text-slate-100"')
 clean_js = clean_js.replace('"text-emerald-400"', '"text-slate-100"')
 clean_js = clean_js.replace('"text-purple-400"', '"text-slate-100"')
 clean_js = clean_js.replace('"text-sky-400"', '"text-slate-100"')
 clean_js = clean_js.replace('"text-pink-400"', '"text-slate-100"')
 
-# 更新指標卡（柔和黑白文本，無刺眼螢光色彩）
+# 更新指標卡
 render_indices_patch = """
     // 更新 SB Admin 4 大狀態指標卡
     try {
@@ -243,7 +319,7 @@ if "sbCardIdx" not in clean_js:
         '  function renderIndices(day) {\n' + render_indices_patch
     )
 
-# 籌碼五維雷達專區引擎（黑白高舒適度設計，無任何 icon）
+# 籌碼五維雷達專區引擎
 radar_section_engine = """
   // ===== 籌碼五維雷達專區核心引擎 =====
   state.radarCode = null;
@@ -267,7 +343,7 @@ radar_section_engine = """
     if (!p) return;
     state.radarCode = p.code;
 
-    // 1. 更新雷達快速選股 Pills (黑白舒適樣式)
+    // 1. 更新雷達快速選股 Pills
     const topPicks = (day.picks || []).slice(0, 6);
     if ($("radarQuickPills")) {
       $("radarQuickPills").innerHTML = `
@@ -359,7 +435,7 @@ radar_section_engine = """
               `).join("")}
             </div>
 
-            <!-- 操作區間指引 (純文字無螢光色) -->
+            <!-- 操作區間指引 -->
             <div class="mt-3 p-2.5 rounded border border-secondary-subtle small num" style="background:#131519;">
               <div class="d-flex justify-content-between mb-1">
                 <span class="text-muted">建議布局區間:</span>
@@ -473,7 +549,7 @@ init_events = """
     });
   }
 
-  // 行動端點擊側選單時自動收合側欄
+  // 點擊側選單時高亮項目與收合側欄
   document.querySelectorAll("#layoutSidenav_nav a.nav-link").forEach((link) => {
     link.addEventListener("click", () => {
       const hash = link.getAttribute("href");
@@ -481,12 +557,8 @@ init_events = """
         document.querySelectorAll("#layoutSidenav_nav a.nav-link").forEach((t) => {
           if (t.getAttribute("href") === hash) {
             t.classList.add("active");
-            t.classList.add("text-light");
-            t.classList.remove("text-muted");
           } else {
             t.classList.remove("active");
-            t.classList.remove("text-light");
-            t.classList.add("text-muted");
           }
         });
       }
@@ -497,7 +569,7 @@ init_events = """
   });
 """
 
-# 側欄導航高亮監聽器（排除已移除的章節）
+# 側欄導航滾動高亮監聽器
 clean_js = re.sub(
     r'\["academy", "picks",.*?\]\.forEach\(\(id\) => \{',
     '["dashboard", "picks", "radarSection", "daytrade", "anomalies", "doctor", "screener", "rankings"].forEach((id) => {',
@@ -526,8 +598,8 @@ clean_js = clean_js.replace(
     'const rBtn = e.target.closest("[data-radar-load]");\n    if (rBtn) {\n      e.stopPropagation();\n      renderRadarSection(rBtn.dataset.radarLoad);\n      scrollToSection("radarSection");\n      return;\n    }\n    const dBtn = e.target.closest("[data-diagnose]");'
 )
 
-# 構建全新極簡黑白舒適 (Monochrome Dark) HTML 介面模板
-sb_template_html = f'''<!-- GETSTOCK 台股大戶籌碼與量化決策系統 - 黑白純淨專業版 -->
+# 構建全新極簡黑白舒適且側欄富色彩層次的 HTML 介面模板
+sb_template_html = f'''<!-- GETSTOCK 台股大戶籌碼與量化決策系統 -->
 <title>GETSTOCK 大戶籌碼與量化選股決策系統</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -561,15 +633,15 @@ sb_template_html = f'''<!-- GETSTOCK 台股大戶籌碼與量化決策系統 - �
   --bg-card-sub: #1f232b;
   --border-subtle: rgba(255, 255, 255, 0.08);
   
-  /* 台股漲跌 (柔和色階，非刺眼高亮螢光) */
-  --up: #f87171;      /* 柔和紅 (red-400) */
+  /* 台股漲跌 (柔和低飽和度) */
+  --up: #f87171;
   --up-bg: rgba(248, 113, 113, 0.12);
-  --down: #34d399;    /* 柔和綠 (emerald-400) */
+  --down: #34d399;
   --down-bg: rgba(52, 211, 153, 0.12);
   --flat: #94a3b8;
   --font-num: "Roboto Mono", Consolas, monospace;
 
-  /* 五維籌碼條：黑白灰階階梯 (非彩虹刺眼色) */
+  /* 五維籌碼條：黑白灰階階梯 */
   --s1: #f1f5f9;
   --s2: #cbd5e1;
   --s3: #94a3b8;
@@ -585,6 +657,42 @@ sb_template_html = f'''<!-- GETSTOCK 台股大戶籌碼與量化決策系統 - �
 .up-badge {{ color: var(--up) !important; background-color: var(--up-bg) !important; border: 1px solid rgba(248, 113, 113, 0.25); }}
 .down-badge {{ color: var(--down) !important; background-color: var(--down-bg) !important; border: 1px solid rgba(52, 211, 153, 0.25); }}
 
+/* 徹底消除瀏覽器原生按鈕白色 buttonface 與外框干擾 (解決「字都是白框根本看不到」) */
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {{
+  background-color: transparent;
+  background-image: none;
+  border-color: transparent;
+  color: inherit;
+  font: inherit;
+  box-shadow: none;
+  outline: none;
+}}
+button:not(.btn),
+[type='button']:not(.btn) {{
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0;
+  margin: 0;
+}}
+table td button,
+table td button:hover,
+table td button:focus,
+table td button:active {{
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: inherit !important;
+  padding: 0 !important;
+}}
+
 /* 隱藏原生滾動條與隱藏元素 */
 .no-scrollbar::-webkit-scrollbar {{ display: none; }}
 .no-scrollbar {{ -ms-overflow-style: none; scrollbar-width: none; }}
@@ -595,7 +703,7 @@ sb_template_html = f'''<!-- GETSTOCK 台股大戶籌碼與量化決策系統 - �
 .score-bar i {{ display: block; height: 100%; transition: opacity 0.15s; }}
 .score-bar i:hover {{ opacity: 0.85; }}
 
-/* 圓環進度圈 (黑白柔和色階) */
+/* 圓環進度圈 */
 .ring {{ --p: 80; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; flex: none;
   background: conic-gradient(#e2e8f0 calc(var(--p) * 1%), rgba(255,255,255,0.1) 0); }}
 .ring.s-plus {{ background: conic-gradient(#ffffff calc(var(--p) * 1%), rgba(255,255,255,0.1) 0); }}
@@ -704,37 +812,167 @@ body.theme-light .stock-card {{
   border-color: rgba(0, 0, 0, 0.1) !important;
 }}
 
-/* 側欄與導航樣式 (極簡黑白無圖標) */
+/* ==================== 旁邊選單顏色變化 (Modern Colored Financial Sidenav) ==================== */
 .sb-topnav .navbar-brand {{
   width: 225px;
   margin: 0;
 }}
 .sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {{
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
   padding: 1.15rem 1rem 0.4rem;
 }}
 .sb-sidenav .nav-link {{
-  display: flex;
-  align-items: center;
-  padding: 0.65rem 1rem;
-  font-size: 0.875rem;
+  color: #cbd5e1 !important;
+  padding: 0.65rem 1rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  border-left: 3px solid transparent !important;
+  transition: all 0.15s ease-in-out !important;
 }}
-.sb-sidenav .nav-link.active {{
-  color: #fff !important;
-  font-weight: 600;
-  background-color: rgba(255, 255, 255, 0.08);
+.sb-sidenav .nav-link:hover {{
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-left-color: rgba(255, 255, 255, 0.4) !important;
+}}
+
+/* 各項目彩色微光圓點 */
+.side-dot {{
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 10px;
+  flex-shrink: 0;
+  opacity: 0.9;
+  transition: transform 0.2s, box-shadow 0.2s;
+}}
+.sb-sidenav .nav-link:hover .side-dot {{
+  transform: scale(1.35);
+}}
+
+/* 8 大功能項目專屬 Active 狀態色彩 */
+.sb-sidenav .nav-link.side-item-blue.active {{
+  color: #93c5fd !important;
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.18) 0%, transparent 100%) !important;
+  border-left-color: #3b82f6 !important;
+}}
+.sb-sidenav .nav-link.side-item-blue.active .side-dot {{
+  box-shadow: 0 0 8px #3b82f6;
+  transform: scale(1.3);
+}}
+
+.sb-sidenav .nav-link.side-item-amber.active {{
+  color: #fde68a !important;
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.18) 0%, transparent 100%) !important;
+  border-left-color: #f59e0b !important;
+}}
+.sb-sidenav .nav-link.side-item-amber.active .side-dot {{
+  box-shadow: 0 0 8px #f59e0b;
+  transform: scale(1.3);
+}}
+
+.sb-sidenav .nav-link.side-item-cyan.active {{
+  color: #a5f3fc !important;
+  background: linear-gradient(90deg, rgba(6, 182, 212, 0.18) 0%, transparent 100%) !important;
+  border-left-color: #06b6d4 !important;
+}}
+.sb-sidenav .nav-link.side-item-cyan.active .side-dot {{
+  box-shadow: 0 0 8px #06b6d4;
+  transform: scale(1.3);
+}}
+
+.sb-sidenav .nav-link.side-item-rose.active {{
+  color: #fecdd3 !important;
+  background: linear-gradient(90deg, rgba(244, 63, 94, 0.18) 0%, transparent 100%) !important;
+  border-left-color: #f43f5e !important;
+}}
+.sb-sidenav .nav-link.side-item-rose.active .side-dot {{
+  box-shadow: 0 0 8px #f43f5e;
+  transform: scale(1.3);
+}}
+
+.sb-sidenav .nav-link.side-item-purple.active {{
+  color: #e9d5ff !important;
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.18) 0%, transparent 100%) !important;
+  border-left-color: #a855f7 !important;
+}}
+.sb-sidenav .nav-link.side-item-purple.active .side-dot {{
+  box-shadow: 0 0 8px #a855f7;
+  transform: scale(1.3);
+}}
+
+.sb-sidenav .nav-link.side-item-orange.active {{
+  color: #fed7aa !important;
+  background: linear-gradient(90deg, rgba(249, 115, 22, 0.18) 0%, transparent 100%) !important;
+  border-left-color: #f97316 !important;
+}}
+.sb-sidenav .nav-link.side-item-orange.active .side-dot {{
+  box-shadow: 0 0 8px #f97316;
+  transform: scale(1.3);
+}}
+
+.sb-sidenav .nav-link.side-item-emerald.active {{
+  color: #a7f3d0 !important;
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.18) 0%, transparent 100%) !important;
+  border-left-color: #10b981 !important;
+}}
+.sb-sidenav .nav-link.side-item-emerald.active .side-dot {{
+  box-shadow: 0 0 8px #10b981;
+  transform: scale(1.3);
+}}
+
+.sb-sidenav .nav-link.side-item-indigo.active {{
+  color: #c7d2fe !important;
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.18) 0%, transparent 100%) !important;
+  border-left-color: #6366f1 !important;
+}}
+.sb-sidenav .nav-link.side-item-indigo.active .side-dot {{
+  box-shadow: 0 0 8px #6366f1;
+  transform: scale(1.3);
+}}
+
+/* 側欄專屬徽章色彩 (高辨識度、不刺眼) */
+.side-badge-amber {{
+  background: rgba(245, 158, 11, 0.18) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+}}
+.side-badge-cyan {{
+  background: rgba(6, 182, 212, 0.18) !important;
+  color: #22d3ee !important;
+  border: 1px solid rgba(6, 182, 212, 0.4) !important;
+}}
+.side-badge-rose {{
+  background: rgba(244, 63, 94, 0.18) !important;
+  color: #fb7185 !important;
+  border: 1px solid rgba(244, 63, 94, 0.4) !important;
+}}
+.side-badge-purple {{
+  background: rgba(168, 85, 247, 0.18) !important;
+  color: #c084fc !important;
+  border: 1px solid rgba(168, 85, 247, 0.4) !important;
+}}
+.side-badge-emerald {{
+  background: rgba(16, 185, 129, 0.18) !important;
+  color: #34d399 !important;
+  border: 1px solid rgba(16, 185, 129, 0.4) !important;
+}}
+.side-badge-indigo {{
+  background: rgba(99, 102, 241, 0.18) !important;
+  color: #818cf8 !important;
+  border: 1px solid rgba(99, 102, 241, 0.4) !important;
 }}
 </style>
 
-<!-- ==================== SB ADMIN TOPNAV (去 ICON、極簡純淨) ==================== -->
+<!-- ==================== SB ADMIN TOPNAV ==================== -->
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark sticky-top border-bottom border-secondary-subtle">
-  <!-- Navbar Brand (純文字無圖標) -->
+  <!-- Navbar Brand -->
   <a class="navbar-brand ps-3 d-flex align-items-center text-decoration-none" href="#dashboard">
     <span class="fw-bold tracking-tight text-white fs-5">GETSTOCK</span>
     <span class="badge border border-secondary text-secondary ms-2 font-monospace" style="font-size: 0.65rem;">量化決策</span>
   </a>
-  <!-- Sidebar Toggle (文字式按鈕) -->
+  <!-- Sidebar Toggle -->
   <button class="btn btn-outline-secondary btn-sm order-1 order-lg-0 me-3 me-lg-0 text-light" id="sidebarToggle" type="button">
     選單
   </button>
@@ -775,44 +1013,65 @@ body.theme-light .stock-card {{
 
 <!-- ==================== SB ADMIN LAYOUT ==================== -->
 <div id="layoutSidenav">
-  <!-- ===== 左側側欄 (Sidenav: 8大核心量化功能，無 ICON 純文字) ===== -->
+  <!-- ===== 左側側欄 (Sidenav: 8大核心量化功能，精緻彩色層次指標) ===== -->
   <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
       <div class="sb-sidenav-menu">
         <div class="nav py-2">
-          <div class="sb-sidenav-menu-heading text-muted small px-3 py-2 font-monospace" style="font-size:0.7rem; letter-spacing:0.05em;">核心決策 CORE</div>
-          <a class="nav-link active py-2 px-3 text-light" href="#dashboard">
+          <!-- 分組 1: 核心決策 CORE (藍色微光指示) -->
+          <div class="sb-sidenav-menu-heading px-3 py-2 text-uppercase fw-bold d-flex align-items-center" style="color: #93c5fd;">
+            <span style="display:inline-block; width:7px; height:7px; border-radius:50%; background:#3b82f6; margin-right:8px; box-shadow:0 0 8px #3b82f6;"></span>
+            核心決策 CORE
+          </div>
+          <a class="nav-link active py-2 px-3 side-item-blue" href="#dashboard">
+            <span class="side-dot" style="background:#3b82f6;"></span>
             儀表板總覽
           </a>
-          <a class="nav-link py-2 px-3 text-muted" href="#picks">
+          <a class="nav-link py-2 px-3 side-item-amber" href="#picks">
+            <span class="side-dot" style="background:#f59e0b;"></span>
             量化籌碼精選
-            <span class="badge border border-secondary text-light ms-auto font-monospace">40檔</span>
+            <span class="badge ms-auto font-monospace side-badge-amber">40檔</span>
           </a>
-          <a class="nav-link py-2 px-3 text-muted" href="#radarSection">
+          <a class="nav-link py-2 px-3 side-item-cyan" href="#radarSection">
+            <span class="side-dot" style="background:#06b6d4;"></span>
             籌碼五維雷達
-            <span class="badge border border-secondary text-light ms-auto font-monospace">透視</span>
+            <span class="badge ms-auto font-monospace side-badge-cyan">透視</span>
           </a>
 
-          <div class="sb-sidenav-menu-heading text-muted small px-3 py-2 font-monospace" style="font-size:0.7rem; letter-spacing:0.05em;">盤面與異動 MARKET</div>
-          <a class="nav-link py-2 px-3 text-muted" href="#daytrade">
+          <!-- 分組 2: 盤面與異動 MARKET (琥珀金微光指示) -->
+          <div class="sb-sidenav-menu-heading px-3 py-2 text-uppercase fw-bold d-flex align-items-center" style="color: #fcd34d;">
+            <span style="display:inline-block; width:7px; height:7px; border-radius:50%; background:#f59e0b; margin-right:8px; box-shadow:0 0 8px #f59e0b;"></span>
+            盤面與異動 MARKET
+          </div>
+          <a class="nav-link py-2 px-3 side-item-rose" href="#daytrade">
+            <span class="side-dot" style="background:#f43f5e;"></span>
             當沖多空標的
-            <span class="badge border border-secondary text-light ms-auto font-monospace">多空40</span>
+            <span class="badge ms-auto font-monospace side-badge-rose">多空40</span>
           </a>
-          <a class="nav-link py-2 px-3 text-muted" href="#anomalies">
+          <a class="nav-link py-2 px-3 side-item-purple" href="#anomalies">
+            <span class="side-dot" style="background:#a855f7;"></span>
             跨日籌碼異常
-            <span class="badge border border-secondary text-light ms-auto font-monospace" id="sideAnomBadge">0</span>
+            <span class="badge ms-auto font-monospace side-badge-purple" id="sideAnomBadge">0</span>
           </a>
-          <a class="nav-link py-2 px-3 text-muted" href="#rankings">
+          <a class="nav-link py-2 px-3 side-item-orange" href="#rankings">
+            <span class="side-dot" style="background:#f97316;"></span>
             量能與週轉率前20
           </a>
 
-          <div class="sb-sidenav-menu-heading text-muted small px-3 py-2 font-monospace" style="font-size:0.7rem; letter-spacing:0.05em;">分析工具 TOOLS</div>
-          <a class="nav-link py-2 px-3 text-muted" href="#doctor">
+          <!-- 分組 3: 分析工具 TOOLS (翠綠微光指示) -->
+          <div class="sb-sidenav-menu-heading px-3 py-2 text-uppercase fw-bold d-flex align-items-center" style="color: #6ee7b7;">
+            <span style="display:inline-block; width:7px; height:7px; border-radius:50%; background:#10b981; margin-right:8px; box-shadow:0 0 8px #10b981;"></span>
+            分析工具 TOOLS
+          </div>
+          <a class="nav-link py-2 px-3 side-item-emerald" href="#doctor">
+            <span class="side-dot" style="background:#10b981;"></span>
             個股籌碼健檢
-            <span class="badge border border-secondary text-light ms-auto font-monospace">550+檔</span>
+            <span class="badge ms-auto font-monospace side-badge-emerald">550+檔</span>
           </a>
-          <a class="nav-link py-2 px-3 text-muted" href="#screener">
+          <a class="nav-link py-2 px-3 side-item-indigo" href="#screener">
+            <span class="side-dot" style="background:#6366f1;"></span>
             多因子策略選股
+            <span class="badge ms-auto font-monospace side-badge-indigo">選股機</span>
           </a>
         </div>
       </div>
@@ -849,7 +1108,7 @@ body.theme-light .stock-card {{
           </div>
         </div>
 
-        <!-- 4 大實戰指標卡 (黑白深灰極簡舒適，不刺眼，無圖標) -->
+        <!-- 4 大實戰指標卡 (黑白深灰極簡舒適，不刺眼) -->
         <div class="row g-3 mb-4">
           <!-- Card 1: 加權指數行情 -->
           <div class="col-xl-3 col-md-6">
@@ -908,7 +1167,7 @@ body.theme-light .stock-card {{
           </div>
         </div>
 
-        <!-- 盤後決策總覽與市場情緒指標卡片 (黑白極簡) -->
+        <!-- 盤後決策總覽與市場情緒指標卡片 -->
         <div class="card mb-4 shadow-sm border border-secondary-subtle" style="background:#181b20;">
           <div class="card-body py-3">
             <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-2">
@@ -925,7 +1184,7 @@ body.theme-light .stock-card {{
         <div class="card mb-4 shadow-sm" id="picks">
           <div class="card-header py-3">
             <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
-              <!-- 左側標題與統計 (無 ICON) -->
+              <!-- 左側標題與統計 -->
               <div class="d-flex align-items-center gap-2">
                 <h5 class="mb-0 fw-bold text-light" id="listTitle">上市量化精選</h5>
                 <span class="badge border border-secondary text-light ms-1">共 <b id="sCount" class="num text-white">20</b> 檔</span>
@@ -960,7 +1219,7 @@ body.theme-light .stock-card {{
                   <button type="button" id="btnViewTable" class="btn btn-sm btn-outline-secondary">表格</button>
                 </div>
 
-                <!-- 匯出 CSV (無 ICON) -->
+                <!-- 匯出 CSV -->
                 <button type="button" id="btnExportCsv" class="btn btn-sm btn-outline-secondary text-light" title="匯出推薦清單 CSV">
                   匯出 CSV
                 </button>
@@ -1025,7 +1284,7 @@ body.theme-light .stock-card {{
               <div class="d-flex align-items-center gap-1.5 overflow-auto no-scrollbar" id="radarQuickPills"></div>
             </div>
 
-            <!-- 維度維度切換列 -->
+            <!-- 維度切換列 -->
             <div class="d-flex align-items-center gap-1.5 overflow-auto no-scrollbar pt-2.5 mt-2 border-top border-secondary-subtle text-xs" id="radarFactorTabs">
               <span class="text-muted me-1 flex-none">維度排行:</span>
               <button type="button" data-factor="score" class="btn btn-sm btn-light active fw-bold py-0.5 px-2.5 rounded-pill flex-none">總分排行</button>
@@ -1084,7 +1343,7 @@ body.theme-light .stock-card {{
                   <span>跨日大數據籌碼異常偵測</span>
                 </h5>
               </div>
-              <!-- 異動分類按鈕 (無 ICON、黑白灰階膠囊) -->
+              <!-- 異動分類按鈕 -->
               <div class="d-flex align-items-center gap-1 overflow-auto no-scrollbar" id="anomTabs">
                 <button type="button" data-atab="all" class="atab btn btn-sm btn-light py-1 px-2.5 rounded-pill flex-none d-flex align-items-center gap-1.5">
                   <span>全部異動</span>
@@ -1192,7 +1451,7 @@ body.theme-light .stock-card {{
             <!-- 診斷主面板 -->
             <div id="docPanel" class="grid grid-cols-1 lg:grid-cols-2 gap-4"></div>
 
-            <!-- 個人部位風險試算工具 (預設投入本金為 0 元) -->
+            <!-- 個人部位風險試算工具 (預設本金 0 元) -->
             <div class="mt-4 rounded-xl border border-white/10 bg-slate-900/60 p-4">
               <div class="d-flex align-items-center justify-content-between mb-3">
                 <h6 class="mb-0 fw-bold text-light">個人部位與風險試算</h6>
@@ -1242,7 +1501,7 @@ body.theme-light .stock-card {{
                 匯出篩選結果 CSV
               </button>
             </div>
-            <!-- 策略快選 Tag (純文字膠囊) -->
+            <!-- 策略快選 Tag -->
             <div class="d-flex align-items-center gap-1.5 overflow-auto no-scrollbar pt-2.5 mt-2 border-top border-secondary-subtle text-xs" id="scrPresets">
               <span class="text-muted me-1 flex-none">策略:</span>
               <button type="button" data-preset="top" class="spreset btn btn-sm btn-light active py-0.5 px-2.5 rounded-pill flex-none">綜合首選</button>
@@ -1387,7 +1646,7 @@ body.theme-light .stock-card {{
       </div>
     </main>
 
-    <!-- ===== 頁尾 (純粹乾淨的版權宣告，無冗長免責文字) ===== -->
+    <!-- ===== 頁尾 ===== -->
     <footer class="py-3 mt-auto border-top border-secondary-subtle" style="background:#121417;">
       <div class="container-fluid px-4">
         <div class="d-flex flex-wrap align-items-center justify-content-between small text-muted gap-2">
@@ -1416,4 +1675,4 @@ output_path = os.path.join(BASE, "site_template.html")
 with open(output_path, "w", encoding="utf-8") as f:
     f.write(sb_template_html)
 
-print("成功輸出極簡黑白版 site_template.html，總大小:", len(sb_template_html))
+print("成功輸出 site_template.html，總大小:", len(sb_template_html))
