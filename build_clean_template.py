@@ -138,8 +138,8 @@ new_calc = """
 
     $("calcShares").textContent = `${fmt(recShares)} 股 (${lots} 張)`;
     $("calcCost").textContent = `買點 ${entry} 試算，需本金 ${fmt(totalCost)} 元`;
-    $("calcMaxLoss").textContent = `-${fmt(estLoss)} 元`;
-    $("calcStopPrice").textContent = `停損 ${stop} 元 (風險佔比 ${(estLoss / capital * 100).toFixed(1)}%)`;
+    $("calcMaxLoss").innerHTML = `<span class="text-emerald-400 font-bold">-${fmt(estLoss)} 元</span>`;
+    $("calcStopPrice").innerHTML = `防守停損 <b class="text-emerald-400">${stop} 元</b> (風險佔比 -${(estLoss / capital * 100).toFixed(1)}%)`;
   }
 """
 clean_js = re.sub(r'function updatePositionCalculator\(\)\s*\{.*?\n  \}', lambda m: new_calc.strip(), clean_js, flags=re.S)
@@ -328,6 +328,209 @@ clean_js = clean_js.replace('"text-purple-400"', '"text-slate-100"')
 clean_js = clean_js.replace('"text-sky-400"', '"text-slate-100"')
 clean_js = clean_js.replace('"text-pink-400"', '"text-slate-100"')
 
+# ==============================================================================
+# 台股標準邏輯替換管線 (賺紅 跌綠前加負號 買超/賣超明確標註 買紅停損綠)
+# ==============================================================================
+clean_js = clean_js.replace(
+    'const signed = (n) => (n > 0 ? "+" : "") + fmt(n);',
+    """// ===== 台股標準色彩與標註邏輯 =====
+  const fmtChg = (n) => {
+    if (n == null || isNaN(n)) return "0.00%";
+    const v = Number(n);
+    if (v > 0) return `+${v.toFixed(2)}%`;
+    if (v < 0) return `-${Math.abs(v).toFixed(2)}%`;
+    return "0.00%";
+  };
+
+  const chipsLabel = (n, suffix = "張") => {
+    if (n == null || isNaN(n)) return "—";
+    const v = Math.round(Number(n));
+    const sfx = suffix ? ` ${suffix}` : "";
+    if (v > 0) return `買超 +${fmt(v)}${sfx}`;
+    if (v < 0) return `賣超 -${fmt(Math.abs(v))}${sfx}`;
+    return `持平 0${sfx}`;
+  };
+
+  const signed = (n) => {
+    if (n == null || isNaN(n)) return "0";
+    const v = Number(n);
+    if (v > 0) return `+${fmt(v)}`;
+    if (v < 0) return `-${fmt(Math.abs(v))}`;
+    return "0";
+  };"""
+)
+
+# card 卡片邏輯
+clean_js = clean_js.replace(
+    '${p.chg > 0 ? "+" : ""}${Math.abs(p.chg).toFixed(2)}%',
+    '${fmtChg(p.chg)}'
+)
+clean_js = clean_js.replace(
+    '<b class="num text-sm sm:text-base text-slate-100 font-bold">${tp.buyZone || "—"}</b>',
+    '<b class="num text-sm sm:text-base text-rose-400 font-bold">${tp.buyZone || "—"}</b>'
+)
+clean_js = clean_js.replace(
+    '<b class="num text-sm sm:text-base text-slate-200 font-bold">${tp.sellTarget1 || "—"} / ${tp.sellTarget2 || "—"}</b>',
+    '<b class="num text-sm sm:text-base text-rose-300 font-bold">${tp.sellTarget1 || "—"} / ${tp.sellTarget2 || "—"}</b>'
+)
+clean_js = clean_js.replace(
+    '<b class="num text-sm sm:text-base text-slate-300 font-bold">${tp.stopLoss || "—"}</b>',
+    '<b class="num text-sm sm:text-base text-emerald-400 font-bold">${tp.stopLoss || "—"}</b>'
+)
+clean_js = clean_js.replace(
+    '<span class="text-xs text-slate-500 num">${tp.stopPct || -4}%</span>',
+    '<span class="text-xs text-emerald-400 num">-${Math.abs(tp.stopPct || 4)}%</span>'
+)
+clean_js = clean_js.replace(
+    '<div class="px-2 text-center"><span class="text-slate-400 text-xs block mb-0.5">外資</span><b class="num text-xs sm:text-sm ${cls(p.foreign)} font-bold">${signed(p.foreign || 0)}</b></div>',
+    '<div class="px-2 text-center"><span class="text-slate-400 text-xs block mb-0.5">外資</span><b class="num text-xs sm:text-sm ${cls(p.foreign)} font-bold whitespace-nowrap">${chipsLabel(p.foreign)}</b></div>'
+)
+clean_js = clean_js.replace(
+    '<div class="px-2 text-center"><span class="text-slate-400 text-xs block mb-0.5">投信</span><b class="num text-xs sm:text-sm ${cls(p.trust)} font-bold">${signed(p.trust || 0)}</b></div>',
+    '<div class="px-2 text-center"><span class="text-slate-400 text-xs block mb-0.5">投信</span><b class="num text-xs sm:text-sm ${cls(p.trust)} font-bold whitespace-nowrap">${chipsLabel(p.trust)}</b></div>'
+)
+clean_js = clean_js.replace(
+    '<div class="px-2 text-center"><span class="text-slate-400 text-xs block mb-0.5">自營</span><b class="num text-xs sm:text-sm ${cls(p.dealer)} font-bold">${signed(p.dealer || 0)}</b></div>',
+    '<div class="px-2 text-center"><span class="text-slate-400 text-xs block mb-0.5">自營</span><b class="num text-xs sm:text-sm ${cls(p.dealer)} font-bold whitespace-nowrap">${chipsLabel(p.dealer)}</b></div>'
+)
+clean_js = clean_js.replace(
+    '<div class="px-2 text-center"><span class="text-slate-400 text-xs block mb-0.5">法人合計</span><b class="num text-xs sm:text-sm ${cls(p.inst)} font-bold">${signed(p.inst || 0)}</b></div>',
+    '<div class="px-2 text-center"><span class="text-slate-400 text-xs block mb-0.5">法人合計</span><b class="num text-xs sm:text-sm ${cls(p.inst)} font-bold whitespace-nowrap">${chipsLabel(p.inst)}</b></div>'
+)
+clean_js = clean_js.replace(
+    '<span>5日累計: <b class="${cls(p.inst5d)} font-bold">${signed(p.inst5d || 0)}</b></span>',
+    '<span>5日累計: <b class="${cls(p.inst5d)} font-bold">${chipsLabel(p.inst5d)}</b></span>'
+)
+
+# tableRows 精選表格
+clean_js = clean_js.replace(
+    '<td class="py-2.5 px-2 text-right num font-bold ${cls(p.chg)}">${p.chg > 0 ? "+" : ""}${p.chg.toFixed(2)}%</td>',
+    '<td class="py-2.5 px-2 text-right num font-bold ${cls(p.chg)}">${fmtChg(p.chg)}</td>'
+)
+clean_js = clean_js.replace(
+    '<td class="py-2.5 px-2 text-right num whitespace-nowrap text-slate-100 font-semibold">${tp.buyZone || "—"}</td>',
+    '<td class="py-2.5 px-2 text-right num whitespace-nowrap text-rose-400 font-semibold">${tp.buyZone || "—"}</td>'
+)
+clean_js = clean_js.replace(
+    '<td class="py-2.5 px-2 text-right num whitespace-nowrap text-slate-200">${tp.sellTarget1 || "—"} / ${tp.sellTarget2 || "—"}</td>',
+    '<td class="py-2.5 px-2 text-right num whitespace-nowrap text-rose-300">${tp.sellTarget1 || "—"} / ${tp.sellTarget2 || "—"}</td>'
+)
+clean_js = clean_js.replace(
+    '<td class="py-2.5 px-2 text-right num whitespace-nowrap text-slate-300">${tp.stopLoss || "—"}</td>',
+    '<td class="py-2.5 px-2 text-right num whitespace-nowrap text-emerald-400 font-semibold">${tp.stopLoss || "—"}</td>'
+)
+clean_js = clean_js.replace(
+    '<td class="py-2.5 px-2 text-right num ${cls(p.inst)} font-semibold">${signed(p.inst || 0)}</td>',
+    '<td class="py-2.5 px-2 text-right num ${cls(p.inst)} font-bold whitespace-nowrap">${chipsLabel(p.inst)}</td>'
+)
+
+# scrRows 策略選股表格
+clean_js = clean_js.replace(
+    '<td class="py-2.5 px-2 text-right num ${cls(x.chg)} font-bold">${x.chg > 0 ? "+" : ""}${(x.chg || 0).toFixed(2)}%</td>',
+    '<td class="py-2.5 px-2 text-right num ${cls(x.chg)} font-bold">${fmtChg(x.chg)}</td>'
+)
+clean_js = clean_js.replace(
+    '<td class="py-2.5 px-2 text-right num ${cls(x.inst)} font-semibold">${signed(x.inst || 0)}</td>',
+    '<td class="py-2.5 px-2 text-right num ${cls(x.inst)} font-bold whitespace-nowrap">${chipsLabel(x.inst)}</td>'
+)
+clean_js = clean_js.replace(
+    '<td class="py-2.5 px-2 text-right num ${cls(x.inst5d)}">${signed(x.inst5d || 0)}</td>',
+    '<td class="py-2.5 px-2 text-right num ${cls(x.inst5d)} font-bold whitespace-nowrap">${chipsLabel(x.inst5d)}</td>'
+)
+clean_js = clean_js.replace(
+    """<td class="py-2.5 px-2 text-right num whitespace-nowrap text-slate-100 font-semibold">${isBad ? "<span class='text-rose-300'>反彈減碼</span>" : (tp.buyZone || "—")}</td>""",
+    """<td class="py-2.5 px-2 text-right num whitespace-nowrap text-rose-400 font-semibold">${isBad ? "<span class='text-emerald-300'>反彈減碼</span>" : (tp.buyZone || "—")}</td>"""
+)
+clean_js = clean_js.replace(
+    """<td class="py-2.5 px-2 text-right num whitespace-nowrap"><span class="text-slate-200">${tp.sellTarget1 || "—"}</span> / <span class="text-rose-300">${tp.stopLoss || "—"}</span></td>""",
+    """<td class="py-2.5 px-2 text-right num whitespace-nowrap"><span class="text-rose-300">${tp.sellTarget1 || "—"}</span> / <span class="text-emerald-400 font-semibold">${tp.stopLoss || "—"}</span></td>"""
+)
+
+# dtRows 當沖表格
+clean_js = clean_js.replace(
+    '<td class="py-2.5 px-2 text-right num ${cls(x.chgPct)} font-bold">${x.chgPct > 0 ? "+" : ""}${x.chgPct.toFixed(2)}%</td>',
+    '<td class="py-2.5 px-2 text-right num ${cls(x.chgPct)} font-bold">${fmtChg(x.chgPct)}</td>'
+)
+clean_js = clean_js.replace(
+    '<div class="text-slate-100 font-bold">${dp.entryZone || "—"}</div>',
+    '<div class="text-rose-400 font-bold">${dp.entryZone || "—"}</div>'
+)
+clean_js = clean_js.replace(
+    '<div class="text-slate-200 font-bold">${dp.target1 || "—"} / ${dp.target2 || "—"}</div>',
+    '<div class="text-rose-300 font-bold">${dp.target1 || "—"} / ${dp.target2 || "—"}</div>'
+)
+clean_js = clean_js.replace(
+    '<div class="text-slate-300 font-bold">${dp.stopLoss || "—"}</div>',
+    '<div class="text-emerald-400 font-bold">${dp.stopLoss || "—"}</div>'
+)
+clean_js = clean_js.replace(
+    '<div class="text-xs ${cls(x.instNet)} font-semibold">${signed(x.instNet)}</div>',
+    '<div class="text-xs ${cls(x.instNet)} font-bold whitespace-nowrap">${chipsLabel(x.instNet)}</div>'
+)
+
+# renderDoctor 個股健檢
+clean_js = clean_js.replace(
+    '<div class="text-sm font-bold num ${cls(p.chg)}">${p.chg > 0 ? "+" : ""}${Math.abs(p.chg || 0).toFixed(2)}%</div>',
+    '<div class="text-sm font-bold num ${cls(p.chg)}">${fmtChg(p.chg)}</div>'
+)
+clean_js = clean_js.replace(
+    '<b class="text-base sm:text-lg text-slate-100 num font-bold">${tp.buyZone || "—"}</b>',
+    '<b class="text-base sm:text-lg text-rose-400 num font-bold">${tp.buyZone || "—"}</b>'
+)
+clean_js = clean_js.replace(
+    '<b class="text-base sm:text-lg text-slate-300 num font-bold">${tp.stopLoss || "—"}</b>',
+    '<b class="text-base sm:text-lg text-emerald-400 num font-bold">${tp.stopLoss || "—"}</b>'
+)
+clean_js = clean_js.replace(
+    '<div class="rounded-lg border border-white/5 bg-slate-950 p-2.5"><span class="text-slate-400 text-xs block mb-0.5">外資 (連買)</span><b class="num text-sm sm:text-base ${cls(p.foreign)} font-bold">${signed(p.foreign || 0)} (${p.foreignStreak || 0}日)</b></div>',
+    '<div class="rounded-lg border border-white/5 bg-slate-950 p-2.5"><span class="text-slate-400 text-xs block mb-0.5">外資 (今日)</span><b class="num text-sm sm:text-base ${cls(p.foreign)} font-bold whitespace-nowrap">${chipsLabel(p.foreign)} <span class="text-xs text-slate-400 font-normal">(${p.foreignStreak || 0}日)</span></b></div>'
+)
+clean_js = clean_js.replace(
+    '<div class="rounded-lg border border-white/5 bg-slate-950 p-2.5"><span class="text-slate-400 text-xs block mb-0.5">投信 (連買)</span><b class="num text-sm sm:text-base ${cls(p.trust)} font-bold">${signed(p.trust || 0)} (${p.trustStreak || 0}日)</b></div>',
+    '<div class="rounded-lg border border-white/5 bg-slate-950 p-2.5"><span class="text-slate-400 text-xs block mb-0.5">投信 (今日)</span><b class="num text-sm sm:text-base ${cls(p.trust)} font-bold whitespace-nowrap">${chipsLabel(p.trust)} <span class="text-xs text-slate-400 font-normal">(${p.trustStreak || 0}日)</span></b></div>'
+)
+clean_js = clean_js.replace(
+    '近 5 日法人買賣超 (累計 <b class="num ${cls(p.inst5d)}">${signed(p.inst5d || 0)}</b>)',
+    '近 5 日法人買賣超 (累計 <b class="num ${cls(p.inst5d)} font-bold">${chipsLabel(p.inst5d)}</b>)'
+)
+clean_js = clean_js.replace(
+    'else if (fNet > 0) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-white/10 text-xs">外資買超</span>`);',
+    'else if (fNet > 0) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-semibold">外資買超 +${fmt(fNet)} 張</span>`);'
+)
+clean_js = clean_js.replace(
+    'else if (fNet < 0) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs">外資賣超</span>`);',
+    'else if (fNet < 0) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">外資賣超 -${fmt(Math.abs(fNet))} 張</span>`);'
+)
+clean_js = clean_js.replace(
+    'else if (tNet > 0) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-white/10 text-xs">投信買超</span>`);',
+    'else if (tNet > 0) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-semibold">投信買超 +${fmt(tNet)} 張</span>`);'
+)
+clean_js = clean_js.replace(
+    'else if (tNet < 0) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs">投信賣超</span>`);',
+    'else if (tNet < 0) factorBadges.push(`<span class="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">投信賣超 -${fmt(Math.abs(tNet))} 張</span>`);'
+)
+
+# 大盤跑馬燈漲跌負號
+clean_js = clean_js.replace(
+    '${arrow}${x.chgPct.toFixed(2)}%',
+    '${fmtChg(x.chgPct)}'
+)
+
+# 部位計算機停損與最大虧損 (台股防守停損綠色與負號)
+clean_js = clean_js.replace(
+    '$("calcMaxLoss").innerHTML = `<span class="text-slate-100 font-bold">-${fmt(estLoss)} 元</span>`;',
+    '$("calcMaxLoss").innerHTML = `<span class="text-emerald-400 font-bold">-${fmt(estLoss)} 元</span>`;'
+)
+clean_js = clean_js.replace(
+    '$("calcStopPrice").innerHTML = `防守停損 <b class="text-slate-100">${stop} 元</b>',
+    '$("calcStopPrice").innerHTML = `防守停損 <b class="text-emerald-400">${stop} 元</b>'
+)
+clean_js = clean_js.replace(
+    '$("calcMaxLoss").textContent = "$0 元";',
+    '$("calcMaxLoss").innerHTML = `<span class="text-emerald-400 font-bold">-$0 元</span>`;'
+)
+
+
 # 診斷與個股快捷按鈕彩色化
 clean_js = clean_js.replace(
     '''<button type="button" id="btnDocTabKline" class="doc-rtab px-3 py-1.5 rounded-lg ${state.docRightTab === 'kline' ? 'bg-white text-black font-bold shadow-sm' : 'text-slate-400 hover:text-white'} transition-all">''',
@@ -384,7 +587,7 @@ render_indices_patch = """
       const twseIdx = (day.indices || []).find(x => x.name && (x.name.includes("加權") || x.name.includes("發行量加權"))) || (day.indices || [])[0];
       if (twseIdx && $("sbCardIdx")) {
         const s = twseIdx.change > 0 ? "+" : "";
-        $("sbCardIdx").innerHTML = `${fmt(twseIdx.close)} <small class="${cls(twseIdx.change)} fs-6 ms-1">${s}${(twseIdx.changePct || 0).toFixed(2)}%</small>`;
+        $("sbCardIdx").innerHTML = `${fmt(twseIdx.close)} <small class="${cls(twseIdx.change)} fs-6 ms-1">${fmtChg(twseIdx.changePct)}</small>`;
         if ($("sbCardIdxSub")) $("sbCardIdxSub").textContent = twseIdx.change != null ? `點數變動: ${s}${fmt(twseIdx.change)} 點` : "收盤行情定稿";
       }
       const ov = day.aiOverview || {};
@@ -473,6 +676,10 @@ radar_section_engine = """
     const marginChg = p.marginChg ?? 0;
 
     if (fNet > 0 && tNet > 0) factorBadges.push(`<span class="badge border border-secondary text-light bg-dark px-2 py-0.5 font-monospace">土洋合買</span>`);
+    if (fNet > 0) factorBadges.push(`<span class="badge border border-danger text-danger bg-dark px-2 py-0.5 font-monospace">外資買超 +${fmt(fNet)} 張</span>`);
+    else if (fNet < 0) factorBadges.push(`<span class="badge border border-success text-success bg-dark px-2 py-0.5 font-monospace">外資賣超 -${fmt(Math.abs(fNet))} 張</span>`);
+    if (tNet > 0) factorBadges.push(`<span class="badge border border-danger text-danger bg-dark px-2 py-0.5 font-monospace">投信買超 +${fmt(tNet)} 張</span>`);
+    else if (tNet < 0) factorBadges.push(`<span class="badge border border-success text-success bg-dark px-2 py-0.5 font-monospace">投信賣超 -${fmt(Math.abs(tNet))} 張</span>`);
     if (fStreak >= 2) factorBadges.push(`<span class="badge border border-secondary text-light bg-dark px-2 py-0.5 font-monospace">外資連買 ${fStreak} 日</span>`);
     if (tStreak >= 2) factorBadges.push(`<span class="badge border border-secondary text-light bg-dark px-2 py-0.5 font-monospace">投信連買 ${tStreak} 日</span>`);
     if (bigChg != null && bigChg >= 0.3) factorBadges.push(`<span class="badge border border-secondary text-light bg-dark px-2 py-0.5 font-monospace">大戶週增 +${bigChg.toFixed(2)}%</span>`);
@@ -540,19 +747,19 @@ radar_section_engine = """
               `).join("")}
             </div>
 
-            <!-- 操作區間指引 -->
+            <!-- 操作區間指引 (台股慣例：買紅停損綠) -->
             <div class="mt-3 p-2.5 rounded border border-secondary-subtle small num" style="background:#131519;">
               <div class="d-flex justify-content-between mb-1">
                 <span class="text-muted">建議布局區間:</span>
-                <b class="text-light">${tp.buyZone || "—"} (突破買點: ${tp.breakoutBuy || "—"})</b>
+                <b class="text-rose-400 font-bold">${tp.buyZone || "—"} (突破買點: ${tp.breakoutBuy || "—"})</b>
               </div>
               <div class="d-flex justify-content-between mb-1">
                 <span class="text-muted">目標價位 1/2:</span>
-                <b class="text-light">${tp.sellTarget1 || "—"} / ${tp.sellTarget2 || "—"}</b>
+                <b class="text-rose-300 font-bold">${tp.sellTarget1 || "—"} / ${tp.sellTarget2 || "—"}</b>
               </div>
               <div class="d-flex justify-content-between">
                 <span class="text-muted">防守停損價位:</span>
-                <b class="text-muted">${tp.stopLoss || "—"} (${tp.stopPct || -4}%)</b>
+                <b class="text-emerald-400 font-bold">${tp.stopLoss || "—"} (-${Math.abs(tp.stopPct || 4)}%)</b>
               </div>
             </div>
           </div>
@@ -602,7 +809,7 @@ radar_section_engine = """
               <span class="text-muted num small ms-1">(${x.code})</span>
             </td>
             <td class="text-end num text-white">${fmt(x.close)}</td>
-            <td class="text-end num ${cls(x.chg)} font-bold">${x.chg > 0 ? '+' : ''}${(x.chg || 0).toFixed(2)}%</td>
+            <td class="text-end num ${cls(x.chg)} font-bold">${fmtChg(x.chg)}</td>
             <td style="min-width: 100px;">
               <div class="score-bar">${scoreBar}</div>
             </td>
@@ -1542,9 +1749,9 @@ body.theme-light .stock-card {{
                     <th class="py-2 px-2">代號 / 股票</th>
                     <th class="py-2 px-2 text-end">收盤</th>
                     <th class="py-2 px-2 text-end">漲跌幅</th>
-                    <th class="py-2 px-2 text-end text-light">買進區間</th>
-                    <th class="py-2 px-2 text-end text-light">目標價 1/2</th>
-                    <th class="py-2 px-2 text-end text-muted">停損價</th>
+                    <th class="py-2 px-2 text-end text-rose-300">建議買進</th>
+                    <th class="py-2 px-2 text-end text-rose-300">目標價 1/2</th>
+                    <th class="py-2 px-2 text-end text-emerald-400">防守停損</th>
                     <th class="py-2 px-2 text-end">法人合計</th>
                     <th class="py-2 px-2 text-end">大戶週增</th>
                     <th class="py-2 px-2 text-end">融資增減</th>
@@ -1698,9 +1905,9 @@ body.theme-light .stock-card {{
                     <th class="py-2.5 px-2">代號 / 股票 / 當沖理由</th>
                     <th class="py-2.5 px-2 text-end">收盤</th>
                     <th class="py-2.5 px-2 text-end">漲跌幅</th>
-                    <th class="py-2.5 px-2 text-end text-light" id="dtColEntry">當沖進場點</th>
-                    <th class="py-2.5 px-2 text-end text-light" id="dtColTarget">停利目標 1/2</th>
-                    <th class="py-2.5 px-2 text-end text-muted" id="dtColStop">停損點</th>
+                    <th class="py-2.5 px-2 text-end text-rose-300" id="dtColEntry">當沖進場點</th>
+                    <th class="py-2.5 px-2 text-end text-rose-300" id="dtColTarget">停利目標 1/2</th>
+                    <th class="py-2.5 px-2 text-end text-emerald-400" id="dtColStop">停損點</th>
                     <th class="py-2.5 px-2 text-end">週轉/當沖比</th>
                     <th class="py-2.5 px-2 text-end">量增/法人</th>
                     <th class="py-2.5 px-2 text-end">分數</th>
@@ -1768,7 +1975,7 @@ body.theme-light .stock-card {{
                 </div>
                 <div class="rounded-lg bg-slate-950 p-3 flex flex-col justify-center border border-white/5">
                   <span class="text-slate-400 text-xs">觸發停損最大虧損</span>
-                  <b id="calcMaxLoss" class="text-lg text-slate-300 num font-bold mt-0.5">$0 元</b>
+                  <b id="calcMaxLoss" class="text-lg text-emerald-400 num font-bold mt-0.5">-$0 元</b>
                   <span id="calcStopPrice" class="text-xs text-slate-400 truncate mt-0.5">—</span>
                 </div>
               </div>
@@ -1859,8 +2066,8 @@ body.theme-light .stock-card {{
                     <th class="py-2.5 px-2 text-end">5日法人</th>
                     <th class="py-2.5 px-2 text-end">大戶週增</th>
                     <th class="py-2.5 px-2 text-end">融資增減</th>
-                    <th class="py-2.5 px-2 text-end text-light">買進區間</th>
-                    <th class="py-2.5 px-2 text-end text-light">目標 / 停損</th>
+                    <th class="py-2.5 px-2 text-end text-rose-300">建議買進</th>
+                    <th class="py-2.5 px-2 text-end"><span class="text-rose-300">目標</span> / <span class="text-emerald-400">停損</span></th>
                     <th class="py-2.5 px-2 text-end">分數</th>
                   </tr>
                 </thead>

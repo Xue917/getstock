@@ -8279,25 +8279,25 @@
     "diff": 2
    },
    {
-    "sector": "建材營造",
-    "today": 3,
-    "prev": 1,
-    "diff": 2
-   },
-   {
     "sector": "電腦週邊",
     "today": 3,
     "prev": 1,
     "diff": 2
    },
    {
-    "sector": "光電",
+    "sector": "建材營造",
+    "today": 3,
+    "prev": 1,
+    "diff": 2
+   },
+   {
+    "sector": "生技醫療",
     "today": 2,
     "prev": 2,
     "diff": 0
    },
    {
-    "sector": "生技醫療",
+    "sector": "光電",
     "today": 2,
     "prev": 2,
     "diff": 0
