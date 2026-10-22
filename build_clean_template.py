@@ -144,67 +144,123 @@ new_calc = """
 """
 clean_js = re.sub(r'function updatePositionCalculator\(\)\s*\{.*?\n  \}', lambda m: new_calc.strip(), clean_js, flags=re.S)
 
-# 解決「字都是白框根本看不到」：修復所有動態按鈕切換類別 (確保無白色原生按鈕底色)
-# 1. 策略選股機 presets
+# 按鈕彩色化系統 (按鈕的都可以有顏色來區分，不再全都是灰白底)
+# 1. 策略選股機 presets (金、紅、青、綠、橘、水藍、紫、深紅)
+spreset_code = """
+    const scrStyles = {
+      top: { active: "btn-amber fw-bold text-dark shadow-sm", inactive: "btn-outline-amber" },
+      dual: { active: "btn-danger fw-bold text-white shadow-sm", inactive: "btn-outline-danger" },
+      trust: { active: "btn-info fw-bold text-white shadow-sm", inactive: "btn-outline-info" },
+      whale: { active: "btn-success fw-bold text-white shadow-sm", inactive: "btn-outline-success" },
+      squeeze: { active: "btn-orange fw-bold text-white shadow-sm", inactive: "btn-outline-orange" },
+      dipbuy: { active: "btn-cyan fw-bold text-white shadow-sm", inactive: "btn-outline-cyan" },
+      turnaround: { active: "btn-purple fw-bold text-white shadow-sm", inactive: "btn-outline-purple" },
+      blacklist: { active: "btn-danger fw-bold text-white shadow-sm", inactive: "btn-outline-danger" },
+    };
+    document.querySelectorAll(".spreset").forEach((b) => {
+      const on = b.dataset.preset === state.scrPreset;
+      const s = scrStyles[b.dataset.preset] || { active: "btn-light fw-bold text-dark", inactive: "btn-outline-secondary text-light" };
+      b.className = `spreset btn btn-sm py-1 px-3 rounded-pill text-xs whitespace-nowrap ${
+        on ? s.active : s.inactive
+      }`;
+    });
+"""
 clean_js = re.sub(
     r'document\.querySelectorAll\("\.spreset"\)\.forEach\(\(b\) => \{[\s\S]*?\}\);',
-    lambda m: """document.querySelectorAll(".spreset").forEach((b) => {
-      const on = b.dataset.preset === state.scrPreset;
-      const isBlack = b.dataset.preset === "blacklist";
-      b.className = `spreset btn btn-sm py-1 px-3 rounded-pill text-xs whitespace-nowrap ${
-        on
-          ? isBlack ? "btn-danger fw-bold text-white" : "btn-light fw-bold text-dark"
-          : isBlack ? "btn-outline-danger" : "btn-outline-secondary text-light"
-      }`;
-    });""",
+    lambda m: spreset_code.strip(),
     clean_js
 )
 
-# 2. 異動分類 tabs
+# 2. 異動分類 tabs (灰、青、紫、靛、金、紅)
+atab_code = """
+    const anomStyles = {
+      all: { active: "btn-light fw-bold text-dark shadow-sm", inactive: "btn-outline-secondary text-light" },
+      reversal: { active: "btn-info fw-bold text-white shadow-sm", inactive: "btn-outline-info" },
+      divergence: { active: "btn-purple fw-bold text-white shadow-sm", inactive: "btn-outline-purple" },
+      consecutive: { active: "btn-indigo fw-bold text-white shadow-sm", inactive: "btn-outline-indigo" },
+      newsurge: { active: "btn-amber fw-bold text-dark shadow-sm", inactive: "btn-outline-amber" },
+      alerts: { active: "btn-danger fw-bold text-white shadow-sm", inactive: "btn-outline-danger" },
+    };
+    document.querySelectorAll(".atab").forEach((b) => {
+      const on = b.dataset.atab === state.anomTab;
+      const s = anomStyles[b.dataset.atab] || anomStyles.all;
+      b.className = `atab btn btn-sm py-1 px-3 rounded-pill flex-none d-flex align-items-center gap-1.5 ${
+        on ? s.active : s.inactive
+      }`;
+    });
+"""
 clean_js = re.sub(
     r'document\.querySelectorAll\("\.atab"\)\.forEach\(\(b\) => \{[\s\S]*?\}\);',
-    lambda m: """document.querySelectorAll(".atab").forEach((b) => {
-      const on = b.dataset.atab === state.anomTab;
-      b.className = `atab btn btn-sm py-1 px-3 rounded-pill flex-none d-flex align-items-center gap-1.5 ${
-        on ? "btn-light fw-bold text-dark" : "btn-outline-secondary text-light"
-      }`;
-    });""",
+    lambda m: atab_code.strip(),
     clean_js
 )
 
-# 3. 當沖多空切換
+# 3. 當沖多空切換 (做多亮紅 / 做空亮綠)
+dts_code = """
+    document.querySelectorAll(".dts").forEach((b) => {
+      const on = b.dataset.side === state.dtSide;
+      const isLong = b.dataset.side === "long";
+      if (isLong) {
+        b.className = `dts btn btn-sm px-3.5 py-1.5 text-xs font-semibold ${
+          on ? "btn-danger active fw-bold text-white shadow-sm" : "btn-outline-danger"
+        }`;
+      } else {
+        b.className = `dts btn btn-sm px-3.5 py-1.5 text-xs font-semibold ${
+          on ? "btn-success active fw-bold text-white shadow-sm" : "btn-outline-success"
+        }`;
+      }
+    });
+"""
 clean_js = re.sub(
     r'document\.querySelectorAll\("\.dts"\)\.forEach\(\(b\) => \{[\s\S]*?\}\);',
-    lambda m: """document.querySelectorAll(".dts").forEach((b) => {
-      const on = b.dataset.side === state.dtSide;
-      b.className = `dts btn btn-sm px-3 py-1.5 text-xs font-semibold ${
-        on ? (b.dataset.side === "long" ? "btn-light fw-bold text-dark" : "btn-outline-danger active fw-bold text-white") : "btn-outline-secondary text-light"
-      }`;
-    });""",
+    lambda m: dts_code.strip(),
     clean_js
 )
 
-# 4. 上市/上櫃市場切換
+# 4. 上市/上櫃市場切換 (上市亮藍 / 上櫃亮紫 / 全部亮靛)
+mk_code = """
+    const mkMap = {
+      "上市": { active: "btn-primary active fw-bold text-white shadow-sm", inactive: "btn-outline-primary" },
+      "上櫃": { active: "btn-purple active fw-bold text-white shadow-sm", inactive: "btn-outline-purple" },
+      "全部": { active: "btn-indigo active fw-bold text-white shadow-sm", inactive: "btn-outline-indigo" },
+    };
+    document.querySelectorAll(".mk").forEach((b) => {
+      const on = b.dataset.market === state.market;
+      const s = mkMap[b.dataset.market] || { active: "btn-light fw-bold text-dark", inactive: "btn-outline-secondary text-light" };
+      b.className = `mk btn btn-sm px-3 py-1 text-xs font-semibold ${
+        on ? s.active : s.inactive
+      }`;
+    });
+"""
 clean_js = re.sub(
     r'document\.querySelectorAll\("\.mk"\)\.forEach\(\(b\) => \{[\s\S]*?\}\);',
-    lambda m: """document.querySelectorAll(".mk").forEach((b) => {
-      const on = b.dataset.market === state.market;
-      b.className = `mk btn btn-sm px-3 py-1 text-xs font-semibold ${
-        on ? "btn-light fw-bold text-dark" : "btn-outline-secondary text-light"
-      }`;
-    });""",
+    lambda m: mk_code.strip(),
     clean_js
 )
 
-# 5. 條件快篩 pills
+# 5. 條件快篩 pills (全部/S+金/合買紅/反轉青/價跌吃貨紫/大戶綠/融資橘/連買靛)
+af_code = """
+    const afStyles = {
+      all: { active: "btn-light fw-bold text-dark shadow-sm", inactive: "btn-outline-secondary text-light" },
+      splus: { active: "btn-amber fw-bold text-dark shadow-sm", inactive: "btn-outline-amber" },
+      dual: { active: "btn-danger fw-bold text-white shadow-sm", inactive: "btn-outline-danger" },
+      reversal: { active: "btn-info fw-bold text-white shadow-sm", inactive: "btn-outline-info" },
+      divergence: { active: "btn-purple fw-bold text-white shadow-sm", inactive: "btn-outline-purple" },
+      big: { active: "btn-success fw-bold text-white shadow-sm", inactive: "btn-outline-success" },
+      margin: { active: "btn-orange fw-bold text-white shadow-sm", inactive: "btn-outline-orange" },
+      streak: { active: "btn-indigo fw-bold text-white shadow-sm", inactive: "btn-outline-indigo" },
+    };
+    document.querySelectorAll(".af").forEach((b) => {
+      const on = b.dataset.filter === state.filter;
+      const s = afStyles[b.dataset.filter] || { active: "btn-light fw-bold text-dark", inactive: "btn-outline-secondary text-light" };
+      b.className = `af btn btn-sm flex-none px-2.5 py-0.5 rounded-pill text-xs whitespace-nowrap ${
+        on ? s.active : s.inactive
+      }`;
+    });
+"""
 clean_js = re.sub(
     r'document\.querySelectorAll\("\.af"\)\.forEach\(\(b\) => \{[\s\S]*?\}\);',
-    lambda m: """document.querySelectorAll(".af").forEach((b) => {
-      const on = b.dataset.filter === state.filter;
-      b.className = `af btn btn-sm flex-none px-2.5 py-0.5 rounded-pill text-xs whitespace-nowrap ${
-        on ? "btn-light fw-bold text-dark" : "btn-outline-secondary text-light"
-      }`;
-    });""",
+    lambda m: af_code.strip(),
     clean_js
 )
 
@@ -235,16 +291,16 @@ new_view_toggle = """
   if ($("btnViewCards")) {
     $("btnViewCards").addEventListener("click", () => {
       state.viewMode = "cards";
-      $("btnViewCards").className = "btn btn-sm btn-light active fw-bold";
-      $("btnViewTable").className = "btn btn-sm btn-outline-secondary";
+      $("btnViewCards").className = "btn btn-sm btn-info active fw-bold text-white shadow-sm";
+      $("btnViewTable").className = "btn btn-sm btn-outline-secondary text-light";
       render();
     });
   }
   if ($("btnViewTable")) {
     $("btnViewTable").addEventListener("click", () => {
       state.viewMode = "table";
-      $("btnViewTable").className = "btn btn-sm btn-light active fw-bold";
-      $("btnViewCards").className = "btn btn-sm btn-outline-secondary";
+      $("btnViewTable").className = "btn btn-sm btn-info active fw-bold text-white shadow-sm";
+      $("btnViewCards").className = "btn btn-sm btn-outline-secondary text-light";
       render();
     });
   }
@@ -271,6 +327,36 @@ clean_js = clean_js.replace('"text-emerald-400"', '"text-slate-100"')
 clean_js = clean_js.replace('"text-purple-400"', '"text-slate-100"')
 clean_js = clean_js.replace('"text-sky-400"', '"text-slate-100"')
 clean_js = clean_js.replace('"text-pink-400"', '"text-slate-100"')
+
+# 診斷與個股快捷按鈕彩色化
+clean_js = clean_js.replace(
+    '''<button type="button" id="btnDocTabKline" class="doc-rtab px-3 py-1.5 rounded-lg ${state.docRightTab === 'kline' ? 'bg-white text-black font-bold shadow-sm' : 'text-slate-400 hover:text-white'} transition-all">''',
+    '''<button type="button" id="btnDocTabKline" class="doc-rtab btn btn-sm px-3 py-1 rounded-pill ${state.docRightTab === 'kline' ? 'btn-info active fw-bold text-white shadow-sm' : 'btn-outline-secondary text-light'} transition-all">'''
+)
+clean_js = clean_js.replace(
+    '''<button type="button" id="btnDocTabRadar" class="doc-rtab px-3 py-1.5 rounded-lg ${state.docRightTab === 'radar' ? 'bg-white text-black font-bold shadow-sm' : 'text-slate-400 hover:text-white'} transition-all">''',
+    '''<button type="button" id="btnDocTabRadar" class="doc-rtab btn btn-sm px-3 py-1 rounded-pill ${state.docRightTab === 'radar' ? 'btn-indigo active fw-bold text-white shadow-sm' : 'btn-outline-secondary text-light'} transition-all">'''
+)
+clean_js = clean_js.replace(
+    'class="px-3 py-1 rounded-lg border transition-colors whitespace-nowrap text-xs ${active ? \"bg-white text-black font-bold border-white\" : isBad ? \"border-rose-500/30 text-rose-300 hover:bg-rose-500/10\" : \"border-white/10 text-slate-300 hover:text-white hover:bg-white/5\"}"',
+    'class="btn btn-sm py-0.5 px-2.5 rounded-pill whitespace-nowrap text-xs ${active ? \"btn-primary active fw-bold text-white shadow-sm\" : isBad ? \"btn-outline-danger\" : \"btn-outline-info text-cyan-300\"}"'
+)
+clean_js = clean_js.replace(
+    '<button type="button" data-diagnose="${p.code}" class="text-slate-300 hover:text-slate-200 font-semibold">',
+    '<button type="button" data-diagnose="${p.code}" class="btn btn-sm btn-outline-info text-cyan-300 py-1 px-2.5 rounded-pill text-xs font-semibold">'
+)
+clean_js = clean_js.replace(
+    'class="text-xs px-2.5 py-1 rounded-lg bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/30 text-slate-200 font-semibold transition-colors"',
+    'class="btn btn-sm btn-outline-info text-cyan-300 py-0.5 px-2.5 rounded-pill text-xs font-semibold"'
+)
+
+
+# 歷史交易日按鈕：選中為亮藍，未選為黑灰
+clean_js = clean_js.replace(
+    'class="flex-none px-3 py-1.5 rounded-lg text-xs transition-all ${on ? "bg-white text-slate-950 font-bold" : "bg-slate-950 hover:bg-slate-800 border border-white/10 text-slate-300"}"',
+    'class="btn btn-sm flex-none px-2.5 py-1 rounded-pill text-xs transition-all ${on ? "btn-primary active fw-bold text-white shadow-sm" : "btn-dark border border-secondary text-light"}"'
+)
+
 
 # 更新指標卡
 render_indices_patch = """
@@ -349,7 +435,7 @@ radar_section_engine = """
       $("radarQuickPills").innerHTML = `
         <span class="small text-muted text-nowrap align-self-center me-1">精選快選:</span>
         ${topPicks.map(x => `
-          <button type="button" data-radar-load="${x.code}" class="btn btn-sm py-0.5 px-2.5 rounded-pill ${x.code === p.code ? 'btn-light text-dark fw-bold' : 'btn-outline-secondary text-muted'}">
+          <button type="button" data-radar-load="${x.code}" class="btn btn-sm py-0.5 px-2.5 rounded-pill ${x.code === p.code ? 'btn-info text-white fw-bold shadow-sm' : 'btn-outline-info text-cyan-300'}">
             ${x.name}(${x.code})
           </button>
         `).join("")}
@@ -384,7 +470,7 @@ radar_section_engine = """
               ${gradeBadge(p.aiGrade)}
             </div>
             <div>
-              <button type="button" data-diagnose="${p.code}" class="btn btn-sm btn-outline-secondary text-light">
+              <button type="button" data-diagnose="${p.code}" class="btn btn-sm btn-outline-info text-cyan-300">
                 籌碼健檢
               </button>
             </div>
@@ -503,7 +589,7 @@ radar_section_engine = """
             </td>
             <td class="text-end num fw-bold text-white">${x.rawScore || x.score || 0}</td>
             <td class="text-center">
-              <button type="button" data-radar-load="${x.code}" class="btn btn-sm ${isCurrent ? 'btn-light text-dark fw-bold' : 'btn-outline-secondary'} py-0 px-2 text-xs">
+              <button type="button" data-radar-load="${x.code}" class="btn btn-sm ${isCurrent ? 'btn-success text-white fw-bold shadow-sm' : 'btn-outline-info text-cyan-400'} py-0 px-2 text-xs">
                 ${isCurrent ? '檢視中' : '載入'}
               </button>
             </td>
@@ -522,12 +608,17 @@ init_events = """
       const b = e.target.closest("button[data-factor]");
       if (b) {
         state.radarFactor = b.dataset.factor;
+        const factorStyles = {
+          score: { active: "btn-amber fw-bold text-dark shadow-sm", inactive: "btn-outline-amber" },
+          inst: { active: "btn-info fw-bold text-white shadow-sm", inactive: "btn-outline-info" },
+          big: { active: "btn-success fw-bold text-white shadow-sm", inactive: "btn-outline-success" },
+          streak: { active: "btn-purple fw-bold text-white shadow-sm", inactive: "btn-outline-purple" },
+          margin: { active: "btn-orange fw-bold text-white shadow-sm", inactive: "btn-outline-orange" },
+        };
         document.querySelectorAll("#radarFactorTabs button").forEach(btn => {
-          if (btn === b) {
-            btn.className = "btn btn-sm btn-light active fw-bold text-dark";
-          } else {
-            btn.className = "btn btn-sm btn-outline-secondary text-muted";
-          }
+          const fac = btn.dataset.factor;
+          const s = factorStyles[fac] || { active: "btn-light fw-bold text-dark", inactive: "btn-outline-secondary text-light" };
+          btn.className = `btn btn-sm py-0.5 px-2.5 rounded-pill flex-none ${btn === b ? s.active : s.inactive}`;
         });
         renderRadarFactorTable();
       }
@@ -963,6 +1054,159 @@ body.theme-light .stock-card {{
   color: #818cf8 !important;
   border: 1px solid rgba(99, 102, 241, 0.4) !important;
 }}
+
+/* ==================== 按鈕彩色區分系統 (Button Color Differentiation System) ==================== */
+.btn {{
+  font-weight: 500;
+  transition: all 0.15s ease-in-out;
+}}
+.btn-sm {{
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}}
+
+/* 經典色彩外框按鈕 (暗黑主題下高對比、不刺眼) */
+.btn-outline-primary {{
+  border-color: rgba(59, 130, 246, 0.6) !important;
+  color: #93c5fd !important;
+}}
+.btn-outline-primary:hover, .btn-outline-primary.active {{
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
+}}
+
+.btn-outline-success {{
+  border-color: rgba(16, 185, 129, 0.6) !important;
+  color: #6ee7b7 !important;
+}}
+.btn-outline-success:hover, .btn-outline-success.active {{
+  background-color: #059669 !important;
+  border-color: #059669 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(5, 150, 105, 0.4);
+}}
+
+.btn-outline-danger {{
+  border-color: rgba(244, 63, 94, 0.6) !important;
+  color: #fca5a5 !important;
+}}
+.btn-outline-danger:hover, .btn-outline-danger.active {{
+  background-color: #e11d48 !important;
+  border-color: #e11d48 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(225, 29, 72, 0.4);
+}}
+
+.btn-outline-warning {{
+  border-color: rgba(245, 158, 11, 0.6) !important;
+  color: #fde68a !important;
+}}
+.btn-outline-warning:hover, .btn-outline-warning.active {{
+  background-color: #d97706 !important;
+  border-color: #d97706 !important;
+  color: #0f172a !important;
+  box-shadow: 0 0 10px rgba(217, 119, 6, 0.4);
+}}
+
+.btn-outline-info {{
+  border-color: rgba(6, 182, 212, 0.6) !important;
+  color: #67e8f9 !important;
+}}
+.btn-outline-info:hover, .btn-outline-info.active {{
+  background-color: #0891b2 !important;
+  border-color: #0891b2 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(8, 145, 178, 0.4);
+}}
+
+/* 擴充自訂色彩系按鈕 (紫、靛、橘、金、青) */
+.btn-purple {{
+  background-color: #9333ea !important;
+  border-color: #9333ea !important;
+  color: #ffffff !important;
+}}
+.btn-outline-purple {{
+  background-color: transparent !important;
+  border-color: rgba(168, 85, 247, 0.6) !important;
+  color: #d8b4fe !important;
+}}
+.btn-outline-purple:hover, .btn-outline-purple.active {{
+  background-color: #9333ea !important;
+  border-color: #9333ea !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(147, 51, 234, 0.4);
+}}
+
+.btn-indigo {{
+  background-color: #4f46e5 !important;
+  border-color: #4f46e5 !important;
+  color: #ffffff !important;
+}}
+.btn-outline-indigo {{
+  background-color: transparent !important;
+  border-color: rgba(99, 102, 241, 0.6) !important;
+  color: #a5b4fc !important;
+}}
+.btn-outline-indigo:hover, .btn-outline-indigo.active {{
+  background-color: #4f46e5 !important;
+  border-color: #4f46e5 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(79, 70, 229, 0.4);
+}}
+
+.btn-orange {{
+  background-color: #ea580c !important;
+  border-color: #ea580c !important;
+  color: #ffffff !important;
+}}
+.btn-outline-orange {{
+  background-color: transparent !important;
+  border-color: rgba(249, 115, 22, 0.6) !important;
+  color: #fdba74 !important;
+}}
+.btn-outline-orange:hover, .btn-outline-orange.active {{
+  background-color: #ea580c !important;
+  border-color: #ea580c !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(234, 88, 12, 0.4);
+}}
+
+.btn-amber {{
+  background-color: #f59e0b !important;
+  border-color: #f59e0b !important;
+  color: #0f172a !important;
+}}
+.btn-outline-amber {{
+  background-color: transparent !important;
+  border-color: rgba(245, 158, 11, 0.6) !important;
+  color: #fde68a !important;
+}}
+.btn-outline-amber:hover, .btn-outline-amber.active {{
+  background-color: #f59e0b !important;
+  border-color: #f59e0b !important;
+  color: #0f172a !important;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+}}
+
+.btn-cyan {{
+  background-color: #0891b2 !important;
+  border-color: #0891b2 !important;
+  color: #ffffff !important;
+}}
+.btn-outline-cyan {{
+  background-color: transparent !important;
+  border-color: rgba(6, 182, 212, 0.6) !important;
+  color: #67e8f9 !important;
+}}
+.btn-outline-cyan:hover, .btn-outline-cyan.active {{
+  background-color: #0891b2 !important;
+  border-color: #0891b2 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(8, 145, 178, 0.4);
+}}
+
 </style>
 
 <!-- ==================== SB ADMIN TOPNAV ==================== -->
@@ -982,7 +1226,7 @@ body.theme-light .stock-card {{
     <div class="input-group input-group-sm w-100">
       <span class="input-group-text bg-dark border-secondary text-muted">搜尋</span>
       <input class="form-control bg-dark text-white border-secondary" type="text" id="docInput" placeholder="輸入代號/名稱 (如 2330)..." autocomplete="off" />
-      <button class="btn btn-outline-secondary text-light" id="btnDocSearch" type="button">查詢</button>
+      <button class="btn btn-primary btn-sm fw-bold text-white" id="btnDocSearch" type="button">查詢</button>
     </div>
     <!-- 搜尋建議清單 Dropdown -->
     <div id="docSuggest" class="dropdown-menu shadow-lg w-100 mt-1" style="display:none; max-height:360px; overflow-y:auto; position:absolute; top:100%; left:0; z-index:1060;"></div>
@@ -992,13 +1236,13 @@ body.theme-light .stock-card {{
   <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 align-items-center flex-row gap-2">
     <!-- Chips Radar Direct Link -->
     <li class="nav-item">
-      <a class="btn btn-outline-secondary btn-sm text-nowrap text-light" href="#radarSection" title="直達籌碼五維雷達透視分析">
+      <a class="btn btn-outline-info btn-sm text-nowrap text-cyan-300" href="#radarSection" title="直達籌碼五維雷達透視分析">
         籌碼雷達
       </a>
     </li>
     <!-- Theme Toggle (深色 / 淺色切換) -->
     <li class="nav-item">
-      <button class="btn btn-outline-secondary btn-sm text-light" id="btnThemeToggle" title="切換深色/淺色主題">
+      <button class="btn btn-outline-warning btn-sm text-warning" id="btnThemeToggle" title="切換深色/淺色主題">
         主題
       </button>
     </li>
@@ -1196,9 +1440,9 @@ body.theme-light .stock-card {{
               <div class="d-flex flex-wrap align-items-center gap-2">
                 <!-- 上市/上櫃切換 -->
                 <div class="btn-group btn-group-sm" role="group">
-                  <button type="button" data-market="上市" class="mk btn btn-outline-secondary active">上市 20 檔</button>
-                  <button type="button" data-market="上櫃" class="mk btn btn-outline-secondary">上櫃 20 檔</button>
-                  <button type="button" data-market="全部" class="mk btn btn-outline-secondary">全部 40 檔</button>
+                  <button type="button" data-market="上市" class="mk btn btn-outline-primary active">上市 20 檔</button>
+                  <button type="button" data-market="上櫃" class="mk btn btn-outline-purple">上櫃 20 檔</button>
+                  <button type="button" data-market="全部" class="mk btn btn-outline-indigo">全部 40 檔</button>
                 </div>
 
                 <!-- 排序選擇 -->
@@ -1215,12 +1459,12 @@ body.theme-light .stock-card {{
 
                 <!-- 檢視模式切換 (卡片 / 表格) -->
                 <div class="btn-group btn-group-sm" role="group">
-                  <button type="button" id="btnViewCards" class="btn btn-sm btn-light active font-bold">卡片</button>
-                  <button type="button" id="btnViewTable" class="btn btn-sm btn-outline-secondary">表格</button>
+                  <button type="button" id="btnViewCards" class="btn btn-sm btn-info active fw-bold text-white">卡片</button>
+                  <button type="button" id="btnViewTable" class="btn btn-sm btn-outline-secondary text-light">表格</button>
                 </div>
 
                 <!-- 匯出 CSV -->
-                <button type="button" id="btnExportCsv" class="btn btn-sm btn-outline-secondary text-light" title="匯出推薦清單 CSV">
+                <button type="button" id="btnExportCsv" class="btn btn-sm btn-outline-success font-medium" title="匯出推薦清單 CSV">
                   匯出 CSV
                 </button>
               </div>
@@ -1229,14 +1473,14 @@ body.theme-light .stock-card {{
             <!-- 條件快篩 Tag 列 -->
             <div class="d-flex align-items-center gap-1.5 overflow-auto no-scrollbar pt-2.5 mt-2 border-top border-secondary-subtle text-xs">
               <span class="text-muted me-1 flex-none">快篩:</span>
-              <button type="button" data-filter="all" class="af btn btn-sm btn-light py-0.5 px-2.5 rounded-pill flex-none">全部</button>
-              <button type="button" data-filter="splus" class="af btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">S+ 主力鎖碼</button>
-              <button type="button" data-filter="dual" class="af btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">土洋合買</button>
-              <button type="button" data-filter="reversal" class="af btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">由賣轉買</button>
-              <button type="button" data-filter="divergence" class="af btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">價跌吃貨</button>
-              <button type="button" data-filter="big" class="af btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">大戶增持 (≥0.4%)</button>
-              <button type="button" data-filter="margin" class="af btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">融資減少</button>
-              <button type="button" data-filter="streak" class="af btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">連續上榜 (≥3日)</button>
+              <button type="button" data-filter="all" class="af btn btn-sm btn-light active fw-bold py-0.5 px-2.5 rounded-pill flex-none">全部</button>
+              <button type="button" data-filter="splus" class="af btn btn-sm btn-outline-amber py-0.5 px-2.5 rounded-pill flex-none">S+ 主力鎖碼</button>
+              <button type="button" data-filter="dual" class="af btn btn-sm btn-outline-danger py-0.5 px-2.5 rounded-pill flex-none">土洋合買</button>
+              <button type="button" data-filter="reversal" class="af btn btn-sm btn-outline-info py-0.5 px-2.5 rounded-pill flex-none">由賣轉買</button>
+              <button type="button" data-filter="divergence" class="af btn btn-sm btn-outline-purple py-0.5 px-2.5 rounded-pill flex-none">價跌吃貨</button>
+              <button type="button" data-filter="big" class="af btn btn-sm btn-outline-success py-0.5 px-2.5 rounded-pill flex-none">大戶增持 (≥0.4%)</button>
+              <button type="button" data-filter="margin" class="af btn btn-sm btn-outline-orange py-0.5 px-2.5 rounded-pill flex-none">融資減少</button>
+              <button type="button" data-filter="streak" class="af btn btn-sm btn-outline-indigo py-0.5 px-2.5 rounded-pill flex-none">連續上榜 (≥3日)</button>
             </div>
           </div>
 
@@ -1287,11 +1531,11 @@ body.theme-light .stock-card {{
             <!-- 維度切換列 -->
             <div class="d-flex align-items-center gap-1.5 overflow-auto no-scrollbar pt-2.5 mt-2 border-top border-secondary-subtle text-xs" id="radarFactorTabs">
               <span class="text-muted me-1 flex-none">維度排行:</span>
-              <button type="button" data-factor="score" class="btn btn-sm btn-light active fw-bold py-0.5 px-2.5 rounded-pill flex-none">總分排行</button>
-              <button type="button" data-factor="inst" class="btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">法人當日</button>
-              <button type="button" data-factor="big" class="btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">大戶週增</button>
-              <button type="button" data-factor="streak" class="btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">投信連買</button>
-              <button type="button" data-factor="margin" class="btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">融資清洗</button>
+              <button type="button" data-factor="score" class="btn btn-sm btn-amber active fw-bold py-0.5 px-2.5 rounded-pill flex-none">總分排行</button>
+              <button type="button" data-factor="inst" class="btn btn-sm btn-outline-info py-0.5 px-2.5 rounded-pill flex-none">法人當日</button>
+              <button type="button" data-factor="big" class="btn btn-sm btn-outline-success py-0.5 px-2.5 rounded-pill flex-none">大戶週增</button>
+              <button type="button" data-factor="streak" class="btn btn-sm btn-outline-purple py-0.5 px-2.5 rounded-pill flex-none">投信連買</button>
+              <button type="button" data-factor="margin" class="btn btn-sm btn-outline-orange py-0.5 px-2.5 rounded-pill flex-none">融資清洗</button>
             </div>
           </div>
 
@@ -1345,27 +1589,27 @@ body.theme-light .stock-card {{
               </div>
               <!-- 異動分類按鈕 -->
               <div class="d-flex align-items-center gap-1 overflow-auto no-scrollbar" id="anomTabs">
-                <button type="button" data-atab="all" class="atab btn btn-sm btn-light py-1 px-2.5 rounded-pill flex-none d-flex align-items-center gap-1.5">
+                <button type="button" data-atab="all" class="atab btn btn-sm btn-light active fw-bold py-1 px-2.5 rounded-pill flex-none d-flex align-items-center gap-1.5">
                   <span>全部異動</span>
                   <span id="anomCntAll" class="badge rounded-pill bg-secondary text-white num">0</span>
                 </button>
-                <button type="button" data-atab="reversal" class="atab btn btn-sm btn-outline-secondary py-1 px-2.5 rounded-pill flex-none d-flex align-items-center gap-1.5">
+                <button type="button" data-atab="reversal" class="atab btn btn-sm btn-outline-info py-1 px-2.5 rounded-pill flex-none d-flex align-items-center gap-1.5">
                   <span>由賣轉買</span>
                   <span id="anomCntRev" class="badge rounded-pill bg-secondary text-white num">0</span>
                 </button>
-                <button type="button" data-atab="divergence" class="atab btn btn-sm btn-outline-secondary py-1 px-2.5 rounded-pill flex-none d-flex align-items-center gap-1.5">
+                <button type="button" data-atab="divergence" class="atab btn btn-sm btn-outline-purple py-1 px-2.5 rounded-pill flex-none d-flex align-items-center gap-1.5">
                   <span>價跌吃貨</span>
                   <span id="anomCntDiv" class="badge rounded-pill bg-secondary text-white num">0</span>
                 </button>
-                <button type="button" data-atab="consecutive" class="atab btn btn-sm btn-outline-secondary py-1 px-2.5 rounded-pill flex-none d-flex align-items-center gap-1.5">
+                <button type="button" data-atab="consecutive" class="atab btn btn-sm btn-outline-indigo py-1 px-2.5 rounded-pill flex-none d-flex align-items-center gap-1.5">
                   <span>連續上榜</span>
                   <span id="anomCntConsec" class="badge rounded-pill bg-secondary text-white num">0</span>
                 </button>
-                <button type="button" data-atab="newsurge" class="atab btn btn-sm btn-outline-secondary py-1 px-2.5 rounded-pill flex-none d-flex align-items-center gap-1.5">
+                <button type="button" data-atab="newsurge" class="atab btn btn-sm btn-outline-amber py-1 px-2.5 rounded-pill flex-none d-flex align-items-center gap-1.5">
                   <span>突襲新進</span>
                   <span id="anomCntSurge" class="badge rounded-pill bg-secondary text-white num">0</span>
                 </button>
-                <button type="button" data-atab="alerts" class="atab btn btn-sm btn-outline-secondary py-1 px-2.5 rounded-pill flex-none d-flex align-items-center gap-1.5">
+                <button type="button" data-atab="alerts" class="atab btn btn-sm btn-outline-danger py-1 px-2.5 rounded-pill flex-none d-flex align-items-center gap-1.5">
                   <span>籌碼警戒</span>
                   <span id="anomCntAlerts" class="badge rounded-pill bg-secondary text-white num">0</span>
                 </button>
@@ -1395,8 +1639,8 @@ body.theme-light .stock-card {{
               </div>
               <!-- 做多/做空切換 -->
               <div class="btn-group btn-group-sm flex-none" role="group">
-                <button type="button" id="dt-long" data-side="long" class="dts btn btn-light active fw-bold">做多 20 檔 (先買後賣)</button>
-                <button type="button" id="dt-short" data-side="short" class="dts btn btn-outline-secondary">做空 20 檔 (先賣後買)</button>
+                <button type="button" id="dt-long" data-side="long" class="dts btn btn-danger active fw-bold">做多 20 檔 (先買後賣)</button>
+                <button type="button" id="dt-short" data-side="short" class="dts btn btn-outline-success">做空 20 檔 (先賣後買)</button>
               </div>
             </div>
           </div>
@@ -1439,7 +1683,7 @@ body.theme-light .stock-card {{
                 <div class="input-group input-group-sm">
                   <span class="input-group-text bg-secondary text-white-50">搜尋</span>
                   <input type="text" id="docSectionSearch" class="form-control" placeholder="搜尋個股 (如 2330 台積電)..." autocomplete="off" />
-                  <button type="button" id="btnClearDocSection" class="btn btn-outline-secondary hidden">✕</button>
+                  <button type="button" id="btnClearDocSection" class="btn btn-outline-danger text-danger hidden">✕</button>
                 </div>
                 <div id="docSectionSuggest" class="dropdown-menu shadow-lg w-100 mt-1" style="display:none; max-height:320px; overflow-y:auto; position:absolute; top:100%; left:0; z-index:1060;"></div>
               </div>
@@ -1497,21 +1741,21 @@ body.theme-light .stock-card {{
                   多因子策略選股機
                 </h5>
               </div>
-              <button type="button" id="btnExportScreenerCsv" class="btn btn-sm btn-outline-secondary text-light">
+              <button type="button" id="btnExportScreenerCsv" class="btn btn-sm btn-outline-success font-medium">
                 匯出篩選結果 CSV
               </button>
             </div>
             <!-- 策略快選 Tag -->
             <div class="d-flex align-items-center gap-1.5 overflow-auto no-scrollbar pt-2.5 mt-2 border-top border-secondary-subtle text-xs" id="scrPresets">
               <span class="text-muted me-1 flex-none">策略:</span>
-              <button type="button" data-preset="top" class="spreset btn btn-sm btn-light active py-0.5 px-2.5 rounded-pill flex-none">綜合首選</button>
-              <button type="button" data-preset="dual" class="spreset btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">土洋合買</button>
-              <button type="button" data-preset="trust" class="spreset btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">投信連買</button>
-              <button type="button" data-preset="whale" class="spreset btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">大戶增持</button>
-              <button type="button" data-preset="squeeze" class="spreset btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">券增資減</button>
-              <button type="button" data-preset="dipbuy" class="spreset btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">拉回低接</button>
-              <button type="button" data-preset="turnaround" class="spreset btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">由賣轉買</button>
-              <button type="button" data-preset="blacklist" class="spreset btn btn-sm btn-outline-secondary py-0.5 px-2.5 rounded-pill flex-none">法人連續賣超</button>
+              <button type="button" data-preset="top" class="spreset btn btn-sm btn-amber active fw-bold py-0.5 px-2.5 rounded-pill flex-none">綜合首選</button>
+              <button type="button" data-preset="dual" class="spreset btn btn-sm btn-outline-danger py-0.5 px-2.5 rounded-pill flex-none">土洋合買</button>
+              <button type="button" data-preset="trust" class="spreset btn btn-sm btn-outline-info py-0.5 px-2.5 rounded-pill flex-none">投信連買</button>
+              <button type="button" data-preset="whale" class="spreset btn btn-sm btn-outline-success py-0.5 px-2.5 rounded-pill flex-none">大戶增持</button>
+              <button type="button" data-preset="squeeze" class="spreset btn btn-sm btn-outline-orange py-0.5 px-2.5 rounded-pill flex-none">券增資減</button>
+              <button type="button" data-preset="dipbuy" class="spreset btn btn-sm btn-outline-cyan py-0.5 px-2.5 rounded-pill flex-none">拉回低接</button>
+              <button type="button" data-preset="turnaround" class="spreset btn btn-sm btn-outline-purple py-0.5 px-2.5 rounded-pill flex-none">由賣轉買</button>
+              <button type="button" data-preset="blacklist" class="spreset btn btn-sm btn-outline-danger py-0.5 px-2.5 rounded-pill flex-none">法人連續賣超</button>
             </div>
           </div>
           <div class="card-body p-3">
@@ -1580,7 +1824,7 @@ body.theme-light .stock-card {{
             </div>
 
             <div class="text-center mt-3">
-              <button type="button" id="btnScrMore" class="btn btn-sm btn-outline-secondary px-4">載入更多 ↓</button>
+              <button type="button" id="btnScrMore" class="btn btn-sm btn-outline-info px-4">載入更多 ↓</button>
             </div>
           </div>
         </div>
