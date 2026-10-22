@@ -646,8 +646,7 @@ def main():
             '<title>GETSTOCK 大戶籌碼與量化選股決策系統 - SB Admin</title>\n'
             '<link rel="icon" href="images/logo.svg" type="image/svg+xml">\n'
             '<link href="css/styles.css" rel="stylesheet">\n'
-            '<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>\n'
-            "<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>\n"
+                        "<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>\n"
             f"</head>\n<body class=\"sb-nav-fixed theme-dark\">\n{body}\n"
             '<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>\n'
             '<script src="js/scripts.js"></script>\n'
