@@ -363,158 +363,184 @@ body.theme-light .stock-card {
   border: 1px solid rgba(99, 102, 241, 0.4) !important;
 }
 
-/* ==================== 按鈕彩色區分系統 (Button Color Differentiation System) ==================== */
+/* ==================== 深色沉浸式彩色按鈕系統 (Deep Tonal Active Buttons) ==================== */
 .btn {
-  font-weight: 500;
+  font-weight: 600 !important;
   transition: all 0.15s ease-in-out;
+  border-width: 1px !important;
 }
 .btn-sm {
-  font-size: 0.78rem;
+  font-size: 0.78rem !important;
   letter-spacing: 0.02em;
 }
 
-/* 經典色彩外框按鈕 (暗黑主題下高對比、不刺眼) */
+/* 點選（Active）深色系按鈕：深邃底色、鮮豔外框邊條、純白高對比文字 (清晰易看、護眼不刺眼) */
+/* 1. 藍色系 (Blue / TWSE / History Date) */
 .btn-outline-primary {
-  border-color: rgba(59, 130, 246, 0.6) !important;
+  background-color: transparent !important;
+  border-color: rgba(59, 130, 246, 0.45) !important;
   color: #93c5fd !important;
 }
-.btn-outline-primary:hover, .btn-outline-primary.active {
-  background-color: #2563eb !important;
-  border-color: #2563eb !important;
+.btn-outline-primary:hover {
+  background-color: rgba(30, 58, 138, 0.4) !important;
   color: #ffffff !important;
-  box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
+}
+.btn-primary, .btn-outline-primary.active, .btn-primary.active {
+  background-color: #1e3a8a !important; /* 深海軍藍 */
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.35) !important;
 }
 
+/* 2. 翡翠綠系 (Emerald / Green / Export CSV / 做空 / 大戶增持) */
 .btn-outline-success {
-  border-color: rgba(16, 185, 129, 0.6) !important;
+  background-color: transparent !important;
+  border-color: rgba(16, 185, 129, 0.45) !important;
   color: #6ee7b7 !important;
 }
-.btn-outline-success:hover, .btn-outline-success.active {
-  background-color: #059669 !important;
-  border-color: #059669 !important;
+.btn-outline-success:hover {
+  background-color: rgba(6, 78, 59, 0.4) !important;
   color: #ffffff !important;
-  box-shadow: 0 0 10px rgba(5, 150, 105, 0.4);
+}
+.btn-success, .btn-outline-success.active, .btn-success.active {
+  background-color: #064e3b !important; /* 深森林綠 */
+  border-color: #10b981 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.35) !important;
 }
 
+/* 3. 玫瑰紅系 (Rose / Red / 多頭 / 做多 / 土洋合買 / 籌碼警戒) */
 .btn-outline-danger {
-  border-color: rgba(244, 63, 94, 0.6) !important;
+  background-color: transparent !important;
+  border-color: rgba(244, 63, 94, 0.45) !important;
   color: #fca5a5 !important;
 }
-.btn-outline-danger:hover, .btn-outline-danger.active {
-  background-color: #e11d48 !important;
-  border-color: #e11d48 !important;
+.btn-outline-danger:hover {
+  background-color: rgba(136, 19, 55, 0.4) !important;
   color: #ffffff !important;
-  box-shadow: 0 0 10px rgba(225, 29, 72, 0.4);
+}
+.btn-danger, .btn-outline-danger.active, .btn-danger.active {
+  background-color: #881337 !important; /* 深酒紅 */
+  border-color: #f43f5e !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(244, 63, 94, 0.35) !important;
 }
 
-.btn-outline-warning {
-  border-color: rgba(245, 158, 11, 0.6) !important;
+/* 4. 琥珀金系 (Amber / Gold / S+ 主力鎖碼 / 總分排行 / 突襲新進 / 首選) */
+.btn-outline-amber, .btn-outline-warning {
+  background-color: transparent !important;
+  border-color: rgba(245, 158, 11, 0.45) !important;
   color: #fde68a !important;
 }
-.btn-outline-warning:hover, .btn-outline-warning.active {
-  background-color: #d97706 !important;
-  border-color: #d97706 !important;
-  color: #0f172a !important;
-  box-shadow: 0 0 10px rgba(217, 119, 6, 0.4);
+.btn-outline-amber:hover, .btn-outline-warning:hover {
+  background-color: rgba(120, 53, 15, 0.4) !important;
+  color: #ffffff !important;
+}
+.btn-amber, .btn-warning, .btn-outline-amber.active, .btn-outline-warning.active, .btn-amber.active, .btn-warning.active {
+  background-color: #78350f !important; /* 深琥珀古銅金 */
+  border-color: #f59e0b !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.35) !important;
 }
 
-.btn-outline-info {
-  border-color: rgba(6, 182, 212, 0.6) !important;
+/* 5. 天空青/水藍系 (Cyan / Sky / 由賣轉買 / 日K圖 / 籌碼雷達 / 檢視切換 / 診斷) */
+.btn-outline-info, .btn-outline-cyan {
+  background-color: transparent !important;
+  border-color: rgba(6, 182, 212, 0.45) !important;
   color: #67e8f9 !important;
 }
-.btn-outline-info:hover, .btn-outline-info.active {
-  background-color: #0891b2 !important;
-  border-color: #0891b2 !important;
+.btn-outline-info:hover, .btn-outline-cyan:hover {
+  background-color: rgba(7, 89, 133, 0.4) !important;
   color: #ffffff !important;
-  box-shadow: 0 0 10px rgba(8, 145, 178, 0.4);
+}
+.btn-info, .btn-cyan, .btn-outline-info.active, .btn-outline-cyan.active, .btn-info.active, .btn-cyan.active {
+  background-color: #075985 !important; /* 深湛藍 */
+  border-color: #0284c7 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(2, 132, 199, 0.35) !important;
 }
 
-/* 擴充自訂色彩系按鈕 (紫、靛、橘、金、青) */
-.btn-purple {
-  background-color: #9333ea !important;
-  border-color: #9333ea !important;
-  color: #ffffff !important;
-}
+/* 6. 魅紫系 (Purple / TPEx 上櫃 / 價跌吃貨 / 投信連買) */
 .btn-outline-purple {
   background-color: transparent !important;
-  border-color: rgba(168, 85, 247, 0.6) !important;
+  border-color: rgba(168, 85, 247, 0.45) !important;
   color: #d8b4fe !important;
 }
-.btn-outline-purple:hover, .btn-outline-purple.active {
-  background-color: #9333ea !important;
-  border-color: #9333ea !important;
+.btn-outline-purple:hover {
+  background-color: rgba(88, 28, 135, 0.4) !important;
   color: #ffffff !important;
-  box-shadow: 0 0 10px rgba(147, 51, 234, 0.4);
+}
+.btn-purple, .btn-outline-purple.active, .btn-purple.active {
+  background-color: #581c87 !important; /* 深邃紫 */
+  border-color: #a855f7 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.35) !important;
 }
 
-.btn-indigo {
-  background-color: #4f46e5 !important;
-  border-color: #4f46e5 !important;
-  color: #ffffff !important;
-}
+/* 7. 靛藍系 (Indigo / 全部市場 / 連買連霸 / 五維雷達標籤) */
 .btn-outline-indigo {
   background-color: transparent !important;
-  border-color: rgba(99, 102, 241, 0.6) !important;
+  border-color: rgba(99, 102, 241, 0.45) !important;
   color: #a5b4fc !important;
 }
-.btn-outline-indigo:hover, .btn-outline-indigo.active {
-  background-color: #4f46e5 !important;
-  border-color: #4f46e5 !important;
+.btn-outline-indigo:hover {
+  background-color: rgba(49, 46, 129, 0.4) !important;
   color: #ffffff !important;
-  box-shadow: 0 0 10px rgba(79, 70, 229, 0.4);
+}
+.btn-indigo, .btn-outline-indigo.active, .btn-indigo.active {
+  background-color: #312e81 !important; /* 深靛藍 */
+  border-color: #6366f1 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.35) !important;
 }
 
-.btn-orange {
-  background-color: #ea580c !important;
-  border-color: #ea580c !important;
-  color: #ffffff !important;
-}
+/* 8. 活力橘系 (Orange / 融資清洗 / 券增資減) */
 .btn-outline-orange {
   background-color: transparent !important;
-  border-color: rgba(249, 115, 22, 0.6) !important;
+  border-color: rgba(249, 115, 22, 0.45) !important;
   color: #fdba74 !important;
 }
-.btn-outline-orange:hover, .btn-outline-orange.active {
-  background-color: #ea580c !important;
-  border-color: #ea580c !important;
+.btn-outline-orange:hover {
+  background-color: rgba(124, 45, 18, 0.4) !important;
   color: #ffffff !important;
-  box-shadow: 0 0 10px rgba(234, 88, 12, 0.4);
+}
+.btn-orange, .btn-outline-orange.active, .btn-orange.active {
+  background-color: #7c2d12 !important; /* 深赤橘 */
+  border-color: #f97316 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.35) !important;
 }
 
-.btn-amber {
-  background-color: #f59e0b !important;
-  border-color: #f59e0b !important;
-  color: #0f172a !important;
-}
-.btn-outline-amber {
+/* 9. 中性深石板灰色 (Slate / 全部篩選 / 全部異動) */
+.btn-outline-secondary {
   background-color: transparent !important;
-  border-color: rgba(245, 158, 11, 0.6) !important;
-  color: #fde68a !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  color: #cbd5e1 !important;
 }
-.btn-outline-amber:hover, .btn-outline-amber.active {
-  background-color: #f59e0b !important;
-  border-color: #f59e0b !important;
-  color: #0f172a !important;
-  box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
-}
-
-.btn-cyan {
-  background-color: #0891b2 !important;
-  border-color: #0891b2 !important;
+.btn-outline-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
   color: #ffffff !important;
 }
-.btn-outline-cyan {
-  background-color: transparent !important;
-  border-color: rgba(6, 182, 212, 0.6) !important;
-  color: #67e8f9 !important;
-}
-.btn-outline-cyan:hover, .btn-outline-cyan.active {
-  background-color: #0891b2 !important;
-  border-color: #0891b2 !important;
+.btn-slate, .btn-slate.active, .btn-light.active, .btn-secondary.active {
+  background-color: #334155 !important; /* 深石板灰 */
+  border-color: #64748b !important;
   color: #ffffff !important;
-  box-shadow: 0 0 10px rgba(8, 145, 178, 0.4);
+  box-shadow: 0 0 8px rgba(100, 116, 139, 0.3) !important;
 }
 
+/* 異動按鈕內數量徽章樣式優化 */
+.atab .badge {
+  font-size: 0.72rem;
+  padding: 0.2em 0.55em;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  color: #e2e8f0 !important;
+}
+.atab.active .badge {
+  background-color: rgba(0, 0, 0, 0.45) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
 </style>
 
 <!-- ==================== SB ADMIN TOPNAV ==================== -->
@@ -646,7 +672,7 @@ body.theme-light .stock-card {
           </div>
           <!-- 歷史交易日選擇 Bar -->
           <div class="d-flex align-items-center gap-2 mt-2 mt-sm-0">
-            <span class="text-muted small text-nowrap">歷史交易日:</span>
+            <span class="text-muted small text-nowrap">近一週交易日:</span>
             <div class="d-flex align-items-center gap-1 overflow-auto" id="history" style="max-width: 480px;"></div>
           </div>
         </div>
@@ -781,7 +807,7 @@ body.theme-light .stock-card {
             <!-- 條件快篩 Tag 列 -->
             <div class="d-flex align-items-center gap-1.5 overflow-auto no-scrollbar pt-2.5 mt-2 border-top border-secondary-subtle text-xs">
               <span class="text-muted me-1 flex-none">快篩:</span>
-              <button type="button" data-filter="all" class="af btn btn-sm btn-light active fw-bold py-0.5 px-2.5 rounded-pill flex-none">全部</button>
+              <button type="button" data-filter="all" class="af btn btn-sm btn-slate active fw-bold py-0.5 px-2.5 rounded-pill flex-none">全部</button>
               <button type="button" data-filter="splus" class="af btn btn-sm btn-outline-amber py-0.5 px-2.5 rounded-pill flex-none">S+ 主力鎖碼</button>
               <button type="button" data-filter="dual" class="af btn btn-sm btn-outline-danger py-0.5 px-2.5 rounded-pill flex-none">土洋合買</button>
               <button type="button" data-filter="reversal" class="af btn btn-sm btn-outline-info py-0.5 px-2.5 rounded-pill flex-none">由賣轉買</button>
@@ -897,7 +923,7 @@ body.theme-light .stock-card {
               </div>
               <!-- 異動分類按鈕 -->
               <div class="d-flex align-items-center gap-1 overflow-auto no-scrollbar" id="anomTabs">
-                <button type="button" data-atab="all" class="atab btn btn-sm btn-light active fw-bold py-1 px-2.5 rounded-pill flex-none d-flex align-items-center gap-1.5">
+                <button type="button" data-atab="all" class="atab btn btn-sm btn-slate active fw-bold py-1 px-2.5 rounded-pill flex-none d-flex align-items-center gap-1.5">
                   <span>全部異動</span>
                   <span id="anomCntAll" class="badge rounded-pill bg-secondary text-white num">0</span>
                 </button>
@@ -2463,12 +2489,20 @@ body.theme-light .stock-card {
     }
     const day = days.find((d) => d.date === state.day) || days[0];
 
-    // 日期選單
-    $("history").innerHTML = days.map((dd) => {
+    // 日期選單 (近一週 5 個交易日)
+    const recentDays = days.slice(0, 5);
+    if (day && !recentDays.some(d => d.date === day.date)) {
+      recentDays.push(day);
+    }
+    $("history").innerHTML = recentDays.map((dd) => {
       const d = parseDay(dd.date), on = dd.date === day.date;
       return `<button type="button" data-day="${dd.date}"
-        class="btn btn-sm flex-none px-2.5 py-1 rounded-pill text-xs transition-all ${on ? "btn-primary active fw-bold text-white shadow-sm" : "btn-dark border border-secondary text-light"}">
-        <span class="num">${d.getMonth() + 1}/${d.getDate()}</span> <span class="${on ? "text-slate-600 font-normal" : "text-slate-500"}">週${WEEK[d.getDay()]}</span>
+        class="btn btn-sm flex-none px-3 py-1 rounded-pill text-xs transition-all ${
+          on
+            ? "btn-primary active fw-bold text-white shadow-sm"
+            : "btn-outline-secondary text-light"
+        }">
+        <span class="num font-bold">${d.getMonth() + 1}/${d.getDate()}</span> <span class="${on ? "text-white-50 ms-0.5" : "text-muted ms-0.5"}">週${WEEK[d.getDay()]}</span>
       </button>`;
     }).join("");
 
