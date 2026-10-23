@@ -920,7 +920,7 @@ init_events = """
 # 插入事件與初始化到主 closure
 
 # 替換舊的 nav-tab / IntersectionObserver 為完整的 SB Admin 側欄 ScrollSpy
-new_scrollspy_code = '// ===== 側欄導航 ScrollSpy 與平滑滾動管理 =====\n  const sidebarSectionIds = [\n    "dashboard",\n    "picks",\n    "radarSection",\n    "daytrade",\n    "anomalies",\n    "rankings",\n    "doctor",\n    "screener"\n  ];\n\n  function updateSidebarActive(activeId) {\n    if (!activeId) return;\n    const navLinks = document.querySelectorAll("#layoutSidenav_nav a.nav-link");\n    navLinks.forEach((link) => {\n      const href = link.getAttribute("href") || "";\n      const targetId = href.replace(/^#/, "");\n      if (targetId === activeId) {\n        if (!link.classList.contains("active")) {\n          link.classList.add("active");\n        }\n      } else {\n        link.classList.remove("active");\n      }\n    });\n  }\n\n  // 精準平滑滾動至目標章節 (動態扣除 Sticky 頂部導航欄高度 56px + 16px 留白)\n  function scrollToSection(targetId) {\n    const el = document.getElementById(targetId) || document.querySelector(targetId);\n    if (!el) return;\n    const topNav = document.querySelector(".sb-topnav") || document.querySelector("header");\n    const navH = topNav ? topNav.offsetHeight : 56;\n    const offset = navH + 16;\n    const elRect = el.getBoundingClientRect();\n    const targetY = window.pageYOffset + elRect.top - offset;\n    window.scrollTo({\n      top: Math.max(0, targetY),\n      behavior: "smooth"\n    });\n  }\n\n  let manualScrollUntil = 0;\n  let manualTargetId = null;\n\n  // 點擊側欄選單項目：即時更新 active + 平滑滾動 + 手機版點擊自動收合側欄\n  document.querySelectorAll("#layoutSidenav_nav a.nav-link").forEach((link) => {\n    link.addEventListener("click", (e) => {\n      const href = link.getAttribute("href");\n      if (href && href.startsWith("#")) {\n        const targetId = href.substring(1);\n        const targetEl = document.getElementById(targetId);\n        if (targetEl) {\n          e.preventDefault();\n          manualTargetId = targetId;\n          manualScrollUntil = Date.now() + 750;\n          updateSidebarActive(targetId);\n          scrollToSection(targetId);\n          try { history.pushState(null, "", href); } catch (_) {}\n        }\n      }\n      if (window.innerWidth < 992) {\n        document.body.classList.remove("sb-sidenav-toggled");\n      }\n    });\n  });\n\n  // 全站錨點點擊 (例如「查看完整籌碼診斷」、「載入雷達」等)\n  document.querySelectorAll(\'a[href^="#"]:not(#layoutSidenav_nav a)\').forEach((link) => {\n    link.addEventListener("click", (e) => {\n      const href = link.getAttribute("href");\n      if (!href || href === "#") return;\n      const targetId = href.substring(1);\n      const targetEl = document.getElementById(targetId);\n      if (targetEl) {\n        e.preventDefault();\n        manualTargetId = targetId;\n        manualScrollUntil = Date.now() + 750;\n        updateSidebarActive(targetId);\n        scrollToSection(targetId);\n        try { history.pushState(null, "", href); } catch (_) {}\n      }\n    });\n  });\n\n  // 滾動頁面時自動偵測當前瀏覽中的章節並高亮對應側欄按鈕 (ScrollSpy)\n  function onScrollSpy() {\n    if (Date.now() < manualScrollUntil && manualTargetId) {\n      updateSidebarActive(manualTargetId);\n      return;\n    }\n\n    const scrollY = window.pageYOffset || document.documentElement.scrollTop;\n    const windowH = window.innerHeight;\n    const docH = document.documentElement.scrollHeight;\n\n    // 捲動到接近最頂部，固定高亮第一項 (儀表板總覽)\n    if (scrollY < 80) {\n      updateSidebarActive(sidebarSectionIds[0]);\n      return;\n    }\n\n    // 捲動到接近最底部時，直接高亮最後一個章節 (多因子策略選股)\n    if (windowH + scrollY >= docH - 50) {\n      updateSidebarActive(sidebarSectionIds[sidebarSectionIds.length - 1]);\n      return;\n    }\n\n    // 計算各章節在視窗中的相對位置 (觸發線設在頂部導航欄下方約 140px)\n    const topThreshold = 140;\n    let activeId = sidebarSectionIds[0];\n\n    for (let i = 0; i < sidebarSectionIds.length; i++) {\n      const id = sidebarSectionIds[i];\n      const el = document.getElementById(id);\n      if (!el) continue;\n      const rect = el.getBoundingClientRect();\n      if (rect.top <= topThreshold) {\n        activeId = id;\n      } else {\n        break;\n      }\n    }\n\n    updateSidebarActive(activeId);\n  }\n\n  let scrollTicking = false;\n  window.addEventListener("scroll", () => {\n    if (!scrollTicking) {\n      window.requestAnimationFrame(() => {\n        onScrollSpy();\n        scrollTicking = false;\n      });\n      scrollTicking = true;\n    }\n  }, { passive: true });\n\n  window.addEventListener("resize", () => {\n    onScrollSpy();\n  }, { passive: true });\n\n  // 初始載入立即執行一次判定\n  setTimeout(onScrollSpy, 150);'
+new_scrollspy_code = '// ===== 側欄導航 ScrollSpy 與平滑滾動管理 =====\n  const sidebarSectionIds = [\n    "dashboard",\n    "picks",\n    "radarSection",\n    "daytrade",\n    "anomalies",\n    "rankings",\n    "doctor",\n    "screener",\n    "weeklyReport"\n  ];\n\n  function updateSidebarActive(activeId) {\n    if (!activeId) return;\n    const navLinks = document.querySelectorAll("#layoutSidenav_nav a.nav-link");\n    navLinks.forEach((link) => {\n      const href = link.getAttribute("href") || "";\n      const targetId = href.replace(/^#/, "");\n      if (targetId === activeId) {\n        if (!link.classList.contains("active")) {\n          link.classList.add("active");\n        }\n      } else {\n        link.classList.remove("active");\n      }\n    });\n  }\n\n  // 精準平滑滾動至目標章節 (動態扣除 Sticky 頂部導航欄高度 56px + 16px 留白)\n  function scrollToSection(targetId) {\n    const el = document.getElementById(targetId) || document.querySelector(targetId);\n    if (!el) return;\n    const topNav = document.querySelector(".sb-topnav") || document.querySelector("header");\n    const navH = topNav ? topNav.offsetHeight : 56;\n    const offset = navH + 16;\n    const elRect = el.getBoundingClientRect();\n    const targetY = window.pageYOffset + elRect.top - offset;\n    window.scrollTo({\n      top: Math.max(0, targetY),\n      behavior: "smooth"\n    });\n  }\n\n  let manualScrollUntil = 0;\n  let manualTargetId = null;\n\n  // 點擊側欄選單項目：即時更新 active + 平滑滾動 + 手機版點擊自動收合側欄\n  document.querySelectorAll("#layoutSidenav_nav a.nav-link").forEach((link) => {\n    link.addEventListener("click", (e) => {\n      const href = link.getAttribute("href");\n      if (href && href.startsWith("#")) {\n        const targetId = href.substring(1);\n        const targetEl = document.getElementById(targetId);\n        if (targetEl) {\n          e.preventDefault();\n          manualTargetId = targetId;\n          manualScrollUntil = Date.now() + 750;\n          updateSidebarActive(targetId);\n          scrollToSection(targetId);\n          try { history.pushState(null, "", href); } catch (_) {}\n        }\n      }\n      if (window.innerWidth < 992) {\n        document.body.classList.remove("sb-sidenav-toggled");\n      }\n    });\n  });\n\n  // 全站錨點點擊 (例如「查看完整籌碼診斷」、「載入雷達」等)\n  document.querySelectorAll(\'a[href^="#"]:not(#layoutSidenav_nav a)\').forEach((link) => {\n    link.addEventListener("click", (e) => {\n      const href = link.getAttribute("href");\n      if (!href || href === "#") return;\n      const targetId = href.substring(1);\n      const targetEl = document.getElementById(targetId);\n      if (targetEl) {\n        e.preventDefault();\n        manualTargetId = targetId;\n        manualScrollUntil = Date.now() + 750;\n        updateSidebarActive(targetId);\n        scrollToSection(targetId);\n        try { history.pushState(null, "", href); } catch (_) {}\n      }\n    });\n  });\n\n  // 滾動頁面時自動偵測當前瀏覽中的章節並高亮對應側欄按鈕 (ScrollSpy)\n  function onScrollSpy() {\n    if (Date.now() < manualScrollUntil && manualTargetId) {\n      updateSidebarActive(manualTargetId);\n      return;\n    }\n\n    const scrollY = window.pageYOffset || document.documentElement.scrollTop;\n    const windowH = window.innerHeight;\n    const docH = document.documentElement.scrollHeight;\n\n    // 捲動到接近最頂部，固定高亮第一項 (儀表板總覽)\n    if (scrollY < 80) {\n      updateSidebarActive(sidebarSectionIds[0]);\n      return;\n    }\n\n    // 捲動到接近最底部時，直接高亮最後一個章節 (多因子策略選股)\n    if (windowH + scrollY >= docH - 50) {\n      updateSidebarActive(sidebarSectionIds[sidebarSectionIds.length - 1]);\n      return;\n    }\n\n    // 計算各章節在視窗中的相對位置 (觸發線設在頂部導航欄下方約 140px)\n    const topThreshold = 140;\n    let activeId = sidebarSectionIds[0];\n\n    for (let i = 0; i < sidebarSectionIds.length; i++) {\n      const id = sidebarSectionIds[i];\n      const el = document.getElementById(id);\n      if (!el) continue;\n      const rect = el.getBoundingClientRect();\n      if (rect.top <= topThreshold) {\n        activeId = id;\n      } else {\n        break;\n      }\n    }\n\n    updateSidebarActive(activeId);\n  }\n\n  let scrollTicking = false;\n  window.addEventListener("scroll", () => {\n    if (!scrollTicking) {\n      window.requestAnimationFrame(() => {\n        onScrollSpy();\n        scrollTicking = false;\n      });\n      scrollTicking = true;\n    }\n  }, { passive: true });\n\n  window.addEventListener("resize", () => {\n    onScrollSpy();\n  }, { passive: true });\n\n  // 初始載入立即執行一次判定\n  setTimeout(onScrollSpy, 150);'
 clean_js = re.sub(
     r'function scrollToSection\(targetId\)\s*\{.*?secObserver\.observe\(el\);\s*\}\);\s*\}',
     lambda m: new_scrollspy_code,
@@ -928,19 +928,205 @@ clean_js = re.sub(
     flags=re.S
 )
 
+
+# ===== 一週分析報告 (Weekly Analysis Report) 核心引擎與事件 =====
+weekly_report_engine = """
+  // ===== 一週分析報告 (Weekly Analysis Report) =====
+  let currentWeeklyTab = "winners";
+
+  function renderWeeklyReport() {
+    const rep = (typeof DATA !== "undefined" && DATA && DATA.weeklyReport) ? DATA.weeklyReport : null;
+    if (!rep) return;
+
+    const pEl = $("weeklyReportPeriod");
+    if (pEl) pEl.textContent = `統計期間：${rep.weekStartDate || "--"} ~ ${rep.weekEndDate || "--"}`;
+
+    if ($("weeklyWinRate")) {
+      $("weeklyWinRate").textContent = `${rep.winRate != null ? rep.winRate.toFixed(1) : "0.0"}%`;
+    }
+    if ($("weeklyTrackedCount")) {
+      $("weeklyTrackedCount").textContent = `追蹤全週 ${rep.totalTracked || 0} 檔次推薦`;
+    }
+    if ($("weeklyTargetHitRate")) {
+      $("weeklyTargetHitRate").textContent = `${rep.targetHitRate != null ? rep.targetHitRate.toFixed(1) : "0.0"}%`;
+    }
+    if ($("weeklyAvgMaxGain")) {
+      const g = rep.avgMaxGain || 0;
+      const s = g > 0 ? "+" : "";
+      $("weeklyAvgMaxGain").textContent = `${s}${g.toFixed(2)}%`;
+      $("weeklyAvgMaxGain").className = `fs-4 fw-bold num ${g > 0 ? "up" : g < 0 ? "down" : "flat"}`;
+    }
+    if ($("weeklyAvgLatestGain")) {
+      const g = rep.avgLatestGain || 0;
+      const s = g > 0 ? "+" : "";
+      $("weeklyAvgLatestGain").textContent = `${s}${g.toFixed(2)}%`;
+      $("weeklyAvgLatestGain").className = `fs-4 fw-bold num ${g > 0 ? "up" : g < 0 ? "down" : "flat"}`;
+    }
+
+    const secBox = $("weeklyTrendingSectors");
+    if (secBox && Array.isArray(rep.trendingSectors)) {
+      secBox.innerHTML = rep.trendingSectors.map((sec, idx) => {
+        const netStr = sec.instNetTotal > 0 ? `+${(sec.instNetTotal).toLocaleString()} 張` : `${(sec.instNetTotal || 0).toLocaleString()} 張`;
+        const netCls = sec.instNetTotal > 0 ? "up" : sec.instNetTotal < 0 ? "down" : "flat";
+        const stocksHtml = (sec.leadStocks || []).slice(0, 4).map(st => `<span class="badge bg-secondary-subtle text-light border border-secondary-subtle px-1.5 py-0.5 text-xs me-1 mb-1">${st}</span>`).join("");
+        return `
+          <div class="col-12 col-md-6 col-lg">
+            <div class="p-2.5 rounded border border-secondary-subtle h-100" style="background:#121417;">
+              <div class="d-flex align-items-center justify-content-between mb-1">
+                <span class="badge bg-warning text-dark font-monospace text-xs">TOP ${idx + 1}</span>
+                <span class="text-xs fw-bold text-light">${sec.sector || "其他"}</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between text-xs text-muted mb-2">
+                <span>推薦入選: <b class="text-light">${sec.picksCount || 0}</b> 檔</span>
+                <span>法人買超: <b class="${netCls}">${netStr}</b></span>
+              </div>
+              <div class="d-flex flex-wrap mt-1">
+                ${stocksHtml}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    renderWeeklyTable(rep);
+
+    const preEl = $("weeklyReportTextPre");
+    if (preEl && rep.reportText) {
+      preEl.textContent = rep.reportText;
+    }
+  }
+
+  function renderWeeklyTable(rep) {
+    if (!rep) rep = (typeof DATA !== "undefined" && DATA && DATA.weeklyReport) ? DATA.weeklyReport : null;
+    if (!rep) return;
+
+    const tbody = $("weeklyTableRows");
+    if (!tbody) return;
+
+    const items = currentWeeklyTab === "winners" ? (rep.topWinners || []) : (rep.worstDivergent || []);
+
+    if (!items.length) {
+      tbody.innerHTML = `<tr><td colspan="11" class="text-center py-4 text-muted">無對應紀錄</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = items.map(item => {
+      const maxGain = item.maxGainPct || 0;
+      const maxGainStr = maxGain > 0 ? `+${maxGain.toFixed(2)}%` : `${maxGain.toFixed(2)}%`;
+      const maxCls = maxGain > 0 ? "up" : maxGain < 0 ? "down" : "flat";
+
+      const lateGain = item.latestGainPct || 0;
+      const lateGainStr = lateGain > 0 ? `+${lateGain.toFixed(2)}%` : `${lateGain.toFixed(2)}%`;
+      const lateCls = lateGain > 0 ? "up" : lateGain < 0 ? "down" : "flat";
+
+      const badgeCls = item.hitTarget ? "bg-danger text-light" : item.hitStop ? "bg-success text-light" : maxGain > 0 ? "bg-secondary text-light" : "bg-dark text-muted";
+      const statusText = item.status || (item.hitTarget ? "達標" : item.hitStop ? "停損" : "追蹤中");
+
+      return `
+        <tr>
+          <td class="ps-3 font-monospace text-muted text-xs">${item.recDate || "--"}</td>
+          <td>
+            <div class="fw-bold text-light">${item.name}</div>
+            <div class="font-monospace text-xs text-muted">${item.code}</div>
+          </td>
+          <td>
+            <div class="text-xs text-light">${item.sector || "--"}</div>
+            <div class="text-xs text-muted">${item.market || "--"}</div>
+          </td>
+          <td class="text-end font-monospace text-light">${item.recPrice != null ? item.recPrice.toFixed(2) : "--"}</td>
+          <td class="text-end font-monospace text-info">${item.target1 != null ? item.target1.toFixed(2) : "--"}</td>
+          <td class="text-end font-monospace up">${item.maxHigh != null ? item.maxHigh.toFixed(2) : "--"}</td>
+          <td class="text-end font-monospace fw-bold ${maxCls}">${maxGainStr}</td>
+          <td class="text-end font-monospace text-light">${item.latestClose != null ? item.latestClose.toFixed(2) : "--"}</td>
+          <td class="text-end font-monospace ${lateCls}">${lateGainStr}</td>
+          <td class="text-center">
+            <span class="badge ${badgeCls} px-2 py-0.5 text-xs font-medium">${statusText}</span>
+          </td>
+          <td class="text-center pe-3">
+            <span class="badge bg-secondary-subtle text-light font-monospace border border-secondary-subtle px-1.5 py-0.5 text-xs">${item.aiGrade || "--"}</span>
+          </td>
+        </tr>
+      `;
+    }).join("");
+  }
+"""
+
+weekly_report_events = """
+  // 一週分析報告 Tab 切換與複製下載
+  const tabWin = $("tabWinnersBtn");
+  const tabDiv = $("tabDivergentBtn");
+  if (tabWin && tabDiv) {
+    tabWin.addEventListener("click", () => {
+      currentWeeklyTab = "winners";
+      tabWin.classList.add("active");
+      tabWin.classList.remove("text-muted");
+      tabDiv.classList.remove("active");
+      tabDiv.classList.add("text-muted");
+      renderWeeklyTable();
+    });
+    tabDiv.addEventListener("click", () => {
+      currentWeeklyTab = "divergent";
+      tabDiv.classList.add("active");
+      tabDiv.classList.remove("text-muted");
+      tabWin.classList.remove("active");
+      tabWin.classList.add("text-muted");
+      renderWeeklyTable();
+    });
+  }
+
+  const copyBtn = $("btnCopyWeeklyTxt");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", () => {
+      const rep = (typeof DATA !== "undefined" && DATA && DATA.weeklyReport) ? DATA.weeklyReport : null;
+      if (!rep || !rep.reportText) {
+        alert("無可用報告文字");
+        return;
+      }
+      navigator.clipboard.writeText(rep.reportText).then(() => {
+        const origText = copyBtn.innerHTML;
+        copyBtn.innerHTML = "✅ 已複製至剪貼簿！";
+        setTimeout(() => { copyBtn.innerHTML = origText; }, 2000);
+      }).catch(err => {
+        alert("複製失敗，請手動複製下方文字");
+      });
+    });
+  }
+
+  const dlBtn = $("btnDownloadWeeklyTxt");
+  if (dlBtn) {
+    dlBtn.addEventListener("click", () => {
+      const rep = (typeof DATA !== "undefined" && DATA && DATA.weeklyReport) ? DATA.weeklyReport : null;
+      if (!rep || !rep.reportText) {
+        alert("無可用報告文字");
+        return;
+      }
+      const blob = new Blob([rep.reportText], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `model_feedback_weekly_${rep.weekEndDate || "report"}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  }
+"""
+
 clean_js = clean_js.replace(
     'initScreenerSectors();',
-    radar_section_engine + '\n' + init_events + '\n  initScreenerSectors();'
+    radar_section_engine + '\n' + weekly_report_engine + '\n' + init_events + '\n' + weekly_report_events + '\n  initScreenerSectors();'
 )
 
 clean_js = clean_js.replace(
     'renderDayTrade(day);',
-    'renderDayTrade(day);\n    renderRadarSection();'
+    'renderDayTrade(day);\n    renderRadarSection();\n    renderWeeklyReport();'
 )
 
 clean_js = clean_js.replace(
     'renderDoctor();',
-    """renderDoctor();\n  renderRadarSection();\n  if (typeof universeDB !== "undefined" && universeDB && universeDB.length) {\n    const sBadge = $("sideDoctorBadge");\n    if (sBadge) sBadge.textContent = `${universeDB.length}檔`;\n    const dCount = $("docPoolCount");\n    if (dCount) dCount.textContent = `全市場 ${fmt(universeDB.length)} 檔即時數據`;\n  }"""
+    """renderDoctor();\n  renderRadarSection();\n  renderWeeklyReport();\n  if (typeof universeDB !== "undefined" && universeDB && universeDB.length) {\n    const sBadge = $("sideDoctorBadge");\n    if (sBadge) sBadge.textContent = `${universeDB.length}檔`;\n    const dCount = $("docPoolCount");\n    if (dCount) dCount.textContent = `全市場 ${fmt(universeDB.length)} 檔即時數據`;\n  }"""
 )
 
 # 在全局點擊代理中掛接雷達載入
@@ -1610,6 +1796,11 @@ body.theme-light .stock-card {{
             多因子策略選股
             <span class="badge ms-auto font-monospace side-badge-indigo">選股機</span>
           </a>
+          <a class="nav-link py-2 px-3 side-item-amber" href="#weeklyReport">
+            <span class="side-dot" style="background:#f59e0b;"></span>
+            一週分析報告
+            <span class="badge ms-auto font-monospace side-badge-amber">覆盤</span>
+          </a>
         </div>
       </div>
       <div class="sb-sidenav-footer border-top border-secondary-subtle">
@@ -2165,6 +2356,126 @@ body.theme-light .stock-card {{
 
             <div class="text-center mt-3">
               <button type="button" id="btnScrMore" class="btn btn-sm btn-outline-info px-4">載入更多 ↓</button>
+            </div>
+          </div>
+        </div>
+        <!-- ===== 模組 8: 一週分析報告 (Weekly Analysis Report) ===== -->
+        <div class="card mb-4 shadow-sm" id="weeklyReport" style="background:#181b20; border-color:#2d323b;">
+          <div class="card-header py-3" style="background:#1e2229; border-bottom:1px solid #2d323b;">
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
+              <div>
+                <div class="text-muted small" id="weeklyReportSubtitle">每週五 17:00 盤後自動產出一週推薦與實際盤勢對比覆盤</div>
+                <h5 class="mb-0 fw-bold text-light d-flex align-items-center gap-2">
+                  一週分析報告
+                  <span class="badge bg-warning text-dark font-monospace text-xs px-2 py-0.5 rounded">實盤覆盤 & 模型迭代</span>
+                </h5>
+              </div>
+              <div class="d-flex align-items-center gap-2 flex-wrap">
+                <span class="text-xs text-muted font-monospace" id="weeklyReportPeriod">統計期間：載入中...</span>
+                <button type="button" id="btnCopyWeeklyTxt" class="btn btn-sm btn-outline-info font-medium">
+                  📋 複製模型回饋文字檔
+                </button>
+                <button type="button" id="btnDownloadWeeklyTxt" class="btn btn-sm btn-outline-warning font-medium">
+                  📥 下載 TXT 報告
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body p-3">
+            <!-- 4 大 KPI 指標卡片 -->
+            <div class="row g-3 mb-4">
+              <div class="col-6 col-lg-3">
+                <div class="p-3 rounded border border-secondary-subtle" style="background:#121417;">
+                  <div class="text-xs text-muted mb-1">一週勝率（曾達獲利）</div>
+                  <div class="fs-4 fw-bold num" id="weeklyWinRate" style="color:var(--up);">--%</div>
+                  <div class="text-xs text-muted mt-1" id="weeklyTrackedCount">追蹤 -- 檔推薦</div>
+                </div>
+              </div>
+              <div class="col-6 col-lg-3">
+                <div class="p-3 rounded border border-secondary-subtle" style="background:#121417;">
+                  <div class="text-xs text-muted mb-1">第一目標價達標率</div>
+                  <div class="fs-4 fw-bold num text-info" id="weeklyTargetHitRate">--%</div>
+                  <div class="text-xs text-muted mt-1">突破目標價1之比例</div>
+                </div>
+              </div>
+              <div class="col-6 col-lg-3">
+                <div class="p-3 rounded border border-secondary-subtle" style="background:#121417;">
+                  <div class="text-xs text-muted mb-1">推薦後週平均最高漲幅</div>
+                  <div class="fs-4 fw-bold num" id="weeklyAvgMaxGain" style="color:var(--up);">--%</div>
+                  <div class="text-xs text-muted mt-1">推薦日起算最高波段</div>
+                </div>
+              </div>
+              <div class="col-6 col-lg-3">
+                <div class="p-3 rounded border border-secondary-subtle" style="background:#121417;">
+                  <div class="text-xs text-muted mb-1">最新週收盤平均表現</div>
+                  <div class="fs-4 fw-bold num" id="weeklyAvgLatestGain">--%</div>
+                  <div class="text-xs text-muted mt-1">截至最新交易日結算</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 區塊: 本週主流族群趨勢 -->
+            <div class="mb-4">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <div class="fw-bold text-light fs-6">本週市場主流族群趨勢排行（依推薦檔數與法人買超）</div>
+                <span class="text-muted text-xs">資金輪動觀察指標</span>
+              </div>
+              <div class="row g-2" id="weeklyTrendingSectors">
+                <!-- JS 動態生成 -->
+              </div>
+            </div>
+
+            <!-- 區塊: TOP 10 最佳表現與偏離檢討 (Tab 頁籤切換) -->
+            <div class="mb-4">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <ul class="nav nav-pills gap-2" id="weeklyReportTabs" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active py-1 px-3 text-xs fw-semibold" id="tabWinnersBtn" type="button" style="border:1px solid #374151;">
+                      週表現最佳 TOP 10 代表作
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link py-1 px-3 text-xs fw-semibold text-muted" id="tabDivergentBtn" type="button" style="border:1px solid #374151;">
+                      偏離檢討 TOP 5（供模型調校）
+                    </button>
+                  </li>
+                </ul>
+                <span class="text-xs text-muted font-monospace">實盤追蹤比對</span>
+              </div>
+
+              <div class="table-responsive rounded border border-secondary-subtle">
+                <table class="table table-dark table-hover table-striped mb-0 text-sm align-middle">
+                  <thead class="text-muted text-xs text-nowrap" style="background:#121417;">
+                    <tr>
+                      <th class="ps-3">推薦日</th>
+                      <th>代碼/名稱</th>
+                      <th>族群/市場</th>
+                      <th class="text-end">推薦價</th>
+                      <th class="text-end">目標價 1</th>
+                      <th class="text-end">最高價</th>
+                      <th class="text-end">最高漲幅</th>
+                      <th class="text-end">最新價</th>
+                      <th class="text-end">最新漲跌</th>
+                      <th class="text-center">狀態</th>
+                      <th class="text-center pe-3">評級</th>
+                    </tr>
+                  </thead>
+                  <tbody id="weeklyTableRows">
+                    <!-- JS 動態生成 -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- 區塊: 模型迭代專用結構化回饋報告文字檔 (TXT Preview) -->
+            <div class="mt-4 pt-3 border-top border-secondary-subtle">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <div>
+                  <span class="fw-bold text-light">模型迭代專用結構化文字報告</span>
+                  <span class="text-xs text-muted ms-2">供複製直接餵入 LLM 決策模型進行提示詞與特徵權重自我反思</span>
+                </div>
+              </div>
+              <pre id="weeklyReportTextPre" class="p-3 rounded border border-secondary-subtle text-light text-xs font-monospace m-0" style="background:#0d1117; max-height:240px; overflow-y:auto; line-height:1.5; white-space:pre-wrap;"></pre>
             </div>
           </div>
         </div>

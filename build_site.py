@@ -627,12 +627,15 @@ def main():
 
     universe_db = build_full_universe_db(docs[0], ind, ohlc_map=ohlc_map) if docs else []
     backtest_stats = build_historical_backtest(docs, ind) if len(docs) > 1 else {}
+    from generate_weekly_report import get_weekly_analysis
+    weekly_analysis = get_weekly_analysis()
 
     data = {
         "generatedAt": dt.datetime.now().strftime("%Y-%m-%d %H:%M"),
         "days": days,
         "universeDB": universe_db,
         "backtest": backtest_stats,
+        "weeklyReport": weekly_analysis,
     }
     data_json = json.dumps(data, ensure_ascii=False)
 

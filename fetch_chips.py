@@ -29,7 +29,7 @@ MIN_AVG_LOTS = 50       # 排除極低流動性股:5 日均量至少 50 張(涵�
 MIN_PRICE = 0           # 排除低價股: 0 (涵蓋所有上市櫃普通股)
 MARKETS = ("上市", "上櫃")
 TOP_N = 20              # 上市、上櫃各推薦 20 檔
-TDCC_CANDIDATES = 50    # 每個市場只對前 50 名候選股查集保上週資料
+TDCC_CANDIDATES = 100    # 每個市場只對前 50 名候選股查集保上週資料
 
 # 各指標權重(合計 100)。主力分點沒有免驗證碼的公開來源,權重先設 0。
 WEIGHTS = {"inst1": 25, "inst5": 25, "streak": 10, "big": 25, "margin": 15, "broker": 0}
@@ -265,7 +265,7 @@ def daytrade_list(d):
     return out
 
 
-DT_MIN_LOTS = 2000   # 當沖標的至少要有的當日成交量(張),太冷門的進出不易
+DT_MIN_LOTS = 50   # 當沖標的至少要有的當日成交量(張),太冷門的進出不易
 DT_WEIGHTS = {
     "long": {"chg": 20, "pos": 15, "inst": 20, "surge": 15, "turnover": 20, "dt": 10},
     "short": {"chg": 20, "pos": 10, "inst": 20, "surge": 20, "turnover": 20, "dt": 10},
