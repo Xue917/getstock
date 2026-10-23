@@ -1,6 +1,6 @@
 {
  "date": "2026-10-22",
- "generatedAt": "2026-10-23T02:12+08:00",
+ "generatedAt": "2026-10-23T21:51+08:00",
  "tradingDays": [
   "2026-10-22",
   "2026-10-21",
@@ -8,8 +8,8 @@
   "2026-10-19",
   "2026-10-16"
  ],
- "tdccDate": "2026-10-08",
- "tdccPrevDate": "2026-10-02",
+ "tdccDate": "2026-10-22",
+ "tdccPrevDate": "2026-10-16",
  "universe": 519,
  "universeByMarket": {
   "上市": 382,
@@ -2328,270 +2328,531 @@
  },
  "picks": [
   {
-   "code": "6214",
-   "name": "精誠",
+   "code": "3005",
+   "name": "神基",
    "market": "上市",
-   "close": 201.0,
-   "chgPct": 1.01,
-   "avgVol": 1084,
-   "volume": 2275,
-   "foreignNet": 785,
-   "trustNet": -4,
-   "dealerNet": 8,
-   "instNet": 790,
+   "close": 125.5,
+   "chgPct": 0.8,
+   "avgVol": 2941,
+   "volume": 3357,
+   "foreignNet": 1218,
+   "trustNet": 4,
+   "dealerNet": 184,
+   "instNet": 1406,
    "instHist": [
-    790,
-    152,
-    100,
-    -102,
-    -52
+    1406,
+    1047,
+    1402,
+    480,
+    1499
    ],
-   "inst5d": 887,
-   "foreignStreak": 3,
-   "trustStreak": 0,
-   "marginChg": -202,
-   "marginBal": 1355,
-   "shortChg": 0,
-   "bigPct": 64.3,
-   "bigChg": 0.63,
+   "inst5d": 5834,
+   "foreignStreak": 5,
+   "trustStreak": 1,
+   "marginChg": -207,
+   "marginBal": 6967,
+   "shortChg": 5,
+   "bigPct": 69.33,
+   "bigChg": 0.65,
    "brokerNet": null,
    "series": [
-    197.5,
-    196.5,
-    196.5,
-    199.0,
-    201.0
+    122.5,
+    120.0,
+    123.0,
+    124.5,
+    125.5
    ],
    "parts": {
-    "inst1": 24.6,
-    "inst5": 20.3,
-    "streak": 6.6,
-    "margin": 14.7,
-    "big": 20.4,
+    "inst1": 23.2,
+    "inst5": 24.3,
+    "streak": 8.5,
+    "margin": 13.1,
+    "big": 20.6,
     "broker": 0
    },
-   "score": 86.6,
+   "score": 89.7,
    "rank": 1,
    "tags": [
-    "外資連買3日",
+    "土洋合買",
+    "外資連買5日",
     "大戶增持",
-    "融資大減"
-   ],
-   "aiGrade": "S+",
-   "aiSignal": "多因子共振・主力鎖碼",
-   "aiSummary": "外資連買 3 日布局、千張大戶週增 +0.63%、散戶融資退場 202 張；今日成交 2,275 張，暴增為 5 日均量(1,084張)的 2.1 倍，主力資金異常點火。",
-   "aiResonance": 5,
-   "tradePlan": {
-    "strategy": "籌碼鎖碼・順勢布局",
-    "ma5": 198.1,
-    "high5": 201.0,
-    "low5": 196.5,
-    "bias5": 1.46,
-    "buyLow": 198.0,
-    "buyHigh": 202.0,
-    "breakoutBuy": 204.0,
-    "buyZone": "198.0 ～ 202.0",
-    "sellTarget1": 211.0,
-    "target1Pct": 5.0,
-    "sellTarget2": 223.0,
-    "target2Pct": 10.9,
-    "stopLoss": 193.0,
-    "stopPct": -4.0,
-    "buyDesc": "貼近 5 日線(198.10)量價穩健，建議於 198.0～202.0 分批買進，突破 204.0 加碼",
-    "sellDesc": "第一賣點 211.0 (+5.0%) 先停利一半；波段目標賣點 223.0 (+10.9%)；跌破 193.0 (-4.0%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": [
-    {
-     "type": "爆量 2.1 倍",
-     "level": "med",
-     "text": "今日成交 2,275 張，暴增為 5 日均量(1,084張)的 2.1 倍，主力資金異常點火"
-    },
-    {
-     "type": "空降 #1 黑馬",
-     "level": "high",
-     "text": "前日未在推薦榜內，今日籌碼分數飆上 86.6 分直接空降 上市第 1 名"
-    },
-    {
-     "type": "逆勢抗跌收紅",
-     "level": "med",
-     "text": "大盤指數下跌 -1.81%，個股卻逆勢上漲 +1.01% 且法人買超護盤"
-    }
-   ]
-  },
-  {
-   "code": "3010",
-   "name": "華立",
-   "market": "上市",
-   "close": 135.5,
-   "chgPct": -2.52,
-   "avgVol": 1197,
-   "volume": 1563,
-   "foreignNet": 775,
-   "trustNet": -2,
-   "dealerNet": 76,
-   "instNet": 849,
-   "instHist": [
-    849,
-    529,
-    -80,
-    -246,
-    573
-   ],
-   "inst5d": 1623,
-   "foreignStreak": 2,
-   "trustStreak": 0,
-   "marginChg": -20,
-   "marginBal": 1206,
-   "shortChg": 0,
-   "bigPct": 52.66,
-   "bigChg": 1.01,
-   "brokerNet": null,
-   "series": [
-    140.0,
-    137.0,
-    135.5,
-    139.0,
-    135.5
-   ],
-   "parts": {
-    "inst1": 24.5,
-    "inst5": 22.8,
-    "streak": 5.4,
-    "margin": 8.3,
-    "big": 25,
-    "broker": 0
-   },
-   "score": 86.0,
-   "rank": 2,
-   "tags": [
-    "大戶增持",
+    "融資大減",
     "5日買超>均量"
    ],
    "aiGrade": "S+",
    "aiSignal": "多因子共振・主力鎖碼",
-   "aiSummary": "千張大戶週增 +1.01%、散戶融資退場 20 張、5日法人買盤強勁；今日股價收跌 -2.52%，但三大法人卻逆勢買超 +849 張（標準壓低吃貨背離）。",
-   "aiResonance": 4,
+   "aiSummary": "土洋法人同步買超、千張大戶週增 +0.65%、散戶融資退場 207 張；前日未在推薦榜內，今日籌碼分數飆上 89.7 分直接空降 上市第 1 名。",
+   "aiResonance": 6,
+   "tradePlan": {
+    "strategy": "籌碼鎖碼・順勢布局",
+    "ma5": 123.1,
+    "high5": 125.5,
+    "low5": 120.0,
+    "bias5": 1.95,
+    "buyLow": 123.0,
+    "buyHigh": 126.0,
+    "breakoutBuy": 127.5,
+    "buyZone": "123.0 ～ 126.0",
+    "sellTarget1": 132.0,
+    "target1Pct": 5.2,
+    "sellTarget2": 139.5,
+    "target2Pct": 11.2,
+    "stopLoss": 118.0,
+    "stopPct": -6.0,
+    "buyDesc": "貼近 5 日線(123.10)量價穩健，建議於 123.0～126.0 分批買進，突破 127.5 加碼",
+    "sellDesc": "第一賣點 132.0 (+5.2%) 先停利一半；波段目標賣點 139.5 (+11.2%)；跌破 118.0 (-6.0%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": [
+    {
+     "type": "空降 #1 黑馬",
+     "level": "high",
+     "text": "前日未在推薦榜內，今日籌碼分數飆上 89.7 分直接空降 上市第 1 名"
+    },
+    {
+     "type": "逆勢抗跌收紅",
+     "level": "med",
+     "text": "大盤指數下跌 -1.81%，個股卻逆勢上漲 +0.80% 且法人買超護盤"
+    }
+   ]
+  },
+  {
+   "code": "3014",
+   "name": "聯陽",
+   "market": "上市",
+   "close": 141.0,
+   "chgPct": -1.4,
+   "avgVol": 1165,
+   "volume": 772,
+   "foreignNet": 132,
+   "trustNet": 52,
+   "dealerNet": -3,
+   "instNet": 181,
+   "instHist": [
+    181,
+    298,
+    251,
+    -162,
+    833
+   ],
+   "inst5d": 1400,
+   "foreignStreak": 3,
+   "trustStreak": 3,
+   "marginChg": -93,
+   "marginBal": 2729,
+   "shortChg": 0,
+   "bigPct": 21.49,
+   "bigChg": 1.17,
+   "brokerNet": null,
+   "series": [
+    148.0,
+    143.5,
+    141.0,
+    143.0,
+    141.0
+   ],
+   "parts": {
+    "inst1": 18.0,
+    "inst5": 22.1,
+    "streak": 9.1,
+    "margin": 13.5,
+    "big": 25,
+    "broker": 0
+   },
+   "score": 87.7,
+   "rank": 2,
+   "tags": [
+    "土洋合買",
+    "投信連買3日",
+    "外資連買3日",
+    "大戶增持",
+    "融資大減",
+    "5日買超>均量"
+   ],
+   "aiGrade": "S+",
+   "aiSignal": "多因子共振・主力鎖碼",
+   "aiSummary": "土洋法人同步買超、千張大戶週增 +1.17%、散戶融資退場 93 張；今日股價收跌 -1.40%，但三大法人卻逆勢買超 +181 張（標準壓低吃貨背離）。",
+   "aiResonance": 6,
    "tradePlan": {
     "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 137.4,
-    "high5": 140.0,
-    "low5": 135.5,
-    "bias5": -1.38,
-    "buyLow": 133.0,
-    "buyHigh": 135.5,
-    "breakoutBuy": 137.5,
-    "buyZone": "133.0 ～ 135.5",
-    "sellTarget1": 143.0,
-    "target1Pct": 5.5,
-    "sellTarget2": 150.5,
-    "target2Pct": 11.1,
-    "stopLoss": 130.0,
-    "stopPct": -4.1,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 133.0～135.5 左側分批低接，站回 137.5 確認轉強",
-    "sellDesc": "第一賣點 143.0 (+5.5%) 先停利一半；波段目標賣點 150.5 (+11.1%)；跌破 130.0 (-4.1%) 或法人連2日轉賣則停損出場。"
+    "ma5": 143.3,
+    "high5": 148.0,
+    "low5": 141.0,
+    "bias5": -1.61,
+    "buyLow": 138.0,
+    "buyHigh": 141.0,
+    "breakoutBuy": 143.5,
+    "buyZone": "138.0 ～ 141.0",
+    "sellTarget1": 151.0,
+    "target1Pct": 7.1,
+    "sellTarget2": 156.5,
+    "target2Pct": 11.0,
+    "stopLoss": 135.5,
+    "stopPct": -3.9,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 138.0～141.0 左側分批低接，站回 143.5 確認轉強",
+    "sellDesc": "第一賣點 151.0 (+7.1%) 先停利一半；波段目標賣點 156.5 (+11.0%)；跌破 135.5 (-3.9%) 或法人連2日轉賣則停損出場。"
    },
    "anomalies": [
     {
      "type": "價跌逆勢吃貨",
      "level": "high",
-     "text": "今日股價收跌 -2.52%，但三大法人卻逆勢買超 +849 張（標準壓低吃貨背離）"
+     "text": "今日股價收跌 -1.40%，但三大法人卻逆勢買超 +181 張（標準壓低吃貨背離）"
+    },
+    {
+     "type": "空降 #2 黑馬",
+     "level": "high",
+     "text": "前日未在推薦榜內，今日籌碼分數飆上 87.7 分直接空降 上市第 2 名"
     }
    ]
   },
   {
-   "code": "2034",
-   "name": "允強",
+   "code": "2542",
+   "name": "興富發",
    "market": "上市",
-   "close": 24.35,
-   "chgPct": 1.46,
-   "avgVol": 2820,
-   "volume": 6070,
-   "foreignNet": 2278,
-   "trustNet": 176,
-   "dealerNet": -6,
-   "instNet": 2448,
+   "close": 40.0,
+   "chgPct": -0.25,
+   "avgVol": 8159,
+   "volume": 8946,
+   "foreignNet": 6009,
+   "trustNet": -390,
+   "dealerNet": 60,
+   "instNet": 5679,
    "instHist": [
-    2448,
-    -83,
-    765,
-    971,
-    849
+    5679,
+    1710,
+    4845,
+    4515,
+    2821
    ],
-   "inst5d": 4950,
-   "foreignStreak": 1,
-   "trustStreak": 4,
-   "marginChg": -45,
-   "marginBal": 3104,
-   "shortChg": 24,
-   "bigPct": 45.87,
-   "bigChg": 0.59,
+   "inst5d": 19570,
+   "foreignStreak": 5,
+   "trustStreak": 0,
+   "marginChg": -324,
+   "marginBal": 4615,
+   "shortChg": 0,
+   "bigPct": 61.87,
+   "bigChg": 0.5,
    "brokerNet": null,
    "series": [
-    23.5,
-    23.7,
-    23.85,
-    24.0,
-    24.35
+    39.65,
+    39.95,
+    40.15,
+    40.1,
+    40.0
    ],
    "parts": {
-    "inst1": 24.8,
-    "inst5": 24.0,
-    "streak": 8.7,
-    "margin": 8.0,
-    "big": 19.9,
+    "inst1": 24.5,
+    "inst5": 24.8,
+    "streak": 7.8,
+    "margin": 10.9,
+    "big": 18.8,
     "broker": 0
    },
-   "score": 85.4,
+   "score": 86.8,
    "rank": 3,
    "tags": [
-    "土洋合買",
-    "投信連買4日",
+    "外資連買5日",
     "大戶增持",
     "5日買超>均量"
    ],
    "aiGrade": "S+",
    "aiSignal": "多因子共振・主力鎖碼",
-   "aiSummary": "土洋法人同步買超、千張大戶週增 +0.59%、散戶融資退場 45 張；前日法人賣超 83 張，今日突反手大買 +2,448 張（V型認錯回補）。",
-   "aiResonance": 6,
+   "aiSummary": "外資連買 5 日布局、千張大戶週增 +0.50%、散戶融資退場 324 張；今日股價收跌 -0.25%，但三大法人卻逆勢買超 +5,679 張（標準壓低吃貨背離）。",
+   "aiResonance": 5,
    "tradePlan": {
-    "strategy": "籌碼鎖碼・順勢布局",
-    "ma5": 23.88,
-    "high5": 24.35,
-    "low5": 23.5,
-    "bias5": 1.97,
-    "buyLow": 23.9,
-    "buyHigh": 24.45,
-    "breakoutBuy": 24.7,
-    "buyZone": "23.9 ～ 24.45",
-    "sellTarget1": 25.55,
-    "target1Pct": 4.9,
-    "sellTarget2": 27.05,
-    "target2Pct": 11.1,
-    "stopLoss": 23.15,
-    "stopPct": -4.9,
-    "buyDesc": "貼近 5 日線(23.88)量價穩健，建議於 23.9～24.45 分批買進，突破 24.7 加碼",
-    "sellDesc": "第一賣點 25.55 (+4.9%) 先停利一半；波段目標賣點 27.05 (+11.1%)；跌破 23.15 (-4.9%) 或法人連2日轉賣則停損出場。"
+    "strategy": "逆勢吃貨・逢低承接",
+    "ma5": 39.97,
+    "high5": 40.15,
+    "low5": 39.65,
+    "bias5": 0.08,
+    "buyLow": 39.2,
+    "buyHigh": 40.0,
+    "breakoutBuy": 40.4,
+    "buyZone": "39.2 ～ 40.0",
+    "sellTarget1": 42.0,
+    "target1Pct": 5.0,
+    "sellTarget2": 44.4,
+    "target2Pct": 11.0,
+    "stopLoss": 38.4,
+    "stopPct": -4.0,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 39.2～40.0 左側分批低接，站回 40.4 確認轉強",
+    "sellDesc": "第一賣點 42.0 (+5.0%) 先停利一半；波段目標賣點 44.4 (+11.0%)；跌破 38.4 (-4.0%) 或法人連2日轉賣則停損出場。"
    },
    "anomalies": [
     {
-     "type": "法人由賣轉買",
+     "type": "價跌逆勢吃貨",
      "level": "high",
-     "text": "前日法人賣超 83 張，今日突反手大買 +2,448 張（V型認錯回補）"
-    },
-    {
-     "type": "爆量 2.2 倍",
-     "level": "med",
-     "text": "今日成交 6,070 張，暴增為 5 日均量(2,820張)的 2.2 倍，主力資金異常點火"
+     "text": "今日股價收跌 -0.25%，但三大法人卻逆勢買超 +5,679 張（標準壓低吃貨背離）"
     },
     {
      "type": "空降 #3 黑馬",
      "level": "high",
-     "text": "前日未在推薦榜內，今日籌碼分數飆上 85.4 分直接空降 上市第 3 名"
+     "text": "前日未在推薦榜內，今日籌碼分數飆上 86.8 分直接空降 上市第 3 名"
+    }
+   ]
+  },
+  {
+   "code": "2354",
+   "name": "鴻準",
+   "market": "上市",
+   "close": 62.0,
+   "chgPct": -2.21,
+   "avgVol": 3337,
+   "volume": 2785,
+   "foreignNet": 838,
+   "trustNet": 4,
+   "dealerNet": -45,
+   "instNet": 798,
+   "instHist": [
+    798,
+    1854,
+    1695,
+    -993,
+    1220
+   ],
+   "inst5d": 4573,
+   "foreignStreak": 3,
+   "trustStreak": 5,
+   "marginChg": -214,
+   "marginBal": 21955,
+   "shortChg": 0,
+   "bigPct": 46.13,
+   "bigChg": 0.58,
+   "brokerNet": null,
+   "series": [
+    62.8,
+    61.5,
+    62.0,
+    63.4,
+    62.0
+   ],
+   "parts": {
+    "inst1": 19.7,
+    "inst5": 22.9,
+    "streak": 9.9,
+    "margin": 12.7,
+    "big": 19.8,
+    "broker": 0
+   },
+   "score": 85.0,
+   "rank": 4,
+   "tags": [
+    "土洋合買",
+    "投信連買5日",
+    "外資連買3日",
+    "大戶增持",
+    "融資大減",
+    "5日買超>均量"
+   ],
+   "aiGrade": "S+",
+   "aiSignal": "多因子共振・主力鎖碼",
+   "aiSummary": "土洋法人同步買超、千張大戶週增 +0.58%、散戶融資退場 214 張；今日股價收跌 -2.21%，但三大法人卻逆勢買超 +798 張（標準壓低吃貨背離）。",
+   "aiResonance": 6,
+   "tradePlan": {
+    "strategy": "逆勢吃貨・逢低承接",
+    "ma5": 62.34,
+    "high5": 63.4,
+    "low5": 61.5,
+    "bias5": -0.55,
+    "buyLow": 60.8,
+    "buyHigh": 62.0,
+    "breakoutBuy": 62.6,
+    "buyZone": "60.8 ～ 62.0",
+    "sellTarget1": 65.1,
+    "target1Pct": 5.0,
+    "sellTarget2": 68.8,
+    "target2Pct": 11.0,
+    "stopLoss": 59.5,
+    "stopPct": -4.0,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 60.8～62.0 左側分批低接，站回 62.6 確認轉強",
+    "sellDesc": "第一賣點 65.1 (+5.0%) 先停利一半；波段目標賣點 68.8 (+11.0%)；跌破 59.5 (-4.0%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": [
+    {
+     "type": "價跌逆勢吃貨",
+     "level": "high",
+     "text": "今日股價收跌 -2.21%，但三大法人卻逆勢買超 +798 張（標準壓低吃貨背離）"
+    },
+    {
+     "type": "空降 #4 黑馬",
+     "level": "high",
+     "text": "前日未在推薦榜內，今日籌碼分數飆上 85.0 分直接空降 上市第 4 名"
+    }
+   ]
+  },
+  {
+   "code": "2377",
+   "name": "微星",
+   "market": "上市",
+   "close": 163.0,
+   "chgPct": -1.21,
+   "avgVol": 9197,
+   "volume": 5053,
+   "foreignNet": 1303,
+   "trustNet": 36,
+   "dealerNet": 198,
+   "instNet": 1537,
+   "instHist": [
+    1537,
+    167,
+    5985,
+    -32,
+    5681
+   ],
+   "inst5d": 13338,
+   "foreignStreak": 1,
+   "trustStreak": 2,
+   "marginChg": -388,
+   "marginBal": 10389,
+   "shortChg": -77,
+   "bigPct": 64.19,
+   "bigChg": 1.08,
+   "brokerNet": null,
+   "series": [
+    161.5,
+    159.5,
+    164.5,
+    165.0,
+    163.0
+   ],
+   "parts": {
+    "inst1": 18.3,
+    "inst5": 23.2,
+    "streak": 7.3,
+    "margin": 11.2,
+    "big": 25,
+    "broker": 0
+   },
+   "score": 85.0,
+   "rank": 5,
+   "tags": [
+    "土洋合買",
+    "大戶增持",
+    "5日買超>均量"
+   ],
+   "aiGrade": "S+",
+   "aiSignal": "多因子共振・主力鎖碼",
+   "aiSummary": "土洋法人同步買超、千張大戶週增 +1.08%、散戶融資退場 388 張；今日股價收跌 -1.21%，但三大法人卻逆勢買超 +1,537 張（標準壓低吃貨背離）。",
+   "aiResonance": 6,
+   "tradePlan": {
+    "strategy": "逆勢吃貨・逢低承接",
+    "ma5": 162.7,
+    "high5": 165.0,
+    "low5": 159.5,
+    "bias5": 0.18,
+    "buyLow": 159.5,
+    "buyHigh": 163.0,
+    "breakoutBuy": 164.5,
+    "buyZone": "159.5 ～ 163.0",
+    "sellTarget1": 171.0,
+    "target1Pct": 4.9,
+    "sellTarget2": 181.0,
+    "target2Pct": 11.0,
+    "stopLoss": 156.5,
+    "stopPct": -4.0,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 159.5～163.0 左側分批低接，站回 164.5 確認轉強",
+    "sellDesc": "第一賣點 171.0 (+4.9%) 先停利一半；波段目標賣點 181.0 (+11.0%)；跌破 156.5 (-4.0%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": [
+    {
+     "type": "價跌逆勢吃貨",
+     "level": "high",
+     "text": "今日股價收跌 -1.21%，但三大法人卻逆勢買超 +1,537 張（標準壓低吃貨背離）"
+    },
+    {
+     "type": "量縮惜售鎖碼",
+     "level": "med",
+     "text": "今日成交量萎縮至均量的 0.5 倍，但法人與千張大戶同步買進，籌碼高度鎖定"
+    },
+    {
+     "type": "空降 #5 黑馬",
+     "level": "high",
+     "text": "前日未在推薦榜內，今日籌碼分數飆上 85.0 分直接空降 上市第 5 名"
+    }
+   ]
+  },
+  {
+   "code": "2027",
+   "name": "大成鋼",
+   "market": "上市",
+   "close": 50.6,
+   "chgPct": 1.4,
+   "avgVol": 11084,
+   "volume": 12714,
+   "foreignNet": 5442,
+   "trustNet": 91,
+   "dealerNet": 742,
+   "instNet": 6275,
+   "instHist": [
+    6275,
+    1058,
+    758,
+    3393,
+    11179
+   ],
+   "inst5d": 22663,
+   "foreignStreak": 5,
+   "trustStreak": 1,
+   "marginChg": -231,
+   "marginBal": 20947,
+   "shortChg": 82,
+   "bigPct": 74.76,
+   "bigChg": 0.48,
+   "brokerNet": null,
+   "series": [
+    50.9,
+    51.0,
+    49.95,
+    49.9,
+    50.6
+   ],
+   "parts": {
+    "inst1": 23.8,
+    "inst5": 24.5,
+    "streak": 8.5,
+    "margin": 9.0,
+    "big": 18.5,
+    "broker": 0
+   },
+   "score": 84.3,
+   "rank": 6,
+   "tags": [
+    "土洋合買",
+    "外資連買5日",
+    "5日買超>均量"
+   ],
+   "aiGrade": "A+",
+   "aiSignal": "籌碼集中・波段偏多",
+   "aiSummary": "土洋法人同步買超、千張大戶週增 +0.48%、散戶融資退場 231 張；前日未在推薦榜內，今日籌碼分數飆上 84.3 分直接空降 上市第 6 名。",
+   "aiResonance": 6,
+   "tradePlan": {
+    "strategy": "籌碼鎖碼・順勢布局",
+    "ma5": 50.47,
+    "high5": 51.0,
+    "low5": 49.9,
+    "bias5": 0.26,
+    "buyLow": 49.85,
+    "buyHigh": 50.9,
+    "breakoutBuy": 51.4,
+    "buyZone": "49.85 ～ 50.9",
+    "sellTarget1": 53.1,
+    "target1Pct": 4.9,
+    "sellTarget2": 55.2,
+    "target2Pct": 9.1,
+    "stopLoss": 48.6,
+    "stopPct": -4.0,
+    "buyDesc": "貼近 5 日線(50.47)量價穩健，建議於 49.85～50.9 分批買進，突破 51.4 加碼",
+    "sellDesc": "第一賣點 53.1 (+4.9%) 先停利一半；波段目標賣點 55.2 (+9.1%)；跌破 48.6 (-4.0%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": [
+    {
+     "type": "空降 #6 黑馬",
+     "level": "high",
+     "text": "前日未在推薦榜內，今日籌碼分數飆上 84.3 分直接空降 上市第 6 名"
     },
     {
      "type": "逆勢抗跌收紅",
      "level": "med",
-     "text": "大盤指數下跌 -1.81%，個股卻逆勢上漲 +1.46% 且法人買超護盤"
+     "text": "大盤指數下跌 -1.81%，個股卻逆勢上漲 +1.40% 且法人買超護盤"
     }
    ]
   },
@@ -2620,8 +2881,8 @@
    "marginChg": -636,
    "marginBal": 13163,
    "shortChg": 0,
-   "bigPct": 62.07,
-   "bigChg": 0.05,
+   "bigPct": 62.17,
+   "bigChg": 0.06,
    "brokerNet": null,
    "series": [
     29.7,
@@ -2635,11 +2896,11 @@
     "inst5": 23.4,
     "streak": 8.7,
     "margin": 14.5,
-    "big": 13.1,
+    "big": 13.2,
     "broker": 0
    },
-   "score": 84.0,
-   "rank": 4,
+   "score": 84.1,
+   "rank": 7,
    "tags": [
     "土洋合買",
     "投信連買4日",
@@ -2676,11 +2937,6 @@
      "text": "前日法人賣超 584 張，今日突反手大買 +2,858 張（V型認錯回補）"
     },
     {
-     "type": "空降 #4 黑馬",
-     "level": "high",
-     "text": "前日未在推薦榜內，今日籌碼分數飆上 84.0 分直接空降 上市第 4 名"
-    },
-    {
      "type": "逆勢抗跌收紅",
      "level": "med",
      "text": "大盤指數下跌 -1.81%，個股卻逆勢上漲 +1.02% 且法人買超護盤"
@@ -2688,89 +2944,342 @@
    ]
   },
   {
-   "code": "3005",
-   "name": "神基",
+   "code": "2002",
+   "name": "中鋼",
    "market": "上市",
-   "close": 125.5,
-   "chgPct": 0.8,
-   "avgVol": 2941,
-   "volume": 3357,
-   "foreignNet": 1218,
-   "trustNet": 4,
-   "dealerNet": 184,
-   "instNet": 1406,
+   "close": 19.55,
+   "chgPct": -0.26,
+   "avgVol": 48190,
+   "volume": 48253,
+   "foreignNet": 24665,
+   "trustNet": 650,
+   "dealerNet": -387,
+   "instNet": 24928,
    "instHist": [
-    1406,
-    1047,
-    1402,
-    480,
-    1499
+    24928,
+    7835,
+    24567,
+    9580,
+    44263
    ],
-   "inst5d": 5834,
+   "inst5d": 111172,
    "foreignStreak": 5,
-   "trustStreak": 1,
-   "marginChg": -207,
-   "marginBal": 6967,
-   "shortChg": 5,
-   "bigPct": 68.63,
-   "bigChg": 0.19,
+   "trustStreak": 5,
+   "marginChg": -539,
+   "marginBal": 38126,
+   "shortChg": 47,
+   "bigPct": 50.38,
+   "bigChg": 0.43,
    "brokerNet": null,
    "series": [
-    122.5,
-    120.0,
-    123.0,
-    124.5,
-    125.5
+    19.55,
+    19.5,
+    19.6,
+    19.6,
+    19.55
    ],
    "parts": {
-    "inst1": 23.2,
-    "inst5": 24.3,
-    "streak": 8.5,
-    "margin": 13.1,
-    "big": 14.9,
+    "inst1": 23.6,
+    "inst5": 24.7,
+    "streak": 10.0,
+    "margin": 7.0,
+    "big": 17.9,
     "broker": 0
    },
-   "score": 84.0,
-   "rank": 5,
+   "score": 83.2,
+   "rank": 8,
    "tags": [
     "土洋合買",
+    "投信連買5日",
+    "外資連買5日",
+    "5日買超>均量"
+   ],
+   "aiGrade": "A+",
+   "aiSignal": "籌碼集中・波段偏多",
+   "aiSummary": "土洋法人同步買超、千張大戶週增 +0.43%、散戶融資退場 539 張；今日股價收跌 -0.26%，但三大法人卻逆勢買超 +24,928 張（標準壓低吃貨背離）。",
+   "aiResonance": 6,
+   "tradePlan": {
+    "strategy": "逆勢吃貨・逢低承接",
+    "ma5": 19.56,
+    "high5": 19.6,
+    "low5": 19.5,
+    "bias5": -0.05,
+    "buyLow": 19.15,
+    "buyHigh": 19.55,
+    "breakoutBuy": 19.75,
+    "buyZone": "19.15 ～ 19.55",
+    "sellTarget1": 20.55,
+    "target1Pct": 5.1,
+    "sellTarget2": 21.3,
+    "target2Pct": 9.0,
+    "stopLoss": 18.75,
+    "stopPct": -4.1,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 19.15～19.55 左側分批低接，站回 19.75 確認轉強",
+    "sellDesc": "第一賣點 20.55 (+5.1%) 先停利一半；波段目標賣點 21.3 (+9.0%)；跌破 18.75 (-4.1%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": [
+    {
+     "type": "價跌逆勢吃貨",
+     "level": "high",
+     "text": "今日股價收跌 -0.26%，但三大法人卻逆勢買超 +24,928 張（標準壓低吃貨背離）"
+    },
+    {
+     "type": "連霸榜 5 日",
+     "level": "high",
+     "text": "連續 5 個交易日蟬聯 AI 大戶推薦榜，主力波段鎖碼極度穩定"
+    }
+   ]
+  },
+  {
+   "code": "8422",
+   "name": "可寧衛*",
+   "market": "上市",
+   "close": 26.05,
+   "chgPct": -0.19,
+   "avgVol": 6279,
+   "volume": 5496,
+   "foreignNet": 1995,
+   "trustNet": 0,
+   "dealerNet": -20,
+   "instNet": 1975,
+   "instHist": [
+    1975,
+    2787,
+    -21,
+    798,
+    2177
+   ],
+   "inst5d": 7716,
+   "foreignStreak": 5,
+   "trustStreak": 0,
+   "marginChg": -177,
+   "marginBal": 24475,
+   "shortChg": -40,
+   "bigPct": 35.11,
+   "bigChg": 0.76,
+   "brokerNet": null,
+   "series": [
+    25.7,
+    26.0,
+    25.75,
+    26.1,
+    26.05
+   ],
+   "parts": {
+    "inst1": 21.1,
+    "inst5": 22.2,
+    "streak": 7.8,
+    "margin": 10.0,
+    "big": 22.0,
+    "broker": 0
+   },
+   "score": 83.1,
+   "rank": 9,
+   "tags": [
+    "外資連買5日",
+    "大戶增持",
+    "5日買超>均量"
+   ],
+   "aiGrade": "A+",
+   "aiSignal": "籌碼集中・波段偏多",
+   "aiSummary": "外資連買 5 日布局、千張大戶週增 +0.76%、散戶融資退場 177 張；今日股價收跌 -0.19%，但三大法人卻逆勢買超 +1,975 張（標準壓低吃貨背離）。",
+   "aiResonance": 5,
+   "tradePlan": {
+    "strategy": "逆勢吃貨・逢低承接",
+    "ma5": 25.92,
+    "high5": 26.1,
+    "low5": 25.7,
+    "bias5": 0.5,
+    "buyLow": 25.55,
+    "buyHigh": 26.05,
+    "breakoutBuy": 26.3,
+    "buyZone": "25.55 ～ 26.05",
+    "sellTarget1": 27.35,
+    "target1Pct": 5.0,
+    "sellTarget2": 28.4,
+    "target2Pct": 9.0,
+    "stopLoss": 25.0,
+    "stopPct": -4.0,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 25.55～26.05 左側分批低接，站回 26.3 確認轉強",
+    "sellDesc": "第一賣點 27.35 (+5.0%) 先停利一半；波段目標賣點 28.4 (+9.0%)；跌破 25.0 (-4.0%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": [
+    {
+     "type": "價跌逆勢吃貨",
+     "level": "high",
+     "text": "今日股價收跌 -0.19%，但三大法人卻逆勢買超 +1,975 張（標準壓低吃貨背離）"
+    },
+    {
+     "type": "排名急升 ↑9名",
+     "level": "med",
+     "text": "較前一日排名(#18)大幅竄升 9 個名次至 #9"
+    }
+   ]
+  },
+  {
+   "code": "3029",
+   "name": "零壹",
+   "market": "上市",
+   "close": 122.5,
+   "chgPct": 2.94,
+   "avgVol": 1340,
+   "volume": 2306,
+   "foreignNet": 555,
+   "trustNet": 0,
+   "dealerNet": 55,
+   "instNet": 610,
+   "instHist": [
+    610,
+    297,
+    336,
+    -97,
+    515
+   ],
+   "inst5d": 1661,
+   "foreignStreak": 3,
+   "trustStreak": 0,
+   "marginChg": -19,
+   "marginBal": 2742,
+   "shortChg": 4,
+   "bigPct": 37.3,
+   "bigChg": 0.87,
+   "brokerNet": null,
+   "series": [
+    120.5,
+    117.5,
+    118.5,
+    119.0,
+    122.5
+   ],
+   "parts": {
+    "inst1": 22.7,
+    "inst5": 22.3,
+    "streak": 6.6,
+    "margin": 7.6,
+    "big": 23.4,
+    "broker": 0
+   },
+   "score": 82.6,
+   "rank": 10,
+   "tags": [
+    "外資連買3日",
+    "大戶增持",
+    "5日買超>均量"
+   ],
+   "aiGrade": "A+",
+   "aiSignal": "籌碼集中・波段偏多",
+   "aiSummary": "外資連買 3 日布局、千張大戶週增 +0.87%、散戶融資退場 19 張；連續 3 個交易日蟬聯 AI 大戶推薦榜，主力波段鎖碼極度穩定。",
+   "aiResonance": 5,
+   "tradePlan": {
+    "strategy": "籌碼鎖碼・順勢布局",
+    "ma5": 119.6,
+    "high5": 122.5,
+    "low5": 117.5,
+    "bias5": 2.42,
+    "buyLow": 119.5,
+    "buyHigh": 123.0,
+    "breakoutBuy": 124.5,
+    "buyZone": "119.5 ～ 123.0",
+    "sellTarget1": 128.5,
+    "target1Pct": 4.9,
+    "sellTarget2": 133.5,
+    "target2Pct": 9.0,
+    "stopLoss": 115.5,
+    "stopPct": -5.7,
+    "buyDesc": "貼近 5 日線(119.60)量價穩健，建議於 119.5～123.0 分批買進，突破 124.5 加碼",
+    "sellDesc": "第一賣點 128.5 (+4.9%) 先停利一半；波段目標賣點 133.5 (+9.0%)；跌破 115.5 (-5.7%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": [
+    {
+     "type": "連霸榜 3 日",
+     "level": "high",
+     "text": "連續 3 個交易日蟬聯 AI 大戶推薦榜，主力波段鎖碼極度穩定"
+    },
+    {
+     "type": "逆勢抗跌收紅",
+     "level": "med",
+     "text": "大盤指數下跌 -1.81%，個股卻逆勢上漲 +2.94% 且法人買超護盤"
+    }
+   ]
+  },
+  {
+   "code": "9904",
+   "name": "寶成",
+   "market": "上市",
+   "close": 26.35,
+   "chgPct": -0.19,
+   "avgVol": 16247,
+   "volume": 11370,
+   "foreignNet": 4952,
+   "trustNet": -1358,
+   "dealerNet": 430,
+   "instNet": 4024,
+   "instHist": [
+    4024,
+    1612,
+    5353,
+    5250,
+    9434
+   ],
+   "inst5d": 25673,
+   "foreignStreak": 5,
+   "trustStreak": 0,
+   "marginChg": -1040,
+   "marginBal": 19578,
+   "shortChg": -4,
+   "bigPct": 64.47,
+   "bigChg": 0.47,
+   "brokerNet": null,
+   "series": [
+    26.5,
+    26.4,
+    26.55,
+    26.4,
+    26.35
+   ],
+   "parts": {
+    "inst1": 19.9,
+    "inst5": 23.6,
+    "streak": 7.8,
+    "margin": 12.6,
+    "big": 18.4,
+    "broker": 0
+   },
+   "score": 82.3,
+   "rank": 11,
+   "tags": [
     "外資連買5日",
     "融資大減",
     "5日買超>均量"
    ],
    "aiGrade": "A+",
    "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "土洋法人同步買超、大戶持股穩步增加、散戶融資退場 207 張；前日未在推薦榜內，今日籌碼分數飆上 84.0 分直接空降 上市第 5 名。",
+   "aiSummary": "外資連買 5 日布局、千張大戶週增 +0.47%、散戶融資退場 1,040 張；今日股價收跌 -0.19%，但三大法人卻逆勢買超 +4,024 張（標準壓低吃貨背離）。",
    "aiResonance": 5,
    "tradePlan": {
-    "strategy": "籌碼鎖碼・順勢布局",
-    "ma5": 123.1,
-    "high5": 125.5,
-    "low5": 120.0,
-    "bias5": 1.95,
-    "buyLow": 123.0,
-    "buyHigh": 126.0,
-    "breakoutBuy": 127.5,
-    "buyZone": "123.0 ～ 126.0",
-    "sellTarget1": 132.0,
-    "target1Pct": 5.2,
-    "sellTarget2": 137.0,
-    "target2Pct": 9.2,
-    "stopLoss": 118.0,
-    "stopPct": -6.0,
-    "buyDesc": "貼近 5 日線(123.10)量價穩健，建議於 123.0～126.0 分批買進，突破 127.5 加碼",
-    "sellDesc": "第一賣點 132.0 (+5.2%) 先停利一半；波段目標賣點 137.0 (+9.2%)；跌破 118.0 (-6.0%) 或法人連2日轉賣則停損出場。"
+    "strategy": "逆勢吃貨・逢低承接",
+    "ma5": 26.44,
+    "high5": 26.55,
+    "low5": 26.35,
+    "bias5": -0.34,
+    "buyLow": 25.8,
+    "buyHigh": 26.35,
+    "breakoutBuy": 26.6,
+    "buyZone": "25.8 ～ 26.35",
+    "sellTarget1": 27.65,
+    "target1Pct": 4.9,
+    "sellTarget2": 28.7,
+    "target2Pct": 8.9,
+    "stopLoss": 25.3,
+    "stopPct": -4.0,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 25.8～26.35 左側分批低接，站回 26.6 確認轉強",
+    "sellDesc": "第一賣點 27.65 (+4.9%) 先停利一半；波段目標賣點 28.7 (+8.9%)；跌破 25.3 (-4.0%) 或法人連2日轉賣則停損出場。"
    },
    "anomalies": [
     {
-     "type": "空降 #5 黑馬",
+     "type": "價跌逆勢吃貨",
      "level": "high",
-     "text": "前日未在推薦榜內，今日籌碼分數飆上 84.0 分直接空降 上市第 5 名"
-    },
-    {
-     "type": "逆勢抗跌收紅",
-     "level": "med",
-     "text": "大盤指數下跌 -1.81%，個股卻逆勢上漲 +0.80% 且法人買超護盤"
+     "text": "今日股價收跌 -0.19%，但三大法人卻逆勢買超 +4,024 張（標準壓低吃貨背離）"
     }
    ]
   },
@@ -2799,8 +3308,8 @@
    "marginChg": -126,
    "marginBal": 5946,
    "shortChg": 1,
-   "bigPct": 78.64,
-   "bigChg": 0.16,
+   "bigPct": 79.2,
+   "bigChg": -0.02,
    "brokerNet": null,
    "series": [
     34.55,
@@ -2814,11 +3323,11 @@
     "inst5": 24.4,
     "streak": 7.8,
     "margin": 14.2,
-    "big": 14.5,
+    "big": 12.2,
     "broker": 0
    },
-   "score": 83.5,
-   "rank": 6,
+   "score": 81.2,
+   "rank": 12,
    "tags": [
     "外資連買5日",
     "融資大減",
@@ -2826,8 +3335,8 @@
    ],
    "aiGrade": "A+",
    "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "外資連買 5 日布局、大戶持股穩步增加、散戶融資退場 126 張；今日股價收跌 -1.31%，但三大法人卻逆勢買超 +451 張（標準壓低吃貨背離）。",
-   "aiResonance": 4,
+   "aiSummary": "外資連買 5 日布局、散戶融資退場 126 張、5日法人買盤強勁；今日股價收跌 -1.31%，但三大法人卻逆勢買超 +451 張（標準壓低吃貨背離）。",
+   "aiResonance": 3,
    "tradePlan": {
     "strategy": "逆勢吃貨・逢低承接",
     "ma5": 34.42,
@@ -2856,503 +3365,159 @@
    ]
   },
   {
-   "code": "2377",
-   "name": "微星",
+   "code": "2353",
+   "name": "宏碁",
    "market": "上市",
-   "close": 163.0,
-   "chgPct": -1.21,
-   "avgVol": 9197,
-   "volume": 5053,
-   "foreignNet": 1303,
-   "trustNet": 36,
-   "dealerNet": 198,
-   "instNet": 1537,
+   "close": 32.45,
+   "chgPct": 0.46,
+   "avgVol": 18046,
+   "volume": 19687,
+   "foreignNet": 9221,
+   "trustNet": -826,
+   "dealerNet": 824,
+   "instNet": 9218,
    "instHist": [
-    1537,
-    167,
-    5985,
-    -32,
-    5681
+    9218,
+    1049,
+    12119,
+    169,
+    5310
    ],
-   "inst5d": 13338,
-   "foreignStreak": 1,
-   "trustStreak": 2,
-   "marginChg": -388,
-   "marginBal": 10389,
-   "shortChg": -77,
-   "bigPct": 62.18,
-   "bigChg": 0.72,
-   "brokerNet": null,
-   "series": [
-    161.5,
-    159.5,
-    164.5,
-    165.0,
-    163.0
-   ],
-   "parts": {
-    "inst1": 18.3,
-    "inst5": 23.2,
-    "streak": 7.3,
-    "margin": 11.2,
-    "big": 21.5,
-    "broker": 0
-   },
-   "score": 81.5,
-   "rank": 7,
-   "tags": [
-    "土洋合買",
-    "大戶增持",
-    "5日買超>均量"
-   ],
-   "aiGrade": "A+",
-   "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "土洋法人同步買超、千張大戶週增 +0.72%、散戶融資退場 388 張；今日股價收跌 -1.21%，但三大法人卻逆勢買超 +1,537 張（標準壓低吃貨背離）。",
-   "aiResonance": 6,
-   "tradePlan": {
-    "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 162.7,
-    "high5": 165.0,
-    "low5": 159.5,
-    "bias5": 0.18,
-    "buyLow": 159.5,
-    "buyHigh": 163.0,
-    "breakoutBuy": 164.5,
-    "buyZone": "159.5 ～ 163.0",
-    "sellTarget1": 171.0,
-    "target1Pct": 4.9,
-    "sellTarget2": 177.5,
-    "target2Pct": 8.9,
-    "stopLoss": 156.5,
-    "stopPct": -4.0,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 159.5～163.0 左側分批低接，站回 164.5 確認轉強",
-    "sellDesc": "第一賣點 171.0 (+4.9%) 先停利一半；波段目標賣點 177.5 (+8.9%)；跌破 156.5 (-4.0%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": [
-    {
-     "type": "價跌逆勢吃貨",
-     "level": "high",
-     "text": "今日股價收跌 -1.21%，但三大法人卻逆勢買超 +1,537 張（標準壓低吃貨背離）"
-    },
-    {
-     "type": "量縮惜售鎖碼",
-     "level": "med",
-     "text": "今日成交量萎縮至均量的 0.5 倍，但法人與千張大戶同步買進，籌碼高度鎖定"
-    }
-   ]
-  },
-  {
-   "code": "2542",
-   "name": "興富發",
-   "market": "上市",
-   "close": 40.0,
-   "chgPct": -0.25,
-   "avgVol": 8159,
-   "volume": 8946,
-   "foreignNet": 6009,
-   "trustNet": -390,
-   "dealerNet": 60,
-   "instNet": 5679,
-   "instHist": [
-    5679,
-    1710,
-    4845,
-    4515,
-    2821
-   ],
-   "inst5d": 19570,
+   "inst5d": 27865,
    "foreignStreak": 5,
    "trustStreak": 0,
-   "marginChg": -324,
-   "marginBal": 4615,
-   "shortChg": 0,
-   "bigPct": 61.05,
-   "bigChg": -0.01,
+   "marginChg": -454,
+   "marginBal": 33303,
+   "shortChg": 2,
+   "bigPct": 34.21,
+   "bigChg": 0.36,
    "brokerNet": null,
    "series": [
-    39.65,
-    39.95,
-    40.15,
-    40.1,
-    40.0
+    32.25,
+    32.05,
+    32.4,
+    32.3,
+    32.45
    ],
    "parts": {
-    "inst1": 24.5,
-    "inst5": 24.8,
+    "inst1": 23.4,
+    "inst5": 23.3,
     "streak": 7.8,
-    "margin": 10.9,
-    "big": 12.4,
+    "margin": 9.6,
+    "big": 17.0,
     "broker": 0
    },
-   "score": 80.4,
-   "rank": 8,
+   "score": 81.1,
+   "rank": 13,
    "tags": [
     "外資連買5日",
     "5日買超>均量"
    ],
    "aiGrade": "A+",
    "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "外資連買 5 日布局、散戶融資退場 324 張、5日法人買盤強勁；今日股價收跌 -0.25%，但三大法人卻逆勢買超 +5,679 張（標準壓低吃貨背離）。",
-   "aiResonance": 3,
-   "tradePlan": {
-    "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 39.97,
-    "high5": 40.15,
-    "low5": 39.65,
-    "bias5": 0.08,
-    "buyLow": 39.2,
-    "buyHigh": 40.0,
-    "breakoutBuy": 40.4,
-    "buyZone": "39.2 ～ 40.0",
-    "sellTarget1": 42.0,
-    "target1Pct": 5.0,
-    "sellTarget2": 43.6,
-    "target2Pct": 9.0,
-    "stopLoss": 38.4,
-    "stopPct": -4.0,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 39.2～40.0 左側分批低接，站回 40.4 確認轉強",
-    "sellDesc": "第一賣點 42.0 (+5.0%) 先停利一半；波段目標賣點 43.6 (+9.0%)；跌破 38.4 (-4.0%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": [
-    {
-     "type": "價跌逆勢吃貨",
-     "level": "high",
-     "text": "今日股價收跌 -0.25%，但三大法人卻逆勢買超 +5,679 張（標準壓低吃貨背離）"
-    }
-   ]
-  },
-  {
-   "code": "2393",
-   "name": "億光",
-   "market": "上市",
-   "close": 67.8,
-   "chgPct": -0.15,
-   "avgVol": 1285,
-   "volume": 1222,
-   "foreignNet": 479,
-   "trustNet": 185,
-   "dealerNet": -1,
-   "instNet": 662,
-   "instHist": [
-    662,
-    449,
-    2,
-    29,
-    874
-   ],
-   "inst5d": 2017,
-   "foreignStreak": 5,
-   "trustStreak": 3,
-   "marginChg": -2,
-   "marginBal": 2099,
-   "shortChg": 0,
-   "bigPct": 59.72,
-   "bigChg": 0.44,
-   "brokerNet": null,
-   "series": [
-    68.9,
-    67.9,
-    67.4,
-    67.9,
-    67.8
-   ],
-   "parts": {
-    "inst1": 23.5,
-    "inst5": 23.4,
-    "streak": 9.8,
-    "margin": 5.0,
-    "big": 18.0,
-    "broker": 0
-   },
-   "score": 79.7,
-   "rank": 9,
-   "tags": [
-    "土洋合買",
-    "投信連買3日",
-    "外資連買5日",
-    "5日買超>均量"
-   ],
-   "aiGrade": "A+",
-   "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "土洋法人同步買超、千張大戶週增 +0.44%、散戶融資退場 2 張；今日股價收跌 -0.15%，但三大法人卻逆勢買超 +662 張（標準壓低吃貨背離）。",
-   "aiResonance": 6,
-   "tradePlan": {
-    "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 67.98,
-    "high5": 68.9,
-    "low5": 67.4,
-    "bias5": -0.26,
-    "buyLow": 66.4,
-    "buyHigh": 67.8,
-    "breakoutBuy": 68.5,
-    "buyZone": "66.4 ～ 67.8",
-    "sellTarget1": 71.2,
-    "target1Pct": 5.0,
-    "sellTarget2": 73.9,
-    "target2Pct": 9.0,
-    "stopLoss": 65.1,
-    "stopPct": -4.0,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 66.4～67.8 左側分批低接，站回 68.5 確認轉強",
-    "sellDesc": "第一賣點 71.2 (+5.0%) 先停利一半；波段目標賣點 73.9 (+9.0%)；跌破 65.1 (-4.0%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": [
-    {
-     "type": "價跌逆勢吃貨",
-     "level": "high",
-     "text": "今日股價收跌 -0.15%，但三大法人卻逆勢買超 +662 張（標準壓低吃貨背離）"
-    },
-    {
-     "type": "排名急升 ↑5名",
-     "level": "med",
-     "text": "較前一日排名(#14)大幅竄升 5 個名次至 #9"
-    }
-   ]
-  },
-  {
-   "code": "2006",
-   "name": "東和鋼鐵",
-   "market": "上市",
-   "close": 93.2,
-   "chgPct": -0.11,
-   "avgVol": 1987,
-   "volume": 2302,
-   "foreignNet": 424,
-   "trustNet": 27,
-   "dealerNet": 39,
-   "instNet": 490,
-   "instHist": [
-    490,
-    704,
-    61,
-    87,
-    557
-   ],
-   "inst5d": 1899,
-   "foreignStreak": 5,
-   "trustStreak": 3,
-   "marginChg": -103,
-   "marginBal": 1181,
-   "shortChg": 1,
-   "bigPct": 75.04,
-   "bigChg": 0.31,
-   "brokerNet": null,
-   "series": [
-    92.1,
-    92.2,
-    90.7,
-    93.3,
-    93.2
-   ],
-   "parts": {
-    "inst1": 19.8,
-    "inst5": 20.9,
-    "streak": 9.8,
-    "margin": 12.0,
-    "big": 16.4,
-    "broker": 0
-   },
-   "score": 78.9,
-   "rank": 10,
-   "tags": [
-    "土洋合買",
-    "投信連買3日",
-    "外資連買5日",
-    "融資大減"
-   ],
-   "aiGrade": "A+",
-   "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "土洋法人同步買超、大戶持股穩步增加、散戶融資退場 103 張；今日股價收跌 -0.11%，但三大法人卻逆勢買超 +490 張（標準壓低吃貨背離）。",
-   "aiResonance": 5,
-   "tradePlan": {
-    "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 92.3,
-    "high5": 93.3,
-    "low5": 90.7,
-    "bias5": 0.98,
-    "buyLow": 90.7,
-    "buyHigh": 93.2,
-    "breakoutBuy": 94.1,
-    "buyZone": "90.7 ～ 93.2",
-    "sellTarget1": 97.9,
-    "target1Pct": 5.0,
-    "sellTarget2": 101.5,
-    "target2Pct": 8.9,
-    "stopLoss": 89.3,
-    "stopPct": -4.2,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 90.7～93.2 左側分批低接，站回 94.1 確認轉強",
-    "sellDesc": "第一賣點 97.9 (+5.0%) 先停利一半；波段目標賣點 101.5 (+8.9%)；跌破 89.3 (-4.2%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": [
-    {
-     "type": "價跌逆勢吃貨",
-     "level": "high",
-     "text": "今日股價收跌 -0.11%，但三大法人卻逆勢買超 +490 張（標準壓低吃貨背離）"
-    }
-   ]
-  },
-  {
-   "code": "9933",
-   "name": "中鼎",
-   "market": "上市",
-   "close": 44.65,
-   "chgPct": 2.17,
-   "avgVol": 5689,
-   "volume": 8266,
-   "foreignNet": 3910,
-   "trustNet": 0,
-   "dealerNet": -163,
-   "instNet": 3747,
-   "instHist": [
-    3747,
-    1168,
-    1948,
-    476,
-    1677
-   ],
-   "inst5d": 9015,
-   "foreignStreak": 5,
-   "trustStreak": 0,
-   "marginChg": 6,
-   "marginBal": 6060,
-   "shortChg": 15,
-   "bigPct": 57.6,
-   "bigChg": 0.52,
-   "brokerNet": null,
-   "series": [
-    43.2,
-    42.75,
-    42.95,
-    43.7,
-    44.65
-   ],
-   "parts": {
-    "inst1": 24.4,
-    "inst5": 23.6,
-    "streak": 7.8,
-    "margin": 4.0,
-    "big": 19.0,
-    "broker": 0
-   },
-   "score": 78.8,
-   "rank": 11,
-   "tags": [
-    "外資連買5日",
-    "大戶增持",
-    "5日買超>均量"
-   ],
-   "aiGrade": "A+",
-   "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "外資連買 5 日布局、千張大戶週增 +0.52%、5日法人買盤強勁；大盤指數下跌 -1.81%，個股卻逆勢上漲 +2.17% 且法人買超護盤。",
+   "aiSummary": "外資連買 5 日布局、大戶持股穩步增加、散戶融資退場 454 張；大盤指數下跌 -1.81%，個股卻逆勢上漲 +0.46% 且法人買超護盤。",
    "aiResonance": 4,
    "tradePlan": {
     "strategy": "籌碼鎖碼・順勢布局",
-    "ma5": 43.45,
-    "high5": 44.65,
-    "low5": 42.75,
-    "bias5": 2.76,
-    "buyLow": 43.45,
-    "buyHigh": 44.85,
-    "breakoutBuy": 45.3,
-    "buyZone": "43.45 ～ 44.85",
-    "sellTarget1": 46.9,
-    "target1Pct": 5.0,
-    "sellTarget2": 48.65,
-    "target2Pct": 9.0,
-    "stopLoss": 42.1,
-    "stopPct": -5.7,
-    "buyDesc": "貼近 5 日線(43.45)量價穩健，建議於 43.45～44.85 分批買進，突破 45.3 加碼",
-    "sellDesc": "第一賣點 46.9 (+5.0%) 先停利一半；波段目標賣點 48.65 (+9.0%)；跌破 42.1 (-5.7%) 或法人連2日轉賣則停損出場。"
+    "ma5": 32.29,
+    "high5": 32.45,
+    "low5": 32.05,
+    "bias5": 0.5,
+    "buyLow": 31.95,
+    "buyHigh": 32.6,
+    "breakoutBuy": 32.95,
+    "buyZone": "31.95 ～ 32.6",
+    "sellTarget1": 34.05,
+    "target1Pct": 4.9,
+    "sellTarget2": 35.35,
+    "target2Pct": 8.9,
+    "stopLoss": 31.15,
+    "stopPct": -4.0,
+    "buyDesc": "貼近 5 日線(32.29)量價穩健，建議於 31.95～32.6 分批買進，突破 32.95 加碼",
+    "sellDesc": "第一賣點 34.05 (+4.9%) 先停利一半；波段目標賣點 35.35 (+8.9%)；跌破 31.15 (-4.0%) 或法人連2日轉賣則停損出場。"
    },
    "anomalies": [
     {
      "type": "逆勢抗跌收紅",
      "level": "med",
-     "text": "大盤指數下跌 -1.81%，個股卻逆勢上漲 +2.17% 且法人買超護盤"
+     "text": "大盤指數下跌 -1.81%，個股卻逆勢上漲 +0.46% 且法人買超護盤"
     }
    ]
   },
   {
-   "code": "3014",
-   "name": "聯陽",
+   "code": "2324",
+   "name": "仁寶",
    "market": "上市",
-   "close": 141.0,
-   "chgPct": -1.4,
-   "avgVol": 1165,
-   "volume": 772,
-   "foreignNet": 132,
-   "trustNet": 52,
-   "dealerNet": -3,
-   "instNet": 181,
+   "close": 37.3,
+   "chgPct": -1.06,
+   "avgVol": 39866,
+   "volume": 31559,
+   "foreignNet": 4480,
+   "trustNet": -1083,
+   "dealerNet": 830,
+   "instNet": 4227,
    "instHist": [
-    181,
-    298,
-    251,
-    -162,
-    833
+    4227,
+    14619,
+    15952,
+    496,
+    7895
    ],
-   "inst5d": 1400,
-   "foreignStreak": 3,
-   "trustStreak": 3,
-   "marginChg": -93,
-   "marginBal": 2729,
-   "shortChg": 0,
-   "bigPct": 21.23,
-   "bigChg": 0.24,
+   "inst5d": 43189,
+   "foreignStreak": 5,
+   "trustStreak": 0,
+   "marginChg": -1840,
+   "marginBal": 58880,
+   "shortChg": 4,
+   "bigPct": 58.01,
+   "bigChg": 0.77,
    "brokerNet": null,
    "series": [
-    148.0,
-    143.5,
-    141.0,
-    143.0,
-    141.0
+    36.7,
+    36.25,
+    36.9,
+    37.7,
+    37.3
    ],
    "parts": {
-    "inst1": 18.0,
-    "inst5": 22.1,
-    "streak": 9.1,
-    "margin": 13.5,
-    "big": 15.5,
+    "inst1": 16.5,
+    "inst5": 21.6,
+    "streak": 7.8,
+    "margin": 11.5,
+    "big": 22.1,
     "broker": 0
    },
-   "score": 78.2,
-   "rank": 12,
+   "score": 79.5,
+   "rank": 14,
    "tags": [
-    "土洋合買",
-    "投信連買3日",
-    "外資連買3日",
-    "融資大減",
+    "外資連買5日",
+    "大戶增持",
     "5日買超>均量"
    ],
    "aiGrade": "A+",
    "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "土洋法人同步買超、大戶持股穩步增加、散戶融資退場 93 張；今日股價收跌 -1.40%，但三大法人卻逆勢買超 +181 張（標準壓低吃貨背離）。",
+   "aiSummary": "外資連買 5 日布局、千張大戶週增 +0.77%、散戶融資退場 1,840 張。",
    "aiResonance": 5,
    "tradePlan": {
     "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 143.3,
-    "high5": 148.0,
-    "low5": 141.0,
-    "bias5": -1.61,
-    "buyLow": 138.0,
-    "buyHigh": 141.0,
-    "breakoutBuy": 143.5,
-    "buyZone": "138.0 ～ 141.0",
-    "sellTarget1": 151.0,
-    "target1Pct": 7.1,
-    "sellTarget2": 155.5,
-    "target2Pct": 10.3,
-    "stopLoss": 135.5,
-    "stopPct": -3.9,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 138.0～141.0 左側分批低接，站回 143.5 確認轉強",
-    "sellDesc": "第一賣點 151.0 (+7.1%) 先停利一半；波段目標賣點 155.5 (+10.3%)；跌破 135.5 (-3.9%) 或法人連2日轉賣則停損出場。"
+    "ma5": 36.97,
+    "high5": 37.7,
+    "low5": 36.25,
+    "bias5": 0.89,
+    "buyLow": 36.25,
+    "buyHigh": 37.3,
+    "breakoutBuy": 37.65,
+    "buyZone": "36.25 ～ 37.3",
+    "sellTarget1": 39.15,
+    "target1Pct": 5.0,
+    "sellTarget2": 40.65,
+    "target2Pct": 9.0,
+    "stopLoss": 35.7,
+    "stopPct": -4.3,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 36.25～37.3 左側分批低接，站回 37.65 確認轉強",
+    "sellDesc": "第一賣點 39.15 (+5.0%) 先停利一半；波段目標賣點 40.65 (+9.0%)；跌破 35.7 (-4.3%) 或法人連2日轉賣則停損出場。"
    },
-   "anomalies": [
-    {
-     "type": "價跌逆勢吃貨",
-     "level": "high",
-     "text": "今日股價收跌 -1.40%，但三大法人卻逆勢買超 +181 張（標準壓低吃貨背離）"
-    }
-   ]
+   "anomalies": []
   },
   {
    "code": "2633",
@@ -3379,8 +3544,8 @@
    "marginChg": -164,
    "marginBal": 1795,
    "shortChg": 28,
-   "bigPct": 85.06,
-   "bigChg": 0.03,
+   "bigPct": 85.25,
+   "bigChg": 0.11,
    "brokerNet": null,
    "series": [
     26.35,
@@ -3394,11 +3559,11 @@
     "inst5": 24.6,
     "streak": 5.4,
     "margin": 10.4,
-    "big": 12.9,
+    "big": 13.9,
     "broker": 0
    },
-   "score": 78.0,
-   "rank": 13,
+   "score": 79.0,
+   "rank": 15,
    "tags": [
     "5日買超>均量"
    ],
@@ -3434,240 +3599,254 @@
    ]
   },
   {
-   "code": "2027",
-   "name": "大成鋼",
+   "code": "2010",
+   "name": "春源",
    "market": "上市",
-   "close": 50.6,
-   "chgPct": 1.4,
-   "avgVol": 11084,
-   "volume": 12714,
-   "foreignNet": 5442,
-   "trustNet": 91,
-   "dealerNet": 742,
-   "instNet": 6275,
+   "close": 23.1,
+   "chgPct": 0.0,
+   "avgVol": 1383,
+   "volume": 928,
+   "foreignNet": 399,
+   "trustNet": 0,
+   "dealerNet": 0,
+   "instNet": 399,
    "instHist": [
-    6275,
-    1058,
-    758,
-    3393,
-    11179
+    399,
+    -156,
+    -129,
+    -4,
+    1762
    ],
-   "inst5d": 22663,
-   "foreignStreak": 5,
-   "trustStreak": 1,
-   "marginChg": -231,
-   "marginBal": 20947,
-   "shortChg": 82,
-   "bigPct": 73.66,
-   "bigChg": -0.04,
+   "inst5d": 1873,
+   "foreignStreak": 1,
+   "trustStreak": 0,
+   "marginChg": -347,
+   "marginBal": 1955,
+   "shortChg": 0,
+   "bigPct": 65.5,
+   "bigChg": 0.28,
    "brokerNet": null,
    "series": [
-    50.9,
-    51.0,
-    49.95,
-    49.9,
-    50.6
+    23.45,
+    23.25,
+    23.1,
+    23.1,
+    23.1
    ],
    "parts": {
-    "inst1": 23.8,
-    "inst5": 24.5,
-    "streak": 8.5,
-    "margin": 9.0,
-    "big": 12.0,
+    "inst1": 20.6,
+    "inst5": 22.8,
+    "streak": 4.0,
+    "margin": 14.9,
+    "big": 16.0,
     "broker": 0
    },
-   "score": 77.8,
-   "rank": 14,
+   "score": 78.3,
+   "rank": 16,
    "tags": [
-    "土洋合買",
-    "外資連買5日",
+    "融資大減",
     "5日買超>均量"
    ],
    "aiGrade": "A+",
    "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "土洋法人同步買超、散戶融資退場 231 張、5日法人買盤強勁；大盤指數下跌 -1.81%，個股卻逆勢上漲 +1.40% 且法人買超護盤。",
-   "aiResonance": 4,
+   "aiSummary": "大戶持股穩步增加、散戶融資退場 347 張、5日法人買盤強勁；前日法人賣超 156 張，今日突反手大買 +399 張（V型認錯回補）。",
+   "aiResonance": 3,
    "tradePlan": {
     "strategy": "籌碼鎖碼・順勢布局",
-    "ma5": 50.47,
-    "high5": 51.0,
-    "low5": 49.9,
-    "bias5": 0.26,
-    "buyLow": 49.85,
-    "buyHigh": 50.9,
-    "breakoutBuy": 51.4,
-    "buyZone": "49.85 ～ 50.9",
-    "sellTarget1": 53.1,
-    "target1Pct": 4.9,
-    "sellTarget2": 55.2,
+    "ma5": 23.2,
+    "high5": 23.45,
+    "low5": 23.1,
+    "bias5": -0.43,
+    "buyLow": 22.75,
+    "buyHigh": 23.2,
+    "breakoutBuy": 23.45,
+    "buyZone": "22.75 ～ 23.2",
+    "sellTarget1": 24.25,
+    "target1Pct": 5.0,
+    "sellTarget2": 25.2,
     "target2Pct": 9.1,
-    "stopLoss": 48.6,
-    "stopPct": -4.0,
-    "buyDesc": "貼近 5 日線(50.47)量價穩健，建議於 49.85～50.9 分批買進，突破 51.4 加碼",
-    "sellDesc": "第一賣點 53.1 (+4.9%) 先停利一半；波段目標賣點 55.2 (+9.1%)；跌破 48.6 (-4.0%) 或法人連2日轉賣則停損出場。"
+    "stopLoss": 22.2,
+    "stopPct": -3.9,
+    "buyDesc": "貼近 5 日線(23.20)量價穩健，建議於 22.75～23.2 分批買進，突破 23.45 加碼",
+    "sellDesc": "第一賣點 24.25 (+5.0%) 先停利一半；波段目標賣點 25.2 (+9.1%)；跌破 22.2 (-3.9%) 或法人連2日轉賣則停損出場。"
    },
    "anomalies": [
     {
-     "type": "逆勢抗跌收紅",
-     "level": "med",
-     "text": "大盤指數下跌 -1.81%，個股卻逆勢上漲 +1.40% 且法人買超護盤"
+     "type": "法人由賣轉買",
+     "level": "high",
+     "text": "前日法人賣超 156 張，今日突反手大買 +399 張（V型認錯回補）"
     }
    ]
   },
   {
-   "code": "3714",
-   "name": "富采",
+   "code": "2034",
+   "name": "允強",
    "market": "上市",
-   "close": 61.7,
-   "chgPct": -1.44,
-   "avgVol": 4299,
-   "volume": 5551,
-   "foreignNet": 1379,
-   "trustNet": 0,
-   "dealerNet": 4,
-   "instNet": 1384,
+   "close": 24.35,
+   "chgPct": 1.46,
+   "avgVol": 2820,
+   "volume": 6070,
+   "foreignNet": 2278,
+   "trustNet": 176,
+   "dealerNet": -6,
+   "instNet": 2448,
    "instHist": [
-    1384,
-    482,
-    45,
-    375,
-    926
+    2448,
+    -83,
+    765,
+    971,
+    849
    ],
-   "inst5d": 3211,
-   "foreignStreak": 5,
-   "trustStreak": 0,
-   "marginChg": -478,
-   "marginBal": 21736,
-   "shortChg": -11,
-   "bigPct": 38.32,
-   "bigChg": 0.16,
+   "inst5d": 4950,
+   "foreignStreak": 1,
+   "trustStreak": 4,
+   "marginChg": -45,
+   "marginBal": 3104,
+   "shortChg": 24,
+   "bigPct": 45.73,
+   "bigChg": -0.02,
    "brokerNet": null,
    "series": [
-    63.4,
-    62.9,
-    61.7,
-    62.6,
-    61.7
+    23.5,
+    23.7,
+    23.85,
+    24.0,
+    24.35
    ],
    "parts": {
-    "inst1": 21.4,
-    "inst5": 20.0,
-    "streak": 7.8,
-    "margin": 14.0,
-    "big": 14.5,
+    "inst1": 24.8,
+    "inst5": 24.0,
+    "streak": 8.7,
+    "margin": 8.0,
+    "big": 12.2,
     "broker": 0
    },
    "score": 77.7,
-   "rank": 15,
+   "rank": 17,
    "tags": [
-    "外資連買5日",
-    "融資大減"
+    "土洋合買",
+    "投信連買4日",
+    "5日買超>均量"
    ],
    "aiGrade": "A+",
    "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "外資連買 5 日布局、大戶持股穩步增加、散戶融資退場 478 張；今日股價收跌 -1.44%，但三大法人卻逆勢買超 +1,384 張（標準壓低吃貨背離）。",
-   "aiResonance": 3,
+   "aiSummary": "土洋法人同步買超、散戶融資退場 45 張、5日法人買盤強勁；前日法人賣超 83 張，今日突反手大買 +2,448 張（V型認錯回補）。",
+   "aiResonance": 4,
    "tradePlan": {
-    "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 62.46,
-    "high5": 63.4,
-    "low5": 61.7,
-    "bias5": -1.22,
-    "buyLow": 60.5,
-    "buyHigh": 61.7,
-    "breakoutBuy": 62.5,
-    "buyZone": "60.5 ～ 61.7",
-    "sellTarget1": 64.8,
-    "target1Pct": 5.0,
-    "sellTarget2": 67.3,
-    "target2Pct": 9.1,
-    "stopLoss": 59.2,
-    "stopPct": -4.1,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 60.5～61.7 左側分批低接，站回 62.5 確認轉強",
-    "sellDesc": "第一賣點 64.8 (+5.0%) 先停利一半；波段目標賣點 67.3 (+9.1%)；跌破 59.2 (-4.1%) 或法人連2日轉賣則停損出場。"
+    "strategy": "籌碼鎖碼・順勢布局",
+    "ma5": 23.88,
+    "high5": 24.35,
+    "low5": 23.5,
+    "bias5": 1.97,
+    "buyLow": 23.9,
+    "buyHigh": 24.45,
+    "breakoutBuy": 24.7,
+    "buyZone": "23.9 ～ 24.45",
+    "sellTarget1": 25.55,
+    "target1Pct": 4.9,
+    "sellTarget2": 26.55,
+    "target2Pct": 9.0,
+    "stopLoss": 23.15,
+    "stopPct": -4.9,
+    "buyDesc": "貼近 5 日線(23.88)量價穩健，建議於 23.9～24.45 分批買進，突破 24.7 加碼",
+    "sellDesc": "第一賣點 25.55 (+4.9%) 先停利一半；波段目標賣點 26.55 (+9.0%)；跌破 23.15 (-4.9%) 或法人連2日轉賣則停損出場。"
    },
    "anomalies": [
     {
-     "type": "價跌逆勢吃貨",
+     "type": "法人由賣轉買",
      "level": "high",
-     "text": "今日股價收跌 -1.44%，但三大法人卻逆勢買超 +1,384 張（標準壓低吃貨背離）"
+     "text": "前日法人賣超 83 張，今日突反手大買 +2,448 張（V型認錯回補）"
+    },
+    {
+     "type": "爆量 2.2 倍",
+     "level": "med",
+     "text": "今日成交 6,070 張，暴增為 5 日均量(2,820張)的 2.2 倍，主力資金異常點火"
+    },
+    {
+     "type": "逆勢抗跌收紅",
+     "level": "med",
+     "text": "大盤指數下跌 -1.81%，個股卻逆勢上漲 +1.46% 且法人買超護盤"
     }
    ]
   },
   {
-   "code": "2504",
-   "name": "國產",
+   "code": "2105",
+   "name": "正新",
    "market": "上市",
-   "close": 32.2,
+   "close": 32.0,
    "chgPct": 0.31,
-   "avgVol": 2001,
-   "volume": 2316,
-   "foreignNet": 952,
-   "trustNet": 10,
-   "dealerNet": 190,
-   "instNet": 1152,
+   "avgVol": 7653,
+   "volume": 4535,
+   "foreignNet": 1558,
+   "trustNet": -802,
+   "dealerNet": 892,
+   "instNet": 1648,
    "instHist": [
-    1152,
-    350,
-    223,
-    931,
-    633
+    1648,
+    1310,
+    1831,
+    3261,
+    8773
    ],
-   "inst5d": 3289,
+   "inst5d": 16823,
    "foreignStreak": 5,
-   "trustStreak": 1,
-   "marginChg": -21,
-   "marginBal": 6225,
-   "shortChg": 0,
-   "bigPct": 70.15,
-   "bigChg": 0.16,
+   "trustStreak": 0,
+   "marginChg": -101,
+   "marginBal": 7833,
+   "shortChg": 50,
+   "bigPct": 78.48,
+   "bigChg": 0.48,
    "brokerNet": null,
    "series": [
-    32.0,
-    32.0,
-    32.0,
+    32.5,
+    32.2,
     32.1,
-    32.2
+    31.9,
+    32.0
    ],
    "parts": {
-    "inst1": 24.0,
-    "inst5": 23.8,
-    "streak": 8.5,
-    "margin": 6.8,
-    "big": 14.5,
+    "inst1": 19.2,
+    "inst5": 24.7,
+    "streak": 7.8,
+    "margin": 7.3,
+    "big": 18.5,
     "broker": 0
    },
-   "score": 77.6,
-   "rank": 16,
+   "score": 77.5,
+   "rank": 18,
    "tags": [
-    "土洋合買",
     "外資連買5日",
     "5日買超>均量"
    ],
    "aiGrade": "A+",
    "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "土洋法人同步買超、大戶持股穩步增加、散戶融資退場 21 張；大盤指數下跌 -1.81%，個股卻逆勢上漲 +0.31% 且法人買超護盤。",
+   "aiSummary": "外資連買 5 日布局、千張大戶週增 +0.48%、散戶融資退場 101 張；連續 5 個交易日蟬聯 AI 大戶推薦榜，主力波段鎖碼極度穩定。",
    "aiResonance": 5,
    "tradePlan": {
     "strategy": "籌碼鎖碼・順勢布局",
-    "ma5": 32.06,
-    "high5": 32.2,
-    "low5": 32.0,
-    "bias5": 0.44,
-    "buyLow": 31.7,
-    "buyHigh": 32.35,
-    "breakoutBuy": 32.7,
-    "buyZone": "31.7 ～ 32.35",
-    "sellTarget1": 33.8,
+    "ma5": 32.14,
+    "high5": 32.5,
+    "low5": 31.9,
+    "bias5": -0.44,
+    "buyLow": 31.5,
+    "buyHigh": 32.15,
+    "breakoutBuy": 32.5,
+    "buyZone": "31.5 ～ 32.15",
+    "sellTarget1": 33.6,
     "target1Pct": 5.0,
-    "sellTarget2": 35.1,
-    "target2Pct": 9.0,
-    "stopLoss": 30.9,
-    "stopPct": -4.0,
-    "buyDesc": "貼近 5 日線(32.06)量價穩健，建議於 31.7～32.35 分批買進，突破 32.7 加碼",
-    "sellDesc": "第一賣點 33.8 (+5.0%) 先停利一半；波段目標賣點 35.1 (+9.0%)；跌破 30.9 (-4.0%) 或法人連2日轉賣則停損出場。"
+    "sellTarget2": 34.9,
+    "target2Pct": 9.1,
+    "stopLoss": 30.7,
+    "stopPct": -4.1,
+    "buyDesc": "貼近 5 日線(32.14)量價穩健，建議於 31.5～32.15 分批買進，突破 32.5 加碼",
+    "sellDesc": "第一賣點 33.6 (+5.0%) 先停利一半；波段目標賣點 34.9 (+9.1%)；跌破 30.7 (-4.1%) 或法人連2日轉賣則停損出場。"
    },
    "anomalies": [
+    {
+     "type": "連霸榜 5 日",
+     "level": "high",
+     "text": "連續 5 個交易日蟬聯 AI 大戶推薦榜，主力波段鎖碼極度穩定"
+    },
     {
      "type": "逆勢抗跌收紅",
      "level": "med",
@@ -3676,590 +3855,166 @@
    ]
   },
   {
-   "code": "9904",
-   "name": "寶成",
+   "code": "2352",
+   "name": "佳世達",
    "market": "上市",
-   "close": 26.35,
-   "chgPct": -0.19,
-   "avgVol": 16247,
-   "volume": 11370,
-   "foreignNet": 4952,
-   "trustNet": -1358,
-   "dealerNet": 430,
-   "instNet": 4024,
-   "instHist": [
-    4024,
-    1612,
-    5353,
-    5250,
-    9434
-   ],
-   "inst5d": 25673,
-   "foreignStreak": 5,
-   "trustStreak": 0,
-   "marginChg": -1040,
-   "marginBal": 19578,
-   "shortChg": -4,
-   "bigPct": 62.81,
-   "bigChg": 0.09,
-   "brokerNet": null,
-   "series": [
-    26.5,
-    26.4,
-    26.55,
-    26.4,
-    26.35
-   ],
-   "parts": {
-    "inst1": 19.9,
-    "inst5": 23.6,
-    "streak": 7.8,
-    "margin": 12.6,
-    "big": 13.6,
-    "broker": 0
-   },
-   "score": 77.5,
-   "rank": 17,
-   "tags": [
-    "外資連買5日",
-    "融資大減",
-    "5日買超>均量"
-   ],
-   "aiGrade": "A+",
-   "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "外資連買 5 日布局、大戶持股穩步增加、散戶融資退場 1,040 張；今日股價收跌 -0.19%，但三大法人卻逆勢買超 +4,024 張（標準壓低吃貨背離）。",
-   "aiResonance": 4,
-   "tradePlan": {
-    "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 26.44,
-    "high5": 26.55,
-    "low5": 26.35,
-    "bias5": -0.34,
-    "buyLow": 25.8,
-    "buyHigh": 26.35,
-    "breakoutBuy": 26.6,
-    "buyZone": "25.8 ～ 26.35",
-    "sellTarget1": 27.65,
-    "target1Pct": 4.9,
-    "sellTarget2": 28.7,
-    "target2Pct": 8.9,
-    "stopLoss": 25.3,
-    "stopPct": -4.0,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 25.8～26.35 左側分批低接，站回 26.6 確認轉強",
-    "sellDesc": "第一賣點 27.65 (+4.9%) 先停利一半；波段目標賣點 28.7 (+8.9%)；跌破 25.3 (-4.0%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": [
-    {
-     "type": "價跌逆勢吃貨",
-     "level": "high",
-     "text": "今日股價收跌 -0.19%，但三大法人卻逆勢買超 +4,024 張（標準壓低吃貨背離）"
-    }
-   ]
-  },
-  {
-   "code": "2905",
-   "name": "三商",
-   "market": "上市",
-   "close": 17.95,
-   "chgPct": 0.84,
-   "avgVol": 1392,
-   "volume": 2027,
-   "foreignNet": 1636,
+   "close": 29.4,
+   "chgPct": -0.17,
+   "avgVol": 4280,
+   "volume": 4865,
+   "foreignNet": 2582,
    "trustNet": 0,
-   "dealerNet": 0,
-   "instNet": 1636,
+   "dealerNet": 60,
+   "instNet": 2641,
    "instHist": [
-    1636,
-    333,
-    -488,
-    476,
-    494
+    2641,
+    1289,
+    2046,
+    -533,
+    1552
    ],
-   "inst5d": 2451,
-   "foreignStreak": 2,
+   "inst5d": 6996,
+   "foreignStreak": 3,
    "trustStreak": 0,
-   "marginChg": -50,
-   "marginBal": 1909,
+   "marginChg": -123,
+   "marginBal": 14403,
    "shortChg": 0,
-   "bigPct": 80.84,
-   "bigChg": -0.01,
+   "bigPct": 43.6,
+   "bigChg": 0.04,
    "brokerNet": null,
    "series": [
-    17.85,
-    17.8,
-    17.55,
-    17.8,
-    17.95
-   ],
-   "parts": {
-    "inst1": 24.9,
-    "inst5": 24.1,
-    "streak": 5.4,
-    "margin": 10.6,
-    "big": 12.4,
-    "broker": 0
-   },
-   "score": 77.4,
-   "rank": 18,
-   "tags": [
-    "5日買超>均量"
-   ],
-   "aiGrade": "A",
-   "aiSignal": "法人進駐・穩健偏多",
-   "aiSummary": "散戶融資退場 50 張、5日法人買盤強勁；大盤指數下跌 -1.81%，個股卻逆勢上漲 +0.84% 且法人買超護盤。",
-   "aiResonance": 2,
-   "tradePlan": {
-    "strategy": "籌碼鎖碼・順勢布局",
-    "ma5": 17.79,
-    "high5": 17.95,
-    "low5": 17.55,
-    "bias5": 0.9,
-    "buyLow": 17.7,
-    "buyHigh": 18.05,
-    "breakoutBuy": 18.2,
-    "buyZone": "17.7 ～ 18.05",
-    "sellTarget1": 18.85,
-    "target1Pct": 5.0,
-    "sellTarget2": 19.4,
-    "target2Pct": 8.1,
-    "stopLoss": 17.25,
-    "stopPct": -3.9,
-    "buyDesc": "貼近 5 日線(17.79)量價穩健，建議於 17.7～18.05 分批買進，突破 18.2 加碼",
-    "sellDesc": "第一賣點 18.85 (+5.0%) 先停利一半；波段目標賣點 19.4 (+8.1%)；跌破 17.25 (-3.9%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": [
-    {
-     "type": "逆勢抗跌收紅",
-     "level": "med",
-     "text": "大盤指數下跌 -1.81%，個股卻逆勢上漲 +0.84% 且法人買超護盤"
-    }
-   ]
-  },
-  {
-   "code": "2002",
-   "name": "中鋼",
-   "market": "上市",
-   "close": 19.55,
-   "chgPct": -0.26,
-   "avgVol": 48190,
-   "volume": 48253,
-   "foreignNet": 24665,
-   "trustNet": 650,
-   "dealerNet": -387,
-   "instNet": 24928,
-   "instHist": [
-    24928,
-    7835,
-    24567,
-    9580,
-    44263
-   ],
-   "inst5d": 111172,
-   "foreignStreak": 5,
-   "trustStreak": 5,
-   "marginChg": -539,
-   "marginBal": 38126,
-   "shortChg": 47,
-   "bigPct": 49.31,
-   "bigChg": -0.05,
-   "brokerNet": null,
-   "series": [
-    19.55,
-    19.5,
-    19.6,
-    19.6,
-    19.55
-   ],
-   "parts": {
-    "inst1": 23.6,
-    "inst5": 24.7,
-    "streak": 10.0,
-    "margin": 7.0,
-    "big": 11.9,
-    "broker": 0
-   },
-   "score": 77.2,
-   "rank": 19,
-   "tags": [
-    "土洋合買",
-    "投信連買5日",
-    "外資連買5日",
-    "5日買超>均量"
-   ],
-   "aiGrade": "A+",
-   "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "土洋法人同步買超、散戶融資退場 539 張、5日法人買盤強勁；今日股價收跌 -0.26%，但三大法人卻逆勢買超 +24,928 張（標準壓低吃貨背離）。",
-   "aiResonance": 4,
-   "tradePlan": {
-    "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 19.56,
-    "high5": 19.6,
-    "low5": 19.5,
-    "bias5": -0.05,
-    "buyLow": 19.15,
-    "buyHigh": 19.55,
-    "breakoutBuy": 19.75,
-    "buyZone": "19.15 ～ 19.55",
-    "sellTarget1": 20.55,
-    "target1Pct": 5.1,
-    "sellTarget2": 21.3,
-    "target2Pct": 9.0,
-    "stopLoss": 18.75,
-    "stopPct": -4.1,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 19.15～19.55 左側分批低接，站回 19.75 確認轉強",
-    "sellDesc": "第一賣點 20.55 (+5.1%) 先停利一半；波段目標賣點 21.3 (+9.0%)；跌破 18.75 (-4.1%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": [
-    {
-     "type": "價跌逆勢吃貨",
-     "level": "high",
-     "text": "今日股價收跌 -0.26%，但三大法人卻逆勢買超 +24,928 張（標準壓低吃貨背離）"
-    },
-    {
-     "type": "連霸榜 5 日",
-     "level": "high",
-     "text": "連續 5 個交易日蟬聯 AI 大戶推薦榜，主力波段鎖碼極度穩定"
-    }
-   ]
-  },
-  {
-   "code": "1710",
-   "name": "東聯",
-   "market": "上市",
-   "close": 17.05,
-   "chgPct": -3.67,
-   "avgVol": 4185,
-   "volume": 4001,
-   "foreignNet": 982,
-   "trustNet": 0,
-   "dealerNet": -84,
-   "instNet": 898,
-   "instHist": [
-    898,
-    131,
-    325,
-    -807,
-    1019
-   ],
-   "inst5d": 1565,
-   "foreignStreak": 3,
-   "trustStreak": 0,
-   "marginChg": -846,
-   "marginBal": 8959,
-   "shortChg": 6,
-   "bigPct": 58.03,
-   "bigChg": 0.55,
-   "brokerNet": null,
-   "series": [
-    18.05,
-    17.6,
-    17.45,
-    17.7,
-    17.05
-   ],
-   "parts": {
-    "inst1": 19.0,
-    "inst5": 17.1,
-    "streak": 6.6,
-    "margin": 14.8,
-    "big": 19.4,
-    "broker": 0
-   },
-   "score": 76.9,
-   "rank": 20,
-   "tags": [
-    "外資連買3日",
-    "大戶增持",
-    "融資大減"
-   ],
-   "aiGrade": "A+",
-   "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "外資連買 3 日布局、千張大戶週增 +0.55%、散戶融資退場 846 張；今日股價收跌 -3.67%，但三大法人卻逆勢買超 +898 張（標準壓低吃貨背離）。",
-   "aiResonance": 4,
-   "tradePlan": {
-    "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 17.57,
-    "high5": 18.05,
-    "low5": 17.05,
-    "bias5": -2.96,
-    "buyLow": 16.7,
-    "buyHigh": 17.05,
-    "breakoutBuy": 17.55,
-    "buyZone": "16.7 ～ 17.05",
-    "sellTarget1": 18.4,
-    "target1Pct": 7.9,
-    "sellTarget2": 18.95,
-    "target2Pct": 11.1,
-    "stopLoss": 16.35,
-    "stopPct": -4.1,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 16.7～17.05 左側分批低接，站回 17.55 確認轉強",
-    "sellDesc": "第一賣點 18.4 (+7.9%) 先停利一半；波段目標賣點 18.95 (+11.1%)；跌破 16.35 (-4.1%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": [
-    {
-     "type": "價跌逆勢吃貨",
-     "level": "high",
-     "text": "今日股價收跌 -3.67%，但三大法人卻逆勢買超 +898 張（標準壓低吃貨背離）"
-    }
-   ]
-  },
-  {
-   "code": "6187",
-   "name": "萬潤",
-   "market": "上櫃",
-   "close": 1260.0,
-   "chgPct": -5.26,
-   "avgVol": 2276,
-   "volume": 1924,
-   "foreignNet": 333,
-   "trustNet": -128,
-   "dealerNet": 13,
-   "instNet": 218,
-   "instHist": [
-    218,
-    -214,
-    -215,
-    472,
-    72
-   ],
-   "inst5d": 333,
-   "foreignStreak": 1,
-   "trustStreak": 0,
-   "marginChg": -287,
-   "marginBal": 3049,
-   "shortChg": -5,
-   "bigPct": 32.79,
-   "bigChg": 2.52,
-   "brokerNet": null,
-   "series": [
-    1410.0,
-    1405.0,
-    1320.0,
-    1330.0,
-    1260.0
-   ],
-   "parts": {
-    "inst1": 21.5,
-    "inst5": 18.2,
-    "streak": 6.2,
-    "margin": 14.3,
-    "big": 25,
-    "broker": 0
-   },
-   "score": 85.2,
-   "rank": 1,
-   "tags": [
-    "大戶增持",
-    "融資大減"
-   ],
-   "aiGrade": "S+",
-   "aiSignal": "多因子共振・主力鎖碼",
-   "aiSummary": "千張大戶週增 +2.52%、散戶融資退場 287 張；前日未在推薦榜內，今日籌碼分數飆上 85.2 分直接空降 上櫃第 1 名。",
-   "aiResonance": 3,
-   "tradePlan": {
-    "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 1345.0,
-    "high5": 1410.0,
-    "low5": 1260.0,
-    "bias5": -6.32,
-    "buyLow": 1235.0,
-    "buyHigh": 1260.0,
-    "breakoutBuy": 1345.0,
-    "buyZone": "1235.0 ～ 1260.0",
-    "sellTarget1": 1440.0,
-    "target1Pct": 14.3,
-    "sellTarget2": 1485.0,
-    "target2Pct": 17.9,
-    "stopLoss": 1210.0,
-    "stopPct": -4.0,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 1235.0～1260.0 左側分批低接，站回 1345.0 確認轉強",
-    "sellDesc": "第一賣點 1440.0 (+14.3%) 先停利一半；波段目標賣點 1485.0 (+17.9%)；跌破 1210.0 (-4.0%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": [
-    {
-     "type": "空降 #1 黑馬",
-     "level": "high",
-     "text": "前日未在推薦榜內，今日籌碼分數飆上 85.2 分直接空降 上櫃第 1 名"
-    },
-    {
-     "type": "大戶狂掃・散戶退場",
-     "level": "high",
-     "text": "千張大戶單週暴增 +2.52%，同時融資減少 287 張，籌碼極速向大戶集中"
-    }
-   ]
-  },
-  {
-   "code": "3689",
-   "name": "湧德",
-   "market": "上櫃",
-   "close": 112.5,
-   "chgPct": -4.26,
-   "avgVol": 1162,
-   "volume": 1153,
-   "foreignNet": 267,
-   "trustNet": 0,
-   "dealerNet": -20,
-   "instNet": 248,
-   "instHist": [
-    248,
-    301,
-    157,
-    -155,
-    294
-   ],
-   "inst5d": 845,
-   "foreignStreak": 3,
-   "trustStreak": 0,
-   "marginChg": -227,
-   "marginBal": 4838,
-   "shortChg": -2,
-   "bigPct": 14.42,
-   "bigChg": 0.07,
-   "brokerNet": null,
-   "series": [
-    121.5,
-    119.0,
-    117.0,
-    117.5,
-    112.5
+    29.3,
+    28.75,
+    29.15,
+    29.45,
+    29.4
    ],
    "parts": {
     "inst1": 24.1,
-    "inst5": 24.3,
-    "streak": 8.2,
-    "margin": 14.9,
-    "big": 13.4,
+    "inst5": 23.7,
+    "streak": 6.6,
+    "margin": 10.0,
+    "big": 13.0,
     "broker": 0
    },
-   "score": 84.9,
-   "rank": 2,
+   "score": 77.4,
+   "rank": 19,
    "tags": [
     "外資連買3日",
-    "融資大減"
+    "5日買超>均量"
    ],
    "aiGrade": "A+",
    "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "外資連買 3 日布局、大戶持股穩步增加、散戶融資退場 227 張；今日股價收跌 -4.26%，但三大法人卻逆勢買超 +248 張（標準壓低吃貨背離）。",
-   "aiResonance": 3,
+   "aiSummary": "外資連買 3 日布局、大戶持股穩步增加、散戶融資退場 123 張；今日股價收跌 -0.17%，但三大法人卻逆勢買超 +2,641 張（標準壓低吃貨背離）。",
+   "aiResonance": 4,
    "tradePlan": {
     "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 117.5,
-    "high5": 121.5,
-    "low5": 112.5,
-    "bias5": -4.26,
-    "buyLow": 110.0,
-    "buyHigh": 112.5,
-    "breakoutBuy": 117.5,
-    "buyZone": "110.0 ～ 112.5",
-    "sellTarget1": 124.0,
-    "target1Pct": 10.2,
-    "sellTarget2": 127.5,
-    "target2Pct": 13.3,
-    "stopLoss": 108.0,
-    "stopPct": -4.0,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 110.0～112.5 左側分批低接，站回 117.5 確認轉強",
-    "sellDesc": "第一賣點 124.0 (+10.2%) 先停利一半；波段目標賣點 127.5 (+13.3%)；跌破 108.0 (-4.0%) 或法人連2日轉賣則停損出場。"
+    "ma5": 29.21,
+    "high5": 29.45,
+    "low5": 28.75,
+    "bias5": 0.65,
+    "buyLow": 28.75,
+    "buyHigh": 29.4,
+    "breakoutBuy": 29.7,
+    "buyZone": "28.75 ～ 29.4",
+    "sellTarget1": 30.85,
+    "target1Pct": 4.9,
+    "sellTarget2": 32.05,
+    "target2Pct": 9.0,
+    "stopLoss": 28.2,
+    "stopPct": -4.1,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 28.75～29.4 左側分批低接，站回 29.7 確認轉強",
+    "sellDesc": "第一賣點 30.85 (+4.9%) 先停利一半；波段目標賣點 32.05 (+9.0%)；跌破 28.2 (-4.1%) 或法人連2日轉賣則停損出場。"
    },
    "anomalies": [
     {
      "type": "價跌逆勢吃貨",
      "level": "high",
-     "text": "今日股價收跌 -4.26%，但三大法人卻逆勢買超 +248 張（標準壓低吃貨背離）"
-    },
-    {
-     "type": "連霸榜 3 日",
-     "level": "high",
-     "text": "連續 3 個交易日蟬聯 AI 大戶推薦榜，主力波段鎖碼極度穩定"
+     "text": "今日股價收跌 -0.17%，但三大法人卻逆勢買超 +2,641 張（標準壓低吃貨背離）"
     }
    ]
   },
   {
-   "code": "5009",
-   "name": "榮剛",
-   "market": "上櫃",
-   "close": 33.95,
-   "chgPct": 0.89,
-   "avgVol": 1771,
-   "volume": 2829,
-   "foreignNet": 1176,
-   "trustNet": 0,
-   "dealerNet": 29,
-   "instNet": 1205,
+   "code": "1319",
+   "name": "東陽",
+   "market": "上市",
+   "close": 81.6,
+   "chgPct": 0.62,
+   "avgVol": 1028,
+   "volume": 887,
+   "foreignNet": 530,
+   "trustNet": -26,
+   "dealerNet": -18,
+   "instNet": 485,
    "instHist": [
-    1205,
-    -274,
-    250,
-    -93,
-    1482
+    485,
+    -243,
+    169,
+    -270,
+    483
    ],
-   "inst5d": 2570,
+   "inst5d": 624,
    "foreignStreak": 1,
    "trustStreak": 0,
-   "marginChg": -140,
-   "marginBal": 8081,
-   "shortChg": 0,
-   "bigPct": 42.91,
-   "bigChg": -0.01,
+   "marginChg": -84,
+   "marginBal": 6335,
+   "shortChg": -1,
+   "bigPct": 76.69,
+   "bigChg": 0.41,
    "brokerNet": null,
    "series": [
-    34.3,
-    33.8,
-    33.75,
-    33.65,
-    33.95
+    83.5,
+    81.5,
+    81.5,
+    81.1,
+    81.6
    ],
    "parts": {
-    "inst1": 25.0,
-    "inst5": 24.8,
-    "streak": 6.2,
-    "margin": 13.2,
-    "big": 12.4,
+    "inst1": 23.0,
+    "inst5": 19.2,
+    "streak": 4.0,
+    "margin": 13.5,
+    "big": 17.6,
     "broker": 0
    },
-   "score": 81.6,
-   "rank": 3,
+   "score": 77.3,
+   "rank": 20,
    "tags": [
-    "融資大減",
-    "5日買超>均量"
+    "融資大減"
    ],
    "aiGrade": "A+",
    "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "散戶融資退場 140 張、5日法人買盤強勁；前日法人賣超 274 張，今日突反手大買 +1,205 張（V型認錯回補）。",
-   "aiResonance": 2,
+   "aiSummary": "千張大戶週增 +0.41%、散戶融資退場 84 張；前日法人賣超 243 張，今日突反手大買 +485 張（V型認錯回補）。",
+   "aiResonance": 3,
    "tradePlan": {
     "strategy": "籌碼鎖碼・順勢布局",
-    "ma5": 33.89,
-    "high5": 34.3,
-    "low5": 33.65,
-    "bias5": 0.18,
-    "buyLow": 33.45,
-    "buyHigh": 34.1,
-    "breakoutBuy": 34.45,
-    "buyZone": "33.45 ～ 34.1",
-    "sellTarget1": 35.65,
+    "ma5": 81.84,
+    "high5": 83.5,
+    "low5": 81.1,
+    "bias5": -0.29,
+    "buyLow": 80.4,
+    "buyHigh": 82.0,
+    "breakoutBuy": 83.5,
+    "buyZone": "80.4 ～ 82.0",
+    "sellTarget1": 85.7,
     "target1Pct": 5.0,
-    "sellTarget2": 37.0,
-    "target2Pct": 9.0,
-    "stopLoss": 32.6,
+    "sellTarget2": 88.9,
+    "target2Pct": 8.9,
+    "stopLoss": 78.3,
     "stopPct": -4.0,
-    "buyDesc": "貼近 5 日線(33.89)量價穩健，建議於 33.45～34.1 分批買進，突破 34.45 加碼",
-    "sellDesc": "第一賣點 35.65 (+5.0%) 先停利一半；波段目標賣點 37.0 (+9.0%)；跌破 32.6 (-4.0%) 或法人連2日轉賣則停損出場。"
+    "buyDesc": "貼近 5 日線(81.84)量價穩健，建議於 80.4～82.0 分批買進，突破 83.5 加碼",
+    "sellDesc": "第一賣點 85.7 (+5.0%) 先停利一半；波段目標賣點 88.9 (+8.9%)；跌破 78.3 (-4.0%) 或法人連2日轉賣則停損出場。"
    },
    "anomalies": [
     {
      "type": "法人由賣轉買",
      "level": "high",
-     "text": "前日法人賣超 274 張，今日突反手大買 +1,205 張（V型認錯回補）"
-    },
-    {
-     "type": "空降 #3 黑馬",
-     "level": "high",
-     "text": "前日未在推薦榜內，今日籌碼分數飆上 81.6 分直接空降 上櫃第 3 名"
+     "text": "前日法人賣超 243 張，今日突反手大買 +485 張（V型認錯回補）"
     },
     {
      "type": "逆勢抗跌收紅",
      "level": "med",
-     "text": "大盤指數下跌 -3.47%，個股卻逆勢上漲 +0.89% 且法人買超護盤"
+     "text": "大盤指數下跌 -1.81%，個股卻逆勢上漲 +0.62% 且法人買超護盤"
     }
    ]
   },
@@ -4288,8 +4043,8 @@
    "marginChg": -143,
    "marginBal": 1973,
    "shortChg": -2,
-   "bigPct": 48.88,
-   "bigChg": -0.2,
+   "bigPct": 50.71,
+   "bigChg": 0.61,
    "brokerNet": null,
    "series": [
     795.0,
@@ -4303,20 +4058,21 @@
     "inst5": 24.4,
     "streak": 9.3,
     "margin": 13.3,
-    "big": 10.0,
+    "big": 20.1,
     "broker": 0
    },
-   "score": 81.4,
-   "rank": 4,
+   "score": 91.5,
+   "rank": 1,
    "tags": [
     "土洋合買",
     "外資連買3日",
+    "大戶增持",
     "融資大減"
    ],
-   "aiGrade": "A+",
-   "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "土洋法人同步買超、散戶融資退場 143 張、5日法人買盤強勁；連續 7 個交易日蟬聯 AI 大戶推薦榜，主力波段鎖碼極度穩定。",
-   "aiResonance": 4,
+   "aiGrade": "S+",
+   "aiSignal": "多因子共振・主力鎖碼",
+   "aiSummary": "土洋法人同步買超、千張大戶週增 +0.61%、散戶融資退場 143 張；較前一日排名(#8)大幅竄升 7 個名次至 #1。",
+   "aiResonance": 6,
    "tradePlan": {
     "strategy": "籌碼鎖碼・順勢布局",
     "ma5": 784.2,
@@ -4329,14 +4085,19 @@
     "buyZone": "775.0 ～ 791.0",
     "sellTarget1": 826.0,
     "target1Pct": 5.0,
-    "sellTarget2": 858.0,
-    "target2Pct": 9.0,
+    "sellTarget2": 874.0,
+    "target2Pct": 11.1,
     "stopLoss": 756.0,
     "stopPct": -3.9,
     "buyDesc": "貼近 5 日線(784.20)量價穩健，建議於 775.0～791.0 分批買進，突破 799.0 加碼",
-    "sellDesc": "第一賣點 826.0 (+5.0%) 先停利一半；波段目標賣點 858.0 (+9.0%)；跌破 756.0 (-3.9%) 或法人連2日轉賣則停損出場。"
+    "sellDesc": "第一賣點 826.0 (+5.0%) 先停利一半；波段目標賣點 874.0 (+11.1%)；跌破 756.0 (-3.9%) 或法人連2日轉賣則停損出場。"
    },
    "anomalies": [
+    {
+     "type": "排名急升 ↑7名",
+     "level": "med",
+     "text": "較前一日排名(#8)大幅竄升 7 個名次至 #1"
+    },
     {
      "type": "連霸榜 7 日",
      "level": "high",
@@ -4350,246 +4111,677 @@
    ]
   },
   {
-   "code": "5904",
-   "name": "寶雅*",
+   "code": "8383",
+   "name": "千附",
    "market": "上櫃",
-   "close": 73.7,
-   "chgPct": -0.14,
-   "avgVol": 4251,
-   "volume": 4705,
-   "foreignNet": 2273,
-   "trustNet": -344,
-   "dealerNet": -9,
-   "instNet": 1920,
+   "close": 69.0,
+   "chgPct": -3.9,
+   "avgVol": 1158,
+   "volume": 1164,
+   "foreignNet": 37,
+   "trustNet": 0,
+   "dealerNet": -23,
+   "instNet": 15,
    "instHist": [
-    1920,
-    1341,
-    845,
-    -843,
-    2990
+    15,
+    202,
+    651,
+    75,
+    179
    ],
-   "inst5d": 6253,
-   "foreignStreak": 3,
+   "inst5d": 1122,
+   "foreignStreak": 5,
    "trustStreak": 0,
-   "marginChg": 6,
-   "marginBal": 6117,
+   "marginChg": -78,
+   "marginBal": 1991,
    "shortChg": 1,
-   "bigPct": 75.56,
-   "bigChg": 0.47,
+   "bigPct": 45.74,
+   "bigChg": 2.04,
    "brokerNet": null,
    "series": [
-    73.9,
-    72.8,
-    73.0,
-    73.8,
-    73.7
+    68.9,
+    69.1,
+    70.2,
+    71.8,
+    69.0
    ],
    "parts": {
-    "inst1": 24.8,
-    "inst5": 25.0,
-    "streak": 8.2,
-    "margin": 4.6,
-    "big": 18.4,
-    "broker": 0
-   },
-   "score": 81.0,
-   "rank": 5,
-   "tags": [
-    "外資連買3日",
-    "5日買超>均量"
-   ],
-   "aiGrade": "A+",
-   "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "外資連買 3 日布局、千張大戶週增 +0.47%、5日法人買盤強勁；今日股價收跌 -0.14%，但三大法人卻逆勢買超 +1,920 張（標準壓低吃貨背離）。",
-   "aiResonance": 4,
-   "tradePlan": {
-    "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 73.44,
-    "high5": 73.9,
-    "low5": 72.8,
-    "bias5": 0.35,
-    "buyLow": 72.2,
-    "buyHigh": 73.7,
-    "breakoutBuy": 74.4,
-    "buyZone": "72.2 ～ 73.7",
-    "sellTarget1": 77.4,
-    "target1Pct": 5.0,
-    "sellTarget2": 80.3,
-    "target2Pct": 9.0,
-    "stopLoss": 70.8,
-    "stopPct": -3.9,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 72.2～73.7 左側分批低接，站回 74.4 確認轉強",
-    "sellDesc": "第一賣點 77.4 (+5.0%) 先停利一半；波段目標賣點 80.3 (+9.0%)；跌破 70.8 (-3.9%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": [
-    {
-     "type": "價跌逆勢吃貨",
-     "level": "high",
-     "text": "今日股價收跌 -0.14%，但三大法人卻逆勢買超 +1,920 張（標準壓低吃貨背離）"
-    },
-    {
-     "type": "連霸榜 3 日",
-     "level": "high",
-     "text": "連續 3 個交易日蟬聯 AI 大戶推薦榜，主力波段鎖碼極度穩定"
-    }
-   ]
-  },
-  {
-   "code": "4743",
-   "name": "合一",
-   "market": "上櫃",
-   "close": 48.15,
-   "chgPct": -0.52,
-   "avgVol": 1143,
-   "volume": 884,
-   "foreignNet": 113,
-   "trustNet": 0,
-   "dealerNet": 1,
-   "instNet": 114,
-   "instHist": [
-    114,
-    181,
-    79,
-    -482,
-    910
-   ],
-   "inst5d": 802,
-   "foreignStreak": 3,
-   "trustStreak": 0,
-   "marginChg": -44,
-   "marginBal": 13379,
-   "shortChg": -6,
-   "bigPct": 41.34,
-   "bigChg": 0.3,
-   "brokerNet": null,
-   "series": [
-    49.5,
-    48.45,
-    48.15,
-    48.4,
-    48.15
-   ],
-   "parts": {
-    "inst1": 21.7,
-    "inst5": 24.1,
-    "streak": 8.2,
-    "margin": 10.7,
-    "big": 16.2,
-    "broker": 0
-   },
-   "score": 80.9,
-   "rank": 6,
-   "tags": [
-    "外資連買3日"
-   ],
-   "aiGrade": "A+",
-   "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "外資連買 3 日布局、大戶持股穩步增加、散戶融資退場 44 張；較前一日排名(#17)大幅竄升 11 個名次至 #6。",
-   "aiResonance": 3,
-   "tradePlan": {
-    "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 48.53,
-    "high5": 49.5,
-    "low5": 48.15,
-    "bias5": -0.78,
-    "buyLow": 47.2,
-    "buyHigh": 48.15,
-    "breakoutBuy": 48.65,
-    "buyZone": "47.2 ～ 48.15",
-    "sellTarget1": 50.6,
-    "target1Pct": 5.1,
-    "sellTarget2": 52.5,
-    "target2Pct": 9.0,
-    "stopLoss": 46.2,
-    "stopPct": -4.0,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 47.2～48.15 左側分批低接，站回 48.65 確認轉強",
-    "sellDesc": "第一賣點 50.6 (+5.1%) 先停利一半；波段目標賣點 52.5 (+9.0%)；跌破 46.2 (-4.0%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": [
-    {
-     "type": "排名急升 ↑11名",
-     "level": "med",
-     "text": "較前一日排名(#17)大幅竄升 11 個名次至 #6"
-    }
-   ]
-  },
-  {
-   "code": "3265",
-   "name": "台星科",
-   "market": "上櫃",
-   "close": 226.5,
-   "chgPct": -9.04,
-   "avgVol": 3835,
-   "volume": 6091,
-   "foreignNet": 610,
-   "trustNet": 0,
-   "dealerNet": -42,
-   "instNet": 568,
-   "instHist": [
-    568,
-    -918,
-    37,
-    -78,
-    63
-   ],
-   "inst5d": -328,
-   "foreignStreak": 1,
-   "trustStreak": 0,
-   "marginChg": -763,
-   "marginBal": 3782,
-   "shortChg": -35,
-   "bigPct": 60.08,
-   "bigChg": 1.75,
-   "brokerNet": null,
-   "series": [
-    269.0,
-    251.0,
-    248.0,
-    249.0,
-    226.5
-   ],
-   "parts": {
-    "inst1": 23.2,
-    "inst5": 10.5,
-    "streak": 6.2,
-    "margin": 15.0,
+    "inst1": 17.6,
+    "inst5": 24.6,
+    "streak": 9.6,
+    "margin": 12.7,
     "big": 25,
     "broker": 0
    },
-   "score": 79.9,
-   "rank": 7,
+   "score": 89.5,
+   "rank": 2,
+   "tags": [
+    "外資連買5日",
+    "大戶增持",
+    "融資大減"
+   ],
+   "aiGrade": "S+",
+   "aiSignal": "多因子共振・主力鎖碼",
+   "aiSummary": "外資連買 5 日布局、千張大戶週增 +2.04%、散戶融資退場 78 張；較前一日排名(#15)大幅竄升 13 個名次至 #2。",
+   "aiResonance": 5,
+   "tradePlan": {
+    "strategy": "逆勢吃貨・逢低承接",
+    "ma5": 69.8,
+    "high5": 71.8,
+    "low5": 68.9,
+    "bias5": -1.15,
+    "buyLow": 67.6,
+    "buyHigh": 69.0,
+    "breakoutBuy": 69.8,
+    "buyZone": "67.6 ～ 69.0",
+    "sellTarget1": 73.2,
+    "target1Pct": 6.1,
+    "sellTarget2": 76.6,
+    "target2Pct": 11.0,
+    "stopLoss": 66.2,
+    "stopPct": -4.1,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 67.6～69.0 左側分批低接，站回 69.8 確認轉強",
+    "sellDesc": "第一賣點 73.2 (+6.1%) 先停利一半；波段目標賣點 76.6 (+11.0%)；跌破 66.2 (-4.1%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": [
+    {
+     "type": "排名急升 ↑13名",
+     "level": "med",
+     "text": "較前一日排名(#15)大幅竄升 13 個名次至 #2"
+    },
+    {
+     "type": "大戶狂掃・散戶退場",
+     "level": "high",
+     "text": "千張大戶單週暴增 +2.04%，同時融資減少 78 張，籌碼極速向大戶集中"
+    }
+   ]
+  },
+  {
+   "code": "6538",
+   "name": "倉和",
+   "market": "上櫃",
+   "close": 286.0,
+   "chgPct": -4.83,
+   "avgVol": 2246,
+   "volume": 1566,
+   "foreignNet": 166,
+   "trustNet": 0,
+   "dealerNet": 1,
+   "instNet": 167,
+   "instHist": [
+    167,
+    201,
+    67,
+    310,
+    160
+   ],
+   "inst5d": 905,
+   "foreignStreak": 5,
+   "trustStreak": 0,
+   "marginChg": -73,
+   "marginBal": 8119,
+   "shortChg": 7,
+   "bigPct": 27.0,
+   "bigChg": 2.55,
+   "brokerNet": null,
+   "series": [
+    285.0,
+    297.0,
+    293.5,
+    300.5,
+    286.0
+   ],
+   "parts": {
+    "inst1": 20.6,
+    "inst5": 22.6,
+    "streak": 9.6,
+    "margin": 9.7,
+    "big": 25,
+    "broker": 0
+   },
+   "score": 87.5,
+   "rank": 3,
+   "tags": [
+    "外資連買5日",
+    "大戶增持"
+   ],
+   "aiGrade": "S+",
+   "aiSignal": "多因子共振・主力鎖碼",
+   "aiSummary": "外資連買 5 日布局、千張大戶週增 +2.55%、散戶融資退場 73 張；連續 5 個交易日蟬聯 AI 大戶推薦榜，主力波段鎖碼極度穩定。",
+   "aiResonance": 4,
+   "tradePlan": {
+    "strategy": "逆勢吃貨・逢低承接",
+    "ma5": 292.4,
+    "high5": 300.5,
+    "low5": 285.0,
+    "bias5": -2.19,
+    "buyLow": 280.5,
+    "buyHigh": 286.0,
+    "breakoutBuy": 292.5,
+    "buyZone": "280.5 ～ 286.0",
+    "sellTarget1": 306.5,
+    "target1Pct": 7.2,
+    "sellTarget2": 317.5,
+    "target2Pct": 11.0,
+    "stopLoss": 274.5,
+    "stopPct": -4.0,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 280.5～286.0 左側分批低接，站回 292.5 確認轉強",
+    "sellDesc": "第一賣點 306.5 (+7.2%) 先停利一半；波段目標賣點 317.5 (+11.0%)；跌破 274.5 (-4.0%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": [
+    {
+     "type": "連霸榜 5 日",
+     "level": "high",
+     "text": "連續 5 個交易日蟬聯 AI 大戶推薦榜，主力波段鎖碼極度穩定"
+    },
+    {
+     "type": "大戶狂掃・散戶退場",
+     "level": "high",
+     "text": "千張大戶單週暴增 +2.55%，同時融資減少 73 張，籌碼極速向大戶集中"
+    }
+   ]
+  },
+  {
+   "code": "5009",
+   "name": "榮剛",
+   "market": "上櫃",
+   "close": 33.95,
+   "chgPct": 0.89,
+   "avgVol": 1771,
+   "volume": 2829,
+   "foreignNet": 1176,
+   "trustNet": 0,
+   "dealerNet": 29,
+   "instNet": 1205,
+   "instHist": [
+    1205,
+    -274,
+    250,
+    -93,
+    1482
+   ],
+   "inst5d": 2570,
+   "foreignStreak": 1,
+   "trustStreak": 0,
+   "marginChg": -140,
+   "marginBal": 8081,
+   "shortChg": 0,
+   "bigPct": 43.86,
+   "bigChg": 0.29,
+   "brokerNet": null,
+   "series": [
+    34.3,
+    33.8,
+    33.75,
+    33.65,
+    33.95
+   ],
+   "parts": {
+    "inst1": 25.0,
+    "inst5": 24.8,
+    "streak": 6.2,
+    "margin": 13.2,
+    "big": 16.1,
+    "broker": 0
+   },
+   "score": 85.3,
+   "rank": 4,
+   "tags": [
+    "融資大減",
+    "5日買超>均量"
+   ],
+   "aiGrade": "S+",
+   "aiSignal": "多因子共振・主力鎖碼",
+   "aiSummary": "大戶持股穩步增加、散戶融資退場 140 張、5日法人買盤強勁；前日法人賣超 274 張，今日突反手大買 +1,205 張（V型認錯回補）。",
+   "aiResonance": 3,
+   "tradePlan": {
+    "strategy": "籌碼鎖碼・順勢布局",
+    "ma5": 33.89,
+    "high5": 34.3,
+    "low5": 33.65,
+    "bias5": 0.18,
+    "buyLow": 33.45,
+    "buyHigh": 34.1,
+    "breakoutBuy": 34.45,
+    "buyZone": "33.45 ～ 34.1",
+    "sellTarget1": 35.65,
+    "target1Pct": 5.0,
+    "sellTarget2": 37.7,
+    "target2Pct": 11.0,
+    "stopLoss": 32.6,
+    "stopPct": -4.0,
+    "buyDesc": "貼近 5 日線(33.89)量價穩健，建議於 33.45～34.1 分批買進，突破 34.45 加碼",
+    "sellDesc": "第一賣點 35.65 (+5.0%) 先停利一半；波段目標賣點 37.7 (+11.0%)；跌破 32.6 (-4.0%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": [
+    {
+     "type": "法人由賣轉買",
+     "level": "high",
+     "text": "前日法人賣超 274 張，今日突反手大買 +1,205 張（V型認錯回補）"
+    },
+    {
+     "type": "空降 #4 黑馬",
+     "level": "high",
+     "text": "前日未在推薦榜內，今日籌碼分數飆上 85.3 分直接空降 上櫃第 4 名"
+    },
+    {
+     "type": "逆勢抗跌收紅",
+     "level": "med",
+     "text": "大盤指數下跌 -3.47%，個股卻逆勢上漲 +0.89% 且法人買超護盤"
+    }
+   ]
+  },
+  {
+   "code": "6187",
+   "name": "萬潤",
+   "market": "上櫃",
+   "close": 1260.0,
+   "chgPct": -5.26,
+   "avgVol": 2276,
+   "volume": 1924,
+   "foreignNet": 333,
+   "trustNet": -128,
+   "dealerNet": 13,
+   "instNet": 218,
+   "instHist": [
+    218,
+    -214,
+    -215,
+    472,
+    72
+   ],
+   "inst5d": 333,
+   "foreignStreak": 1,
+   "trustStreak": 0,
+   "marginChg": -287,
+   "marginBal": 3049,
+   "shortChg": -5,
+   "bigPct": 34.08,
+   "bigChg": 1.18,
+   "brokerNet": null,
+   "series": [
+    1410.0,
+    1405.0,
+    1320.0,
+    1330.0,
+    1260.0
+   ],
+   "parts": {
+    "inst1": 21.5,
+    "inst5": 18.2,
+    "streak": 6.2,
+    "margin": 14.3,
+    "big": 25,
+    "broker": 0
+   },
+   "score": 85.2,
+   "rank": 5,
    "tags": [
     "大戶增持",
     "融資大減"
    ],
-   "aiGrade": "A+",
-   "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "千張大戶週增 +1.75%、散戶融資退場 763 張；千張大戶單週暴增 +1.75%，同時融資減少 763 張，籌碼極速向大戶集中。",
+   "aiGrade": "S+",
+   "aiSignal": "多因子共振・主力鎖碼",
+   "aiSummary": "千張大戶週增 +1.18%、散戶融資退場 287 張；前日未在推薦榜內，今日籌碼分數飆上 85.2 分直接空降 上櫃第 5 名。",
    "aiResonance": 3,
    "tradePlan": {
     "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 248.7,
-    "high5": 269.0,
-    "low5": 226.5,
-    "bias5": -8.93,
-    "buyLow": 222.0,
-    "buyHigh": 226.5,
-    "breakoutBuy": 248.5,
-    "buyZone": "222.0 ～ 226.5",
-    "sellTarget1": 274.5,
-    "target1Pct": 21.2,
-    "sellTarget2": 282.5,
-    "target2Pct": 24.7,
-    "stopLoss": 217.5,
+    "ma5": 1345.0,
+    "high5": 1410.0,
+    "low5": 1260.0,
+    "bias5": -6.32,
+    "buyLow": 1235.0,
+    "buyHigh": 1260.0,
+    "breakoutBuy": 1345.0,
+    "buyZone": "1235.0 ～ 1260.0",
+    "sellTarget1": 1440.0,
+    "target1Pct": 14.3,
+    "sellTarget2": 1485.0,
+    "target2Pct": 17.9,
+    "stopLoss": 1210.0,
     "stopPct": -4.0,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 222.0～226.5 左側分批低接，站回 248.5 確認轉強",
-    "sellDesc": "第一賣點 274.5 (+21.2%) 先停利一半；波段目標賣點 282.5 (+24.7%)；跌破 217.5 (-4.0%) 或法人連2日轉賣則停損出場。"
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 1235.0～1260.0 左側分批低接，站回 1345.0 確認轉強",
+    "sellDesc": "第一賣點 1440.0 (+14.3%) 先停利一半；波段目標賣點 1485.0 (+17.9%)；跌破 1210.0 (-4.0%) 或法人連2日轉賣則停損出場。"
    },
    "anomalies": [
     {
+     "type": "空降 #5 黑馬",
+     "level": "high",
+     "text": "前日未在推薦榜內，今日籌碼分數飆上 85.2 分直接空降 上櫃第 5 名"
+    }
+   ]
+  },
+  {
+   "code": "3324",
+   "name": "雙鴻",
+   "market": "上櫃",
+   "close": 1360.0,
+   "chgPct": -1.09,
+   "avgVol": 3762,
+   "volume": 4785,
+   "foreignNet": 716,
+   "trustNet": 25,
+   "dealerNet": 42,
+   "instNet": 783,
+   "instHist": [
+    783,
+    -749,
+    320,
+    234,
+    -35
+   ],
+   "inst5d": 553,
+   "foreignStreak": 1,
+   "trustStreak": 2,
+   "marginChg": -101,
+   "marginBal": 6167,
+   "shortChg": 2,
+   "bigPct": 37.63,
+   "bigChg": 3.88,
+   "brokerNet": null,
+   "series": [
+    1425.0,
+    1380.0,
+    1395.0,
+    1375.0,
+    1360.0
+   ],
+   "parts": {
+    "inst1": 23.9,
+    "inst5": 18.4,
+    "streak": 8.9,
+    "margin": 8.8,
+    "big": 25,
+    "broker": 0
+   },
+   "score": 85.0,
+   "rank": 6,
+   "tags": [
+    "土洋合買",
+    "大戶增持"
+   ],
+   "aiGrade": "S+",
+   "aiSignal": "多因子共振・主力鎖碼",
+   "aiSummary": "土洋法人同步買超、千張大戶週增 +3.88%、散戶融資退場 101 張；前日法人賣超 749 張，今日突反手大買 +783 張（V型認錯回補）。",
+   "aiResonance": 5,
+   "tradePlan": {
+    "strategy": "逆勢吃貨・逢低承接",
+    "ma5": 1387.0,
+    "high5": 1425.0,
+    "low5": 1360.0,
+    "bias5": -1.95,
+    "buyLow": 1335.0,
+    "buyHigh": 1360.0,
+    "breakoutBuy": 1385.0,
+    "buyZone": "1335.0 ～ 1360.0",
+    "sellTarget1": 1455.0,
+    "target1Pct": 7.0,
+    "sellTarget2": 1510.0,
+    "target2Pct": 11.0,
+    "stopLoss": 1305.0,
+    "stopPct": -4.0,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 1335.0～1360.0 左側分批低接，站回 1385.0 確認轉強",
+    "sellDesc": "第一賣點 1455.0 (+7.0%) 先停利一半；波段目標賣點 1510.0 (+11.0%)；跌破 1305.0 (-4.0%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": [
+    {
+     "type": "法人由賣轉買",
+     "level": "high",
+     "text": "前日法人賣超 749 張，今日突反手大買 +783 張（V型認錯回補）"
+    },
+    {
+     "type": "價跌逆勢吃貨",
+     "level": "high",
+     "text": "今日股價收跌 -1.09%，但三大法人卻逆勢買超 +783 張（標準壓低吃貨背離）"
+    },
+    {
+     "type": "空降 #6 黑馬",
+     "level": "high",
+     "text": "前日未在推薦榜內，今日籌碼分數飆上 85.0 分直接空降 上櫃第 6 名"
+    },
+    {
      "type": "大戶狂掃・散戶退場",
      "level": "high",
-     "text": "千張大戶單週暴增 +1.75%，同時融資減少 763 張，籌碼極速向大戶集中"
+     "text": "千張大戶單週暴增 +3.88%，同時融資減少 101 張，籌碼極速向大戶集中"
+    }
+   ]
+  },
+  {
+   "code": "3374",
+   "name": "精材",
+   "market": "上櫃",
+   "close": 463.5,
+   "chgPct": -1.49,
+   "avgVol": 12988,
+   "volume": 20325,
+   "foreignNet": 2249,
+   "trustNet": -189,
+   "dealerNet": -165,
+   "instNet": 1895,
+   "instHist": [
+    1895,
+    3515,
+    -877,
+    -90,
+    -2557
+   ],
+   "inst5d": 1886,
+   "foreignStreak": 4,
+   "trustStreak": 0,
+   "marginChg": -466,
+   "marginBal": 25353,
+   "shortChg": 32,
+   "bigPct": 61.29,
+   "bigChg": 0.81,
+   "brokerNet": null,
+   "series": [
+    433.5,
+    438.0,
+    428.0,
+    470.5,
+    463.5
+   ],
+   "parts": {
+    "inst1": 23.0,
+    "inst5": 18.0,
+    "streak": 8.9,
+    "margin": 9.9,
+    "big": 22.6,
+    "broker": 0
+   },
+   "score": 82.4,
+   "rank": 7,
+   "tags": [
+    "外資連買4日",
+    "大戶增持"
+   ],
+   "aiGrade": "A+",
+   "aiSignal": "籌碼集中・波段偏多",
+   "aiSummary": "外資連買 4 日布局、千張大戶週增 +0.81%、散戶融資退場 466 張；前 4 日法人累計賣超 9 張，今日單日狂買 +1,895 張一舉翻正。",
+   "aiResonance": 4,
+   "tradePlan": {
+    "strategy": "強勢突破・拉回低接",
+    "ma5": 446.7,
+    "high5": 470.5,
+    "low5": 428.0,
+    "bias5": 3.76,
+    "buyLow": 446.5,
+    "buyHigh": 458.0,
+    "breakoutBuy": 470.5,
+    "buyZone": "446.5 ～ 458.0",
+    "sellTarget1": 486.5,
+    "target1Pct": 5.0,
+    "sellTarget2": 505.0,
+    "target2Pct": 9.0,
+    "stopLoss": 421.5,
+    "stopPct": -9.1,
+    "buyDesc": "當日漲幅或正乖離較大，建議等拉回 446.5～458.0（支撐區）低接，或帶量突破 470.5 右側追強",
+    "sellDesc": "第一賣點 486.5 (+5.0%) 先停利一半；波段目標賣點 505.0 (+9.0%)；跌破 421.5 (-9.1%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": [
+    {
+     "type": "一舉扭轉賣超",
+     "level": "high",
+     "text": "前 4 日法人累計賣超 9 張，今日單日狂買 +1,895 張一舉翻正"
+    }
+   ]
+  },
+  {
+   "code": "8069",
+   "name": "元太",
+   "market": "上櫃",
+   "close": 153.5,
+   "chgPct": -1.29,
+   "avgVol": 8032,
+   "volume": 5865,
+   "foreignNet": 314,
+   "trustNet": 284,
+   "dealerNet": 42,
+   "instNet": 640,
+   "instHist": [
+    640,
+    1,
+    701,
+    70,
+    3311
+   ],
+   "inst5d": 4724,
+   "foreignStreak": 1,
+   "trustStreak": 4,
+   "marginChg": -115,
+   "marginBal": 13229,
+   "shortChg": -9,
+   "bigPct": 65.93,
+   "bigChg": 0.64,
+   "brokerNet": null,
+   "series": [
+    155.0,
+    157.0,
+    156.0,
+    155.5,
+    153.5
+   ],
+   "parts": {
+    "inst1": 20.8,
+    "inst5": 23.5,
+    "streak": 9.9,
+    "margin": 7.5,
+    "big": 20.5,
+    "broker": 0
+   },
+   "score": 82.2,
+   "rank": 8,
+   "tags": [
+    "土洋合買",
+    "投信連買4日",
+    "大戶增持"
+   ],
+   "aiGrade": "A+",
+   "aiSignal": "籌碼集中・波段偏多",
+   "aiSummary": "土洋法人同步買超、千張大戶週增 +0.64%、散戶融資退場 115 張。",
+   "aiResonance": 5,
+   "tradePlan": {
+    "strategy": "逆勢吃貨・逢低承接",
+    "ma5": 155.4,
+    "high5": 157.0,
+    "low5": 153.5,
+    "bias5": -1.22,
+    "buyLow": 150.5,
+    "buyHigh": 153.5,
+    "breakoutBuy": 155.5,
+    "buyZone": "150.5 ～ 153.5",
+    "sellTarget1": 161.0,
+    "target1Pct": 4.9,
+    "sellTarget2": 167.5,
+    "target2Pct": 9.1,
+    "stopLoss": 147.5,
+    "stopPct": -3.9,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 150.5～153.5 左側分批低接，站回 155.5 確認轉強",
+    "sellDesc": "第一賣點 161.0 (+4.9%) 先停利一半；波段目標賣點 167.5 (+9.1%)；跌破 147.5 (-3.9%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": []
+  },
+  {
+   "code": "3354",
+   "name": "律勝",
+   "market": "上櫃",
+   "close": 49.95,
+   "chgPct": -10.0,
+   "avgVol": 7391,
+   "volume": 4006,
+   "foreignNet": 192,
+   "trustNet": 0,
+   "dealerNet": -1,
+   "instNet": 191,
+   "instHist": [
+    191,
+    -119,
+    1747,
+    173,
+    165
+   ],
+   "inst5d": 2158,
+   "foreignStreak": 1,
+   "trustStreak": 0,
+   "marginChg": -247,
+   "marginBal": 1814,
+   "shortChg": -150,
+   "bigPct": 74.32,
+   "bigChg": 3.76,
+   "brokerNet": null,
+   "series": [
+    41.8,
+    45.95,
+    50.5,
+    55.5,
+    49.95
+   ],
+   "parts": {
+    "inst1": 18.0,
+    "inst5": 21.0,
+    "streak": 6.2,
+    "margin": 9.8,
+    "big": 25,
+    "broker": 0
+   },
+   "score": 80.0,
+   "rank": 9,
+   "tags": [
+    "大戶增持"
+   ],
+   "aiGrade": "A+",
+   "aiSignal": "籌碼集中・波段偏多",
+   "aiSummary": "千張大戶週增 +3.76%、散戶融資退場 247 張；今日成交量萎縮至均量的 0.5 倍，但法人與千張大戶同步買進，籌碼高度鎖定。",
+   "aiResonance": 3,
+   "tradePlan": {
+    "strategy": "逆勢吃貨・逢低承接",
+    "ma5": 48.74,
+    "high5": 55.5,
+    "low5": 41.8,
+    "bias5": 2.48,
+    "buyLow": 41.8,
+    "buyHigh": 49.95,
+    "breakoutBuy": 50.4,
+    "buyZone": "41.8 ～ 49.95",
+    "sellTarget1": 56.6,
+    "target1Pct": 13.3,
+    "sellTarget2": 58.3,
+    "target2Pct": 16.7,
+    "stopLoss": 41.15,
+    "stopPct": -17.6,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 41.8～49.95 左側分批低接，站回 50.4 確認轉強",
+    "sellDesc": "第一賣點 56.6 (+13.3%) 先停利一半；波段目標賣點 58.3 (+16.7%)；跌破 41.15 (-17.6%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": [
+    {
+     "type": "量縮惜售鎖碼",
+     "level": "med",
+     "text": "今日成交量萎縮至均量的 0.5 倍，但法人與千張大戶同步買進，籌碼高度鎖定"
+    },
+    {
+     "type": "大戶狂掃・散戶退場",
+     "level": "high",
+     "text": "千張大戶單週暴增 +3.76%，同時融資減少 247 張，籌碼極速向大戶集中"
     }
    ]
   },
@@ -4618,8 +4810,8 @@
    "marginChg": 5,
    "marginBal": 13009,
    "shortChg": 21,
-   "bigPct": 46.73,
-   "bigChg": 0.93,
+   "bigPct": 49.13,
+   "bigChg": 1.51,
    "brokerNet": null,
    "series": [
     78.9,
@@ -4633,18 +4825,18 @@
     "inst5": 20.6,
     "streak": 8.9,
     "margin": 4.9,
-    "big": 24.1,
+    "big": 25,
     "broker": 0
    },
-   "score": 77.6,
-   "rank": 8,
+   "score": 78.5,
+   "rank": 10,
    "tags": [
     "外資連買4日",
     "大戶增持"
    ],
    "aiGrade": "A+",
    "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "外資連買 4 日布局、千張大戶週增 +0.93%；今日成交 24,888 張，暴增為 5 日均量(10,919張)的 2.3 倍，主力資金異常點火。",
+   "aiSummary": "外資連買 4 日布局、千張大戶週增 +1.51%；今日成交 24,888 張，暴增為 5 日均量(10,919張)的 2.3 倍，主力資金異常點火。",
    "aiResonance": 3,
    "tradePlan": {
     "strategy": "強勢突破・拉回低接",
@@ -4674,86 +4866,6 @@
    ]
   },
   {
-   "code": "3230",
-   "name": "錦明",
-   "market": "上櫃",
-   "close": 27.15,
-   "chgPct": 5.44,
-   "avgVol": 1420,
-   "volume": 1376,
-   "foreignNet": 78,
-   "trustNet": 0,
-   "dealerNet": 0,
-   "instNet": 78,
-   "instHist": [
-    78,
-    32,
-    60,
-    44,
-    9
-   ],
-   "inst5d": 223,
-   "foreignStreak": 5,
-   "trustStreak": 0,
-   "marginChg": -195,
-   "marginBal": 2138,
-   "shortChg": -5,
-   "bigPct": 46.83,
-   "bigChg": 0.14,
-   "brokerNet": null,
-   "series": [
-    23.7,
-    21.35,
-    23.45,
-    25.75,
-    27.15
-   ],
-   "parts": {
-    "inst1": 19.7,
-    "inst5": 19.1,
-    "streak": 9.6,
-    "margin": 14.6,
-    "big": 14.3,
-    "broker": 0
-   },
-   "score": 77.3,
-   "rank": 9,
-   "tags": [
-    "外資連買5日",
-    "融資大減"
-   ],
-   "aiGrade": "A+",
-   "aiSignal": "籌碼集中・波段偏多",
-   "aiSummary": "外資連買 5 日布局、大戶持股穩步增加、散戶融資退場 195 張；大盤指數下跌 -3.47%，個股卻逆勢上漲 +5.44% 且法人買超護盤。",
-   "aiResonance": 3,
-   "tradePlan": {
-    "strategy": "強勢突破・拉回低接",
-    "ma5": 24.28,
-    "high5": 27.15,
-    "low5": 21.35,
-    "bias5": 11.82,
-    "buyLow": 24.3,
-    "buyHigh": 26.8,
-    "breakoutBuy": 27.55,
-    "buyZone": "24.3 ～ 26.8",
-    "sellTarget1": 28.5,
-    "target1Pct": 5.0,
-    "sellTarget2": 29.6,
-    "target2Pct": 9.0,
-    "stopLoss": 21.05,
-    "stopPct": -22.5,
-    "buyDesc": "當日漲幅或正乖離較大，建議等拉回 24.3～26.8（支撐區）低接，或帶量突破 27.55 右側追強",
-    "sellDesc": "第一賣點 28.5 (+5.0%) 先停利一半；波段目標賣點 29.6 (+9.0%)；跌破 21.05 (-22.5%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": [
-    {
-     "type": "逆勢抗跌收紅",
-     "level": "med",
-     "text": "大盤指數下跌 -3.47%，個股卻逆勢上漲 +5.44% 且法人買超護盤"
-    }
-   ]
-  },
-  {
    "code": "3219",
    "name": "倚強科",
    "market": "上櫃",
@@ -4778,8 +4890,8 @@
    "marginChg": -49,
    "marginBal": 1874,
    "shortChg": 3,
-   "bigPct": 75.92,
-   "bigChg": -0.19,
+   "bigPct": 75.68,
+   "bigChg": -0.09,
    "brokerNet": null,
    "series": [
     116.5,
@@ -4793,11 +4905,11 @@
     "inst5": 22.8,
     "streak": 8.9,
     "margin": 11.2,
-    "big": 10.1,
+    "big": 11.4,
     "broker": 0
    },
-   "score": 76.7,
-   "rank": 10,
+   "score": 78.0,
+   "rank": 11,
    "tags": [
     "外資連買4日"
    ],
@@ -4833,6 +4945,249 @@
    ]
   },
   {
+   "code": "3689",
+   "name": "湧德",
+   "market": "上櫃",
+   "close": 112.5,
+   "chgPct": -4.26,
+   "avgVol": 1162,
+   "volume": 1153,
+   "foreignNet": 267,
+   "trustNet": 0,
+   "dealerNet": -20,
+   "instNet": 248,
+   "instHist": [
+    248,
+    301,
+    157,
+    -155,
+    294
+   ],
+   "inst5d": 845,
+   "foreignStreak": 3,
+   "trustStreak": 0,
+   "marginChg": -227,
+   "marginBal": 4838,
+   "shortChg": -2,
+   "bigPct": 14.11,
+   "bigChg": -0.58,
+   "brokerNet": null,
+   "series": [
+    121.5,
+    119.0,
+    117.0,
+    117.5,
+    112.5
+   ],
+   "parts": {
+    "inst1": 24.1,
+    "inst5": 24.3,
+    "streak": 8.2,
+    "margin": 14.9,
+    "big": 5.3,
+    "broker": 0
+   },
+   "score": 76.8,
+   "rank": 12,
+   "tags": [
+    "外資連買3日",
+    "融資大減"
+   ],
+   "aiGrade": "A",
+   "aiSignal": "法人進駐・穩健偏多",
+   "aiSummary": "外資連買 3 日布局、散戶融資退場 227 張；今日股價收跌 -4.26%，但三大法人卻逆勢買超 +248 張（標準壓低吃貨背離）。",
+   "aiResonance": 2,
+   "tradePlan": {
+    "strategy": "逆勢吃貨・逢低承接",
+    "ma5": 117.5,
+    "high5": 121.5,
+    "low5": 112.5,
+    "bias5": -4.26,
+    "buyLow": 110.0,
+    "buyHigh": 112.5,
+    "breakoutBuy": 117.5,
+    "buyZone": "110.0 ～ 112.5",
+    "sellTarget1": 124.0,
+    "target1Pct": 10.2,
+    "sellTarget2": 127.5,
+    "target2Pct": 13.3,
+    "stopLoss": 108.0,
+    "stopPct": -4.0,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 110.0～112.5 左側分批低接，站回 117.5 確認轉強",
+    "sellDesc": "第一賣點 124.0 (+10.2%) 先停利一半；波段目標賣點 127.5 (+13.3%)；跌破 108.0 (-4.0%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": [
+    {
+     "type": "價跌逆勢吃貨",
+     "level": "high",
+     "text": "今日股價收跌 -4.26%，但三大法人卻逆勢買超 +248 張（標準壓低吃貨背離）"
+    },
+    {
+     "type": "連霸榜 3 日",
+     "level": "high",
+     "text": "連續 3 個交易日蟬聯 AI 大戶推薦榜，主力波段鎖碼極度穩定"
+    }
+   ]
+  },
+  {
+   "code": "4743",
+   "name": "合一",
+   "market": "上櫃",
+   "close": 48.15,
+   "chgPct": -0.52,
+   "avgVol": 1143,
+   "volume": 884,
+   "foreignNet": 113,
+   "trustNet": 0,
+   "dealerNet": 1,
+   "instNet": 114,
+   "instHist": [
+    114,
+    181,
+    79,
+    -482,
+    910
+   ],
+   "inst5d": 802,
+   "foreignStreak": 3,
+   "trustStreak": 0,
+   "marginChg": -44,
+   "marginBal": 13379,
+   "shortChg": -6,
+   "bigPct": 41.57,
+   "bigChg": -0.03,
+   "brokerNet": null,
+   "series": [
+    49.5,
+    48.45,
+    48.15,
+    48.4,
+    48.15
+   ],
+   "parts": {
+    "inst1": 21.7,
+    "inst5": 24.1,
+    "streak": 8.2,
+    "margin": 10.7,
+    "big": 12.1,
+    "broker": 0
+   },
+   "score": 76.8,
+   "rank": 13,
+   "tags": [
+    "外資連買3日"
+   ],
+   "aiGrade": "A",
+   "aiSignal": "法人進駐・穩健偏多",
+   "aiSummary": "外資連買 3 日布局、散戶融資退場 44 張。",
+   "aiResonance": 2,
+   "tradePlan": {
+    "strategy": "逆勢吃貨・逢低承接",
+    "ma5": 48.53,
+    "high5": 49.5,
+    "low5": 48.15,
+    "bias5": -0.78,
+    "buyLow": 47.2,
+    "buyHigh": 48.15,
+    "breakoutBuy": 48.65,
+    "buyZone": "47.2 ～ 48.15",
+    "sellTarget1": 50.6,
+    "target1Pct": 5.1,
+    "sellTarget2": 52.1,
+    "target2Pct": 8.2,
+    "stopLoss": 46.2,
+    "stopPct": -4.0,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 47.2～48.15 左側分批低接，站回 48.65 確認轉強",
+    "sellDesc": "第一賣點 50.6 (+5.1%) 先停利一半；波段目標賣點 52.1 (+8.2%)；跌破 46.2 (-4.0%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": []
+  },
+  {
+   "code": "5904",
+   "name": "寶雅*",
+   "market": "上櫃",
+   "close": 73.7,
+   "chgPct": -0.14,
+   "avgVol": 4251,
+   "volume": 4705,
+   "foreignNet": 2273,
+   "trustNet": -344,
+   "dealerNet": -9,
+   "instNet": 1920,
+   "instHist": [
+    1920,
+    1341,
+    845,
+    -843,
+    2990
+   ],
+   "inst5d": 6253,
+   "foreignStreak": 3,
+   "trustStreak": 0,
+   "marginChg": 6,
+   "marginBal": 6117,
+   "shortChg": 1,
+   "bigPct": 76.4,
+   "bigChg": 0.12,
+   "brokerNet": null,
+   "series": [
+    73.9,
+    72.8,
+    73.0,
+    73.8,
+    73.7
+   ],
+   "parts": {
+    "inst1": 24.8,
+    "inst5": 25.0,
+    "streak": 8.2,
+    "margin": 4.6,
+    "big": 14.0,
+    "broker": 0
+   },
+   "score": 76.6,
+   "rank": 14,
+   "tags": [
+    "外資連買3日",
+    "5日買超>均量"
+   ],
+   "aiGrade": "A+",
+   "aiSignal": "籌碼集中・波段偏多",
+   "aiSummary": "外資連買 3 日布局、大戶持股穩步增加、5日法人買盤強勁；今日股價收跌 -0.14%，但三大法人卻逆勢買超 +1,920 張（標準壓低吃貨背離）。",
+   "aiResonance": 3,
+   "tradePlan": {
+    "strategy": "逆勢吃貨・逢低承接",
+    "ma5": 73.44,
+    "high5": 73.9,
+    "low5": 72.8,
+    "bias5": 0.35,
+    "buyLow": 72.2,
+    "buyHigh": 73.7,
+    "breakoutBuy": 74.4,
+    "buyZone": "72.2 ～ 73.7",
+    "sellTarget1": 77.4,
+    "target1Pct": 5.0,
+    "sellTarget2": 80.3,
+    "target2Pct": 9.0,
+    "stopLoss": 70.8,
+    "stopPct": -3.9,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 72.2～73.7 左側分批低接，站回 74.4 確認轉強",
+    "sellDesc": "第一賣點 77.4 (+5.0%) 先停利一半；波段目標賣點 80.3 (+9.0%)；跌破 70.8 (-3.9%) 或法人連2日轉賣則停損出場。"
+   },
+   "anomalies": [
+    {
+     "type": "價跌逆勢吃貨",
+     "level": "high",
+     "text": "今日股價收跌 -0.14%，但三大法人卻逆勢買超 +1,920 張（標準壓低吃貨背離）"
+    },
+    {
+     "type": "連霸榜 3 日",
+     "level": "high",
+     "text": "連續 3 個交易日蟬聯 AI 大戶推薦榜，主力波段鎖碼極度穩定"
+    }
+   ]
+  },
+  {
    "code": "4903",
    "name": "聯光通",
    "market": "上櫃",
@@ -4857,8 +5212,8 @@
    "marginChg": -166,
    "marginBal": 4717,
    "shortChg": -191,
-   "bigPct": 37.89,
-   "bigChg": 1.08,
+   "bigPct": 38.82,
+   "bigChg": 1.04,
    "brokerNet": null,
    "series": [
     58.0,
@@ -4876,13 +5231,13 @@
     "broker": 0
    },
    "score": 75.7,
-   "rank": 11,
+   "rank": 15,
    "tags": [
     "大戶增持"
    ],
    "aiGrade": "A",
    "aiSignal": "法人進駐・穩健偏多",
-   "aiSummary": "千張大戶週增 +1.08%、散戶融資退場 166 張；前 4 日法人累計賣超 98 張，今日單日狂買 +1,319 張一舉翻正。",
+   "aiSummary": "千張大戶週增 +1.04%、散戶融資退場 166 張；前 4 日法人累計賣超 98 張，今日單日狂買 +1,319 張一舉翻正。",
    "aiResonance": 3,
    "tradePlan": {
     "strategy": "逆勢吃貨・逢低承接",
@@ -4917,80 +5272,6 @@
    ]
   },
   {
-   "code": "8383",
-   "name": "千附",
-   "market": "上櫃",
-   "close": 69.0,
-   "chgPct": -3.9,
-   "avgVol": 1158,
-   "volume": 1164,
-   "foreignNet": 37,
-   "trustNet": 0,
-   "dealerNet": -23,
-   "instNet": 15,
-   "instHist": [
-    15,
-    202,
-    651,
-    75,
-    179
-   ],
-   "inst5d": 1122,
-   "foreignStreak": 5,
-   "trustStreak": 0,
-   "marginChg": -78,
-   "marginBal": 1991,
-   "shortChg": 1,
-   "bigPct": 43.91,
-   "bigChg": -0.22,
-   "brokerNet": null,
-   "series": [
-    68.9,
-    69.1,
-    70.2,
-    71.8,
-    69.0
-   ],
-   "parts": {
-    "inst1": 17.6,
-    "inst5": 24.6,
-    "streak": 9.6,
-    "margin": 12.7,
-    "big": 9.8,
-    "broker": 0
-   },
-   "score": 74.3,
-   "rank": 12,
-   "tags": [
-    "外資連買5日",
-    "融資大減"
-   ],
-   "aiGrade": "A",
-   "aiSignal": "法人進駐・穩健偏多",
-   "aiSummary": "外資連買 5 日布局、散戶融資退場 78 張、5日法人買盤強勁。",
-   "aiResonance": 3,
-   "tradePlan": {
-    "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 69.8,
-    "high5": 71.8,
-    "low5": 68.9,
-    "bias5": -1.15,
-    "buyLow": 67.6,
-    "buyHigh": 69.0,
-    "breakoutBuy": 69.8,
-    "buyZone": "67.6 ～ 69.0",
-    "sellTarget1": 73.2,
-    "target1Pct": 6.1,
-    "sellTarget2": 75.4,
-    "target2Pct": 9.3,
-    "stopLoss": 66.2,
-    "stopPct": -4.1,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 67.6～69.0 左側分批低接，站回 69.8 確認轉強",
-    "sellDesc": "第一賣點 73.2 (+6.1%) 先停利一半；波段目標賣點 75.4 (+9.3%)；跌破 66.2 (-4.1%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": []
-  },
-  {
    "code": "4167",
    "name": "松瑞藥",
    "market": "上櫃",
@@ -5015,8 +5296,8 @@
    "marginChg": 80,
    "marginBal": 11851,
    "shortChg": 0,
-   "bigPct": 34.76,
-   "bigChg": 0.49,
+   "bigPct": 35.46,
+   "bigChg": 0.68,
    "brokerNet": null,
    "series": [
     21.8,
@@ -5030,17 +5311,18 @@
     "inst5": 23.3,
     "streak": 8.2,
     "margin": 0.8,
-    "big": 18.6,
+    "big": 21.0,
     "broker": 0
    },
-   "score": 73.0,
-   "rank": 13,
+   "score": 75.4,
+   "rank": 16,
    "tags": [
-    "外資連買3日"
+    "外資連買3日",
+    "大戶增持"
    ],
    "aiGrade": "A",
    "aiSignal": "法人進駐・穩健偏多",
-   "aiSummary": "外資連買 3 日布局、千張大戶週增 +0.49%；連續 3 個交易日蟬聯 AI 大戶推薦榜，主力波段鎖碼極度穩定。",
+   "aiSummary": "外資連買 3 日布局、千張大戶週增 +0.68%；連續 3 個交易日蟬聯 AI 大戶推薦榜，主力波段鎖碼極度穩定。",
    "aiResonance": 3,
    "tradePlan": {
     "strategy": "籌碼鎖碼・順勢布局",
@@ -5070,242 +5352,230 @@
    ]
   },
   {
-   "code": "8299",
-   "name": "群聯",
+   "code": "6727",
+   "name": "亞泰金屬",
    "market": "上櫃",
-   "close": 1880.0,
-   "chgPct": -2.59,
-   "avgVol": 2111,
-   "volume": 1773,
-   "foreignNet": 248,
-   "trustNet": 10,
-   "dealerNet": -33,
-   "instNet": 225,
+   "close": 433.5,
+   "chgPct": -9.12,
+   "avgVol": 1248,
+   "volume": 1382,
+   "foreignNet": 175,
+   "trustNet": 0,
+   "dealerNet": -6,
+   "instNet": 169,
    "instHist": [
-    225,
-    757,
-    185,
-    -476,
-    753
+    169,
+    131,
+    114,
+    46,
+    -31
    ],
-   "inst5d": 1443,
-   "foreignStreak": 3,
-   "trustStreak": 1,
-   "marginChg": -62,
-   "marginBal": 10262,
-   "shortChg": 0,
-   "bigPct": 28.17,
-   "bigChg": -0.38,
+   "inst5d": 430,
+   "foreignStreak": 4,
+   "trustStreak": 0,
+   "marginChg": -33,
+   "marginBal": 4047,
+   "shortChg": -1,
+   "bigPct": 0.0,
+   "bigChg": 0.0,
    "brokerNet": null,
    "series": [
-    1890.0,
-    1845.0,
-    1845.0,
-    1930.0,
-    1880.0
+    524.0,
+    486.0,
+    464.0,
+    477.0,
+    433.5
    ],
    "parts": {
-    "inst1": 21.9,
-    "inst5": 23.9,
-    "streak": 9.3,
-    "margin": 9.5,
-    "big": 7.8,
+    "inst1": 22.8,
+    "inst5": 22.2,
+    "streak": 8.9,
+    "margin": 8.7,
+    "big": 12.5,
     "broker": 0
    },
-   "score": 72.4,
-   "rank": 14,
+   "score": 75.1,
+   "rank": 17,
    "tags": [
-    "土洋合買",
-    "外資連買3日"
+    "外資連買4日"
    ],
    "aiGrade": "A",
    "aiSignal": "法人進駐・穩健偏多",
-   "aiSummary": "土洋法人同步買超、散戶融資退場 62 張。",
-   "aiResonance": 3,
+   "aiSummary": "外資連買 4 日布局、散戶融資退場 33 張。",
+   "aiResonance": 2,
    "tradePlan": {
     "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 1878.0,
-    "high5": 1930.0,
-    "low5": 1845.0,
-    "bias5": 0.11,
-    "buyLow": 1840.0,
-    "buyHigh": 1880.0,
-    "breakoutBuy": 1900.0,
-    "buyZone": "1840.0 ～ 1880.0",
-    "sellTarget1": 1975.0,
-    "target1Pct": 5.1,
-    "sellTarget2": 2035.0,
-    "target2Pct": 8.2,
-    "stopLoss": 1805.0,
+    "ma5": 476.9,
+    "high5": 524.0,
+    "low5": 433.5,
+    "bias5": -9.1,
+    "buyLow": 425.0,
+    "buyHigh": 433.5,
+    "breakoutBuy": 477.0,
+    "buyZone": "425.0 ～ 433.5",
+    "sellTarget1": 534.0,
+    "target1Pct": 23.2,
+    "sellTarget2": 550.0,
+    "target2Pct": 26.9,
+    "stopLoss": 416.0,
     "stopPct": -4.0,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 1840.0～1880.0 左側分批低接，站回 1900.0 確認轉強",
-    "sellDesc": "第一賣點 1975.0 (+5.1%) 先停利一半；波段目標賣點 2035.0 (+8.2%)；跌破 1805.0 (-4.0%) 或法人連2日轉賣則停損出場。"
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 425.0～433.5 左側分批低接，站回 477.0 確認轉強",
+    "sellDesc": "第一賣點 534.0 (+23.2%) 先停利一半；波段目標賣點 550.0 (+26.9%)；跌破 416.0 (-4.0%) 或法人連2日轉賣則停損出場。"
    },
    "anomalies": []
   },
   {
-   "code": "6173",
-   "name": "信昌電",
+   "code": "3663",
+   "name": "鑫科",
    "market": "上櫃",
-   "close": 293.5,
-   "chgPct": 3.16,
-   "avgVol": 13107,
-   "volume": 22780,
-   "foreignNet": 3052,
-   "trustNet": 511,
-   "dealerNet": 228,
-   "instNet": 3792,
+   "close": 62.7,
+   "chgPct": -6.14,
+   "avgVol": 1774,
+   "volume": 749,
+   "foreignNet": 139,
+   "trustNet": 0,
+   "dealerNet": -10,
+   "instNet": 129,
    "instHist": [
-    3792,
-    366,
-    217,
-    -28,
-    0
+    129,
+    58,
+    -25,
+    87,
+    -268
    ],
-   "inst5d": 4346,
-   "foreignStreak": 1,
-   "trustStreak": 2,
-   "marginChg": -908,
-   "marginBal": 5063,
-   "shortChg": -131,
-   "bigPct": 55.99,
-   "bigChg": -0.67,
+   "inst5d": -18,
+   "foreignStreak": 2,
+   "trustStreak": 0,
+   "marginChg": -240,
+   "marginBal": 3814,
+   "shortChg": -14,
+   "bigPct": 62.04,
+   "bigChg": 0.06,
    "brokerNet": null,
    "series": [
-    null,
-    271.5,
-    259.0,
-    284.5,
-    293.5
+    68.6,
+    67.5,
+    67.4,
+    66.8,
+    62.7
    ],
    "parts": {
-    "inst1": 24.3,
-    "inst5": 21.9,
-    "streak": 8.9,
-    "margin": 12.9,
-    "big": 4.1,
+    "inst1": 20.4,
+    "inst5": 14.2,
+    "streak": 7.6,
+    "margin": 14.4,
+    "big": 13.2,
     "broker": 0
    },
-   "score": 72.1,
-   "rank": 15,
+   "score": 69.8,
+   "rank": 18,
    "tags": [
-    "土洋合買",
     "融資大減"
    ],
-   "aiGrade": "A",
-   "aiSignal": "法人進駐・穩健偏多",
-   "aiSummary": "土洋法人同步買超、散戶融資退場 908 張；大盤指數下跌 -3.47%，個股卻逆勢上漲 +3.16% 且法人買超護盤。",
-   "aiResonance": 3,
+   "aiGrade": "B+",
+   "aiSignal": "籌碼轉強・追蹤觀察",
+   "aiSummary": "大戶持股穩步增加、散戶融資退場 240 張；今日成交量萎縮至均量的 0.4 倍，但法人與千張大戶同步買進，籌碼高度鎖定。",
+   "aiResonance": 2,
    "tradePlan": {
-    "strategy": "強勢突破・拉回低接",
-    "ma5": 277.12,
-    "high5": 293.5,
-    "low5": 259.0,
-    "bias5": 5.91,
-    "buyLow": 277.0,
-    "buyHigh": 290.0,
-    "breakoutBuy": 298.0,
-    "buyZone": "277.0 ～ 290.0",
-    "sellTarget1": 308.0,
-    "target1Pct": 4.9,
-    "sellTarget2": 317.0,
-    "target2Pct": 8.0,
-    "stopLoss": 255.0,
-    "stopPct": -13.1,
-    "buyDesc": "當日漲幅或正乖離較大，建議等拉回 277.0～290.0（支撐區）低接，或帶量突破 298.0 右側追強",
-    "sellDesc": "第一賣點 308.0 (+4.9%) 先停利一半；波段目標賣點 317.0 (+8.0%)；跌破 255.0 (-13.1%) 或法人連2日轉賣則停損出場。"
+    "strategy": "逆勢吃貨・逢低承接",
+    "ma5": 66.6,
+    "high5": 68.6,
+    "low5": 62.7,
+    "bias5": -5.86,
+    "buyLow": 61.4,
+    "buyHigh": 62.7,
+    "breakoutBuy": 66.6,
+    "buyZone": "61.4 ～ 62.7",
+    "sellTarget1": 70.0,
+    "target1Pct": 11.6,
+    "sellTarget2": 72.1,
+    "target2Pct": 15.0,
+    "stopLoss": 60.2,
+    "stopPct": -4.0,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 61.4～62.7 左側分批低接，站回 66.6 確認轉強",
+    "sellDesc": "第一賣點 70.0 (+11.6%) 先停利一半；波段目標賣點 72.1 (+15.0%)；跌破 60.2 (-4.0%) 或法人連2日轉賣則停損出場。"
    },
    "anomalies": [
     {
-     "type": "逆勢抗跌收紅",
+     "type": "量縮惜售鎖碼",
      "level": "med",
-     "text": "大盤指數下跌 -3.47%，個股卻逆勢上漲 +3.16% 且法人買超護盤"
+     "text": "今日成交量萎縮至均量的 0.4 倍，但法人與千張大戶同步買進，籌碼高度鎖定"
     }
    ]
   },
   {
-   "code": "3324",
-   "name": "雙鴻",
+   "code": "6207",
+   "name": "雷科",
    "market": "上櫃",
-   "close": 1360.0,
-   "chgPct": -1.09,
-   "avgVol": 3762,
-   "volume": 4785,
-   "foreignNet": 716,
-   "trustNet": 25,
-   "dealerNet": 42,
-   "instNet": 783,
+   "close": 131.5,
+   "chgPct": -6.41,
+   "avgVol": 9219,
+   "volume": 6899,
+   "foreignNet": 113,
+   "trustNet": 0,
+   "dealerNet": -31,
+   "instNet": 82,
    "instHist": [
-    783,
-    -749,
-    320,
-    234,
-    -35
+    82,
+    -1020,
+    224,
+    -333,
+    172
    ],
-   "inst5d": 553,
+   "inst5d": -875,
    "foreignStreak": 1,
-   "trustStreak": 2,
-   "marginChg": -101,
-   "marginBal": 6167,
-   "shortChg": 2,
-   "bigPct": 34.27,
-   "bigChg": -0.18,
+   "trustStreak": 0,
+   "marginChg": -479,
+   "marginBal": 6824,
+   "shortChg": -57,
+   "bigPct": 8.95,
+   "bigChg": 1.12,
    "brokerNet": null,
    "series": [
-    1425.0,
-    1380.0,
-    1395.0,
-    1375.0,
-    1360.0
+    131.5,
+    132.0,
+    135.0,
+    140.5,
+    131.5
    ],
    "parts": {
-    "inst1": 23.9,
-    "inst5": 18.4,
-    "streak": 8.9,
-    "margin": 8.8,
-    "big": 10.2,
+    "inst1": 16.7,
+    "inst5": 9.9,
+    "streak": 6.2,
+    "margin": 11.9,
+    "big": 25,
     "broker": 0
    },
-   "score": 70.2,
-   "rank": 16,
+   "score": 69.7,
+   "rank": 19,
    "tags": [
-    "土洋合買"
+    "大戶增持",
+    "融資大減"
    ],
    "aiGrade": "B+",
    "aiSignal": "籌碼轉強・追蹤觀察",
-   "aiSummary": "土洋法人同步買超、散戶融資退場 101 張；前日法人賣超 749 張，今日突反手大買 +783 張（V型認錯回補）。",
+   "aiSummary": "千張大戶週增 +1.12%、散戶融資退場 479 張。",
    "aiResonance": 3,
    "tradePlan": {
     "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 1387.0,
-    "high5": 1425.0,
-    "low5": 1360.0,
-    "bias5": -1.95,
-    "buyLow": 1335.0,
-    "buyHigh": 1360.0,
-    "breakoutBuy": 1385.0,
-    "buyZone": "1335.0 ～ 1360.0",
-    "sellTarget1": 1455.0,
-    "target1Pct": 7.0,
-    "sellTarget2": 1500.0,
-    "target2Pct": 10.3,
-    "stopLoss": 1305.0,
-    "stopPct": -4.0,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 1335.0～1360.0 左側分批低接，站回 1385.0 確認轉強",
-    "sellDesc": "第一賣點 1455.0 (+7.0%) 先停利一半；波段目標賣點 1500.0 (+10.3%)；跌破 1305.0 (-4.0%) 或法人連2日轉賣則停損出場。"
+    "ma5": 134.1,
+    "high5": 140.5,
+    "low5": 131.5,
+    "bias5": -1.94,
+    "buyLow": 129.0,
+    "buyHigh": 131.5,
+    "breakoutBuy": 134.0,
+    "buyZone": "129.0 ～ 131.5",
+    "sellTarget1": 143.5,
+    "target1Pct": 9.1,
+    "sellTarget2": 148.0,
+    "target2Pct": 12.5,
+    "stopLoss": 126.0,
+    "stopPct": -4.2,
+    "buyDesc": "股價回檔但法人逆勢吸籌，可於 129.0～131.5 左側分批低接，站回 134.0 確認轉強",
+    "sellDesc": "第一賣點 143.5 (+9.1%) 先停利一半；波段目標賣點 148.0 (+12.5%)；跌破 126.0 (-4.2%) 或法人連2日轉賣則停損出場。"
    },
-   "anomalies": [
-    {
-     "type": "法人由賣轉買",
-     "level": "high",
-     "text": "前日法人賣超 749 張，今日突反手大買 +783 張（V型認錯回補）"
-    },
-    {
-     "type": "價跌逆勢吃貨",
-     "level": "high",
-     "text": "今日股價收跌 -1.09%，但三大法人卻逆勢買超 +783 張（標準壓低吃貨背離）"
-    }
-   ]
+   "anomalies": []
   },
   {
    "code": "5202",
@@ -5332,8 +5602,8 @@
    "marginChg": 322,
    "marginBal": 1972,
    "shortChg": 68,
-   "bigPct": 48.62,
-   "bigChg": 0.02,
+   "bigPct": 48.67,
+   "bigChg": 0.01,
    "brokerNet": null,
    "series": [
     14.45,
@@ -5347,11 +5617,11 @@
     "inst5": 22.4,
     "streak": 8.2,
     "margin": 0.3,
-    "big": 12.8,
+    "big": 12.6,
     "broker": 0
    },
-   "score": 68.3,
-   "rank": 17,
+   "score": 68.1,
+   "rank": 20,
    "tags": [
     "外資連買3日"
    ],
@@ -5390,229 +5660,6 @@
      "text": "大盤指數下跌 -3.47%，個股卻逆勢上漲 +7.99% 且法人買超護盤"
     }
    ]
-  },
-  {
-   "code": "3663",
-   "name": "鑫科",
-   "market": "上櫃",
-   "close": 62.7,
-   "chgPct": -6.14,
-   "avgVol": 1774,
-   "volume": 749,
-   "foreignNet": 139,
-   "trustNet": 0,
-   "dealerNet": -10,
-   "instNet": 129,
-   "instHist": [
-    129,
-    58,
-    -25,
-    87,
-    -268
-   ],
-   "inst5d": -18,
-   "foreignStreak": 2,
-   "trustStreak": 0,
-   "marginChg": -240,
-   "marginBal": 3814,
-   "shortChg": -14,
-   "bigPct": 62.0,
-   "bigChg": -0.08,
-   "brokerNet": null,
-   "series": [
-    68.6,
-    67.5,
-    67.4,
-    66.8,
-    62.7
-   ],
-   "parts": {
-    "inst1": 20.4,
-    "inst5": 14.2,
-    "streak": 7.6,
-    "margin": 14.4,
-    "big": 11.5,
-    "broker": 0
-   },
-   "score": 68.1,
-   "rank": 18,
-   "tags": [
-    "融資大減"
-   ],
-   "aiGrade": "B+",
-   "aiSignal": "籌碼轉強・追蹤觀察",
-   "aiSummary": "散戶融資退場 240 張。",
-   "aiResonance": 1,
-   "tradePlan": {
-    "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 66.6,
-    "high5": 68.6,
-    "low5": 62.7,
-    "bias5": -5.86,
-    "buyLow": 61.4,
-    "buyHigh": 62.7,
-    "breakoutBuy": 66.6,
-    "buyZone": "61.4 ～ 62.7",
-    "sellTarget1": 70.0,
-    "target1Pct": 11.6,
-    "sellTarget2": 72.1,
-    "target2Pct": 15.0,
-    "stopLoss": 60.2,
-    "stopPct": -4.0,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 61.4～62.7 左側分批低接，站回 66.6 確認轉強",
-    "sellDesc": "第一賣點 70.0 (+11.6%) 先停利一半；波段目標賣點 72.1 (+15.0%)；跌破 60.2 (-4.0%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": []
-  },
-  {
-   "code": "3354",
-   "name": "律勝",
-   "market": "上櫃",
-   "close": 49.95,
-   "chgPct": -10.0,
-   "avgVol": 7391,
-   "volume": 4006,
-   "foreignNet": 192,
-   "trustNet": 0,
-   "dealerNet": -1,
-   "instNet": 191,
-   "instHist": [
-    191,
-    -119,
-    1747,
-    173,
-    165
-   ],
-   "inst5d": 2158,
-   "foreignStreak": 1,
-   "trustStreak": 0,
-   "marginChg": -247,
-   "marginBal": 1814,
-   "shortChg": -150,
-   "bigPct": 70.56,
-   "bigChg": 0.0,
-   "brokerNet": null,
-   "series": [
-    41.8,
-    45.95,
-    50.5,
-    55.5,
-    49.95
-   ],
-   "parts": {
-    "inst1": 18.0,
-    "inst5": 21.0,
-    "streak": 6.2,
-    "margin": 9.8,
-    "big": 12.5,
-    "broker": 0
-   },
-   "score": 67.5,
-   "rank": 19,
-   "tags": [],
-   "aiGrade": "B+",
-   "aiSignal": "籌碼轉強・追蹤觀察",
-   "aiSummary": "散戶融資退場 247 張。",
-   "aiResonance": 1,
-   "tradePlan": {
-    "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 48.74,
-    "high5": 55.5,
-    "low5": 41.8,
-    "bias5": 2.48,
-    "buyLow": 41.8,
-    "buyHigh": 49.95,
-    "breakoutBuy": 50.4,
-    "buyZone": "41.8 ～ 49.95",
-    "sellTarget1": 56.6,
-    "target1Pct": 13.3,
-    "sellTarget2": 58.3,
-    "target2Pct": 16.7,
-    "stopLoss": 41.15,
-    "stopPct": -17.6,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 41.8～49.95 左側分批低接，站回 50.4 確認轉強",
-    "sellDesc": "第一賣點 56.6 (+13.3%) 先停利一半；波段目標賣點 58.3 (+16.7%)；跌破 41.15 (-17.6%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": []
-  },
-  {
-   "code": "6925",
-   "name": "意藍",
-   "market": "上櫃",
-   "close": 101.5,
-   "chgPct": -9.78,
-   "avgVol": 3421,
-   "volume": 7467,
-   "foreignNet": 151,
-   "trustNet": 0,
-   "dealerNet": -28,
-   "instNet": 123,
-   "instHist": [
-    123,
-    -6,
-    81,
-    -7,
-    6
-   ],
-   "inst5d": 197,
-   "foreignStreak": 1,
-   "trustStreak": 0,
-   "marginChg": -356,
-   "marginBal": 882,
-   "shortChg": -25,
-   "bigPct": 41.69,
-   "bigChg": 0.0,
-   "brokerNet": null,
-   "series": [
-    90.5,
-    93.4,
-    102.5,
-    112.5,
-    101.5
-   ],
-   "parts": {
-    "inst1": 18.6,
-    "inst5": 16.2,
-    "streak": 6.2,
-    "margin": 13.8,
-    "big": 12.5,
-    "broker": 0
-   },
-   "score": 67.3,
-   "rank": 20,
-   "tags": [
-    "融資大減"
-   ],
-   "aiGrade": "B+",
-   "aiSignal": "籌碼轉強・追蹤觀察",
-   "aiSummary": "散戶融資退場 356 張；今日成交 7,467 張，暴增為 5 日均量(3,421張)的 2.2 倍，主力資金異常點火。",
-   "aiResonance": 1,
-   "tradePlan": {
-    "strategy": "逆勢吃貨・逢低承接",
-    "ma5": 100.08,
-    "high5": 112.5,
-    "low5": 90.5,
-    "bias5": 1.42,
-    "buyLow": 90.5,
-    "buyHigh": 101.5,
-    "breakoutBuy": 102.5,
-    "buyZone": "90.5 ～ 101.5",
-    "sellTarget1": 115.0,
-    "target1Pct": 13.3,
-    "sellTarget2": 118.5,
-    "target2Pct": 16.7,
-    "stopLoss": 89.1,
-    "stopPct": -12.2,
-    "buyDesc": "股價回檔但法人逆勢吸籌，可於 90.5～101.5 左側分批低接，站回 102.5 確認轉強",
-    "sellDesc": "第一賣點 115.0 (+13.3%) 先停利一半；波段目標賣點 118.5 (+16.7%)；跌破 89.1 (-12.2%) 或法人連2日轉賣則停損出場。"
-   },
-   "anomalies": [
-    {
-     "type": "爆量 2.2 倍",
-     "level": "med",
-     "text": "今日成交 7,467 張，暴增為 5 日均量(3,421張)的 2.2 倍，主力資金異常點火"
-    }
-   ]
   }
  ],
  "crossDayAnomalies": {
@@ -5623,29 +5670,21 @@
     "name": "鈊象",
     "market": "上櫃",
     "sector": "文化創意",
-    "rank": 4,
-    "score": 81,
+    "rank": 1,
+    "score": 92,
     "close": 787.0,
     "chg": 0.64,
     "streakDays": 7,
-    "rankHistory": "10-22:#4 ← 10-21:#8 ← 10-20:#3 ← 10-19:#4 ← 10-16:#5",
+    "rankHistory": "10-22:#1 ← 10-21:#8 ← 10-20:#3 ← 10-19:#4 ← 10-16:#5",
     "inst": 651,
     "inst5d": 1664,
-    "bigChg": -0.2,
+    "bigChg": 0.61,
     "marginChg": -143,
     "vol": 1208,
     "buyZone": "775.0 ～ 791.0",
     "sellTarget1": 826.0,
     "stopLoss": 756.0,
     "ohlc": [
-     [
-      "10/14",
-      801.0,
-      816.0,
-      801.0,
-      811.0,
-      2233
-     ],
      [
       "10/15",
       808.0,
@@ -5697,33 +5736,95 @@
     ]
    },
    {
+    "code": "6538",
+    "name": "倉和",
+    "market": "上櫃",
+    "sector": "電子零組件",
+    "rank": 3,
+    "score": 88,
+    "close": 286.0,
+    "chg": -4.83,
+    "streakDays": 5,
+    "rankHistory": "10-22:#3 ← 10-21:#5 ← 10-20:#12 ← 10-19:#6 ← 10-16:#14",
+    "inst": 167,
+    "inst5d": 905,
+    "bigChg": 2.55,
+    "marginChg": -73,
+    "vol": 1566,
+    "buyZone": "280.5 ～ 286.0",
+    "sellTarget1": 306.5,
+    "stopLoss": 274.5,
+    "ohlc": [
+     [
+      "10/15",
+      313.5,
+      334.5,
+      302.0,
+      302.0,
+      2245
+     ],
+     [
+      "10/16",
+      296.5,
+      299.0,
+      274.0,
+      285.0,
+      3623
+     ],
+     [
+      "10/19",
+      264.5,
+      303.5,
+      264.5,
+      297.0,
+      2935
+     ],
+     [
+      "10/20",
+      292.0,
+      310.5,
+      290.0,
+      293.5,
+      1928
+     ],
+     [
+      "10/21",
+      302.0,
+      308.0,
+      295.0,
+      300.5,
+      1176
+     ],
+     [
+      "10/22",
+      300.0,
+      308.5,
+      285.0,
+      286.0,
+      1566
+     ]
+    ]
+   },
+   {
     "code": "2002",
     "name": "中鋼",
     "market": "上市",
     "sector": "鋼鐵",
-    "rank": 19,
-    "score": 77,
+    "rank": 8,
+    "score": 83,
     "close": 19.55,
     "chg": -0.26,
     "streakDays": 5,
-    "rankHistory": "10-22:#19 ← 10-21:#11 ← 10-20:#3 ← 10-19:#15 ← 10-16:#15",
+    "rankHistory": "10-22:#8 ← 10-21:#11 ← 10-20:#3 ← 10-19:#15 ← 10-16:#15",
     "inst": 24928,
     "inst5d": 111172,
-    "bigChg": -0.05,
+    "bigChg": 0.43,
     "marginChg": -539,
     "vol": 48253,
     "buyZone": "19.15 ～ 19.55",
     "sellTarget1": 20.55,
     "stopLoss": 18.75,
     "ohlc": [
-     [
-      "10/14",
-      19.15,
-      19.65,
-      19.15,
-      19.5,
-      103580
-     ],
      [
       "10/15",
       19.5,
@@ -5775,33 +5876,165 @@
     ]
    },
    {
+    "code": "2105",
+    "name": "正新",
+    "market": "上市",
+    "sector": "橡膠",
+    "rank": 18,
+    "score": 78,
+    "close": 32.0,
+    "chg": 0.31,
+    "streakDays": 5,
+    "rankHistory": "10-22:#18 ← 10-21:#13 ← 10-20:#10 ← 10-19:#6 ← 10-16:#1",
+    "inst": 1648,
+    "inst5d": 16823,
+    "bigChg": 0.48,
+    "marginChg": -101,
+    "vol": 4535,
+    "buyZone": "31.5 ～ 32.15",
+    "sellTarget1": 33.6,
+    "stopLoss": 30.7,
+    "ohlc": [
+     [
+      "10/15",
+      31.3,
+      31.9,
+      31.3,
+      31.8,
+      13433
+     ],
+     [
+      "10/16",
+      31.8,
+      32.65,
+      31.8,
+      32.5,
+      13746
+     ],
+     [
+      "10/19",
+      32.45,
+      32.85,
+      32.05,
+      32.2,
+      8458
+     ],
+     [
+      "10/20",
+      31.85,
+      32.3,
+      31.8,
+      32.1,
+      6769
+     ],
+     [
+      "10/21",
+      32.2,
+      32.25,
+      31.8,
+      31.9,
+      4758
+     ],
+     [
+      "10/22",
+      31.8,
+      32.15,
+      31.8,
+      32.0,
+      4535
+     ]
+    ]
+   },
+   {
+    "code": "3029",
+    "name": "零壹",
+    "market": "上市",
+    "sector": "資訊服務",
+    "rank": 10,
+    "score": 83,
+    "close": 122.5,
+    "chg": 2.94,
+    "streakDays": 3,
+    "rankHistory": "10-22:#10 ← 10-21:#4 ← 10-20:#11",
+    "inst": 610,
+    "inst5d": 1661,
+    "bigChg": 0.87,
+    "marginChg": -19,
+    "vol": 2306,
+    "buyZone": "119.5 ～ 123.0",
+    "sellTarget1": 128.5,
+    "stopLoss": 115.5,
+    "ohlc": [
+     [
+      "10/15",
+      119.5,
+      122.0,
+      119.0,
+      119.5,
+      1741
+     ],
+     [
+      "10/16",
+      120.0,
+      123.5,
+      119.5,
+      120.5,
+      1659
+     ],
+     [
+      "10/19",
+      120.5,
+      120.5,
+      116.0,
+      117.5,
+      1398
+     ],
+     [
+      "10/20",
+      117.0,
+      119.0,
+      117.0,
+      118.5,
+      598
+     ],
+     [
+      "10/21",
+      120.0,
+      120.5,
+      117.5,
+      119.0,
+      738
+     ],
+     [
+      "10/22",
+      121.0,
+      123.5,
+      120.0,
+      122.5,
+      2306
+     ]
+    ]
+   },
+   {
     "code": "3689",
     "name": "湧德",
     "market": "上櫃",
     "sector": "電子零組件",
-    "rank": 2,
-    "score": 85,
+    "rank": 12,
+    "score": 77,
     "close": 112.5,
     "chg": -4.26,
     "streakDays": 3,
-    "rankHistory": "10-22:#2 ← 10-21:#6 ← 10-20:#17",
+    "rankHistory": "10-22:#12 ← 10-21:#6 ← 10-20:#17",
     "inst": 248,
     "inst5d": 845,
-    "bigChg": 0.07,
+    "bigChg": -0.58,
     "marginChg": -227,
     "vol": 1153,
     "buyZone": "110.0 ～ 112.5",
     "sellTarget1": 124.0,
     "stopLoss": 108.0,
     "ohlc": [
-     [
-      "10/14",
-      120.0,
-      121.0,
-      119.0,
-      120.0,
-      913
-     ],
      [
       "10/15",
       118.0,
@@ -5857,29 +6090,21 @@
     "name": "寶雅*",
     "market": "上櫃",
     "sector": "居家生活",
-    "rank": 5,
-    "score": 81,
+    "rank": 14,
+    "score": 77,
     "close": 73.7,
     "chg": -0.14,
     "streakDays": 3,
-    "rankHistory": "10-22:#5 ← 10-21:#3 ← 10-20:#5",
+    "rankHistory": "10-22:#14 ← 10-21:#3 ← 10-20:#5",
     "inst": 1920,
     "inst5d": 6253,
-    "bigChg": 0.47,
+    "bigChg": 0.12,
     "marginChg": 6,
     "vol": 4705,
     "buyZone": "72.2 ～ 73.7",
     "sellTarget1": 77.4,
     "stopLoss": 70.8,
     "ohlc": [
-     [
-      "10/14",
-      72.0,
-      72.0,
-      70.6,
-      71.6,
-      2382
-     ],
      [
       "10/15",
       71.3,
@@ -5935,29 +6160,21 @@
     "name": "松瑞藥",
     "market": "上櫃",
     "sector": "生技醫療",
-    "rank": 13,
-    "score": 73,
+    "rank": 16,
+    "score": 75,
     "close": 20.9,
     "chg": 0.0,
     "streakDays": 3,
-    "rankHistory": "10-22:#13 ← 10-21:#13 ← 10-20:#19",
+    "rankHistory": "10-22:#16 ← 10-21:#13 ← 10-20:#19",
     "inst": 181,
     "inst5d": 845,
-    "bigChg": 0.49,
+    "bigChg": 0.68,
     "marginChg": 80,
     "vol": 1040,
     "buyZone": "20.6 ～ 21.0",
     "sellTarget1": 22.25,
     "stopLoss": 20.05,
     "ohlc": [
-     [
-      "10/14",
-      22.5,
-      22.5,
-      22.0,
-      22.15,
-      4099
-     ],
      [
       "10/15",
       21.85,
@@ -6011,263 +6228,24 @@
   ],
   "newSurgePicks": [
    {
-    "code": "6214",
-    "name": "精誠",
-    "market": "上市",
-    "sector": "其他",
-    "rank": 1,
-    "score": 87,
-    "close": 201.0,
-    "chg": 1.01,
-    "inst": 790,
-    "inst5d": 887,
-    "bigChg": 0.63,
-    "marginChg": -202,
-    "vol": 2275,
-    "tag": "昨日未上榜 → 今日空降 上市 #1",
-    "buyZone": "198.0 ～ 202.0",
-    "sellTarget1": 211.0,
-    "stopLoss": 193.0,
-    "ohlc": [
-     [
-      "10/14",
-      194.0,
-      198.0,
-      193.5,
-      196.0,
-      1418
-     ],
-     [
-      "10/15",
-      196.5,
-      199.0,
-      195.5,
-      197.0,
-      1231
-     ],
-     [
-      "10/16",
-      198.5,
-      202.5,
-      194.5,
-      197.5,
-      1479
-     ],
-     [
-      "10/19",
-      195.5,
-      198.0,
-      194.0,
-      196.5,
-      790
-     ],
-     [
-      "10/20",
-      194.5,
-      197.0,
-      194.5,
-      196.5,
-      337
-     ],
-     [
-      "10/21",
-      197.0,
-      199.0,
-      196.5,
-      199.0,
-      540
-     ],
-     [
-      "10/22",
-      199.0,
-      202.0,
-      197.0,
-      201.0,
-      2275
-     ]
-    ]
-   },
-   {
-    "code": "2034",
-    "name": "允強",
-    "market": "上市",
-    "sector": "鋼鐵",
-    "rank": 3,
-    "score": 85,
-    "close": 24.35,
-    "chg": 1.46,
-    "inst": 2448,
-    "inst5d": 4950,
-    "bigChg": 0.59,
-    "marginChg": -45,
-    "vol": 6070,
-    "tag": "昨日未上榜 → 今日空降 上市 #3",
-    "buyZone": "23.9 ～ 24.45",
-    "sellTarget1": 25.55,
-    "stopLoss": 23.15,
-    "ohlc": [
-     [
-      "10/14",
-      23.95,
-      23.95,
-      23.65,
-      23.7,
-      1595
-     ],
-     [
-      "10/15",
-      23.7,
-      23.8,
-      23.05,
-      23.2,
-      1835
-     ],
-     [
-      "10/16",
-      23.15,
-      23.65,
-      23.15,
-      23.5,
-      1517
-     ],
-     [
-      "10/19",
-      23.1,
-      23.7,
-      23.1,
-      23.7,
-      1735
-     ],
-     [
-      "10/20",
-      23.65,
-      24.0,
-      23.3,
-      23.85,
-      2631
-     ],
-     [
-      "10/21",
-      24.15,
-      24.2,
-      23.6,
-      24.0,
-      2145
-     ],
-     [
-      "10/22",
-      24.2,
-      24.9,
-      24.1,
-      24.35,
-      6070
-     ]
-    ]
-   },
-   {
-    "code": "9945",
-    "name": "潤泰新",
-    "market": "上市",
-    "sector": "其他",
-    "rank": 4,
-    "score": 84,
-    "close": 29.6,
-    "chg": 1.02,
-    "inst": 2858,
-    "inst5d": 7078,
-    "bigChg": 0.05,
-    "marginChg": -636,
-    "vol": 4421,
-    "tag": "昨日未上榜 → 今日空降 上市 #4",
-    "buyZone": "29.15 ～ 29.75",
-    "sellTarget1": 31.1,
-    "stopLoss": 28.4,
-    "ohlc": [
-     [
-      "10/14",
-      29.3,
-      29.6,
-      29.25,
-      29.35,
-      3301
-     ],
-     [
-      "10/15",
-      29.35,
-      29.75,
-      29.2,
-      29.5,
-      6719
-     ],
-     [
-      "10/16",
-      29.7,
-      29.85,
-      29.55,
-      29.7,
-      4191
-     ],
-     [
-      "10/19",
-      29.7,
-      29.9,
-      29.35,
-      29.8,
-      5863
-     ],
-     [
-      "10/20",
-      29.5,
-      30.05,
-      29.4,
-      29.5,
-      4388
-     ],
-     [
-      "10/21",
-      29.75,
-      29.8,
-      29.2,
-      29.3,
-      3671
-     ],
-     [
-      "10/22",
-      29.5,
-      29.7,
-      29.3,
-      29.6,
-      4421
-     ]
-    ]
-   },
-   {
     "code": "3005",
     "name": "神基",
     "market": "上市",
     "sector": "電腦週邊",
-    "rank": 5,
-    "score": 84,
+    "rank": 1,
+    "score": 90,
     "close": 125.5,
     "chg": 0.8,
     "inst": 1406,
     "inst5d": 5834,
-    "bigChg": 0.19,
+    "bigChg": 0.65,
     "marginChg": -207,
     "vol": 3357,
-    "tag": "昨日未上榜 → 今日空降 上市 #5",
+    "tag": "昨日未上榜 → 今日空降 上市 #1",
     "buyZone": "123.0 ～ 126.0",
     "sellTarget1": 132.0,
     "stopLoss": 118.0,
     "ohlc": [
-     [
-      "10/14",
-      119.0,
-      121.0,
-      119.0,
-      120.5,
-      2256
-     ],
      [
       "10/15",
       120.5,
@@ -6319,406 +6297,503 @@
     ]
    },
    {
-    "code": "2393",
-    "name": "億光",
+    "code": "3014",
+    "name": "聯陽",
     "market": "上市",
-    "sector": "光電",
-    "rank": 9,
-    "score": 80,
-    "close": 67.8,
-    "chg": -0.15,
-    "inst": 662,
-    "inst5d": 2017,
-    "bigChg": 0.44,
-    "marginChg": -2,
-    "vol": 1222,
-    "tag": "排名急竄 ↑5 名 (#14 → #9)",
-    "buyZone": "66.4 ～ 67.8",
-    "sellTarget1": 71.2,
-    "stopLoss": 65.1,
-    "ohlc": [
-     [
-      "10/14",
-      68.4,
-      68.7,
-      67.9,
-      68.3,
-      1215
-     ],
-     [
-      "10/15",
-      66.8,
-      68.6,
-      66.6,
-      68.4,
-      1730
-     ],
-     [
-      "10/16",
-      68.7,
-      70.4,
-      68.7,
-      68.9,
-      2218
-     ],
-     [
-      "10/19",
-      68.4,
-      68.4,
-      67.3,
-      67.9,
-      997
-     ],
-     [
-      "10/20",
-      67.3,
-      68.5,
-      67.1,
-      67.4,
-      790
-     ],
-     [
-      "10/21",
-      67.8,
-      68.3,
-      67.4,
-      67.9,
-      1198
-     ],
-     [
-      "10/22",
-      67.9,
-      68.3,
-      67.5,
-      67.8,
-      1222
-     ]
-    ]
-   },
-   {
-    "code": "6187",
-    "name": "萬潤",
-    "market": "上櫃",
     "sector": "半導體",
-    "rank": 1,
-    "score": 85,
-    "close": 1260.0,
-    "chg": -5.26,
-    "inst": 218,
-    "inst5d": 333,
-    "bigChg": 2.52,
-    "marginChg": -287,
-    "vol": 1924,
-    "tag": "昨日未上榜 → 今日空降 上櫃 #1",
-    "buyZone": "1235.0 ～ 1260.0",
-    "sellTarget1": 1440.0,
-    "stopLoss": 1210.0,
+    "rank": 2,
+    "score": 88,
+    "close": 141.0,
+    "chg": -1.4,
+    "inst": 181,
+    "inst5d": 1400,
+    "bigChg": 1.17,
+    "marginChg": -93,
+    "vol": 772,
+    "tag": "昨日未上榜 → 今日空降 上市 #2",
+    "buyZone": "138.0 ～ 141.0",
+    "sellTarget1": 151.0,
+    "stopLoss": 135.5,
     "ohlc": [
      [
-      "10/14",
-      1600.0,
-      1610.0,
-      1530.0,
-      1540.0,
-      3231
-     ],
-     [
       "10/15",
-      1455.0,
-      1480.0,
-      1390.0,
-      1390.0,
-      3129
+      143.5,
+      147.0,
+      143.0,
+      146.5,
+      2363
      ],
      [
       "10/16",
-      1405.0,
-      1455.0,
-      1385.0,
-      1410.0,
-      2847
+      147.0,
+      149.0,
+      145.5,
+      148.0,
+      2213
      ],
      [
       "10/19",
-      1370.0,
-      1410.0,
-      1320.0,
-      1405.0,
-      2572
+      146.0,
+      146.0,
+      142.5,
+      143.5,
+      1205
      ],
      [
       "10/20",
-      1400.0,
-      1430.0,
-      1310.0,
-      1320.0,
-      2374
+      143.0,
+      144.5,
+      140.5,
+      141.0,
+      1030
      ],
      [
       "10/21",
-      1360.0,
-      1385.0,
-      1315.0,
-      1330.0,
-      1661
+      143.0,
+      143.5,
+      142.0,
+      143.0,
+      605
      ],
      [
       "10/22",
-      1350.0,
-      1360.0,
-      1260.0,
-      1260.0,
-      1924
+      144.0,
+      144.5,
+      140.0,
+      141.0,
+      772
      ]
     ]
    },
    {
-    "code": "5009",
-    "name": "榮剛",
-    "market": "上櫃",
-    "sector": "鋼鐵",
+    "code": "2542",
+    "name": "興富發",
+    "market": "上市",
+    "sector": "建材營造",
     "rank": 3,
-    "score": 82,
-    "close": 33.95,
-    "chg": 0.89,
-    "inst": 1205,
-    "inst5d": 2570,
-    "bigChg": -0.01,
-    "marginChg": -140,
-    "vol": 2829,
-    "tag": "昨日未上榜 → 今日空降 上櫃 #3",
-    "buyZone": "33.45 ～ 34.1",
-    "sellTarget1": 35.65,
-    "stopLoss": 32.6,
+    "score": 87,
+    "close": 40.0,
+    "chg": -0.25,
+    "inst": 5679,
+    "inst5d": 19570,
+    "bigChg": 0.5,
+    "marginChg": -324,
+    "vol": 8946,
+    "tag": "昨日未上榜 → 今日空降 上市 #3",
+    "buyZone": "39.2 ～ 40.0",
+    "sellTarget1": 42.0,
+    "stopLoss": 38.4,
     "ohlc": [
      [
-      "10/14",
-      33.95,
-      34.2,
-      33.65,
-      34.2,
-      1725
-     ],
-     [
       "10/15",
-      33.95,
-      34.0,
-      33.65,
-      33.65,
-      1938
+      39.7,
+      39.85,
+      39.3,
+      39.35,
+      10375
      ],
      [
       "10/16",
-      34.0,
-      34.4,
-      33.9,
-      34.3,
-      2191
+      39.5,
+      40.0,
+      39.35,
+      39.65,
+      6277
      ],
      [
       "10/19",
-      34.0,
-      34.0,
-      33.4,
-      33.8,
-      1233
+      39.65,
+      40.4,
+      39.45,
+      39.95,
+      10321
      ],
      [
       "10/20",
-      33.8,
-      33.95,
-      33.6,
-      33.75,
-      836
+      39.6,
+      40.45,
+      39.6,
+      40.15,
+      7759
      ],
      [
       "10/21",
-      33.95,
-      34.15,
-      33.6,
-      33.65,
-      1764
+      40.2,
+      40.5,
+      39.85,
+      40.1,
+      7492
      ],
      [
       "10/22",
-      34.15,
-      34.8,
-      33.9,
-      33.95,
-      2829
+      40.05,
+      40.6,
+      40.0,
+      40.0,
+      8946
      ]
     ]
    },
    {
-    "code": "4743",
-    "name": "合一",
-    "market": "上櫃",
-    "sector": "生技醫療",
-    "rank": 6,
-    "score": 81,
-    "close": 48.15,
-    "chg": -0.52,
-    "inst": 114,
-    "inst5d": 802,
-    "bigChg": 0.3,
-    "marginChg": -44,
-    "vol": 884,
-    "tag": "排名急竄 ↑11 名 (#17 → #6)",
-    "buyZone": "47.2 ～ 48.15",
-    "sellTarget1": 50.6,
-    "stopLoss": 46.2,
+    "code": "2354",
+    "name": "鴻準",
+    "market": "上市",
+    "sector": "其他電子",
+    "rank": 4,
+    "score": 85,
+    "close": 62.0,
+    "chg": -2.21,
+    "inst": 798,
+    "inst5d": 4573,
+    "bigChg": 0.58,
+    "marginChg": -214,
+    "vol": 2785,
+    "tag": "昨日未上榜 → 今日空降 上市 #4",
+    "buyZone": "60.8 ～ 62.0",
+    "sellTarget1": 65.1,
+    "stopLoss": 59.5,
     "ohlc": [
      [
-      "10/14",
-      48.1,
-      48.7,
-      47.7,
-      48.1,
-      766
-     ],
-     [
       "10/15",
-      47.65,
-      48.4,
-      47.2,
-      48.1,
-      1127
+      62.6,
+      62.9,
+      61.9,
+      62.1,
+      4783
      ],
      [
       "10/16",
-      48.8,
-      50.3,
-      48.65,
-      49.5,
-      2121
+      62.3,
+      63.3,
+      62.3,
+      62.8,
+      2768
      ],
      [
       "10/19",
-      50.0,
-      50.0,
-      48.15,
-      48.45,
-      1281
+      62.5,
+      62.5,
+      60.9,
+      61.5,
+      3725
      ],
      [
       "10/20",
-      48.1,
-      48.5,
-      48.05,
-      48.15,
-      662
+      61.0,
+      62.6,
+      61.0,
+      62.0,
+      3604
      ],
      [
       "10/21",
-      48.25,
-      49.05,
-      48.25,
-      48.4,
-      768
+      62.5,
+      63.6,
+      62.5,
+      63.4,
+      3804
      ],
      [
       "10/22",
-      48.55,
-      49.2,
-      48.05,
-      48.15,
-      884
+      63.6,
+      63.8,
+      61.9,
+      62.0,
+      2785
+     ]
+    ]
+   },
+   {
+    "code": "2377",
+    "name": "微星",
+    "market": "上市",
+    "sector": "電腦週邊",
+    "rank": 5,
+    "score": 85,
+    "close": 163.0,
+    "chg": -1.21,
+    "inst": 1537,
+    "inst5d": 13338,
+    "bigChg": 1.08,
+    "marginChg": -388,
+    "vol": 5053,
+    "tag": "昨日未上榜 → 今日空降 上市 #5",
+    "buyZone": "159.5 ～ 163.0",
+    "sellTarget1": 171.0,
+    "stopLoss": 156.5,
+    "ohlc": [
+     [
+      "10/15",
+      156.0,
+      161.0,
+      156.0,
+      158.0,
+      9600
+     ],
+     [
+      "10/16",
+      160.0,
+      167.5,
+      160.0,
+      161.5,
+      14813
+     ],
+     [
+      "10/19",
+      160.0,
+      160.5,
+      157.0,
+      159.5,
+      5465
+     ],
+     [
+      "10/20",
+      159.0,
+      166.5,
+      158.5,
+      164.5,
+      12437
+     ],
+     [
+      "10/21",
+      167.0,
+      168.0,
+      162.0,
+      165.0,
+      8215
+     ],
+     [
+      "10/22",
+      166.5,
+      166.5,
+      162.0,
+      163.0,
+      5053
+     ]
+    ]
+   },
+   {
+    "code": "2027",
+    "name": "大成鋼",
+    "market": "上市",
+    "sector": "鋼鐵",
+    "rank": 6,
+    "score": 84,
+    "close": 50.6,
+    "chg": 1.4,
+    "inst": 6275,
+    "inst5d": 22663,
+    "bigChg": 0.48,
+    "marginChg": -231,
+    "vol": 12714,
+    "tag": "昨日未上榜 → 今日空降 上市 #6",
+    "buyZone": "49.85 ～ 50.9",
+    "sellTarget1": 53.1,
+    "stopLoss": 48.6,
+    "ohlc": [
+     [
+      "10/15",
+      49.85,
+      50.4,
+      49.3,
+      49.3,
+      9804
+     ],
+     [
+      "10/16",
+      50.0,
+      51.2,
+      49.8,
+      50.9,
+      17131
+     ],
+     [
+      "10/19",
+      50.7,
+      51.1,
+      50.1,
+      51.0,
+      10043
+     ],
+     [
+      "10/20",
+      50.6,
+      50.8,
+      49.9,
+      49.95,
+      7569
+     ],
+     [
+      "10/21",
+      50.4,
+      50.4,
+      49.6,
+      49.9,
+      7963
+     ],
+     [
+      "10/22",
+      49.85,
+      51.0,
+      49.55,
+      50.6,
+      12714
+     ]
+    ]
+   },
+   {
+    "code": "8422",
+    "name": "可寧衛*",
+    "market": "上市",
+    "sector": "綠能環保",
+    "rank": 9,
+    "score": 83,
+    "close": 26.05,
+    "chg": -0.19,
+    "inst": 1975,
+    "inst5d": 7716,
+    "bigChg": 0.76,
+    "marginChg": -177,
+    "vol": 5496,
+    "tag": "排名急竄 ↑9 名 (#18 → #9)",
+    "buyZone": "25.55 ～ 26.05",
+    "sellTarget1": 27.35,
+    "stopLoss": 25.0,
+    "ohlc": [
+     [
+      "10/15",
+      25.3,
+      25.3,
+      25.0,
+      25.1,
+      4871
+     ],
+     [
+      "10/16",
+      25.3,
+      25.85,
+      25.3,
+      25.7,
+      4572
+     ],
+     [
+      "10/19",
+      25.8,
+      26.4,
+      25.8,
+      26.0,
+      10703
+     ],
+     [
+      "10/20",
+      26.0,
+      26.35,
+      25.7,
+      25.75,
+      5386
+     ],
+     [
+      "10/21",
+      25.75,
+      26.4,
+      25.75,
+      26.1,
+      5238
+     ],
+     [
+      "10/22",
+      26.2,
+      26.4,
+      25.9,
+      26.05,
+      5496
+     ]
+    ]
+   },
+   {
+    "code": "3293",
+    "name": "鈊象",
+    "market": "上櫃",
+    "sector": "文化創意",
+    "rank": 1,
+    "score": 92,
+    "close": 787.0,
+    "chg": 0.64,
+    "inst": 651,
+    "inst5d": 1664,
+    "bigChg": 0.61,
+    "marginChg": -143,
+    "vol": 1208,
+    "tag": "排名急竄 ↑7 名 (#8 → #1)",
+    "buyZone": "775.0 ～ 791.0",
+    "sellTarget1": 826.0,
+    "stopLoss": 756.0,
+    "ohlc": [
+     [
+      "10/15",
+      808.0,
+      817.0,
+      800.0,
+      811.0,
+      2689
+     ],
+     [
+      "10/16",
+      789.0,
+      808.0,
+      775.0,
+      795.0,
+      3404
+     ],
+     [
+      "10/19",
+      795.0,
+      800.0,
+      766.0,
+      774.0,
+      1703
+     ],
+     [
+      "10/20",
+      770.0,
+      786.0,
+      767.0,
+      783.0,
+      1561
+     ],
+     [
+      "10/21",
+      790.0,
+      790.0,
+      774.0,
+      782.0,
+      1117
+     ],
+     [
+      "10/22",
+      781.0,
+      793.0,
+      777.0,
+      787.0,
+      1208
      ]
     ]
    }
   ],
   "instReversalPicks": [
    {
-    "code": "2034",
-    "name": "允強",
-    "market": "上市",
-    "sector": "鋼鐵",
-    "rank": 3,
-    "score": 85,
-    "close": 24.35,
-    "chg": 1.46,
-    "prevInst": -83,
-    "todayInst": 2448,
-    "inst5d": 4950,
-    "bigChg": 0.59,
-    "marginChg": -45,
-    "vol": 6070,
-    "note": "前日法人賣超 -83 張 → 今日突然反手狂買 +2,448 張",
-    "buyZone": "23.9 ～ 24.45",
-    "sellTarget1": 25.55,
-    "stopLoss": 23.15,
-    "ohlc": [
-     [
-      "10/14",
-      23.95,
-      23.95,
-      23.65,
-      23.7,
-      1595
-     ],
-     [
-      "10/15",
-      23.7,
-      23.8,
-      23.05,
-      23.2,
-      1835
-     ],
-     [
-      "10/16",
-      23.15,
-      23.65,
-      23.15,
-      23.5,
-      1517
-     ],
-     [
-      "10/19",
-      23.1,
-      23.7,
-      23.1,
-      23.7,
-      1735
-     ],
-     [
-      "10/20",
-      23.65,
-      24.0,
-      23.3,
-      23.85,
-      2631
-     ],
-     [
-      "10/21",
-      24.15,
-      24.2,
-      23.6,
-      24.0,
-      2145
-     ],
-     [
-      "10/22",
-      24.2,
-      24.9,
-      24.1,
-      24.35,
-      6070
-     ]
-    ]
-   },
-   {
     "code": "9945",
     "name": "潤泰新",
     "market": "上市",
     "sector": "其他",
-    "rank": 4,
+    "rank": 7,
     "score": 84,
     "close": 29.6,
     "chg": 1.02,
     "prevInst": -584,
     "todayInst": 2858,
     "inst5d": 7078,
-    "bigChg": 0.05,
+    "bigChg": 0.06,
     "marginChg": -636,
     "vol": 4421,
     "note": "前日法人賣超 -584 張 → 今日突然反手狂買 +2,858 張",
@@ -6726,14 +6801,6 @@
     "sellTarget1": 31.1,
     "stopLoss": 28.4,
     "ohlc": [
-     [
-      "10/14",
-      29.3,
-      29.6,
-      29.25,
-      29.35,
-      3301
-     ],
      [
       "10/15",
       29.35,
@@ -6785,18 +6852,228 @@
     ]
    },
    {
+    "code": "2010",
+    "name": "春源",
+    "market": "上市",
+    "sector": "鋼鐵",
+    "rank": 16,
+    "score": 78,
+    "close": 23.1,
+    "chg": 0.0,
+    "prevInst": -156,
+    "todayInst": 399,
+    "inst5d": 1873,
+    "bigChg": 0.28,
+    "marginChg": -347,
+    "vol": 928,
+    "note": "前日法人賣超 -156 張 → 今日突然反手狂買 +399 張",
+    "buyZone": "22.75 ～ 23.2",
+    "sellTarget1": 24.25,
+    "stopLoss": 22.2,
+    "ohlc": [
+     [
+      "10/15",
+      22.8,
+      22.85,
+      22.65,
+      22.85,
+      1135
+     ],
+     [
+      "10/16",
+      22.95,
+      23.55,
+      22.95,
+      23.45,
+      3497
+     ],
+     [
+      "10/19",
+      23.4,
+      23.4,
+      23.15,
+      23.25,
+      916
+     ],
+     [
+      "10/20",
+      23.15,
+      23.3,
+      23.0,
+      23.1,
+      865
+     ],
+     [
+      "10/21",
+      23.15,
+      23.25,
+      22.95,
+      23.1,
+      709
+     ],
+     [
+      "10/22",
+      23.15,
+      23.3,
+      23.0,
+      23.1,
+      928
+     ]
+    ]
+   },
+   {
+    "code": "2034",
+    "name": "允強",
+    "market": "上市",
+    "sector": "鋼鐵",
+    "rank": 17,
+    "score": 78,
+    "close": 24.35,
+    "chg": 1.46,
+    "prevInst": -83,
+    "todayInst": 2448,
+    "inst5d": 4950,
+    "bigChg": -0.02,
+    "marginChg": -45,
+    "vol": 6070,
+    "note": "前日法人賣超 -83 張 → 今日突然反手狂買 +2,448 張",
+    "buyZone": "23.9 ～ 24.45",
+    "sellTarget1": 25.55,
+    "stopLoss": 23.15,
+    "ohlc": [
+     [
+      "10/15",
+      23.7,
+      23.8,
+      23.05,
+      23.2,
+      1835
+     ],
+     [
+      "10/16",
+      23.15,
+      23.65,
+      23.15,
+      23.5,
+      1517
+     ],
+     [
+      "10/19",
+      23.1,
+      23.7,
+      23.1,
+      23.7,
+      1735
+     ],
+     [
+      "10/20",
+      23.65,
+      24.0,
+      23.3,
+      23.85,
+      2631
+     ],
+     [
+      "10/21",
+      24.15,
+      24.2,
+      23.6,
+      24.0,
+      2145
+     ],
+     [
+      "10/22",
+      24.2,
+      24.9,
+      24.1,
+      24.35,
+      6070
+     ]
+    ]
+   },
+   {
+    "code": "1319",
+    "name": "東陽",
+    "market": "上市",
+    "sector": "汽車",
+    "rank": 20,
+    "score": 77,
+    "close": 81.6,
+    "chg": 0.62,
+    "prevInst": -243,
+    "todayInst": 485,
+    "inst5d": 624,
+    "bigChg": 0.41,
+    "marginChg": -84,
+    "vol": 887,
+    "note": "前日法人賣超 -243 張 → 今日突然反手狂買 +485 張",
+    "buyZone": "80.4 ～ 82.0",
+    "sellTarget1": 85.7,
+    "stopLoss": 78.3,
+    "ohlc": [
+     [
+      "10/15",
+      83.0,
+      84.0,
+      82.4,
+      83.3,
+      2997
+     ],
+     [
+      "10/16",
+      83.4,
+      84.5,
+      83.0,
+      83.5,
+      1214
+     ],
+     [
+      "10/19",
+      83.5,
+      83.5,
+      81.1,
+      81.5,
+      1326
+     ],
+     [
+      "10/20",
+      80.7,
+      81.7,
+      80.7,
+      81.5,
+      667
+     ],
+     [
+      "10/21",
+      81.5,
+      81.9,
+      80.9,
+      81.1,
+      1048
+     ],
+     [
+      "10/22",
+      81.5,
+      82.0,
+      81.2,
+      81.6,
+      887
+     ]
+    ]
+   },
+   {
     "code": "5009",
     "name": "榮剛",
     "market": "上櫃",
     "sector": "鋼鐵",
-    "rank": 3,
-    "score": 82,
+    "rank": 4,
+    "score": 85,
     "close": 33.95,
     "chg": 0.89,
     "prevInst": -274,
     "todayInst": 1205,
     "inst5d": 2570,
-    "bigChg": -0.01,
+    "bigChg": 0.29,
     "marginChg": -140,
     "vol": 2829,
     "note": "前日法人賣超 -274 張 → 今日突然反手狂買 +1,205 張",
@@ -6804,14 +7081,6 @@
     "sellTarget1": 35.65,
     "stopLoss": 32.6,
     "ohlc": [
-     [
-      "10/14",
-      33.95,
-      34.2,
-      33.65,
-      34.2,
-      1725
-     ],
      [
       "10/15",
       33.95,
@@ -6866,15 +7135,15 @@
     "code": "3324",
     "name": "雙鴻",
     "market": "上櫃",
-    "sector": "其他",
-    "rank": 16,
-    "score": 70,
+    "sector": "其他電子",
+    "rank": 6,
+    "score": 85,
     "close": 1360.0,
     "chg": -1.09,
     "prevInst": -749,
     "todayInst": 783,
     "inst5d": 553,
-    "bigChg": -0.18,
+    "bigChg": 3.88,
     "marginChg": -101,
     "vol": 4785,
     "note": "前日法人賣超 -749 張 → 今日突然反手狂買 +783 張",
@@ -6882,14 +7151,6 @@
     "sellTarget1": 1455.0,
     "stopLoss": 1305.0,
     "ohlc": [
-     [
-      "10/14",
-      1485.0,
-      1510.0,
-      1460.0,
-      1490.0,
-      2298
-     ],
      [
       "10/15",
       1425.0,
@@ -6943,479 +7204,17 @@
   ],
   "divergenceBuyPicks": [
    {
-    "code": "3010",
-    "name": "華立",
-    "market": "上市",
-    "sector": "電子通路",
-    "rank": 2,
-    "score": 86,
-    "close": 135.5,
-    "chg": -2.52,
-    "inst": 849,
-    "inst5d": 1623,
-    "bigChg": 1.01,
-    "marginChg": -20,
-    "vol": 1563,
-    "note": "股價逆勢跌 -2.52%，但法人買超 +849 張、融資 -20 張（壓低洗盤吃貨）",
-    "buyZone": "133.0 ～ 135.5",
-    "sellTarget1": 143.0,
-    "stopLoss": 130.0,
-    "ohlc": [
-     [
-      "10/14",
-      134.5,
-      139.5,
-      134.5,
-      139.0,
-      1893
-     ],
-     [
-      "10/15",
-      136.0,
-      140.0,
-      136.0,
-      138.0,
-      1400
-     ],
-     [
-      "10/16",
-      140.0,
-      143.0,
-      139.0,
-      140.0,
-      1237
-     ],
-     [
-      "10/19",
-      138.0,
-      138.0,
-      134.0,
-      137.0,
-      1240
-     ],
-     [
-      "10/20",
-      134.5,
-      138.0,
-      134.5,
-      135.5,
-      826
-     ],
-     [
-      "10/21",
-      138.0,
-      139.0,
-      135.5,
-      139.0,
-      1117
-     ],
-     [
-      "10/22",
-      139.5,
-      140.5,
-      135.0,
-      135.5,
-      1563
-     ]
-    ]
-   },
-   {
-    "code": "1808",
-    "name": "潤隆",
-    "market": "上市",
-    "sector": "建材營造",
-    "rank": 6,
-    "score": 84,
-    "close": 33.9,
-    "chg": -1.31,
-    "inst": 451,
-    "inst5d": 2109,
-    "bigChg": 0.16,
-    "marginChg": -126,
-    "vol": 883,
-    "note": "股價逆勢跌 -1.31%，但法人買超 +451 張、融資 -126 張（壓低洗盤吃貨）",
-    "buyZone": "33.2 ～ 33.9",
-    "sellTarget1": 35.6,
-    "stopLoss": 32.55,
-    "ohlc": [
-     [
-      "10/14",
-      35.5,
-      35.55,
-      34.8,
-      34.95,
-      1606
-     ],
-     [
-      "10/15",
-      35.0,
-      35.15,
-      34.55,
-      34.6,
-      1288
-     ],
-     [
-      "10/16",
-      34.8,
-      34.9,
-      34.5,
-      34.55,
-      510
-     ],
-     [
-      "10/19",
-      34.7,
-      35.0,
-      34.4,
-      34.8,
-      1850
-     ],
-     [
-      "10/20",
-      34.35,
-      34.7,
-      34.3,
-      34.5,
-      735
-     ],
-     [
-      "10/21",
-      34.5,
-      34.6,
-      34.1,
-      34.35,
-      1209
-     ],
-     [
-      "10/22",
-      34.5,
-      34.5,
-      33.85,
-      33.9,
-      883
-     ]
-    ]
-   },
-   {
-    "code": "2377",
-    "name": "微星",
-    "market": "上市",
-    "sector": "電腦週邊",
-    "rank": 7,
-    "score": 82,
-    "close": 163.0,
-    "chg": -1.21,
-    "inst": 1537,
-    "inst5d": 13338,
-    "bigChg": 0.72,
-    "marginChg": -388,
-    "vol": 5053,
-    "note": "股價逆勢跌 -1.21%，但法人買超 +1,537 張、融資 -388 張（壓低洗盤吃貨）",
-    "buyZone": "159.5 ～ 163.0",
-    "sellTarget1": 171.0,
-    "stopLoss": 156.5,
-    "ohlc": [
-     [
-      "10/14",
-      159.0,
-      159.5,
-      156.0,
-      159.0,
-      5933
-     ],
-     [
-      "10/15",
-      156.0,
-      161.0,
-      156.0,
-      158.0,
-      9600
-     ],
-     [
-      "10/16",
-      160.0,
-      167.5,
-      160.0,
-      161.5,
-      14813
-     ],
-     [
-      "10/19",
-      160.0,
-      160.5,
-      157.0,
-      159.5,
-      5465
-     ],
-     [
-      "10/20",
-      159.0,
-      166.5,
-      158.5,
-      164.5,
-      12437
-     ],
-     [
-      "10/21",
-      167.0,
-      168.0,
-      162.0,
-      165.0,
-      8215
-     ],
-     [
-      "10/22",
-      166.5,
-      166.5,
-      162.0,
-      163.0,
-      5053
-     ]
-    ]
-   },
-   {
-    "code": "2542",
-    "name": "興富發",
-    "market": "上市",
-    "sector": "建材營造",
-    "rank": 8,
-    "score": 80,
-    "close": 40.0,
-    "chg": -0.25,
-    "inst": 5679,
-    "inst5d": 19570,
-    "bigChg": -0.01,
-    "marginChg": -324,
-    "vol": 8946,
-    "note": "股價逆勢跌 -0.25%，但法人買超 +5,679 張、融資 -324 張（壓低洗盤吃貨）",
-    "buyZone": "39.2 ～ 40.0",
-    "sellTarget1": 42.0,
-    "stopLoss": 38.4,
-    "ohlc": [
-     [
-      "10/14",
-      39.8,
-      39.85,
-      39.45,
-      39.7,
-      5237
-     ],
-     [
-      "10/15",
-      39.7,
-      39.85,
-      39.3,
-      39.35,
-      10375
-     ],
-     [
-      "10/16",
-      39.5,
-      40.0,
-      39.35,
-      39.65,
-      6277
-     ],
-     [
-      "10/19",
-      39.65,
-      40.4,
-      39.45,
-      39.95,
-      10321
-     ],
-     [
-      "10/20",
-      39.6,
-      40.45,
-      39.6,
-      40.15,
-      7759
-     ],
-     [
-      "10/21",
-      40.2,
-      40.5,
-      39.85,
-      40.1,
-      7492
-     ],
-     [
-      "10/22",
-      40.05,
-      40.6,
-      40.0,
-      40.0,
-      8946
-     ]
-    ]
-   },
-   {
-    "code": "2393",
-    "name": "億光",
-    "market": "上市",
-    "sector": "光電",
-    "rank": 9,
-    "score": 80,
-    "close": 67.8,
-    "chg": -0.15,
-    "inst": 662,
-    "inst5d": 2017,
-    "bigChg": 0.44,
-    "marginChg": -2,
-    "vol": 1222,
-    "note": "股價逆勢跌 -0.15%，但法人買超 +662 張、融資 -2 張（壓低洗盤吃貨）",
-    "buyZone": "66.4 ～ 67.8",
-    "sellTarget1": 71.2,
-    "stopLoss": 65.1,
-    "ohlc": [
-     [
-      "10/14",
-      68.4,
-      68.7,
-      67.9,
-      68.3,
-      1215
-     ],
-     [
-      "10/15",
-      66.8,
-      68.6,
-      66.6,
-      68.4,
-      1730
-     ],
-     [
-      "10/16",
-      68.7,
-      70.4,
-      68.7,
-      68.9,
-      2218
-     ],
-     [
-      "10/19",
-      68.4,
-      68.4,
-      67.3,
-      67.9,
-      997
-     ],
-     [
-      "10/20",
-      67.3,
-      68.5,
-      67.1,
-      67.4,
-      790
-     ],
-     [
-      "10/21",
-      67.8,
-      68.3,
-      67.4,
-      67.9,
-      1198
-     ],
-     [
-      "10/22",
-      67.9,
-      68.3,
-      67.5,
-      67.8,
-      1222
-     ]
-    ]
-   },
-   {
-    "code": "2006",
-    "name": "東和鋼鐵",
-    "market": "上市",
-    "sector": "其他",
-    "rank": 10,
-    "score": 79,
-    "close": 93.2,
-    "chg": -0.11,
-    "inst": 490,
-    "inst5d": 1899,
-    "bigChg": 0.31,
-    "marginChg": -103,
-    "vol": 2302,
-    "note": "股價逆勢跌 -0.11%，但法人買超 +490 張、融資 -103 張（壓低洗盤吃貨）",
-    "buyZone": "90.7 ～ 93.2",
-    "sellTarget1": 97.9,
-    "stopLoss": 89.3,
-    "ohlc": [
-     [
-      "10/14",
-      88.8,
-      91.5,
-      88.2,
-      89.5,
-      3375
-     ],
-     [
-      "10/15",
-      90.5,
-      91.5,
-      89.7,
-      90.1,
-      2383
-     ],
-     [
-      "10/16",
-      91.3,
-      92.2,
-      90.4,
-      92.1,
-      1750
-     ],
-     [
-      "10/19",
-      91.8,
-      92.9,
-      91.2,
-      92.2,
-      1595
-     ],
-     [
-      "10/20",
-      90.6,
-      91.2,
-      89.3,
-      90.7,
-      1769
-     ],
-     [
-      "10/21",
-      90.4,
-      94.0,
-      90.1,
-      93.3,
-      2518
-     ],
-     [
-      "10/22",
-      93.8,
-      94.7,
-      92.8,
-      93.2,
-      2302
-     ]
-    ]
-   },
-   {
     "code": "3014",
     "name": "聯陽",
     "market": "上市",
-    "sector": "其他",
-    "rank": 12,
-    "score": 78,
+    "sector": "半導體",
+    "rank": 2,
+    "score": 88,
     "close": 141.0,
     "chg": -1.4,
     "inst": 181,
     "inst5d": 1400,
-    "bigChg": 0.24,
+    "bigChg": 1.17,
     "marginChg": -93,
     "vol": 772,
     "note": "股價逆勢跌 -1.40%，但法人買超 +181 張、融資 -93 張（壓低洗盤吃貨）",
@@ -7423,14 +7222,6 @@
     "sellTarget1": 151.0,
     "stopLoss": 135.5,
     "ohlc": [
-     [
-      "10/14",
-      147.5,
-      147.5,
-      145.0,
-      146.0,
-      1640
-     ],
      [
       "10/15",
       143.5,
@@ -7482,79 +7273,485 @@
     ]
    },
    {
-    "code": "3714",
-    "name": "富采",
+    "code": "2542",
+    "name": "興富發",
     "market": "上市",
-    "sector": "其他",
-    "rank": 15,
-    "score": 78,
-    "close": 61.7,
-    "chg": -1.44,
-    "inst": 1384,
-    "inst5d": 3211,
-    "bigChg": 0.16,
-    "marginChg": -478,
-    "vol": 5551,
-    "note": "股價逆勢跌 -1.44%，但法人買超 +1,384 張、融資 -478 張（壓低洗盤吃貨）",
-    "buyZone": "60.5 ～ 61.7",
-    "sellTarget1": 64.8,
-    "stopLoss": 59.2,
+    "sector": "建材營造",
+    "rank": 3,
+    "score": 87,
+    "close": 40.0,
+    "chg": -0.25,
+    "inst": 5679,
+    "inst5d": 19570,
+    "bigChg": 0.5,
+    "marginChg": -324,
+    "vol": 8946,
+    "note": "股價逆勢跌 -0.25%，但法人買超 +5,679 張、融資 -324 張（壓低洗盤吃貨）",
+    "buyZone": "39.2 ～ 40.0",
+    "sellTarget1": 42.0,
+    "stopLoss": 38.4,
     "ohlc": [
      [
-      "10/14",
-      61.4,
-      64.9,
-      60.7,
-      64.2,
-      7508
-     ],
-     [
       "10/15",
-      62.0,
-      62.9,
-      61.0,
-      61.5,
-      6349
+      39.7,
+      39.85,
+      39.3,
+      39.35,
+      10375
      ],
      [
       "10/16",
-      62.0,
-      64.2,
-      62.0,
-      63.4,
-      4934
+      39.5,
+      40.0,
+      39.35,
+      39.65,
+      6277
      ],
      [
       "10/19",
-      61.5,
-      63.3,
-      60.9,
-      62.9,
-      4165
+      39.65,
+      40.4,
+      39.45,
+      39.95,
+      10321
      ],
      [
       "10/20",
-      62.4,
-      64.3,
-      61.6,
-      61.7,
-      4031
+      39.6,
+      40.45,
+      39.6,
+      40.15,
+      7759
      ],
      [
       "10/21",
-      63.0,
-      63.2,
-      62.1,
-      62.6,
-      2813
+      40.2,
+      40.5,
+      39.85,
+      40.1,
+      7492
      ],
      [
       "10/22",
-      63.5,
-      64.5,
-      61.7,
-      61.7,
-      5551
+      40.05,
+      40.6,
+      40.0,
+      40.0,
+      8946
+     ]
+    ]
+   },
+   {
+    "code": "2354",
+    "name": "鴻準",
+    "market": "上市",
+    "sector": "其他電子",
+    "rank": 4,
+    "score": 85,
+    "close": 62.0,
+    "chg": -2.21,
+    "inst": 798,
+    "inst5d": 4573,
+    "bigChg": 0.58,
+    "marginChg": -214,
+    "vol": 2785,
+    "note": "股價逆勢跌 -2.21%，但法人買超 +798 張、融資 -214 張（壓低洗盤吃貨）",
+    "buyZone": "60.8 ～ 62.0",
+    "sellTarget1": 65.1,
+    "stopLoss": 59.5,
+    "ohlc": [
+     [
+      "10/15",
+      62.6,
+      62.9,
+      61.9,
+      62.1,
+      4783
+     ],
+     [
+      "10/16",
+      62.3,
+      63.3,
+      62.3,
+      62.8,
+      2768
+     ],
+     [
+      "10/19",
+      62.5,
+      62.5,
+      60.9,
+      61.5,
+      3725
+     ],
+     [
+      "10/20",
+      61.0,
+      62.6,
+      61.0,
+      62.0,
+      3604
+     ],
+     [
+      "10/21",
+      62.5,
+      63.6,
+      62.5,
+      63.4,
+      3804
+     ],
+     [
+      "10/22",
+      63.6,
+      63.8,
+      61.9,
+      62.0,
+      2785
+     ]
+    ]
+   },
+   {
+    "code": "2377",
+    "name": "微星",
+    "market": "上市",
+    "sector": "電腦週邊",
+    "rank": 5,
+    "score": 85,
+    "close": 163.0,
+    "chg": -1.21,
+    "inst": 1537,
+    "inst5d": 13338,
+    "bigChg": 1.08,
+    "marginChg": -388,
+    "vol": 5053,
+    "note": "股價逆勢跌 -1.21%，但法人買超 +1,537 張、融資 -388 張（壓低洗盤吃貨）",
+    "buyZone": "159.5 ～ 163.0",
+    "sellTarget1": 171.0,
+    "stopLoss": 156.5,
+    "ohlc": [
+     [
+      "10/15",
+      156.0,
+      161.0,
+      156.0,
+      158.0,
+      9600
+     ],
+     [
+      "10/16",
+      160.0,
+      167.5,
+      160.0,
+      161.5,
+      14813
+     ],
+     [
+      "10/19",
+      160.0,
+      160.5,
+      157.0,
+      159.5,
+      5465
+     ],
+     [
+      "10/20",
+      159.0,
+      166.5,
+      158.5,
+      164.5,
+      12437
+     ],
+     [
+      "10/21",
+      167.0,
+      168.0,
+      162.0,
+      165.0,
+      8215
+     ],
+     [
+      "10/22",
+      166.5,
+      166.5,
+      162.0,
+      163.0,
+      5053
+     ]
+    ]
+   },
+   {
+    "code": "2002",
+    "name": "中鋼",
+    "market": "上市",
+    "sector": "鋼鐵",
+    "rank": 8,
+    "score": 83,
+    "close": 19.55,
+    "chg": -0.26,
+    "inst": 24928,
+    "inst5d": 111172,
+    "bigChg": 0.43,
+    "marginChg": -539,
+    "vol": 48253,
+    "note": "股價逆勢跌 -0.26%，但法人買超 +24,928 張、融資 -539 張（壓低洗盤吃貨）",
+    "buyZone": "19.15 ～ 19.55",
+    "sellTarget1": 20.55,
+    "stopLoss": 18.75,
+    "ohlc": [
+     [
+      "10/15",
+      19.5,
+      19.5,
+      19.2,
+      19.25,
+      46591
+     ],
+     [
+      "10/16",
+      19.3,
+      19.55,
+      19.3,
+      19.55,
+      65940
+     ],
+     [
+      "10/19",
+      19.45,
+      19.5,
+      19.25,
+      19.5,
+      41614
+     ],
+     [
+      "10/20",
+      19.4,
+      19.6,
+      19.35,
+      19.6,
+      44871
+     ],
+     [
+      "10/21",
+      19.65,
+      19.75,
+      19.5,
+      19.6,
+      40274
+     ],
+     [
+      "10/22",
+      19.65,
+      19.7,
+      19.5,
+      19.55,
+      48253
+     ]
+    ]
+   },
+   {
+    "code": "8422",
+    "name": "可寧衛*",
+    "market": "上市",
+    "sector": "綠能環保",
+    "rank": 9,
+    "score": 83,
+    "close": 26.05,
+    "chg": -0.19,
+    "inst": 1975,
+    "inst5d": 7716,
+    "bigChg": 0.76,
+    "marginChg": -177,
+    "vol": 5496,
+    "note": "股價逆勢跌 -0.19%，但法人買超 +1,975 張、融資 -177 張（壓低洗盤吃貨）",
+    "buyZone": "25.55 ～ 26.05",
+    "sellTarget1": 27.35,
+    "stopLoss": 25.0,
+    "ohlc": [
+     [
+      "10/15",
+      25.3,
+      25.3,
+      25.0,
+      25.1,
+      4871
+     ],
+     [
+      "10/16",
+      25.3,
+      25.85,
+      25.3,
+      25.7,
+      4572
+     ],
+     [
+      "10/19",
+      25.8,
+      26.4,
+      25.8,
+      26.0,
+      10703
+     ],
+     [
+      "10/20",
+      26.0,
+      26.35,
+      25.7,
+      25.75,
+      5386
+     ],
+     [
+      "10/21",
+      25.75,
+      26.4,
+      25.75,
+      26.1,
+      5238
+     ],
+     [
+      "10/22",
+      26.2,
+      26.4,
+      25.9,
+      26.05,
+      5496
+     ]
+    ]
+   },
+   {
+    "code": "9904",
+    "name": "寶成",
+    "market": "上市",
+    "sector": "運動休閒",
+    "rank": 11,
+    "score": 82,
+    "close": 26.35,
+    "chg": -0.19,
+    "inst": 4024,
+    "inst5d": 25673,
+    "bigChg": 0.47,
+    "marginChg": -1040,
+    "vol": 11370,
+    "note": "股價逆勢跌 -0.19%，但法人買超 +4,024 張、融資 -1,040 張（壓低洗盤吃貨）",
+    "buyZone": "25.8 ～ 26.35",
+    "sellTarget1": 27.65,
+    "stopLoss": 25.3,
+    "ohlc": [
+     [
+      "10/15",
+      26.05,
+      26.25,
+      26.0,
+      26.25,
+      21446
+     ],
+     [
+      "10/16",
+      26.4,
+      26.8,
+      26.4,
+      26.5,
+      20608
+     ],
+     [
+      "10/19",
+      26.6,
+      26.6,
+      26.15,
+      26.4,
+      17506
+     ],
+     [
+      "10/20",
+      26.2,
+      26.8,
+      26.2,
+      26.55,
+      16705
+     ],
+     [
+      "10/21",
+      26.7,
+      26.7,
+      26.25,
+      26.4,
+      15045
+     ],
+     [
+      "10/22",
+      26.3,
+      26.45,
+      26.2,
+      26.35,
+      11370
+     ]
+    ]
+   },
+   {
+    "code": "1808",
+    "name": "潤隆",
+    "market": "上市",
+    "sector": "建材營造",
+    "rank": 12,
+    "score": 81,
+    "close": 33.9,
+    "chg": -1.31,
+    "inst": 451,
+    "inst5d": 2109,
+    "bigChg": -0.02,
+    "marginChg": -126,
+    "vol": 883,
+    "note": "股價逆勢跌 -1.31%，但法人買超 +451 張、融資 -126 張（壓低洗盤吃貨）",
+    "buyZone": "33.2 ～ 33.9",
+    "sellTarget1": 35.6,
+    "stopLoss": 32.55,
+    "ohlc": [
+     [
+      "10/15",
+      35.0,
+      35.15,
+      34.55,
+      34.6,
+      1288
+     ],
+     [
+      "10/16",
+      34.8,
+      34.9,
+      34.5,
+      34.55,
+      510
+     ],
+     [
+      "10/19",
+      34.7,
+      35.0,
+      34.4,
+      34.8,
+      1850
+     ],
+     [
+      "10/20",
+      34.35,
+      34.7,
+      34.3,
+      34.5,
+      735
+     ],
+     [
+      "10/21",
+      34.5,
+      34.6,
+      34.1,
+      34.35,
+      1209
+     ],
+     [
+      "10/22",
+      34.5,
+      34.5,
+      33.85,
+      33.9,
+      883
      ]
     ]
    }
@@ -7570,14 +7767,6 @@
     "prevClose": 92.0,
     "note": "前日(10-21)位居 上櫃 #1(91.8分)，今日跌出推薦榜（法人買盤降溫或轉賣，宜留意 5MA 停利防守）",
     "ohlc": [
-     [
-      "10/14",
-      95.0,
-      96.1,
-      93.5,
-      94.5,
-      1073
-     ],
      [
       "10/15",
       93.4,
@@ -7639,14 +7828,6 @@
     "note": "前日(10-21)位居 上市 #2(91.0分)，今日跌出推薦榜（法人買盤降溫或轉賣，宜留意 5MA 停利防守）",
     "ohlc": [
      [
-      "10/14",
-      13.05,
-      13.05,
-      12.75,
-      13.05,
-      1355
-     ],
-     [
       "10/15",
       13.05,
       13.25,
@@ -7706,14 +7887,6 @@
     "prevClose": 37.65,
     "note": "前日(10-21)位居 上櫃 #2(86.3分)，今日跌出推薦榜（法人買盤降溫或轉賣，宜留意 5MA 停利防守）",
     "ohlc": [
-     [
-      "10/14",
-      37.6,
-      37.95,
-      37.2,
-      37.4,
-      4147
-     ],
      [
       "10/15",
       37.0,
@@ -7775,14 +7948,6 @@
     "note": "前日(10-21)位居 上市 #3(87.3分)，今日跌出推薦榜（法人買盤降溫或轉賣，宜留意 5MA 停利防守）",
     "ohlc": [
      [
-      "10/14",
-      172.0,
-      185.0,
-      172.0,
-      179.0,
-      4314
-     ],
-     [
       "10/15",
       176.0,
       179.5,
@@ -7833,138 +7998,62 @@
     ]
    },
    {
-    "code": "3029",
-    "name": "零壹",
+    "code": "3010",
+    "name": "華立",
     "market": "上市",
-    "sector": "資訊服務",
-    "prevRank": 4,
-    "prevScore": 86.6,
-    "prevClose": 119.0,
-    "note": "前日(10-21)位居 上市 #4(86.6分)，今日跌出推薦榜（法人買盤降溫或轉賣，宜留意 5MA 停利防守）",
-    "ohlc": [
-     [
-      "10/14",
-      121.5,
-      123.0,
-      119.5,
-      121.5,
-      1252
-     ],
-     [
-      "10/15",
-      119.5,
-      122.0,
-      119.0,
-      119.5,
-      1741
-     ],
-     [
-      "10/16",
-      120.0,
-      123.5,
-      119.5,
-      120.5,
-      1659
-     ],
-     [
-      "10/19",
-      120.5,
-      120.5,
-      116.0,
-      117.5,
-      1398
-     ],
-     [
-      "10/20",
-      117.0,
-      119.0,
-      117.0,
-      118.5,
-      598
-     ],
-     [
-      "10/21",
-      120.0,
-      120.5,
-      117.5,
-      119.0,
-      738
-     ],
-     [
-      "10/22",
-      121.0,
-      123.5,
-      120.0,
-      122.5,
-      2306
-     ]
-    ]
-   },
-   {
-    "code": "6538",
-    "name": "倉和",
-    "market": "上櫃",
-    "sector": "電子零組件",
+    "sector": "電子通路",
     "prevRank": 5,
-    "prevScore": 85.2,
-    "prevClose": 300.5,
-    "note": "前日(10-21)位居 上櫃 #5(85.2分)，今日跌出推薦榜（法人買盤降溫或轉賣，宜留意 5MA 停利防守）",
+    "prevScore": 85.9,
+    "prevClose": 139.0,
+    "note": "前日(10-21)位居 上市 #5(85.9分)，今日跌出推薦榜（法人買盤降溫或轉賣，宜留意 5MA 停利防守）",
     "ohlc": [
      [
-      "10/14",
-      300.5,
-      327.0,
-      300.5,
-      325.0,
-      2530
-     ],
-     [
       "10/15",
-      313.5,
-      334.5,
-      302.0,
-      302.0,
-      2245
+      136.0,
+      140.0,
+      136.0,
+      138.0,
+      1400
      ],
      [
       "10/16",
-      296.5,
-      299.0,
-      274.0,
-      285.0,
-      3623
+      140.0,
+      143.0,
+      139.0,
+      140.0,
+      1237
      ],
      [
       "10/19",
-      264.5,
-      303.5,
-      264.5,
-      297.0,
-      2935
+      138.0,
+      138.0,
+      134.0,
+      137.0,
+      1240
      ],
      [
       "10/20",
-      292.0,
-      310.5,
-      290.0,
-      293.5,
-      1928
+      134.5,
+      138.0,
+      134.5,
+      135.5,
+      826
      ],
      [
       "10/21",
-      302.0,
-      308.0,
-      295.0,
-      300.5,
-      1176
+      138.0,
+      139.0,
+      135.5,
+      139.0,
+      1117
      ],
      [
       "10/22",
-      300.0,
-      308.5,
-      285.0,
-      286.0,
-      1566
+      139.5,
+      140.5,
+      135.0,
+      135.5,
+      1563
      ]
     ]
    },
@@ -7978,14 +8067,6 @@
     "prevClose": 81.6,
     "note": "前日(10-21)位居 上市 #6(85.7分)，今日跌出推薦榜（法人買盤降溫或轉賣，宜留意 5MA 停利防守）",
     "ohlc": [
-     [
-      "10/14",
-      81.6,
-      82.1,
-      81.1,
-      81.7,
-      2473
-     ],
      [
       "10/15",
       81.1,
@@ -8047,14 +8128,6 @@
     "note": "前日(10-21)位居 上市 #7(85.5分)，今日跌出推薦榜（法人買盤降溫或轉賣，宜留意 5MA 停利防守）",
     "ohlc": [
      [
-      "10/14",
-      548.0,
-      562.0,
-      537.0,
-      560.0,
-      5075
-     ],
-     [
       "10/15",
       551.0,
       567.0,
@@ -8103,6 +8176,66 @@
       2487
      ]
     ]
+   },
+   {
+    "code": "3718",
+    "name": "中光電投控",
+    "market": "上櫃",
+    "sector": "光電",
+    "prevRank": 7,
+    "prevScore": 83.9,
+    "prevClose": 59.1,
+    "note": "前日(10-21)位居 上櫃 #7(83.9分)，今日跌出推薦榜（法人買盤降溫或轉賣，宜留意 5MA 停利防守）",
+    "ohlc": [
+     [
+      "10/15",
+      60.9,
+      61.8,
+      60.3,
+      60.3,
+      1917
+     ],
+     [
+      "10/16",
+      60.7,
+      62.9,
+      60.7,
+      61.0,
+      1772
+     ],
+     [
+      "10/19",
+      60.1,
+      60.1,
+      58.6,
+      59.2,
+      2839
+     ],
+     [
+      "10/20",
+      59.4,
+      60.4,
+      58.9,
+      59.1,
+      1317
+     ],
+     [
+      "10/21",
+      59.8,
+      60.1,
+      59.0,
+      59.1,
+      1803
+     ],
+     [
+      "10/22",
+      59.5,
+      59.6,
+      57.5,
+      57.5,
+      2011
+     ]
+    ]
    }
   ],
   "shortTrapAlerts": [
@@ -8110,7 +8243,7 @@
     "code": "2466",
     "name": "冠西電",
     "market": "上市",
-    "sector": "其他",
+    "sector": "光電",
     "close": 261.0,
     "chgPct": 5.03,
     "surge": 5.61,
@@ -8127,14 +8260,6 @@
     },
     "note": "急漲 +5.03% 且爆量 5.6 倍(當沖比 67.2%)，但三大法人賣超 516 張（短線隔日沖主力拉高，明早易有獲利倒貨賣壓）",
     "ohlc": [
-     [
-      "10/14",
-      240.0,
-      245.0,
-      213.5,
-      213.5,
-      1305
-     ],
      [
       "10/15",
       192.5,
@@ -8189,7 +8314,7 @@
     "code": "5426",
     "name": "振發",
     "market": "上櫃",
-    "sector": "其他",
+    "sector": "電腦週邊",
     "close": 30.3,
     "chgPct": 7.26,
     "surge": 14.92,
@@ -8206,14 +8331,6 @@
     },
     "note": "急漲 +7.26% 且爆量 14.9 倍(當沖比 44.2%)，但三大法人賣超 173 張（短線隔日沖主力拉高，明早易有獲利倒貨賣壓）",
     "ohlc": [
-     [
-      "10/14",
-      28.15,
-      29.0,
-      28.15,
-      28.6,
-      501
-     ],
      [
       "10/15",
       27.8,
@@ -8267,52 +8384,52 @@
   ],
   "sectorShift": [
    {
-    "sector": "其他",
-    "today": 12,
-    "prev": 8,
+    "sector": "電腦週邊",
+    "today": 6,
+    "prev": 2,
+    "diff": 4
+   },
+   {
+    "sector": "其他電子",
+    "today": 4,
+    "prev": 0,
     "diff": 4
    },
    {
     "sector": "鋼鐵",
-    "today": 4,
+    "today": 5,
     "prev": 2,
-    "diff": 2
-   },
-   {
-    "sector": "電腦週邊",
-    "today": 3,
-    "prev": 1,
-    "diff": 2
+    "diff": 3
    },
    {
     "sector": "建材營造",
-    "today": 3,
+    "today": 2,
     "prev": 1,
-    "diff": 2
+    "diff": 1
+   },
+   {
+    "sector": "資訊服務",
+    "today": 2,
+    "prev": 1,
+    "diff": 1
+   },
+   {
+    "sector": "電子零組件",
+    "today": 5,
+    "prev": 5,
+    "diff": 0
+   },
+   {
+    "sector": "半導體",
+    "today": 4,
+    "prev": 4,
+    "diff": 0
    },
    {
     "sector": "生技醫療",
     "today": 2,
     "prev": 2,
     "diff": 0
-   },
-   {
-    "sector": "光電",
-    "today": 2,
-    "prev": 2,
-    "diff": 0
-   },
-   {
-    "sector": "半導體",
-    "today": 3,
-    "prev": 4,
-    "diff": -1
-   },
-   {
-    "sector": "電子零組件",
-    "today": 3,
-    "prev": 5,
-    "diff": -2
    }
   ]
  }
