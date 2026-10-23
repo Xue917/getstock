@@ -402,6 +402,15 @@ clean_js = clean_js.replace(
     '<span>5日累計: <b class="${cls(p.inst5d)} font-bold">${chipsLabel(p.inst5d)}</b></span>'
 )
 
+clean_js = clean_js.replace(
+    '$("aiHeadline").textContent = ov.headline || `${day.date} 大數據籌碼與量化決策`;',
+    'if ($("aiHeadline")) $("aiHeadline").textContent = ov.headline || `${day.date} 大數據籌碼與量化決策`;'
+)
+clean_js = clean_js.replace(
+    '$("aiBadges").innerHTML = [',
+    'if ($("aiBadges")) $("aiBadges").innerHTML = ['
+)
+
 # tableRows 精選表格：名次置於第一欄，移除多餘的空白追蹤欄位
 clean_js = clean_js.replace(
     """        <td class="py-2.5 pl-4 pr-1">${starBtn(p.code)}</td>
@@ -427,6 +436,14 @@ clean_js = clean_js.replace(
 clean_js = clean_js.replace(
     '<td class="py-2.5 px-2 text-right num ${cls(p.inst)} font-semibold">${signed(p.inst || 0)}</td>',
     '<td class="py-2.5 px-2 text-right num ${cls(p.inst)} font-bold whitespace-nowrap">${chipsLabel(p.inst)}</td>'
+)
+
+
+new_search_module = '// ===== 搜尋框自動補全與即時建議下拉選單 =====\n  function setupStockSearch(inputEl, suggestEl, clearBtn) {\n    if (!inputEl || !suggestEl) return;\n    function hideSuggest() {\n      suggestEl.classList.add("hidden");\n      suggestEl.classList.remove("show");\n      suggestEl.style.display = "none";\n    }\n    function showSuggest() {\n      suggestEl.classList.remove("hidden");\n      suggestEl.classList.add("show");\n      suggestEl.style.display = "block";\n    }\n    function doSearch(val) {\n      const q = (val || "").trim().toLowerCase();\n      if (!q) {\n        hideSuggest();\n        if (clearBtn) clearBtn.classList.add("hidden");\n        return;\n      }\n      if (clearBtn) clearBtn.classList.remove("hidden");\n      const pool = universeDB.length ? universeDB : ((days[0] && days[0].picks) || []);\n      const matches = pool.filter((x) => `${x.code} ${x.name} ${x.sector}`.toLowerCase().includes(q)).slice(0, 15);\n      if (!matches.length) {\n        suggestEl.innerHTML = `<div class="p-3 text-muted text-center text-xs">查無符合「${val}」的個股</div>`;\n      } else {\n        suggestEl.innerHTML = matches.map((x) => `\n          <button type="button" data-diagnose="${x.code}" class="dropdown-item d-flex align-items-center justify-content-between py-2 px-3 border-bottom border-secondary-subtle text-start w-100 cursor-pointer">\n            <span class="text-xs">\n              <strong class="text-white fs-6">${x.name}</strong>\n              <span class="text-muted num ms-1.5 fw-bold">${x.code}</span>\n              <span class="badge border border-secondary text-secondary ms-1.5">${x.market}・${x.sector}</span>\n            </span>\n            <span class="num text-xs ${cls(x.chg)} fw-bold ms-2 text-nowrap">\n              ${fmt(x.close)} <span class="ms-1">${fmtChg(x.chg)}</span>\n            </span>\n          </button>\n        `).join("");\n      }\n      showSuggest();\n    }\n\n    inputEl.addEventListener("input", (e) => doSearch(e.target.value));\n    inputEl.addEventListener("focus", (e) => { if (e.target.value.trim()) doSearch(e.target.value); });\n    inputEl.addEventListener("keydown", (e) => {\n      if (e.key === "Enter") {\n        e.preventDefault();\n        const q = e.target.value.trim().toLowerCase();\n        const pool = universeDB.length ? universeDB : ((days[0] && days[0].picks) || []);\n        const found = pool.find((x) => x.code === q || x.name.toLowerCase() === q) || pool.find((x) => `${x.code} ${x.name}`.toLowerCase().includes(q));\n        if (found) {\n          hideSuggest();\n          renderDoctor(found.code, true);\n        }\n      } else if (e.key === "Escape") {\n        hideSuggest();\n      }\n    });\n\n    if (clearBtn) {\n      clearBtn.addEventListener("click", () => {\n        inputEl.value = "";\n        clearBtn.classList.add("hidden");\n        hideSuggest();\n        inputEl.focus();\n      });\n    }\n  }'
+clean_js = re.sub(
+    r'function setupStockSearch\(inputEl, suggestEl, clearBtn\)\s*\{[\s\S]*?if \(clearBtn\) \{[\s\S]*?\}\s*\}',
+    lambda m: new_search_module,
+    clean_js
 )
 
 # scrRows 策略選股表格：補齊名次欄位，移除空白追蹤欄位
@@ -603,13 +620,15 @@ render_indices_patch = """
     try {
       const twseIdx = (day.indices || []).find(x => x.name && (x.name.includes("加權") || x.name.includes("發行量加權"))) || (day.indices || [])[0];
       if (twseIdx && $("sbCardIdx")) {
-        const s = twseIdx.change > 0 ? "+" : "";
-        $("sbCardIdx").innerHTML = `${fmt(twseIdx.close)} <small class="${cls(twseIdx.change)} fs-6 ms-1">${fmtChg(twseIdx.changePct)}</small>`;
-        if ($("sbCardIdxSub")) $("sbCardIdxSub").textContent = twseIdx.change != null ? `點數變動: ${s}${fmt(twseIdx.change)} 點` : "收盤行情定稿";
+        const chg = twseIdx.chg != null ? twseIdx.chg : twseIdx.change;
+        const chgPct = twseIdx.chgPct != null ? twseIdx.chgPct : twseIdx.changePct;
+        const s = chg > 0 ? "+" : "";
+        $("sbCardIdx").innerHTML = `${fmt(twseIdx.close)} <small class="${cls(chg)} fs-6 ms-1">${fmtChg(chgPct)}</small>`;
+        if ($("sbCardIdxSub")) $("sbCardIdxSub").textContent = chg != null ? `點數變動: ${s}${fmt(chg)} 點` : "收盤行情分析";
       }
-      const ov = day.aiOverview || {};
       if ($("sbCardAi")) {
-        $("sbCardAi").textContent = ov.marketStance || ov.headline || "多因子量化共識";
+        const pCnt = (day.picks || []).length;
+        $("sbCardAi").textContent = `${pCnt} 檔核心精選`;
       }
       if ($("sbCardAiSub")) {
         const sAvg = (day.picks || []).length ? ((day.picks || []).reduce((s, p) => s + p.score, 0) / day.picks.length).toFixed(1) : "—";
@@ -978,6 +997,14 @@ sb_template_html = f'''<!-- GETSTOCK 台股大戶籌碼與量化決策系統 -->
 .flat {{ color: var(--flat) !important; }}
 .text-right {{ text-align: right !important; }}
 .text-left {{ text-align: left !important; }}
+.dropdown-menu.hidden {{ display: none !important; }}
+.dropdown-menu.show {{ display: block !important; }}
+#docSuggest, #docSectionSuggest {{
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.6) !important;
+}}
+#docSuggest .dropdown-item:hover, #docSectionSuggest .dropdown-item:hover {{
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}}
 .up-badge {{ color: var(--up) !important; background-color: var(--up-bg) !important; border: 1px solid rgba(248, 113, 113, 0.25); }}
 .down-badge {{ color: var(--down) !important; background-color: var(--down-bg) !important; border: 1px solid rgba(52, 211, 153, 0.25); }}
 
@@ -1488,7 +1515,7 @@ body.theme-light .stock-card {{
       <button class="btn btn-primary btn-sm fw-bold text-white" id="btnDocSearch" type="button">查詢</button>
     </div>
     <!-- 搜尋建議清單 Dropdown -->
-    <div id="docSuggest" class="dropdown-menu shadow-lg w-100 mt-1" style="display:none; max-height:360px; overflow-y:auto; position:absolute; top:100%; left:0; z-index:1060;"></div>
+    <div id="docSuggest" class="dropdown-menu shadow-lg w-100 mt-1 hidden" style="max-height:360px; overflow-y:auto; position:absolute; top:100%; left:0; z-index:1060; background:#1c2027; border:1px solid rgba(255,255,255,0.15);"></div>
   </div>
 
   <!-- Navbar Right Action Items -->
@@ -1667,18 +1694,7 @@ body.theme-light .stock-card {{
           </div>
         </div>
 
-        <!-- 盤後決策總覽與市場情緒指標卡片 -->
-        <div class="card mb-4 shadow-sm border border-secondary-subtle" style="background:#181b20;">
-          <div class="card-body py-3">
-            <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-2">
-              <div>
-                <div class="text-muted small fw-medium mb-1">盤後決策總覽與市場情緒指標</div>
-                <h5 class="fw-bold mb-0 text-light" id="aiHeadline">大數據量化運算中...</h5>
-              </div>
-              <div class="d-flex flex-wrap gap-1" id="aiBadges"></div>
-            </div>
-          </div>
-        </div>
+
 
         <!-- ===== 模組 1: 今日量化精選 40 檔 (Picks) ===== -->
         <div class="card mb-4 shadow-sm" id="picks">
@@ -2000,7 +2016,7 @@ body.theme-light .stock-card {{
                   <input type="text" id="docSectionSearch" class="form-control" placeholder="搜尋個股 (如 2330 台積電)..." autocomplete="off" />
                   <button type="button" id="btnClearDocSection" class="btn btn-outline-danger text-danger hidden">✕</button>
                 </div>
-                <div id="docSectionSuggest" class="dropdown-menu shadow-lg w-100 mt-1" style="display:none; max-height:320px; overflow-y:auto; position:absolute; top:100%; left:0; z-index:1060;"></div>
+                <div id="docSectionSuggest" class="dropdown-menu shadow-lg w-100 mt-1 hidden" style="max-height:320px; overflow-y:auto; position:absolute; top:100%; left:0; z-index:1060; background:#1c2027; border:1px solid rgba(255,255,255,0.15);"></div>
               </div>
             </div>
             <!-- 快速標的 Pills -->
