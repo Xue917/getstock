@@ -2567,14 +2567,16 @@ body.theme-light .stock-card {
       + (pending.length ? `・${pending.join("、")}融資尚未公布` : " (融資定稿)");
 
     const ov = day.aiOverview || {};
-    $("aiHeadline").textContent = ov.headline || `${day.date} 大戶籌碼與量化決策方針`;
-    if ($("aiBadges")) $("aiBadges").innerHTML = [
-      ["評級 S+", ov.sPlusCount ?? 0, "text-slate-100"],
-      ["土洋合買", ov.dualBuyCount ?? 0, "text-slate-100"],
-      ["由賣轉買", ov.reversalCount ?? 0, "text-slate-100"],
-      ["價跌吃貨", ov.divergenceCount ?? 0, "text-slate-300"],
-      ["連霸鎖碼", ov.consecutiveCount ?? 0, "text-slate-100"],
-    ].map(([k, v, c]) => `<span class="px-2 py-0.5 rounded bg-slate-950 border border-white/10 text-slate-300">${k} <b class="num ${c} font-bold">${v}</b> 檔</span>`).join("");
+    if ($("aiHeadline")) $("aiHeadline").textContent = ov.headline || `${day.date} 決策方針`;
+    if ($("aiBadges")) {
+      $("aiBadges").innerHTML = [
+        ["評級 S+", ov.sPlusCount ?? 0, "text-amber-400"],
+        ["土洋合買", ov.dualBuyCount ?? 0, "text-emerald-400"],
+        ["由賣轉買", ov.reversalCount ?? 0, "text-purple-400"],
+        ["價跌吃貨", ov.divergenceCount ?? 0, "text-sky-400"],
+        ["連霸鎖碼", ov.consecutiveCount ?? 0, "text-pink-400"],
+      ].map(([k, v, c]) => `<span class="px-2 py-0.5 rounded bg-slate-950 border border-white/10 text-slate-300">${k} <b class="num ${c} font-bold">${v}</b> 檔</span>`).join("");
+    }
 
     renderAnomalies(day);
 

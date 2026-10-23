@@ -402,13 +402,23 @@ clean_js = clean_js.replace(
     '<span>5日累計: <b class="${cls(p.inst5d)} font-bold">${chipsLabel(p.inst5d)}</b></span>'
 )
 
-clean_js = clean_js.replace(
-    '$("aiHeadline").textContent = ov.headline || `${day.date} 大數據籌碼與量化決策`;',
-    'if ($("aiHeadline")) $("aiHeadline").textContent = ov.headline || `${day.date} 大數據籌碼與量化決策`;'
+clean_js = re.sub(
+    r'\$\("aiHeadline"\)\.textContent\s*=\s*[\s\S]*?;',
+    'if ($("aiHeadline")) $("aiHeadline").textContent = ov.headline || `${day.date} 決策方針`;',
+    clean_js
 )
-clean_js = clean_js.replace(
-    '$("aiBadges").innerHTML = [',
-    'if ($("aiBadges")) $("aiBadges").innerHTML = ['
+clean_js = re.sub(
+    r'\$\("aiBadges"\)\.innerHTML\s*=\s*\[[\s\S]*?\]\.map\([\s\S]*?\)\.join\(""\);',
+    '''if ($("aiBadges")) {
+      $("aiBadges").innerHTML = [
+        ["評級 S+", ov.sPlusCount ?? 0, "text-amber-400"],
+        ["土洋合買", ov.dualBuyCount ?? 0, "text-emerald-400"],
+        ["由賣轉買", ov.reversalCount ?? 0, "text-purple-400"],
+        ["價跌吃貨", ov.divergenceCount ?? 0, "text-sky-400"],
+        ["連霸鎖碼", ov.consecutiveCount ?? 0, "text-pink-400"],
+      ].map(([k, v, c]) => `<span class="px-2 py-0.5 rounded bg-slate-950 border border-white/10 text-slate-300">${k} <b class="num ${c} font-bold">${v}</b> 檔</span>`).join("");
+    }''',
+    clean_js
 )
 
 # tableRows 精選表格：名次置於第一欄，移除多餘的空白追蹤欄位
