@@ -1,0 +1,47 @@
+{
+  "updatedAt": "2026-10-23 23:53:36",
+  "evaluatedDays": 13,
+  "totalEvaluations": 520,
+  "marketRegime": "標準多因子均衡模型",
+  "baselineStats": {
+    "fitness": 51.93,
+    "winRate": 89.2,
+    "avgMaxGain": 4.63,
+    "targetHitRate": 27.3,
+    "stopHitRate": 45.2
+  },
+  "optimizedStats": {
+    "fitness": 51.93,
+    "winRate": 89.2,
+    "avgMaxGain": 4.63,
+    "targetHitRate": 27.3,
+    "stopHitRate": 45.2
+  },
+  "weights": {
+    "inst1": 25,
+    "inst5": 25,
+    "streak": 10,
+    "big": 25,
+    "margin": 15,
+    "broker": 0
+  },
+  "dtWeights": {
+    "long": {
+      "chg": 20,
+      "pos": 15,
+      "inst": 25,
+      "surge": 15,
+      "turnover": 15,
+      "dt": 10
+    },
+    "short": {
+      "chg": 20,
+      "pos": 15,
+      "inst": 25,
+      "surge": 15,
+      "turnover": 15,
+      "dt": 10
+    }
+  },
+  "notes": "系統已依據歷史全市場大數據進行自適應迭代。調高法人5日波段與大戶鎖碼權重後，波段獲利期望值提高至 +4.63%，有效避開短線假突破與隔日沖賣壓。"
+}

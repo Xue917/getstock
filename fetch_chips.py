@@ -32,7 +32,23 @@ TOP_N = 20              # 上市、上櫃各推薦 20 檔
 TDCC_CANDIDATES = 100    # 每個市場只對前 50 名候選股查集保上週資料
 
 # 各指標權重(合計 100)。主力分點沒有免驗證碼的公開來源,權重先設 0。
-WEIGHTS = {"inst1": 25, "inst5": 25, "streak": 10, "big": 25, "margin": 15, "broker": 0}
+DEFAULT_WEIGHTS = {"inst1": 25, "inst5": 25, "streak": 10, "big": 25, "margin": 15, "broker": 0}
+
+def load_active_weights():
+    weights_path = os.path.join(OUT, "model_weights.json")
+    if os.path.exists(weights_path):
+        try:
+            with open(weights_path, "r", encoding="utf-8") as fp:
+                d = json.load(fp)
+                w = d.get("weights")
+                if w and isinstance(w, dict) and sum(w.values()) > 0:
+                    print(f">> [大數據自適應調校] 成功載入動態最佳化權重: {w}")
+                    return w
+        except Exception as e:
+            print("讀取 model_weights.json 異常，使用基準權重:", e)
+    return dict(DEFAULT_WEIGHTS)
+
+WEIGHTS = load_active_weights()
 
 
 # Windows Python 3.13 環境常缺少台灣政府/TWCA 憑證鏈或受本機防毒 HTTPS 掃描影響導致 CERTIFICATE_VERIFY_FAILED。
@@ -266,10 +282,25 @@ def daytrade_list(d):
 
 
 DT_MIN_LOTS = 50   # 當沖標的至少要有的當日成交量(張),太冷門的進出不易
-DT_WEIGHTS = {
+DEFAULT_DT_WEIGHTS = {
     "long": {"chg": 20, "pos": 15, "inst": 20, "surge": 15, "turnover": 20, "dt": 10},
     "short": {"chg": 20, "pos": 10, "inst": 20, "surge": 20, "turnover": 20, "dt": 10},
 }
+
+def load_active_dt_weights():
+    weights_path = os.path.join(OUT, "model_weights.json")
+    if os.path.exists(weights_path):
+        try:
+            with open(weights_path, "r", encoding="utf-8") as fp:
+                d = json.load(fp)
+                dt_w = d.get("dtWeights")
+                if dt_w and isinstance(dt_w, dict):
+                    return dt_w
+        except Exception:
+            pass
+    return DEFAULT_DT_WEIGHTS
+
+DT_WEIGHTS = load_active_dt_weights()
 
 
 def compute_daytrade_plan(x, side):
