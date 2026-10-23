@@ -866,34 +866,22 @@ init_events = """
     });
   }
 
-  // 點擊側選單時高亮項目與收合側欄
-  document.querySelectorAll("#layoutSidenav_nav a.nav-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      const hash = link.getAttribute("href");
-      if (hash && hash.startsWith("#")) {
-        document.querySelectorAll("#layoutSidenav_nav a.nav-link").forEach((t) => {
-          if (t.getAttribute("href") === hash) {
-            t.classList.add("active");
-          } else {
-            t.classList.remove("active");
-          }
-        });
-      }
-      if (window.innerWidth < 992) {
-        document.body.classList.remove("sb-sidenav-toggled");
-      }
-    });
-  });
+// (側欄點擊由統一 ScrollSpy 管理)
 """
 
-# 側欄導航滾動高亮監聽器
-clean_js = re.sub(
-    r'\["academy", "picks",.*?\]\.forEach\(\(id\) => \{',
-    '["dashboard", "picks", "radarSection", "daytrade", "anomalies", "doctor", "screener", "rankings"].forEach((id) => {',
-    clean_js
-)
+# (舊高亮監聽器已由新 ScrollSpy 完全取代)
 
 # 插入事件與初始化到主 closure
+
+# 替換舊的 nav-tab / IntersectionObserver 為完整的 SB Admin 側欄 ScrollSpy
+new_scrollspy_code = '// ===== 側欄導航 ScrollSpy 與平滑滾動管理 =====\n  const sidebarSectionIds = [\n    "dashboard",\n    "picks",\n    "radarSection",\n    "daytrade",\n    "anomalies",\n    "rankings",\n    "doctor",\n    "screener"\n  ];\n\n  function updateSidebarActive(activeId) {\n    if (!activeId) return;\n    const navLinks = document.querySelectorAll("#layoutSidenav_nav a.nav-link");\n    navLinks.forEach((link) => {\n      const href = link.getAttribute("href") || "";\n      const targetId = href.replace(/^#/, "");\n      if (targetId === activeId) {\n        if (!link.classList.contains("active")) {\n          link.classList.add("active");\n        }\n      } else {\n        link.classList.remove("active");\n      }\n    });\n  }\n\n  // 精準平滑滾動至目標章節 (動態扣除 Sticky 頂部導航欄高度 56px + 16px 留白)\n  function scrollToSection(targetId) {\n    const el = document.getElementById(targetId) || document.querySelector(targetId);\n    if (!el) return;\n    const topNav = document.querySelector(".sb-topnav") || document.querySelector("header");\n    const navH = topNav ? topNav.offsetHeight : 56;\n    const offset = navH + 16;\n    const elRect = el.getBoundingClientRect();\n    const targetY = window.pageYOffset + elRect.top - offset;\n    window.scrollTo({\n      top: Math.max(0, targetY),\n      behavior: "smooth"\n    });\n  }\n\n  let manualScrollUntil = 0;\n  let manualTargetId = null;\n\n  // 點擊側欄選單項目：即時更新 active + 平滑滾動 + 手機版點擊自動收合側欄\n  document.querySelectorAll("#layoutSidenav_nav a.nav-link").forEach((link) => {\n    link.addEventListener("click", (e) => {\n      const href = link.getAttribute("href");\n      if (href && href.startsWith("#")) {\n        const targetId = href.substring(1);\n        const targetEl = document.getElementById(targetId);\n        if (targetEl) {\n          e.preventDefault();\n          manualTargetId = targetId;\n          manualScrollUntil = Date.now() + 750;\n          updateSidebarActive(targetId);\n          scrollToSection(targetId);\n          try { history.pushState(null, "", href); } catch (_) {}\n        }\n      }\n      if (window.innerWidth < 992) {\n        document.body.classList.remove("sb-sidenav-toggled");\n      }\n    });\n  });\n\n  // 全站錨點點擊 (例如「查看完整籌碼診斷」、「載入雷達」等)\n  document.querySelectorAll(\'a[href^="#"]:not(#layoutSidenav_nav a)\').forEach((link) => {\n    link.addEventListener("click", (e) => {\n      const href = link.getAttribute("href");\n      if (!href || href === "#") return;\n      const targetId = href.substring(1);\n      const targetEl = document.getElementById(targetId);\n      if (targetEl) {\n        e.preventDefault();\n        manualTargetId = targetId;\n        manualScrollUntil = Date.now() + 750;\n        updateSidebarActive(targetId);\n        scrollToSection(targetId);\n        try { history.pushState(null, "", href); } catch (_) {}\n      }\n    });\n  });\n\n  // 滾動頁面時自動偵測當前瀏覽中的章節並高亮對應側欄按鈕 (ScrollSpy)\n  function onScrollSpy() {\n    if (Date.now() < manualScrollUntil && manualTargetId) {\n      updateSidebarActive(manualTargetId);\n      return;\n    }\n\n    const scrollY = window.pageYOffset || document.documentElement.scrollTop;\n    const windowH = window.innerHeight;\n    const docH = document.documentElement.scrollHeight;\n\n    // 捲動到接近最頂部，固定高亮第一項 (儀表板總覽)\n    if (scrollY < 80) {\n      updateSidebarActive(sidebarSectionIds[0]);\n      return;\n    }\n\n    // 捲動到接近最底部時，直接高亮最後一個章節 (多因子策略選股)\n    if (windowH + scrollY >= docH - 50) {\n      updateSidebarActive(sidebarSectionIds[sidebarSectionIds.length - 1]);\n      return;\n    }\n\n    // 計算各章節在視窗中的相對位置 (觸發線設在頂部導航欄下方約 140px)\n    const topThreshold = 140;\n    let activeId = sidebarSectionIds[0];\n\n    for (let i = 0; i < sidebarSectionIds.length; i++) {\n      const id = sidebarSectionIds[i];\n      const el = document.getElementById(id);\n      if (!el) continue;\n      const rect = el.getBoundingClientRect();\n      if (rect.top <= topThreshold) {\n        activeId = id;\n      } else {\n        break;\n      }\n    }\n\n    updateSidebarActive(activeId);\n  }\n\n  let scrollTicking = false;\n  window.addEventListener("scroll", () => {\n    if (!scrollTicking) {\n      window.requestAnimationFrame(() => {\n        onScrollSpy();\n        scrollTicking = false;\n      });\n      scrollTicking = true;\n    }\n  }, { passive: true });\n\n  window.addEventListener("resize", () => {\n    onScrollSpy();\n  }, { passive: true });\n\n  // 初始載入立即執行一次判定\n  setTimeout(onScrollSpy, 150);'
+clean_js = re.sub(
+    r'function scrollToSection\(targetId\)\s*\{.*?secObserver\.observe\(el\);\s*\}\);\s*\}',
+    lambda m: new_scrollspy_code,
+    clean_js,
+    flags=re.S
+)
+
 clean_js = clean_js.replace(
     'initScreenerSectors();',
     radar_section_engine + '\n' + init_events + '\n  initScreenerSectors();'
@@ -1514,9 +1502,8 @@ body.theme-light .stock-card {{
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
       <div class="sb-sidenav-menu">
         <div class="nav py-2">
-          <!-- 分組 1: 核心決策 CORE (藍色微光指示) -->
-          <div class="sb-sidenav-menu-heading px-3 py-2 text-uppercase fw-bold d-flex align-items-center" style="color: #93c5fd;">
-            <span style="display:inline-block; width:7px; height:7px; border-radius:50%; background:#3b82f6; margin-right:8px; box-shadow:0 0 8px #3b82f6;"></span>
+          <!-- 分組 1: 核心決策 CORE -->
+          <div class="sb-sidenav-menu-heading px-3 pt-3 pb-1 text-uppercase fw-bold" style="color: #93c5fd; font-size: 0.72rem; letter-spacing: 0.08em;">
             核心決策 CORE
           </div>
           <a class="nav-link active py-2 px-3 side-item-blue" href="#dashboard">
@@ -1534,9 +1521,8 @@ body.theme-light .stock-card {{
             <span class="badge ms-auto font-monospace side-badge-cyan">透視</span>
           </a>
 
-          <!-- 分組 2: 盤面與異動 MARKET (琥珀金微光指示) -->
-          <div class="sb-sidenav-menu-heading px-3 py-2 text-uppercase fw-bold d-flex align-items-center" style="color: #fcd34d;">
-            <span style="display:inline-block; width:7px; height:7px; border-radius:50%; background:#f59e0b; margin-right:8px; box-shadow:0 0 8px #f59e0b;"></span>
+          <!-- 分組 2: 盤面與異動 MARKET -->
+          <div class="sb-sidenav-menu-heading px-3 pt-3 pb-1 text-uppercase fw-bold" style="color: #fcd34d; font-size: 0.72rem; letter-spacing: 0.08em;">
             盤面與異動 MARKET
           </div>
           <a class="nav-link py-2 px-3 side-item-rose" href="#daytrade">
@@ -1554,9 +1540,8 @@ body.theme-light .stock-card {{
             量能與週轉率前20
           </a>
 
-          <!-- 分組 3: 分析工具 TOOLS (翠綠微光指示) -->
-          <div class="sb-sidenav-menu-heading px-3 py-2 text-uppercase fw-bold d-flex align-items-center" style="color: #6ee7b7;">
-            <span style="display:inline-block; width:7px; height:7px; border-radius:50%; background:#10b981; margin-right:8px; box-shadow:0 0 8px #10b981;"></span>
+          <!-- 分組 3: 分析工具 TOOLS -->
+          <div class="sb-sidenav-menu-heading px-3 pt-3 pb-1 text-uppercase fw-bold" style="color: #6ee7b7; font-size: 0.72rem; letter-spacing: 0.08em;">
             分析工具 TOOLS
           </div>
           <a class="nav-link py-2 px-3 side-item-emerald" href="#doctor">
@@ -1829,7 +1814,48 @@ body.theme-light .stock-card {{
           </div>
         </div>
 
-        <!-- ===== 模組 3: 跨日籌碼異動追蹤 (Anomalies) ===== -->
+        <!-- ===== 模組 3: 當沖標的 (Day Trade) ===== -->
+        <div class="card mb-4 shadow-sm" id="daytrade">
+          <div class="card-header py-3">
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
+              <div>
+                <div class="text-muted small" id="dtAsof">隔日當沖參考名單</div>
+                <h5 class="mb-0 fw-bold text-light" id="dtTitle">
+                  當沖標的（含進場/停利/停損試算）
+                </h5>
+                <p id="dtDesc" class="text-muted small mb-0 mt-1"></p>
+              </div>
+              <!-- 做多/做空切換 -->
+              <div class="btn-group btn-group-sm flex-none" role="group">
+                <button type="button" id="dt-long" data-side="long" class="dts btn btn-danger active fw-bold">做多 20 檔 (先買後賣)</button>
+                <button type="button" id="dt-short" data-side="short" class="dts btn btn-outline-success">做空 20 檔 (先賣後買)</button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover align-middle mb-0 text-xs">
+                <thead class="table-dark text-nowrap">
+                  <tr>
+                    <th class="py-2.5 px-2 text-center" style="width: 44px;">名次</th>
+                    <th class="py-2.5 px-2">代號 / 股票 / 當沖理由</th>
+                    <th class="py-2.5 px-2 text-end">收盤</th>
+                    <th class="py-2.5 px-2 text-end">漲跌幅</th>
+                    <th class="py-2.5 px-2 text-end text-rose-300" id="dtColEntry">當沖進場點</th>
+                    <th class="py-2.5 px-2 text-end text-rose-300" id="dtColTarget">停利目標 1/2</th>
+                    <th class="py-2.5 px-2 text-end text-emerald-400" id="dtColStop">停損點</th>
+                    <th class="py-2.5 px-2 text-end">週轉/當沖比</th>
+                    <th class="py-2.5 px-2 text-end">量增/法人</th>
+                    <th class="py-2.5 px-2 text-end">分數</th>
+                  </tr>
+                </thead>
+                <tbody id="dtRows"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== 模組 4: 跨日籌碼異動追蹤 (Anomalies) ===== -->
         <div class="card mb-4 shadow-sm" id="anomalies">
           <div class="card-header py-3">
             <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
@@ -1878,48 +1904,66 @@ body.theme-light .stock-card {{
           </div>
         </div>
 
-        <!-- ===== 模組 4: 當沖標的 (Day Trade) ===== -->
-        <div class="card mb-4 shadow-sm" id="daytrade">
-          <div class="card-header py-3">
-            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
-              <div>
-                <div class="text-muted small" id="dtAsof">隔日當沖參考名單</div>
-                <h5 class="mb-0 fw-bold text-light" id="dtTitle">
-                  當沖標的（含進場/停利/停損試算）
-                </h5>
-                <p id="dtDesc" class="text-muted small mb-0 mt-1"></p>
+        <!-- ===== 模組 5: 成交量與週轉率前 20 名排行 (Rankings) ===== -->
+        <div class="row g-3 mb-4" id="rankings">
+          <!-- 成交量排行 -->
+          <div class="col-lg-6">
+            <div class="card h-100 shadow-sm border border-secondary-subtle">
+              <div class="card-header py-2.5 d-flex align-items-center justify-content-between border-bottom border-secondary-subtle">
+                <h6 class="mb-0 fw-bold text-light" id="voTitle">上市成交量前 20 名</h6>
+                <small class="text-muted">市場資金最集中標的（張）</small>
               </div>
-              <!-- 做多/做空切換 -->
-              <div class="btn-group btn-group-sm flex-none" role="group">
-                <button type="button" id="dt-long" data-side="long" class="dts btn btn-danger active fw-bold">做多 20 檔 (先買後賣)</button>
-                <button type="button" id="dt-short" data-side="short" class="dts btn btn-outline-success">做空 20 檔 (先賣後買)</button>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover align-middle mb-0 text-xs">
+                    <thead class="table-dark text-nowrap">
+                      <tr>
+                        <th class="py-2 px-2 text-center" style="width: 40px;">名次</th>
+                        <th class="py-2 px-2">股票</th>
+                        <th class="py-2 px-2 text-end">收盤</th>
+                        <th class="py-2 px-2 text-end">漲跌幅</th>
+                        <th class="py-2 px-2 text-end">金額(億)</th>
+                        <th class="py-2 px-2 text-end">週轉率</th>
+                        <th class="py-2 px-2 text-end">成交量(張)</th>
+                      </tr>
+                    </thead>
+                    <tbody id="voRows"></tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
-          <div class="card-body p-0">
-            <div class="table-responsive">
-              <table class="table table-bordered table-hover align-middle mb-0 text-xs">
-                <thead class="table-dark text-nowrap">
-                  <tr>
-                    <th class="py-2.5 px-2 text-center" style="width: 44px;">名次</th>
-                    <th class="py-2.5 px-2">代號 / 股票 / 當沖理由</th>
-                    <th class="py-2.5 px-2 text-end">收盤</th>
-                    <th class="py-2.5 px-2 text-end">漲跌幅</th>
-                    <th class="py-2.5 px-2 text-end text-rose-300" id="dtColEntry">當沖進場點</th>
-                    <th class="py-2.5 px-2 text-end text-rose-300" id="dtColTarget">停利目標 1/2</th>
-                    <th class="py-2.5 px-2 text-end text-emerald-400" id="dtColStop">停損點</th>
-                    <th class="py-2.5 px-2 text-end">週轉/當沖比</th>
-                    <th class="py-2.5 px-2 text-end">量增/法人</th>
-                    <th class="py-2.5 px-2 text-end">分數</th>
-                  </tr>
-                </thead>
-                <tbody id="dtRows"></tbody>
-              </table>
+
+          <!-- 週轉率排行 -->
+          <div class="col-lg-6">
+            <div class="card h-100 shadow-sm border border-secondary-subtle">
+              <div class="card-header py-2.5 d-flex align-items-center justify-content-between border-bottom border-secondary-subtle">
+                <h6 class="mb-0 fw-bold text-light" id="toTitle">上市週轉率前 20 名</h6>
+                <small class="text-muted">換手最熱絡標的（成交÷發行）</small>
+              </div>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover align-middle mb-0 text-xs">
+                    <thead class="table-dark text-nowrap">
+                      <tr>
+                        <th class="py-2 px-2 text-center" style="width: 40px;">名次</th>
+                        <th class="py-2 px-2">股票</th>
+                        <th class="py-2 px-2 text-end">收盤</th>
+                        <th class="py-2 px-2 text-end">漲跌幅</th>
+                        <th class="py-2 px-2 text-end">成交量(張)</th>
+                        <th class="py-2 px-2 text-end">金額(億)</th>
+                        <th class="py-2 px-2 text-end">週轉率</th>
+                      </tr>
+                    </thead>
+                    <tbody id="toRows"></tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- ===== 模組 5: 個股籌碼全方位健檢與部位試算 (Doctor) ===== -->
+        <!-- ===== 模組 6: 個股籌碼全方位健檢與部位試算 (Doctor) ===== -->
         <div class="card mb-4 shadow-sm" id="doctor">
           <div class="card-header py-3">
             <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
@@ -1983,7 +2027,7 @@ body.theme-light .stock-card {{
           </div>
         </div>
 
-        <!-- ===== 模組 6: 多因子策略選股 (Screener) ===== -->
+        <!-- ===== 模組 7: 多因子策略選股 (Screener) ===== -->
         <div class="card mb-4 shadow-sm" id="screener">
           <div class="card-header py-3">
             <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
@@ -2081,65 +2125,7 @@ body.theme-light .stock-card {{
           </div>
         </div>
 
-        <!-- ===== 模組 7: 成交量與週轉率前 20 名排行 (Rankings) ===== -->
-        <div class="row g-3 mb-4" id="rankings">
-          <!-- 成交量排行 -->
-          <div class="col-lg-6">
-            <div class="card h-100 shadow-sm border border-secondary-subtle">
-              <div class="card-header py-2.5 d-flex align-items-center justify-content-between border-bottom border-secondary-subtle">
-                <h6 class="mb-0 fw-bold text-light" id="voTitle">上市成交量前 20 名</h6>
-                <small class="text-muted">市場資金最集中標的（張）</small>
               </div>
-              <div class="card-body p-0">
-                <div class="table-responsive">
-                  <table class="table table-bordered table-hover align-middle mb-0 text-xs">
-                    <thead class="table-dark text-nowrap">
-                      <tr>
-                        <th class="py-2 px-2 text-center" style="width: 40px;">名次</th>
-                        <th class="py-2 px-2">股票</th>
-                        <th class="py-2 px-2 text-end">收盤</th>
-                        <th class="py-2 px-2 text-end">漲跌幅</th>
-                        <th class="py-2 px-2 text-end">金額(億)</th>
-                        <th class="py-2 px-2 text-end">週轉率</th>
-                        <th class="py-2 px-2 text-end">成交量(張)</th>
-                      </tr>
-                    </thead>
-                    <tbody id="voRows"></tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 週轉率排行 -->
-          <div class="col-lg-6">
-            <div class="card h-100 shadow-sm border border-secondary-subtle">
-              <div class="card-header py-2.5 d-flex align-items-center justify-content-between border-bottom border-secondary-subtle">
-                <h6 class="mb-0 fw-bold text-light" id="toTitle">上市週轉率前 20 名</h6>
-                <small class="text-muted">換手最熱絡標的（成交÷發行）</small>
-              </div>
-              <div class="card-body p-0">
-                <div class="table-responsive">
-                  <table class="table table-bordered table-hover align-middle mb-0 text-xs">
-                    <thead class="table-dark text-nowrap">
-                      <tr>
-                        <th class="py-2 px-2 text-center" style="width: 40px;">名次</th>
-                        <th class="py-2 px-2">股票</th>
-                        <th class="py-2 px-2 text-end">收盤</th>
-                        <th class="py-2 px-2 text-end">漲跌幅</th>
-                        <th class="py-2 px-2 text-end">成交量(張)</th>
-                        <th class="py-2 px-2 text-end">金額(億)</th>
-                        <th class="py-2 px-2 text-end">週轉率</th>
-                      </tr>
-                    </thead>
-                    <tbody id="toRows"></tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </main>
 
     <!-- ===== 頁尾 ===== -->
