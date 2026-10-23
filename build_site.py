@@ -107,7 +107,7 @@ def build_ohlc_map():
 
 
 def build_full_universe_db(latest_doc, ind, ohlc_map=None):
-    """從快取建立最新交易日全市場 550+ 檔高流動性個股資料庫(供全市場選股機器、個股 AI 健檢與避雷針使用)。"""
+    """從快取建立最新交易日全市場 1400+ 檔高流動性個股資料庫(供全市場選股機器、個股 AI 健檢與避雷針使用)。"""
     try:
         if ohlc_map is None:
             ohlc_map = {}

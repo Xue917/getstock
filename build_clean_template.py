@@ -402,7 +402,12 @@ clean_js = clean_js.replace(
     '<span>5日累計: <b class="${cls(p.inst5d)} font-bold">${chipsLabel(p.inst5d)}</b></span>'
 )
 
-# tableRows 精選表格
+# tableRows 精選表格：名次置於第一欄，移除多餘的空白追蹤欄位
+clean_js = clean_js.replace(
+    """        <td class="py-2.5 pl-4 pr-1">${starBtn(p.code)}</td>
+        <td class="py-2.5 px-2 num font-bold text-slate-400">#${p.rank}</td>""",
+    """        <td class="py-2.5 px-2 text-center num font-bold text-muted">#${p.rank}</td>"""
+)
 clean_js = clean_js.replace(
     '<td class="py-2.5 px-2 text-right num font-bold ${cls(p.chg)}">${p.chg > 0 ? "+" : ""}${p.chg.toFixed(2)}%</td>',
     '<td class="py-2.5 px-2 text-right num font-bold ${cls(p.chg)}">${fmtChg(p.chg)}</td>'
@@ -424,7 +429,19 @@ clean_js = clean_js.replace(
     '<td class="py-2.5 px-2 text-right num ${cls(p.inst)} font-bold whitespace-nowrap">${chipsLabel(p.inst)}</td>'
 )
 
-# scrRows 策略選股表格
+# scrRows 策略選股表格：補齊名次欄位，移除空白追蹤欄位
+clean_js = clean_js.replace(
+    """    $("scrRows").innerHTML = shown.map((x) => {
+      const tp = x.tradePlan || {};
+      const isBad = state.scrPreset === "blacklist" || String(x.aiGrade || "").startsWith("D");
+      return `<tr class="hover:bg-white/[0.03] transition-colors text-sm">
+        <td class="py-2.5 pl-4 pr-1">${starBtn(x.code)}</td>""",
+    """    $("scrRows").innerHTML = shown.map((x, idx) => {
+      const tp = x.tradePlan || {};
+      const isBad = state.scrPreset === "blacklist" || String(x.aiGrade || "").startsWith("D");
+      return `<tr class="hover:bg-white/[0.03] transition-colors text-sm">
+        <td class="py-2.5 px-2 text-center num text-muted fw-bold">${idx + 1}</td>"""
+)
 clean_js = clean_js.replace(
     '<td class="py-2.5 px-2 text-right num ${cls(x.chg)} font-bold">${x.chg > 0 ? "+" : ""}${(x.chg || 0).toFixed(2)}%</td>',
     '<td class="py-2.5 px-2 text-right num ${cls(x.chg)} font-bold">${fmtChg(x.chg)}</td>'
@@ -894,7 +911,7 @@ clean_js = clean_js.replace(
 
 clean_js = clean_js.replace(
     'renderDoctor();',
-    'renderDoctor();\n  renderRadarSection();'
+    """renderDoctor();\n  renderRadarSection();\n  if (typeof universeDB !== "undefined" && universeDB && universeDB.length) {\n    const sBadge = $("sideDoctorBadge");\n    if (sBadge) sBadge.textContent = `${universeDB.length}檔`;\n    const dCount = $("docPoolCount");\n    if (dCount) dCount.textContent = `全市場 ${fmt(universeDB.length)} 檔即時數據`;\n  }"""
 )
 
 # 在全局點擊代理中掛接雷達載入
@@ -959,6 +976,8 @@ sb_template_html = f'''<!-- GETSTOCK 台股大戶籌碼與量化決策系統 -->
 .up {{ color: var(--up) !important; font-weight: 600; }}
 .down {{ color: var(--down) !important; font-weight: 600; }}
 .flat {{ color: var(--flat) !important; }}
+.text-right {{ text-align: right !important; }}
+.text-left {{ text-align: left !important; }}
 .up-badge {{ color: var(--up) !important; background-color: var(--up-bg) !important; border: 1px solid rgba(248, 113, 113, 0.25); }}
 .down-badge {{ color: var(--down) !important; background-color: var(--down-bg) !important; border: 1px solid rgba(52, 211, 153, 0.25); }}
 
@@ -1547,7 +1566,7 @@ body.theme-light .stock-card {{
           <a class="nav-link py-2 px-3 side-item-emerald" href="#doctor">
             <span class="side-dot" style="background:#10b981;"></span>
             個股籌碼健檢
-            <span class="badge ms-auto font-monospace side-badge-emerald">550+檔</span>
+            <span id="sideDoctorBadge" class="badge ms-auto font-monospace side-badge-emerald">1400+檔</span>
           </a>
           <a class="nav-link py-2 px-3 side-item-indigo" href="#screener">
             <span class="side-dot" style="background:#6366f1;"></span>
@@ -1968,7 +1987,7 @@ body.theme-light .stock-card {{
           <div class="card-header py-3">
             <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
               <div>
-                <div class="text-muted small" id="docPoolCount">全市場 550+ 檔即時數據</div>
+                <div class="text-muted small" id="docPoolCount">全市場 1,400+ 檔即時數據</div>
                 <h5 class="mb-0 fw-bold text-light">
                   個股籌碼全方位健檢與部位試算
                 </h5>
@@ -2101,9 +2120,8 @@ body.theme-light .stock-card {{
               <table class="table table-bordered table-hover align-middle mb-0 text-xs">
                 <thead class="table-dark text-nowrap">
                   <tr>
-                    <th class="py-2.5 px-2 text-center" style="width: 40px;">名次</th>
+                    <th class="py-2.5 px-2 text-center" style="width: 44px;">名次</th>
                     <th class="py-2.5 px-2">代號 / 股票</th>
-                    <th class="py-2.5 px-2">產業</th>
                     <th class="py-2.5 px-2 text-end">收盤</th>
                     <th class="py-2.5 px-2 text-end">漲跌幅</th>
                     <th class="py-2.5 px-2 text-end">今日法人</th>
